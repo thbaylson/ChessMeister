@@ -4,23 +4,21 @@ import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 
 public class Square extends BlackAndWhite implements SquareIF{
-
+	PieceIF sPiece;
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		sPiece.setChessPieceType(null);
 	}
 
 	@Override
 	public void setPiece(PieceIF p) {
-		// TODO Auto-generated method stub
+		this.sPiece = p;
 		
 	}
 
 	@Override
 	public PieceIF getPiece() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sPiece;
 	}
 
 }
