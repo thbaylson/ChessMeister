@@ -1,24 +1,46 @@
 package Model;
 
-import Enums.Files;
-import Enums.Rank;
+import Enums.*;
 import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 
-public class Board implements BoardIF{
 
+public class Board implements BoardIF{
+	SquareIF[][] bLayout;
 	@Override
 	public void init_board() {
-		// TODO Auto-generated method stub
-		
+		bLayout = new Square[8][8];
 	}
 
 	@Override
 	public void setup() {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				bLayout[i][j] = new Square();
+			}
+		}
+		bLayout[0][0].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
+		bLayout[1][0].setPiece(new Piece(ChessPieceType.Knight, GameColor.WHITE));
+		bLayout[2][0].setPiece(new Piece(ChessPieceType.Bishop, GameColor.WHITE));
+		bLayout[3][0].setPiece(new Piece(ChessPieceType.Queen, GameColor.WHITE));
+		bLayout[4][0].setPiece(new Piece(ChessPieceType.King, GameColor.WHITE));
+		bLayout[5][0].setPiece(new Piece(ChessPieceType.Bishop, GameColor.WHITE));
+		bLayout[6][0].setPiece(new Piece(ChessPieceType.Knight, GameColor.WHITE));
+		bLayout[7][0].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
+		bLayout[0][7].setPiece(new Piece(ChessPieceType.Rook, GameColor.BLACK));
+		bLayout[1][7].setPiece(new Piece(ChessPieceType.Knight, GameColor.BLACK));
+		bLayout[2][7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.BLACK));
+		bLayout[3][7].setPiece(new Piece(ChessPieceType.Queen, GameColor.BLACK));
+		bLayout[4][7].setPiece(new Piece(ChessPieceType.King, GameColor.BLACK));
+		bLayout[5][7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.BLACK));
+		bLayout[6][7].setPiece(new Piece(ChessPieceType.Knight, GameColor.BLACK));
+		bLayout[7][7].setPiece(new Piece(ChessPieceType.Rook, GameColor.BLACK));
+		for (int i = 0; i < 8; i++) {
+			bLayout[i][2].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
+			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
+		}
 	}
 
 	@Override
@@ -35,7 +57,7 @@ public class Board implements BoardIF{
 
 	@Override
 	public void setDrawStrategy(BoardStrategy d) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
