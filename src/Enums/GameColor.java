@@ -2,6 +2,6 @@ package Enums;
 
 public enum GameColor {
 	
-	BLACK, WHITE
+	WHITE, BLACK
 
 }

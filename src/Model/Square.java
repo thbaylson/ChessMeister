@@ -5,6 +5,11 @@ import Interfaces.SquareIF;
 
 public class Square extends BlackAndWhite implements SquareIF{
 	PieceIF sPiece;
+	
+	
+	public Square() {
+		
+	}
 	@Override
 	public void clear() {
 		sPiece.setChessPieceType(null);

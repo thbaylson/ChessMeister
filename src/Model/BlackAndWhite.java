@@ -24,19 +24,10 @@ public class BlackAndWhite implements BlackAndWhiteIF{
 	}
 	
 	public void setBlack(boolean b){
-		if (b == true) {
-			this.color = GameColor.BLACK;
-		}else {
-			this.color = GameColor.WHITE;
-		}
+		this.color = b ? GameColor.BLACK : GameColor.WHITE;
 	}
 	
 	public void setWhite(boolean b){
-		if (b == true) {
-			this.color = GameColor.WHITE;
-		}else {
-			this.color = GameColor.BLACK;
-		}
+		this.color = b ? GameColor.WHITE : GameColor.BLACK;
 	}
-
 }
