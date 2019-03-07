@@ -1,15 +1,16 @@
 package Model;
 
+import Enums.GameColor;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 
 public class Square extends BlackAndWhite implements SquareIF{
 	PieceIF sPiece;
 	
-	
-	public Square() {
-		
+	public Square(GameColor c) {
+		this.color = c;
 	}
+	
 	@Override
 	public void clear() {
 		sPiece.setChessPieceType(null);
