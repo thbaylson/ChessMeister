@@ -1,12 +1,11 @@
 package Enums;
 
 public enum ChessPieceType {
-	
-	King('K',"King"),
-	Queen('Q', "Queen"),
 	Rook('R', "Rook"),
-	Bishop('B', "Bishop"),
 	Knight('N', "Knight"),
+	Bishop('B', "Bishop"),
+	Queen('Q', "Queen"),
+	King('K',"King"),
 	Pawn('P', "Pawn");
 	
 	

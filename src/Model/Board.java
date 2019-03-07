@@ -9,6 +9,12 @@ import Interfaces.SquareIF;
 
 public class Board implements BoardIF{
 	SquareIF[][] bLayout;
+	
+	public Board() {
+		init_board();
+		setup();
+	}
+	
 	@Override
 	public void init_board() {
 		bLayout = new Square[8][8];
@@ -21,6 +27,19 @@ public class Board implements BoardIF{
 				bLayout[i][j] = new Square();
 			}
 		}
+		int num;
+		for(int i = 0; i < GameColor.values().length; i++) {
+			for(int j = 0; j < ChessPieceType.values().length; j++) {
+				if(j < 5) {
+					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[j], GameColor.values()[i]));
+				}
+				else {
+					num = 7 - j;
+					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[num], GameColor.values()[i]));
+				}
+			}
+		}
+		/*
 		bLayout[0][0].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
 		bLayout[1][0].setPiece(new Piece(ChessPieceType.Knight, GameColor.WHITE));
 		bLayout[2][0].setPiece(new Piece(ChessPieceType.Bishop, GameColor.WHITE));
@@ -37,6 +56,7 @@ public class Board implements BoardIF{
 		bLayout[5][7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.BLACK));
 		bLayout[6][7].setPiece(new Piece(ChessPieceType.Knight, GameColor.BLACK));
 		bLayout[7][7].setPiece(new Piece(ChessPieceType.Rook, GameColor.BLACK));
+		*/
 		for (int i = 0; i < 8; i++) {
 			bLayout[i][2].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
