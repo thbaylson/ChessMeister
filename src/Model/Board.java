@@ -22,9 +22,11 @@ public class Board implements BoardIF{
 
 	@Override
 	public void setup() {
+		GameColor currentColor;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				bLayout[i][j] = new Square();
+				currentColor = ((i+j)%2 == 0) ? GameColor.WHITE : GameColor.BLACK;
+				bLayout[i][j] = new Square(currentColor);
 			}
 		}
 		int num;
