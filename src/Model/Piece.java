@@ -25,6 +25,6 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	
 	@Override
 	public String toString() {
-		return "" + cpt.getLetter();
+		return " " + cpt.getLetter() + " ";
 	}
 }

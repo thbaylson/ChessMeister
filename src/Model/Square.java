@@ -26,5 +26,9 @@ public class Square extends BlackAndWhite implements SquareIF{
 	public PieceIF getPiece() {
 		return this.sPiece;
 	}
-
+	
+	@Override
+	public String toString() {
+		return sPiece.toString();
+	}
 }
