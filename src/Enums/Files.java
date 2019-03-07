@@ -20,7 +20,7 @@ public enum Files {
 		this.arrayp = arrayp;
 	}
 
-	public int getRank() {
+	public int getFile() {
 		return file;
 	}
 

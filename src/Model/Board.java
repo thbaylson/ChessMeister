@@ -8,7 +8,8 @@ import Interfaces.SquareIF;
 
 
 public class Board implements BoardIF{
-	SquareIF[][] bLayout;
+	private SquareIF[][] bLayout;
+	private BoardStrategy strat;
 	
 	public Board() {
 		init_board();
@@ -41,7 +42,6 @@ public class Board implements BoardIF{
 				}
 			}
 		}
-
 		for (int i = 0; i < 8; i++) {
 			bLayout[i][2].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
@@ -50,38 +50,32 @@ public class Board implements BoardIF{
 
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
-		
+		strat.draw(this);
 	}
 
 	@Override
 	public SquareIF[][] getSquare() {
-		// TODO Auto-generated method stub
-		return null;
+		return bLayout;
 	}
 
 	@Override
 	public void setDrawStrategy(BoardStrategy d) {
-		
-		
+		strat = d;
 	}
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return bLayout.length;
 	}
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return bLayout[1].length;
 	}
 
 	@Override
 	public PieceIF getPiece(Rank r, Files f) {
-		// TODO Auto-generated method stub
-		return null;
+		return bLayout[r.getRank()][f.getFile()].getPiece();
 	}
 
 }

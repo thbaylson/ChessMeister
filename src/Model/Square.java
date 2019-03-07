@@ -6,9 +6,10 @@ import Interfaces.SquareIF;
 
 public class Square extends BlackAndWhite implements SquareIF{
 	PieceIF sPiece;
-	
+
 	public Square(GameColor c) {
 		this.color = c;
+		this.sPiece = null;
 	}
 	
 	@Override
@@ -26,9 +27,5 @@ public class Square extends BlackAndWhite implements SquareIF{
 	public PieceIF getPiece() {
 		return this.sPiece;
 	}
-	
-	@Override
-	public String toString() {
-		return sPiece.toString();
-	}
+
 }
