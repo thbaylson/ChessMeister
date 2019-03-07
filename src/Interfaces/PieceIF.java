@@ -7,7 +7,7 @@ public interface PieceIF {
 	
 	public ChessPieceType getChessPieceType();
 	
-	public void setChessPieceType(ChessPieceType t);	
+	public void setChessPieceType(ChessPieceType t);
 	
 	
 	

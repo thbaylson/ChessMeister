@@ -22,4 +22,9 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public void setChessPieceType(ChessPieceType t) {
 		this.cpt = t;
 	}
+	
+	@Override
+	public String toString() {
+		return "" + cpt.getLetter();
+	}
 }
