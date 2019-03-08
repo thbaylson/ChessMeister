@@ -12,7 +12,7 @@ public enum GameColor {
 		this.color = color;
 	}
 	
-	public int getColor() {
+	public char getColor() {
 		return color;
 	}
 
