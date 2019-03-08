@@ -1,5 +1,7 @@
 package Interfaces;
 
+import Enums.GameColor;
+
 public interface SquareIF {
 
 	public void clear();
@@ -8,6 +10,5 @@ public interface SquareIF {
 	
 	public PieceIF getPiece();
 	
-	
-	
+	public GameColor getColor();
 }
