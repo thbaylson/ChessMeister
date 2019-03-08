@@ -11,7 +11,7 @@ public interface BoardIF{
 	
 	public void draw();
 	
-	public SquareIF[][] getSquare();
+	public SquareIF[][] getSquares();
 	
 	public void setDrawStrategy(BoardStrategy d);
 	

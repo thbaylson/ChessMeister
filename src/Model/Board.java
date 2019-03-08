@@ -54,7 +54,7 @@ public class Board implements BoardIF{
 	}
 
 	@Override
-	public SquareIF[][] getSquare() {
+	public SquareIF[][] getSquares() {
 		return bLayout;
 	}
 

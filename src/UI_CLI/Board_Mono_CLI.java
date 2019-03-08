@@ -8,7 +8,7 @@ public class Board_Mono_CLI implements BoardStrategy{
 
 	@Override
 	public void draw(BoardIF board) {
-		SquareIF[][] layout = board.getSquare();
+		SquareIF[][] layout = board.getSquares();
 		
 		for (int j = board.getHeight()-1; j > 0; j--) {
 			for (int i = 0; i < board.getWidth(); i++) {

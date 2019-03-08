@@ -8,5 +8,4 @@ public class Driver {
 		Board game = new Board();
 		game.draw();
 	}
-
 }
