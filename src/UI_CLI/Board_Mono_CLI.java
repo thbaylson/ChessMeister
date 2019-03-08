@@ -3,7 +3,6 @@ package UI_CLI;
 import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.SquareIF;
-import Model.Square;
 
 public class Board_Mono_CLI implements BoardStrategy{
 
@@ -18,8 +17,6 @@ public class Board_Mono_CLI implements BoardStrategy{
 				}else {
 					System.out.print(layout[i][j].getPiece());
 				}
-				//Square test = (Square)(layout[i][j]);
-				//System.out.print(" " + test.getColor() + " ");
 			}
 				System.out.print("\n");
 		}

@@ -26,7 +26,7 @@ public class Board implements BoardIF{
 		GameColor currentColor;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				currentColor = ((i+j)%2 == 0) ? GameColor.WHITE : GameColor.BLACK;
+				currentColor = ((i+j)%2 == 1) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
 			}
 		}
