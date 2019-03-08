@@ -27,5 +27,9 @@ public class Square extends BlackAndWhite implements SquareIF{
 	public PieceIF getPiece() {
 		return this.sPiece;
 	}
+	
+	public GameColor getColor() {
+		return this.color;
+	}
 
 }

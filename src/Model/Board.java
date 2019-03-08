@@ -32,7 +32,7 @@ public class Board implements BoardIF{
 		}
 		int num;
 		for(int i = 0; i < GameColor.values().length; i++) {
-			for(int j = 0; j < ChessPieceType.values().length; j++) {
+			for(int j = 0; j < bLayout.length; j++) {
 				if(j < 5) {
 					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[j], GameColor.values()[i]));
 				}
@@ -43,7 +43,7 @@ public class Board implements BoardIF{
 			}
 		}
 		for (int i = 0; i < 8; i++) {
-			bLayout[i][2].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
+			bLayout[i][1].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
 		}
 	}
