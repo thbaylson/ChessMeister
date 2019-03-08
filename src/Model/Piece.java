@@ -7,7 +7,6 @@ import Interfaces.PieceIF;
 public class Piece extends BlackAndWhite implements PieceIF{
 
 	private ChessPieceType cpt;
-	private GameColor color;
 	
 	public Piece(ChessPieceType cpt, GameColor color) {
 		this.cpt = cpt;
@@ -26,6 +25,6 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	
 	@Override
 	public String toString() {
-		return " " + this.color.getColor() + cpt.getLetter() + " ";
+		return " " + cpt.getLetter() + " ";
 	}
 }

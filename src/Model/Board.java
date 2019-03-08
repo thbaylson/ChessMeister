@@ -26,13 +26,13 @@ public class Board implements BoardIF{
 		GameColor currentColor;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				currentColor = ((i+j)%2 == 1) ? GameColor.WHITE : GameColor.BLACK;
+				currentColor = ((i+j)%2 == 0) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
 			}
 		}
 		int num;
 		for(int i = 0; i < GameColor.values().length; i++) {
-			for(int j = 0; j < bLayout.length; j++) {
+			for(int j = 0; j < ChessPieceType.values().length; j++) {
 				if(j < 5) {
 					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[j], GameColor.values()[i]));
 				}
@@ -43,7 +43,7 @@ public class Board implements BoardIF{
 			}
 		}
 		for (int i = 0; i < 8; i++) {
-			bLayout[i][1].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
+			bLayout[i][2].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
 		}
 	}

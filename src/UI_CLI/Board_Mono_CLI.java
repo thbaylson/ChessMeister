@@ -10,16 +10,19 @@ public class Board_Mono_CLI implements BoardStrategy{
 	public void draw(BoardIF board) {
 		SquareIF[][] layout = board.getSquares();
 		
-		for (int j = board.getHeight()-1; j > -1; j--) {
+		for (int j = board.getHeight()-1; j > 0; j--) {
 			for (int i = 0; i < board.getWidth(); i++) {
 				if (layout[i][j].getPiece() == null) {
 					System.out.print("   ");
 				}else {
 					System.out.print(layout[i][j].getPiece());
 				}
+				if (i >= board.getWidth()) {
+					System.out.print("\n");
+				}
 			}
-				System.out.print("\n");
 		}
+		
 	}
 
 }
