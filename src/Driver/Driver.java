@@ -10,6 +10,11 @@ public class Driver {
 		Board game = new Board();
 		BoardStrategy gStrat = new Board_Mono_CLI();
 		game.setDrawStrategy(gStrat);
+		
+		//Use this in the future to test Color
+		//gStrat = new Board_Color_CLI();
+		//game.setDrawStrategy(gStrat);
+		
 		game.draw();
 	}
 }
