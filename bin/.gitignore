@@ -1,5 +1,13 @@
 /Model/
+<<<<<<< HEAD
 /Interfaces/
 /UI_CLI/
 /Enums/
 /Driver/
+=======
+/Driver/
+/Move_Validation/
+/UI_CLI/
+/Interfaces/
+/Enums/
+>>>>>>> e699937f22ca111e16e16bc84026b2cc2618ff73
