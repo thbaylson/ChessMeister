@@ -75,7 +75,12 @@ public class Board implements BoardIF{
 
 	@Override
 	public PieceIF getPiece(Rank r, Files f) {
-		return bLayout[r.getRank()][f.getFile()].getPiece();
+		return bLayout[r.getArrayp()][f.getArrayp()].getPiece();
+	}
+	
+	@Override
+	public PieceIF getPiece(int r, char f) {
+		return bLayout[r.getArrayp()][f.getArrayp()].getPiece();
 	}
 
 }

@@ -20,5 +20,7 @@ public interface BoardIF{
 	public int getHeight();
 	
 	public PieceIF getPiece(Rank r, Files f);
+
+	public PieceIF getPiece(int r, char f);
 	
 }
