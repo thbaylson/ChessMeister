@@ -78,13 +78,19 @@ public class Board implements BoardIF{
 		return bLayout[r.getArrayp()][f.getArrayp()].getPiece();
 	}
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> b645133d944de398493047c60dab2a8ac7c58eb6
 	@Override
 	public PieceIF getPiece(int r, char f){
 		int rank = Rank.getArrayp(r);
 		int file = Files.getArrayp(f);
-		return  bLayout[rank][file].getPiece();
+		return  bLayout[file][rank].getPiece();
 	}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b645133d944de398493047c60dab2a8ac7c58eb6
 }
