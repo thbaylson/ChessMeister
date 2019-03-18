@@ -82,7 +82,7 @@ public class Board implements BoardIF{
 	public PieceIF getPiece(int r, char f){
 		int rank = Rank.getArrayp(r);
 		int file = Files.getArrayp(f);
-		return  bLayout[rank][file].getPiece();
+		return  bLayout[file][rank].getPiece();
 	}
 
 }

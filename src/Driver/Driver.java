@@ -33,9 +33,7 @@ public class Driver {
 		     System.out.print("Select a destination to move to > ");
 		     String to = input.next();
 		     f = to.charAt(0);
-		     r = to.charAt(1);
-		     
-		     
+		     r = to.charAt(1);		     
 		     
 		     
 		     
