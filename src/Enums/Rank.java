@@ -1,5 +1,11 @@
 package Enums;
 
+/**
+ * Enum for the rank
+ * 
+ * @author Caleb, Tyler
+ * @version 1.0
+ */
 public enum Rank {
 	
 	
@@ -17,20 +23,41 @@ public enum Rank {
 	private final int arrayp;
 	
 	
-	
+	/**
+	 * Contrustor for rank
+	 * 
+	 * @param rank - The rank on the chess board
+	 * @param arrayp - The position in the array
+	 */
 	private Rank(final int rank, final int arrayp){
 		this.rank = rank;
 		this.arrayp = arrayp;
 	}
 
+	/**
+	 * Gets the rank
+	 * 
+	 * @return rank - the rank
+	 */
 	public int getRank() {
 		return rank;
 	}
 
+	/**
+	 * Gets the array position
+	 * 
+	 * @return arrayp - The array position
+	 */
 	public int getArrayp() {
 		return arrayp;
 	}
 
+	/**
+	 * Gets the array position based on the rank from the board
+	 * 
+	 * @param r - The rank from the chess board
+	 * @return rank - the position in the array
+	 */
 	public static int getArrayp(int r) {
 		Rank rank = Rank.R1;
 		switch(r) {

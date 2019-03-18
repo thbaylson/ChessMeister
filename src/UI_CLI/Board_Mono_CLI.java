@@ -6,8 +6,20 @@ import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.SquareIF;
 
+
+/**
+ * This class prints out the chess board and pieces in the CLI
+ *
+ * @author Dillon Ramsey
+ * @version 1.0
+ */
 public class Board_Mono_CLI implements BoardStrategy{
 
+	/**
+	 * Method draws the chess board and pieces in the CLI
+	 * 
+	 * @param board - A two dimensional array containing all the squares of the chess board
+	 */
 	@Override
 	public void draw(BoardIF board) {
 		SquareIF[][] layout = board.getSquares();

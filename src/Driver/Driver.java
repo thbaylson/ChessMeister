@@ -34,13 +34,6 @@ public class Driver {
 		    		System.out.println(game.getPiece(r, f)); 
 		     }
 		     
-		     
-		    
-		    
-		     
-		    
-		     
-		     
 		     System.out.print("Select a destination to move to > ");
 		     String to = input.next();
 		     f = to.charAt(0);
