@@ -22,11 +22,6 @@ public enum Rank {
 		this.rank = rank;
 		this.arrayp = arrayp;
 	}
-	
-	private Rank(final int rank){
-		this.rank = rank;
-		this.arrayp = rank - 1;
-	}
 
 	public int getRank() {
 		return rank;
@@ -36,6 +31,35 @@ public enum Rank {
 		return arrayp;
 	}
 
-	
+	public static int getArrayp(int r) {
+		Rank rank = Rank.R1;
+		switch(r) {
+		case 1:
+			rank = Rank.R1;
+			break;
+		case 2:
+			rank = Rank.R2;
+			break;
+		case 3:
+			rank = Rank.R3;
+			break;
+		case 4:
+			rank = Rank.R4;
+			break;
+		case 5:
+			rank = Rank.R5;
+			break;
+		case 6:
+			rank = Rank.R6;
+			break;
+		case 7:
+			rank = Rank.R7;
+			break;
+		case 8:
+			rank = Rank.R8;
+			break;
+		}
+		return rank.getArrayp();
+	}
 	
 }
