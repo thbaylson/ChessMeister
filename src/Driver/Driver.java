@@ -27,12 +27,17 @@ public class Driver {
 		     
 		     f = (char) (from.charAt(0) - 32);
 		     System.out.println(f);
-		     r = from.charAt(1);
+		     r = from.charAt(1) - 48;
 		     
 		     if (f >= 65 && f <= 72){
 		    	 if (r >= 1 && r <= 8)
 		    		System.out.println(game.getPiece(r, f)); 
 		     }
+<<<<<<< HEAD
+=======
+		    
+		     
+>>>>>>> 64aa91f515641250b36e6117214529e2f630dbc3
 		     
 		     System.out.print("Select a destination to move to > ");
 		     String to = input.next();
@@ -40,13 +45,9 @@ public class Driver {
 
 		     r = to.charAt(1);
 		     
-		     
-		    input.close(); 
-		     
-		     
-		     
-		     
+	
 		}
+		input.close(); 
 		
 		
 		
