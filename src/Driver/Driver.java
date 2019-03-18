@@ -46,9 +46,7 @@ public class Driver {
 		     f = to.charAt(0);
 
 		     r = to.charAt(1);
-		     
-		     
-		    input.close(); 
+		     		     
 		     
 		     
 		     
