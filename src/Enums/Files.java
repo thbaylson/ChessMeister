@@ -20,7 +20,7 @@ public enum Files {
 		this.arrayp = arrayp;
 	}
 
-	public int getFile() {
+	public char getFile() {
 		return file;
 	}
 
