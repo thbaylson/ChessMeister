@@ -16,9 +16,11 @@ public enum Rank {
 	
 	private final int arrayp;
 	
+	
+	
 	private Rank(final int rank, final int arrayp){
 		this.rank = rank;
-		this.arrayp = arrayp;
+		this.arrayp = rank - 1;
 	}
 
 	public int getRank() {
