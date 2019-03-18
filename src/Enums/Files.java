@@ -1,5 +1,11 @@
 package Enums;
 
+/**
+ * Enum for the files on the chess board
+ * 
+ * @author Caleb, Tyler
+ *
+ */
 public enum Files {
 	
 	A('a', 0),
@@ -15,19 +21,41 @@ public enum Files {
 	
 	private final int arrayp;
 	
+	/**
+	 * Constructor for the files
+	 * 
+	 * @param file - The position on the chess board
+	 * @param arrayp - The position in the array
+	 */
 	private Files(final char file, final int arrayp){
 		this.file = file;
 		this.arrayp = arrayp;
 	}
 
+	/**
+	 * Gets the file
+	 * 
+	 * @return file - The position on the chess board
+	 */
 	public char getFile() {
 		return file;
 	}
 
+	/**
+	 * Gets the array position
+	 * 
+	 * @return arrayp - The array position
+	 */
 	public int getArrayp() {
 		return arrayp;
 	}
 	
+	/**
+	 * Gets array position based on the file as a char
+	 * 
+	 * @param f - The file as a char
+	 * @return files - The array position
+	 */
 	public static int getArrayp(char f) {
 		Files files = Files.A;
 		switch(f) {

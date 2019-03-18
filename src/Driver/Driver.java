@@ -33,8 +33,7 @@ public class Driver {
 		    	 if (r >= 1 && r <= 8)
 		    		System.out.println(game.getPiece(r, f)); 
 		     }
-		    
-		     
+
 		     
 		     System.out.print("Select a destination to move to > ");
 		     String to = input.next();
