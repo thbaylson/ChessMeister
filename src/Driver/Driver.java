@@ -24,10 +24,21 @@ public class Driver {
 		while(x == 0){
 			 System.out.print("Select a piece to move > ");
 		     String from = input.next();
-		     f = from.charAt(0);
+		     
+		     f = (char) (from.charAt(0) - 32);
+		     System.out.println(f);
 		     r = from.charAt(1);
 		     
-		     game.getPiece(r, f);
+		     if (f >= 65 && f <= 72){
+		    	 if (r >= 1 && r <= 8)
+		    		System.out.println(game.getPiece(r, f)); 
+		     }
+		     
+		     
+		    
+		    
+		     
+		    
 		     
 		     
 		     System.out.print("Select a destination to move to > ");
@@ -35,6 +46,8 @@ public class Driver {
 		     f = to.charAt(0);
 		     r = to.charAt(1);
 		     
+		     
+		    input.close(); 
 		     
 		     
 		     
