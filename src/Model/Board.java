@@ -84,5 +84,4 @@ public class Board implements BoardIF{
 		int file = Files.getArrayp(f);
 		return  bLayout[file][rank].getPiece();
 	}
-
 }
