@@ -20,6 +20,11 @@ public enum Rank {
 		this.rank = rank;
 		this.arrayp = arrayp;
 	}
+	
+	private Rank(final int rank){
+		this.rank = rank;
+		this.arrayp = rank - 1;
+	}
 
 	public int getRank() {
 		return rank;
