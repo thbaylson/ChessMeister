@@ -34,6 +34,7 @@ public class Board implements BoardIF{
 			for (int j = 0; j < this.getHeight(); j++) {
 				currentColor = ((i+j)%2 == 1) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
+				bLayout[i][j].setPosition(Files.values()[j], Rank.values()[i]);
 			}
 		}
 		int num;
@@ -56,6 +57,12 @@ public class Board implements BoardIF{
 			bLayout[i][1].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
 		}
+		//Test Piece
+		//
+		//
+		//
+		//
+		bLayout[0][2].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
 	}
 
 	 /*draw- Draws the chess board in accordance with the BoardStrategy

@@ -18,6 +18,17 @@ public class Position {
 	private Files file;
 	
 	/**
+	 * Constructor for position
+	 * 
+	 * @param f - The file position
+	 * @param r - The rank position
+	 */
+	public Position(Files f, Rank r) {
+		this.rank = r;
+		this.file = f;
+	}
+	
+	/**
 	 * Returns the rank
 	 * 
 	 * @return Rank

@@ -1,6 +1,9 @@
 package Interfaces;
 
+import Enums.Files;
 import Enums.GameColor;
+import Enums.Rank;
+import Model.Position;
 
 public interface SquareIF {
 
@@ -11,4 +14,8 @@ public interface SquareIF {
 	public PieceIF getPiece();
 	
 	public GameColor getColor();
+	
+	public void setPosition(Files f, Rank r);
+	
+	public Position getPosition();
 }
