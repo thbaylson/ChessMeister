@@ -57,6 +57,12 @@ public class Board implements BoardIF{
 			bLayout[i][1].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
 		}
+		//Test Piece
+		//
+		//
+		//
+		//
+		bLayout[0][2].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
 	}
 
 	 /*draw- Draws the chess board in accordance with the BoardStrategy

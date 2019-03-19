@@ -32,24 +32,32 @@ public class Driver {
 		
 		char f;
 		int r;
-		while(!input.next().toUpperCase().equals("EXIT")){
+		String from = "";
+		while(!from.equals("EXIT")){
 			
 			 System.out.print("Select a piece to move > ");
 			 
-		     String from = input.next().toUpperCase();
+		     from = input.next().toUpperCase();
 		     f = (char) (from.charAt(0));
 		     r = (from.charAt(1) - 48);
+		     System.out.println("The first set: " + f + "  " + r);
 		     
 		     if (checkInput(r, f)){
 		    	 System.out.println(game.getPiece(r, f)); 
 		    	 
 		    	 System.out.print("Select a destination to move to > ");
 		    	 
-			     String to = input.next();
+			     String to = input.next().toUpperCase();
 			     f = (char) to.charAt(0);
-			     r = to.charAt(1) - 48;
+			     r = (to.charAt(1) - 48);
+			     System.out.println("The second set: " + f + "  " + r);
 			     if (checkInput(r, f)){
-			    	 game.getPiece(r, f);
+			    	 if(game.getPiece(r, f) == null) {
+			    		 System.out.println("The spot you are moving to is empty");
+			    	 }else {
+			    		 System.out.println("The spot you are moving to is occupied by: " + game.getPiece(r, f));
+			    	 }
+			    	 
 			     }
 		     }
 
