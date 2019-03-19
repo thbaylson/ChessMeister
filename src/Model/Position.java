@@ -2,8 +2,11 @@ package Model;
 
 import Enums.Files;
 import Enums.Rank;
+import Interfaces.SquareIF;
 
 public class Position {
+	
+	private SquareIF sq;
 	
 	private Rank rank;
 	private Files file;
