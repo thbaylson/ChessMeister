@@ -47,6 +47,14 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		this.cpt = t;
 	}
 	
+	public void validateMove(Position from, Position to) {
+		
+	}
+	
+	public Position[] showMoves(Position pos) {
+		return null;
+	}
+	
 	/**
 	 * Prints out the color and type of the chess piece
 	 */
