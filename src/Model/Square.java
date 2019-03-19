@@ -1,6 +1,8 @@
 package Model;
 
 import Enums.GameColor;
+import Enums.Rank;
+import Enums.Files;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 
@@ -12,6 +14,7 @@ import Interfaces.SquareIF;
  */
 public class Square extends BlackAndWhite implements SquareIF{
 	PieceIF sPiece;
+	Position pos;
 
 	/**
 	 * Constructor for a square
@@ -60,5 +63,12 @@ public class Square extends BlackAndWhite implements SquareIF{
 	public GameColor getColor() {
 		return this.color;
 	}
-
+	
+	public void setPosition(Files f, Rank r) {
+		pos = new Position(f,r);
+	}
+	
+	public Position getPosition() {
+		return pos;
+	}
 }

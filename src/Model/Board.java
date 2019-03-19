@@ -34,6 +34,7 @@ public class Board implements BoardIF{
 			for (int j = 0; j < this.getHeight(); j++) {
 				currentColor = ((i+j)%2 == 1) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
+				bLayout[i][j].setPosition(Files.values()[j], Rank.values()[i]);
 			}
 		}
 		int num;

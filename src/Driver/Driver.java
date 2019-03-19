@@ -74,15 +74,6 @@ public class Driver {
 	    	 		+ "a letter from 'a' to 'h'");
 	    	 return false;
 	     }
-
-<<<<<<< HEAD
-		}
-		
-		
-		
-		
-
-=======
->>>>>>> 616d473a7497cb69bd846c673029153f0d2711e4
 	}
+}
 
