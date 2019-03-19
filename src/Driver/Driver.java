@@ -52,7 +52,6 @@ public class Driver {
 			    	 game.getPiece(r, f);
 			     }
 		     }
-<<<<<<< HEAD
 
 		    
 	
@@ -75,20 +74,6 @@ public class Driver {
 	    	 		+ "a letter from 'a' to 'h'");
 	    	 return false;
 	     }
-=======
 
-		     
-		     System.out.print("Select a destination to move to > ");
-		     String to = input.next();
-		     f = to.charAt(0);
-
-		     r = to.charAt(1);
-
-		}
-		input.close();
-		
-		
-		
->>>>>>> 182d4a19d746a874c90f21a0179f8c0cab3a5f96
 	}
 }

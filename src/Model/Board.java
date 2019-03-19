@@ -108,16 +108,13 @@ public class Board implements BoardIF{
 		return bLayout[r.getArrayp()][f.getArrayp()].getPiece();
 	}
 	
-<<<<<<< HEAD
 
-=======
 	 /*getPiece- For any given, valid rank and file, this will return the piece 
 	 * in that spot. If no piece exists there, this returns null.
 	 * @param r: The int representing the rank on the board
 	 * @param f: The char representing a file on the board
 	 * @return: A piece on the board or null
 	 */
->>>>>>> 182d4a19d746a874c90f21a0179f8c0cab3a5f96
 	@Override
 	public PieceIF getPiece(int r, char f){
 		int rank = Rank.getArrayp(r);
