@@ -29,6 +29,11 @@ public class Position {
 		this.file = f;
 	}
 	
+	public Position(char f, int r) {
+		this.rank = Rank.getRank(r);
+		this.file = Files.getFile(f);
+	}
+	
 	/**
 	 * Returns the rank
 	 * 

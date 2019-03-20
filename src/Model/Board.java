@@ -5,7 +5,7 @@ import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
-import Move_Validation.HortzVertzValidator;
+import Move_Validation.*;
 
 
 public class Board implements BoardIF{
@@ -33,30 +33,47 @@ public class Board implements BoardIF{
 		/* Cycles through all the squares to assign them to black or white*/
 		for (int i = 0; i < this.getWidth(); i++) {
 			for (int j = 0; j < this.getHeight(); j++) {
-				currentColor = ((i+j)%2 == 1) ? GameColor.WHITE : GameColor.BLACK;
+				currentColor = ((i + j) % 2 == 1) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
 				bLayout[i][j].setPosition(Files.values()[j], Rank.values()[i]);
 			}
 		}
-		int num;
-		/* Cycles through all the squares and correctly places the appropriate pieces, excluding pawns*/
+		/* Correctly places the appropriate pieces, excluding pawns*/
 		for(int i = 0; i < GameColor.values().length; i++) {
-			for(int j = 0; j < this.getHeight(); j++) {
-				if(j < 5) {
-					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[j], 
-							GameColor.values()[i]));
-				}
-				else {
-					num = 7 - j;
-					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[num], 
-							GameColor.values()[i]));
-				}
-			}
+			bLayout[0][i * 7].setPiece(new Piece(ChessPieceType.Rook, GameColor.values()[i]));
+			bLayout[0][i * 7].getPiece().setPieceValidator(new HortzVertzValidator(this));
+			
+			bLayout[1][i * 7].setPiece(new Piece(ChessPieceType.Knight, GameColor.values()[i]));
+			bLayout[1][i * 7].getPiece().setPieceValidator(new KnightValidator(this));
+			
+			bLayout[2][i * 7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.values()[i]));
+			bLayout[2][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
+			
+			bLayout[3][i * 7].setPiece(new Piece(ChessPieceType.King, GameColor.values()[i]));
+			bLayout[3][i * 7].getPiece().setPieceValidator(new KingValidator(this));
+			
+			bLayout[4][i * 7].setPiece(new Piece(ChessPieceType.Queen, GameColor.values()[i]));
+			bLayout[4][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
+			bLayout[4][i * 7].getPiece().getPieceValidator().setPieceValidator(new HortzVertzValidator(this));
+			
+			bLayout[5][i * 7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.values()[i]));
+			bLayout[5][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
+			
+			bLayout[6][i * 7].setPiece(new Piece(ChessPieceType.Knight, GameColor.values()[i]));
+			bLayout[6][i * 7].getPiece().setPieceValidator(new KnightValidator(this));
+			
+			bLayout[7][i * 7].setPiece(new Piece(ChessPieceType.Rook, GameColor.values()[i]));
+			bLayout[7][i * 7].getPiece().setPieceValidator(new HortzVertzValidator(this));
 		}
+
+		
 		/* Places all the pawns*/
 		for (int i = 0; i < 8; i++) {
 			bLayout[i][1].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
+			bLayout[i][1].getPiece().setPieceValidator(new PawnValidator(this));
+
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
+			bLayout[i][6].getPiece().setPieceValidator(new PawnValidator(this));
 		}
 		//Test Piece
 		//
@@ -65,6 +82,13 @@ public class Board implements BoardIF{
 		//
 		bLayout[0][2].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
 		bLayout[0][2].getPiece().setPieceValidator(new HortzVertzValidator(this));
+	}
+	
+	public void move(Position from, Position to) {
+		bLayout[to.getRank().getArrayp()][to.getFile().getArrayp()] = 
+				bLayout[from.getRank().getArrayp()][from.getFile().getArrayp()];
+		
+		bLayout[from.getRank().getArrayp()][from.getFile().getArrayp()] = null;
 	}
 
 	 /*draw- Draws the chess board in accordance with the BoardStrategy
@@ -104,6 +128,12 @@ public class Board implements BoardIF{
 	@Override
 	public int getHeight() {
 		return bLayout[1].length;
+	}
+	
+	public Position getPosition(int r, char f) {
+		int rank = Rank.getArrayp(r);
+		int file = Files.getArrayp(f);
+		return  bLayout[file][rank].getPosition();
 	}
 
 	 /*getPiece- For any given, valid rank and file, this will return the piece 

@@ -53,15 +53,25 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		this.cpt = t;
 	}
 	
+	public PieceValidator getPieceValidator() {
+		return this.pv;
+	}
+	
 	public void setPieceValidator(PieceValidator p) {
 		this.pv = p;
 	}
 	
-	public void validateMove(Position from, Position to) {
-		
+	public boolean validateMove(Position from, Position to) {
+			for(Position pos : this.pv.showMoves(from)){
+				if(pos.getRank() == to.getRank() && pos.getFile() == to.getFile()) {
+					return true;
+				}
+			}
+		return false;
 	}
 	
-	public Position[] showMoves(Position pos) {
+	public Position[] showMoves() {
+		//this.pv.showMoves();
 		return null;
 	}
 	

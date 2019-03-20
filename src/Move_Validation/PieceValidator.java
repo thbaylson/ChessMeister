@@ -15,7 +15,7 @@ public abstract class PieceValidator extends Piece{
 		this.board = (Board)board;
 	}
 
-	public void validateMove(Position from, Position to) {
+	public boolean validateMove(Position from, Position to) {
 		Position[] pos = showMoves(from);
 		boolean valid = false;
 		for(Position po : pos) {
@@ -27,6 +27,7 @@ public abstract class PieceValidator extends Piece{
 				break;
 			}
 		}
+		return valid;
 	}
 
 	public abstract Position[] showMoves(Position pos);

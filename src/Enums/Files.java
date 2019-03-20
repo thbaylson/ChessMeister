@@ -86,4 +86,41 @@ public enum Files {
 		}
 		return files.getArrayp();
 	}
+	
+	/**
+	 * Gets array position based on the file as a char
+	 * 
+	 * @param f - The file as a char
+	 * @return files - The array position
+	 */
+	public static Files getFile(char f) {
+		Files files = Files.A;
+		switch(f) {
+		case 'A':
+			files = Files.A;
+			break;
+		case 'B':
+			files = Files.B;
+			break;
+		case 'C':
+			files = Files.C;
+			break;
+		case 'D':
+			files = Files.D;
+			break;
+		case 'E':
+			files = Files.E;
+			break;
+		case 'F':
+			files = Files.F;
+			break;
+		case 'G':
+			files = Files.G;
+			break;
+		case 'H':
+			files = Files.H;
+			break;
+		}
+		return files;
+	}
 }

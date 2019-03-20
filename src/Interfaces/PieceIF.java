@@ -6,17 +6,22 @@ import Model.Position;
 import Move_Validation.PieceValidator;
 
 public interface PieceIF {
-
 	
 	public ChessPieceType getChessPieceType();
 	
 	public void setChessPieceType(ChessPieceType t);
 	
+	public PieceValidator getPieceValidator();
+	
 	public void setPieceValidator(PieceValidator p);
 	
-	public void validateMove(Position from, Position to);
+	public default boolean validateMove(Position from, Position to) {
+		return true;
+	}
 	
-	public Position[] showMoves(Position from);
+	public default Position[] showMoves(Position pos) {
+		return this.getPieceValidator().showMoves(pos);
+	}
 
 	public GameColor getColor();
 }

@@ -49,5 +49,4 @@ public class HortzVertzValidator extends PieceValidator {
 		}
 		return (Position[]) moves.toArray();
 	}
-
 }

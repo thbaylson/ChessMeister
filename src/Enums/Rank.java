@@ -24,7 +24,7 @@ public enum Rank {
 	
 	
 	/**
-	 * Contrustor for rank
+	 * Constructor for rank
 	 * 
 	 * @param rank - The rank on the chess board
 	 * @param arrayp - The position in the array
@@ -87,6 +87,43 @@ public enum Rank {
 			break;
 		}
 		return rank.getArrayp();
+	}
+	
+	/**
+	 * Gets the array position based on the rank from the board
+	 * 
+	 * @param r - The rank from the chess board
+	 * @return rank - the position in the array
+	 */
+	public static Rank getRank(int r) {
+		Rank rank = Rank.R1;
+		switch(r) {
+		case 1:
+			rank = Rank.R1;
+			break;
+		case 2:
+			rank = Rank.R2;
+			break;
+		case 3:
+			rank = Rank.R3;
+			break;
+		case 4:
+			rank = Rank.R4;
+			break;
+		case 5:
+			rank = Rank.R5;
+			break;
+		case 6:
+			rank = Rank.R6;
+			break;
+		case 7:
+			rank = Rank.R7;
+			break;
+		case 8:
+			rank = Rank.R8;
+			break;
+		}
+		return rank;
 	}
 	
 }
