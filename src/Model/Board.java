@@ -153,12 +153,12 @@ public class Board implements BoardIF{
 	 * @param r: The int representing the rank on the board
 	 * @param f: The char representing a file on the board
 	 * @return: A piece on the board or null
-	 *
+	 */
 	@Override
 	public PieceIF getPiece(int r, char f){
 		int rank = Rank.getArrayp(r);
 		int file = Files.getArrayp(f);
 		return  bLayout[file][rank].getPiece();
-	}*/
+	}
 
 }
