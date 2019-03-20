@@ -26,18 +26,20 @@ public class PawnValidator extends PieceValidator{
 	public Position[] showMoves(Position pPos) {
 		Files f = pPos.getFile();
 		Rank r = pPos.getRank();
-		
-		System.out.println(pPos.getSquare());
-		
+		pos.clear();
 		PieceIF p = pPos.getSquare().getPiece();
-		Boolean check = CheckAhead(f, r, p);;
-		if (p.getColor().getColor() == 'w' && f.getArrayp() == 1 && check){
+		Boolean check = CheckAhead(f, r, p);
+		if (p.getColor().getColor() == 'w' && r.getArrayp() == 1 && check){
 			StartTwo(f, r, p);
-		}else if (p.getColor().getColor() == 'b' && f.getArrayp() == 6 && check){
+		}else if (p.getColor().getColor() == 'b' && r.getArrayp() == 6 && check){
 			StartTwo(f, r, p);
 		}
 		CheckDiagonal(f, r, p);
-		return (Position[])pos.toArray();
+		Position[] send = new Position[pos.size()];
+		for (int i = 0; i < pos.size(); i++){
+			send[i] = pos.get(i);
+		}
+		return send;
 	}
 
 	public void StartTwo(Files f, Rank r, PieceIF curP){
@@ -48,9 +50,10 @@ public class PawnValidator extends PieceValidator{
 			curSquare = sq[f.getArrayp()][r.getArrayp()-2];
 		}
 		PieceIF p = curSquare.getPiece();
-		if (p != null){
+		if (p == null){
 			pos.add(curSquare.getPosition());
 		}else{
+			return;
 		}
 	}
 
@@ -62,7 +65,7 @@ public class PawnValidator extends PieceValidator{
 			curSquare = sq[f.getArrayp()][r.getArrayp()-1];
 		}
 		PieceIF p = curSquare.getPiece();
-		if (p != null){
+		if (p == null){
 			pos.add(curSquare.getPosition());
 			return true;
 		}else{
