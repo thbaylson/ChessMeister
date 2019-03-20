@@ -26,9 +26,6 @@ public class PawnValidator extends PieceValidator{
 	public Position[] showMoves(Position pPos) {
 		Files f = pPos.getFile();
 		Rank r = pPos.getRank();
-		
-		System.out.println(pPos.getSquare());
-		
 		PieceIF p = pPos.getSquare().getPiece();
 		Boolean check = CheckAhead(f, r, p);;
 		if (p.getColor().getColor() == 'w' && f.getArrayp() == 1 && check){
