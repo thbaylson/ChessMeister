@@ -1,6 +1,7 @@
 package Driver;
 
 import Model.Board;
+import Model.Piece;
 import Model.Position;
 
 import java.util.Scanner;
@@ -40,6 +41,7 @@ public class Driver {
 		     uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
 		     f = (char) (uInput.charAt(0));
 		     r = (uInput.charAt(1) - 48);
+		     Piece curp = (Piece) game.getPiece(r, f);
 		     
 		     while(checkInputLength(uInput) || checkInput(r, f) || checkInputPos(game, r, f)){
 		    	 System.out.print("Select a piece to move > ");
@@ -49,7 +51,7 @@ public class Driver {
 		     } 
 		    
 		     
-		     Position fromP = new Position(f, r);
+		    Position fromP = new Position(f, r);
 		    		    
 		     
 		    
@@ -67,8 +69,13 @@ public class Driver {
 		    }
 		    
 		    Position toP = new Position(f, r);
-		    
-		    game.move(fromP, toP);
+		    if(curp.validateMove(game.getSquare(fromP).getPosition(), toP)){
+		    	 game.move(fromP, toP);
+		    }
+		    else{
+		    	System.out.println("TEST");
+		    }
+		   
 		    
 		    	
 			    

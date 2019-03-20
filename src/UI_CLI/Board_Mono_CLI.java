@@ -34,7 +34,7 @@ public class Board_Mono_CLI implements BoardStrategy{
 			System.out.print("   ");
 			for (int i = 0; i < board.getWidth(); i++) {
 				if (layout[i][j].getPiece() == null) {
-					System.out.print("   ");
+					System.out.print("    ");
 				}else {
 					System.out.print(layout[i][j].getPiece());
 				}

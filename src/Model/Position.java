@@ -87,4 +87,22 @@ public class Position {
 	public void setSquare(SquareIF square) {
 		this.sq = square;
 	}
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Position other = (Position) obj;
+		if (file != other.file)
+			return false;
+		if (rank != other.rank)
+			return false;
+		return true;
+	}
 }

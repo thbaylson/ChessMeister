@@ -25,5 +25,7 @@ public interface BoardIF{
 	public void move(Position from, Position to);
 
 	public PieceIF getPiece(int r, char f);
+
+	public SquareIF getSquare(Position fromP);
 	
 }
