@@ -12,7 +12,6 @@ import Interfaces.SquareIF;
  */
 public class Position {
 	
-	private SquareIF sq;
 	
 	private Rank rank;
 	private Files file;
