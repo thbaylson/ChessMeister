@@ -38,21 +38,7 @@ public class Board implements BoardIF{
 				bLayout[i][j].setPosition(Files.values()[j], Rank.values()[i]);
 			}
 		}
-		/* Cycles through all the squares and correctly places the appropriate pieces, excluding pawns
-		int num;
-		for(int i = 0; i < GameColor.values().length; i++) {
-			for(int j = 0; j < this.getHeight(); j++) {
-				if(j < 5) {
-					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[j], 
-							GameColor.values()[i]));
-				}
-				else {
-					num = 7 - j;
-					bLayout[j][i * 7].setPiece(new Piece(ChessPieceType.values()[num], 
-							GameColor.values()[i]));
-				}
-			}
-		}*/
+		/* Correctly places the appropriate pieces, excluding pawns*/
 		for(int i = 0; i < GameColor.values().length; i++) {
 			bLayout[0][i * 7].setPiece(new Piece(ChessPieceType.Rook, GameColor.values()[i]));
 			bLayout[0][i * 7].getPiece().setPieceValidator(new HortzVertzValidator(this));
@@ -68,7 +54,7 @@ public class Board implements BoardIF{
 			
 			bLayout[4][i * 7].setPiece(new Piece(ChessPieceType.Queen, GameColor.values()[i]));
 			bLayout[4][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
-			bLayout[4][i * 7].getPiece().getPieceValidator.setPieceValidator(new HortzVertzValidator(this));
+			bLayout[4][i * 7].getPiece().getPieceValidator().setPieceValidator(new HortzVertzValidator(this));
 			
 			bLayout[5][i * 7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.values()[i]));
 			bLayout[5][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
@@ -96,6 +82,13 @@ public class Board implements BoardIF{
 		//
 		bLayout[0][2].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
 		bLayout[0][2].getPiece().setPieceValidator(new HortzVertzValidator(this));
+	}
+	
+	public void move(Position from, Position to) {
+		bLayout[to.getRank().getArrayp()][to.getFile().getArrayp()] = 
+				bLayout[from.getRank().getArrayp()][from.getFile().getArrayp()];
+		
+		bLayout[from.getRank().getArrayp()][from.getFile().getArrayp()] = null;
 	}
 
 	 /*draw- Draws the chess board in accordance with the BoardStrategy
@@ -160,12 +153,12 @@ public class Board implements BoardIF{
 	 * @param r: The int representing the rank on the board
 	 * @param f: The char representing a file on the board
 	 * @return: A piece on the board or null
-	 */
+	 *
 	@Override
 	public PieceIF getPiece(int r, char f){
 		int rank = Rank.getArrayp(r);
 		int file = Files.getArrayp(f);
 		return  bLayout[file][rank].getPiece();
-	}
+	}*/
 
 }

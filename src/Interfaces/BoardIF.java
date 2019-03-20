@@ -21,6 +21,6 @@ public interface BoardIF{
 	
 	public PieceIF getPiece(Rank r, Files f);
 
-	public PieceIF getPiece(int r, char f);
+	//public PieceIF getPiece(int r, char f);
 	
 }
