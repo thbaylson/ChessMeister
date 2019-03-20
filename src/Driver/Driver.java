@@ -26,7 +26,7 @@ public class Driver {
 		BoardIF game = new Board();
 		BoardStrategy gStrat = new Board_Mono_CLI();
 		game.setDrawStrategy(gStrat);
-		game.draw();
+		
 		
 		
 		Scanner input = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class Driver {
 		int r;
 		String uInput = "";
 		while(!uInput.equals("EXIT")){
-			
+			 game.draw();
 			 System.out.print("Select a piece to move > ");
 		     uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
 		     f = (char) (uInput.charAt(0));
@@ -69,7 +69,7 @@ public class Driver {
 		    Position toP = new Position(f, r);
 		    
 		    game.move(fromP, toP);
-		    	
+		    
 		    	
 			    
 		     

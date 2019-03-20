@@ -35,7 +35,7 @@ public class Board implements BoardIF{
 			for (int j = 0; j < this.getHeight(); j++) {
 				currentColor = ((i + j) % 2 == 1) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
-				bLayout[i][j].setPosition(Files.values()[j], Rank.values()[i]);
+				bLayout[i][j].setPosition(Files.values()[i], Rank.values()[j]);
 			}
 		}
 		/* Correctly places the appropriate pieces, excluding pawns*/
@@ -85,10 +85,9 @@ public class Board implements BoardIF{
 	}
 	
 	public void move(Position from, Position to) {
-		bLayout[to.getRank().getArrayp()][to.getFile().getArrayp()] = 
-				bLayout[from.getRank().getArrayp()][from.getFile().getArrayp()];
+		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
 		
-		bLayout[from.getRank().getArrayp()][from.getFile().getArrayp()] = null;
+		bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].setPiece(null);
 	}
 
 	 /*draw- Draws the chess board in accordance with the BoardStrategy
