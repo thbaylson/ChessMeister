@@ -4,26 +4,19 @@ import java.util.ArrayList;
 
 import Interfaces.BoardIF;
 import Interfaces.SquareIF;
-import Model.Piece;
 import Model.Position;
 
 public class HortzVertzValidator extends PieceValidator {
 
-	public HortzVertzValidator(BoardIF board, Piece piece) {
-		super(board, piece);
-	}
-	
-	@Override
-	public void validateMove(Position from, Position to) {
-		
+	public HortzVertzValidator(BoardIF board) {
+		super(board);
 	}
 	
 	@Override
 	public Position[] showMoves(Position pos) {
 		int rank =  pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
-		
-		boolean valid = true;
+
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
 		
@@ -56,6 +49,12 @@ public class HortzVertzValidator extends PieceValidator {
 			}
 		}
 		return (Position[]) moves.toArray();
+	}
+
+	@Override
+	public void setPieceValidator(PieceValidator p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

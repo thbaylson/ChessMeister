@@ -5,6 +5,8 @@ import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
+import Move_Validation.HortzVertzValidator;
+import Move_Validation.PieceValidator;
 
 
 public class Board implements BoardIF{
@@ -63,6 +65,7 @@ public class Board implements BoardIF{
 		//
 		//
 		bLayout[0][2].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
+		bLayout[0][2].getPiece().setPieceValidator(new HortzVertzValidator(this));
 	}
 
 	 /*draw- Draws the chess board in accordance with the BoardStrategy

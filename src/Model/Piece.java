@@ -3,6 +3,7 @@ package Model;
 import Enums.ChessPieceType;
 import Enums.GameColor;
 import Interfaces.PieceIF;
+import Move_Validation.PieceValidator;
 
 
 /**
@@ -15,6 +16,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 
 	private ChessPieceType cpt;
 	private GameColor color;
+	private PieceValidator pv;
 	
 	/**
 	 * Constructor for Piece object
@@ -45,6 +47,10 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	@Override
 	public void setChessPieceType(ChessPieceType t) {
 		this.cpt = t;
+	}
+	
+	public void setPieceValidator(PieceValidator p) {
+		this.pv = p;
 	}
 	
 	public void validateMove(Position from, Position to) {
