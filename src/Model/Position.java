@@ -8,6 +8,7 @@ import Interfaces.SquareIF;
  * The position.
  * 
  * @author Caleb
+ * @author Dillon Ramsey
  * @version 1.0
  */
 public class Position {
@@ -63,5 +64,22 @@ public class Position {
 	public void setFile(Files file) {
 		this.file = file;
 	}
-
+	
+	/**
+	 * Returns the square at this rank and file
+	 * 
+	 * @return sq - The square object at this position
+	 */
+	public SquareIF getSquare() {
+		return this.sq;
+	}
+	
+	/**
+	 * Sets the square at this position
+	 * 
+	 * @param square - The square to set at this position
+	 */
+	public void setSquare(SquareIF square) {
+		this.sq = square;
+	}
 }

@@ -11,14 +11,7 @@ public class KingValidator extends PieceValidator{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void setPieceValidator(PieceValidator p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Position[] showMoves(Position from) {
+	public Position[] showMoves(Position pos) {
 		// TODO Auto-generated method stub
 		return null;
 	}

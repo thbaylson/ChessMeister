@@ -17,7 +17,11 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	private ChessPieceType cpt;
 	private GameColor color;
 	private PieceValidator pv;
-	
+
+	public Piece(){
+		this.cpt = null;
+		this.color = null;
+	}
 	/**
 	 * Constructor for Piece object
 	 * 
@@ -67,5 +71,9 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	@Override
 	public String toString() {
 		return " " + this.color.getColor() + cpt.getLetter() + " ";
+	}
+
+	public GameColor getColor(){
+		return this.color;
 	}
 }

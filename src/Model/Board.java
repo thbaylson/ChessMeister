@@ -6,7 +6,6 @@ import Interfaces.BoardStrategy;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 import Move_Validation.HortzVertzValidator;
-import Move_Validation.PieceValidator;
 
 
 public class Board implements BoardIF{
