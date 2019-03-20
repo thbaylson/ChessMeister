@@ -3,15 +3,16 @@ package Move_Validation;
 import Interfaces.BoardIF;
 import Model.Piece;
 import Model.Position;
+import Model.Board;
 
 
 public abstract class PieceValidator extends Piece{
 	
-	BoardIF board;
+	Board board;
 	PieceValidator PV;
 
 	public PieceValidator(BoardIF board) {
-		this.board = board;
+		this.board = (Board)board;
 	}
 
 	public void validateMove(Position from, Position to) {
