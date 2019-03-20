@@ -53,7 +53,6 @@ public class HortzVertzValidator extends PieceValidator {
 
 	@Override
 	public void setPieceValidator(PieceValidator p) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -5,8 +5,7 @@ import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
-import Move_Validation.HortzVertzValidator;
-import Move_Validation.PieceValidator;
+import Move_Validation.*;
 
 
 public class Board implements BoardIF{
@@ -34,13 +33,13 @@ public class Board implements BoardIF{
 		/* Cycles through all the squares to assign them to black or white*/
 		for (int i = 0; i < this.getWidth(); i++) {
 			for (int j = 0; j < this.getHeight(); j++) {
-				currentColor = ((i+j)%2 == 1) ? GameColor.WHITE : GameColor.BLACK;
+				currentColor = ((i + j) % 2 == 1) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
 				bLayout[i][j].setPosition(Files.values()[j], Rank.values()[i]);
 			}
 		}
+		/* Cycles through all the squares and correctly places the appropriate pieces, excluding pawns
 		int num;
-		/* Cycles through all the squares and correctly places the appropriate pieces, excluding pawns*/
 		for(int i = 0; i < GameColor.values().length; i++) {
 			for(int j = 0; j < this.getHeight(); j++) {
 				if(j < 5) {
@@ -53,11 +52,42 @@ public class Board implements BoardIF{
 							GameColor.values()[i]));
 				}
 			}
+		}*/
+		for(int i = 0; i < GameColor.values().length; i++) {
+			bLayout[0][i * 7].setPiece(new Piece(ChessPieceType.Rook, GameColor.values()[i]));
+			bLayout[0][i * 7].getPiece().setPieceValidator(new HortzVertzValidator(this));
+			
+			bLayout[1][i * 7].setPiece(new Piece(ChessPieceType.Knight, GameColor.values()[i]));
+			bLayout[1][i * 7].getPiece().setPieceValidator(new KnightValidator(this));
+			
+			bLayout[2][i * 7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.values()[i]));
+			bLayout[2][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
+			
+			bLayout[3][i * 7].setPiece(new Piece(ChessPieceType.King, GameColor.values()[i]));
+			bLayout[3][i * 7].getPiece().setPieceValidator(new KingValidator(this));
+			
+			bLayout[4][i * 7].setPiece(new Piece(ChessPieceType.Queen, GameColor.values()[i]));
+			bLayout[4][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
+			bLayout[4][i * 7].getPiece().getPieceValidator.setPieceValidator(new HortzVertzValidator(this));
+			
+			bLayout[5][i * 7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.values()[i]));
+			bLayout[5][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
+			
+			bLayout[6][i * 7].setPiece(new Piece(ChessPieceType.Knight, GameColor.values()[i]));
+			bLayout[6][i * 7].getPiece().setPieceValidator(new KnightValidator(this));
+			
+			bLayout[7][i * 7].setPiece(new Piece(ChessPieceType.Rook, GameColor.values()[i]));
+			bLayout[7][i * 7].getPiece().setPieceValidator(new HortzVertzValidator(this));
 		}
+
+		
 		/* Places all the pawns*/
 		for (int i = 0; i < 8; i++) {
 			bLayout[i][1].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
+			bLayout[i][1].getPiece().setPieceValidator(new PawnValidator(this));
+
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
+			bLayout[i][6].getPiece().setPieceValidator(new PawnValidator(this));
 		}
 		//Test Piece
 		//
@@ -105,6 +135,12 @@ public class Board implements BoardIF{
 	@Override
 	public int getHeight() {
 		return bLayout[1].length;
+	}
+	
+	public Position getPosition(int r, char f) {
+		int rank = Rank.getArrayp(r);
+		int file = Files.getArrayp(f);
+		return  bLayout[file][rank].getPosition();
 	}
 
 	 /*getPiece- For any given, valid rank and file, this will return the piece 

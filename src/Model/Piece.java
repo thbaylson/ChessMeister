@@ -49,6 +49,10 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		this.cpt = t;
 	}
 	
+	public PieceValidator getPieceValidator() {
+		return this.pv;
+	}
+	
 	public void setPieceValidator(PieceValidator p) {
 		this.pv = p;
 	}

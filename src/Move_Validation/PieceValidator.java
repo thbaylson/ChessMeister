@@ -7,9 +7,10 @@ import Model.Piece;
 import Model.Position;
 
 
-public abstract class PieceValidator implements PieceIF{
+public abstract class PieceValidator extends Piece{
 	
 	BoardIF board;
+	
 	
 	public PieceValidator(BoardIF board) {
 		this.board = board;
