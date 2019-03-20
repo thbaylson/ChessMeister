@@ -1,6 +1,7 @@
 package Driver;
 
 import Model.Board;
+import Model.Position;
 
 import java.util.Scanner;
 
@@ -32,34 +33,46 @@ public class Driver {
 		
 		char f;
 		int r;
-		String from = "";
-		while(!from.equals("EXIT")){
+		String uInput = "";
+		while(!uInput.equals("EXIT")){
 			
 			 System.out.print("Select a piece to move > ");
-			 
-		     from = input.next().toUpperCase();
-		     f = (char) (from.charAt(0));
-		     r = (from.charAt(1) - 48);
-		     System.out.println("The first set: " + f + "  " + r);
+		     uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
+		     f = (char) (uInput.charAt(0));
+		     r = (uInput.charAt(1) - 48);
 		     
-		     if (checkInput(r, f)){
-		    	 System.out.println(game.getPiece(r, f)); 
-		    	 
+		     while(checkInputLength(uInput) || checkInput(r, f) || checkInputPos(game, r, f)){
+		    	 System.out.print("Select a piece to move > ");
+			     uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
+			     f = (char) (uInput.charAt(0));
+			     r = (uInput.charAt(1) - 48);
+		     } 
+		    
+		     
+		     Position fromP = new Position(f, r);
+		    		    
+		     
+		    
+		    System.out.print("Select a destination to move to > ");
+		    uInput = input.next().toUpperCase();
+		    f = (char) uInput.charAt(0);
+			r = (uInput.charAt(1) - 48);
+			
+		    while(checkInputLength(uInput) || checkInput(r, f)){
+		    	
 		    	 System.out.print("Select a destination to move to > ");
-		    	 
-			     String to = input.next().toUpperCase();
-			     f = (char) to.charAt(0);
-			     r = (to.charAt(1) - 48);
-			     System.out.println("The second set: " + f + "  " + r);
-			     if (checkInput(r, f)){
-			    	 if(game.getPiece(r, f) == null) {
-			    		 System.out.println("The spot you are moving to is empty");
-			    	 }else {
-			    		 System.out.println("The spot you are moving to is occupied by: " + game.getPiece(r, f));
-			    	 }
-			    	 
-			     }
-		     }
+				 uInput = input.next().toUpperCase();
+				 f = (char) uInput.charAt(0);
+			     r = (uInput.charAt(1) - 48);
+		    }
+		    
+		    Position toP = new Position(f, r);
+		    
+		    game.move(fromP, toP);
+		    	
+		    	
+			    
+		     
 
 		    
 	
@@ -69,19 +82,43 @@ public class Driver {
 	private static boolean checkInput(int r, char f){
 	    if (f >= 65 && f <= 72){
 	    	 if (r >= 1 && r <= 8){
-	    		return true;
+	    		return false;
 	    	 }
 	    	 else{
 		    	 System.out.println("Invalid rank position, please enter second "
 		    	 		+ "a number from '1' to '8'");
-		    	 return false;
+		    	 return true;
 		     }
 	     }
 	     else{
 	    	 System.out.println("Invalid file position, please enter first "
 	    	 		+ "a letter from 'a' to 'h'");
-	    	 return false;
+	    	 return true;
 	     }
 	}
+	
+	private static boolean checkInputLength(String fr){
+		 if (fr.length() != 2){
+	    	 System.out.println("Please enter in the format: 1 character "
+	    	 		+ "(file or f) and then 1 number (rank or r) 'fr' ");
+	    	 
+	    	 return true;
+	     }
+		 else{
+			 return false;
+		 }
+	}
+	private static boolean checkInputPos(BoardIF game, int r, char f){
+		if(game.getPiece(r, f) == null) {
+   		 	System.out.println("The spot you have selected is empty");
+   		 	
+   		 	return true;
+   	 	}
+		else {
+   		 	return false;
+   	 	}
+		
+	}
+	
 }
 
