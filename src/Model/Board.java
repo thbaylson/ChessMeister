@@ -36,6 +36,7 @@ public class Board implements BoardIF{
 				currentColor = ((i + j) % 2 == 1) ? GameColor.WHITE : GameColor.BLACK;
 				bLayout[i][j] = new Square(currentColor);
 				bLayout[i][j].setPosition(Files.values()[i], Rank.values()[j]);
+				bLayout[i][j].getPosition().setSquare(bLayout[i][j]);
 			}
 		}
 		/* Correctly places the appropriate pieces, excluding pawns*/
@@ -158,6 +159,17 @@ public class Board implements BoardIF{
 		int rank = Rank.getArrayp(r);
 		int file = Files.getArrayp(f);
 		return  bLayout[file][rank].getPiece();
+	}
+	
+	public SquareIF getSquare(Position pos){
+		for(int i = 0; i < 7; i++){
+			for(int j = 0; j < 7; j++){
+				if(bLayout[i][j].getPosition().equals(pos)){
+					return bLayout[i][j];
+				}
+			}
+		}
+		return null;
 	}
 
 }
