@@ -41,7 +41,7 @@ public class HortzVertzValidator extends PieceValidator {
 	 */
 	private ArrayList<Position> checkLeft(int rank, int file, SquareIF[][] squares){
 		ArrayList<Position> moves = new ArrayList<Position>();
-		for (int i = file - 1; i > 0; i--) {
+		for (int i = file - 1; i >= 0; i--) {
 			if (inRange(i, rank) && squares[i][rank].getPiece() == null) {
 				moves.add(squares[i][rank].getPosition());
 			}else {
@@ -98,7 +98,7 @@ public class HortzVertzValidator extends PieceValidator {
 	 */
 	private ArrayList<Position> checkDown(int rank, int file, SquareIF[][] squares){
 		ArrayList<Position> moves = new ArrayList<Position>();
-		for (int j = rank - 1; j > 0; j--) {
+		for (int j = rank - 1; j >= 0; j--) {
 			if (inRange(file, j) && squares[file][j].getPiece() == null) {
 				moves.add(squares[file][j].getPosition());
 			}else {
