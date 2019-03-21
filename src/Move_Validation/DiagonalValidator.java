@@ -22,7 +22,9 @@ public class DiagonalValidator extends PieceValidator{
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
 		
-		
+		/**
+		 * This loop checks up-right diagonal
+		 */
 		for (int i = rank + 1, j = file + 1; i < this.board.getHeight() &&
 				j < this.board.getWidth(); i++, j++){
 			
@@ -37,6 +39,9 @@ public class DiagonalValidator extends PieceValidator{
 			}
 		}
 		
+		/**
+		 * This loop checks up-left diagonal
+		 */
 		for (int i = rank + 1, j = file - 1; i < this.board.getHeight() &&
 				j >= 0; i++, j--){
 
@@ -51,6 +56,9 @@ public class DiagonalValidator extends PieceValidator{
 			}
 		}
 		
+		/**
+		 * This loop checks down-left diagonal
+		 */
 		for (int i = rank - 1, j = file - 1; i >= 0 &&
 				j >= 0; i--, j--){
 			
@@ -65,6 +73,9 @@ public class DiagonalValidator extends PieceValidator{
 			}
 		}
 		
+		/**
+		 * This loop checks down-right diagonal
+		 */
 		for (int i = rank - 1, j = file + 1; i >= 0 &&
 				j < this.board.getWidth(); i--, j++){
 			
@@ -79,7 +90,7 @@ public class DiagonalValidator extends PieceValidator{
 			}
 		}
 		
-		System.out.println(moves.size());
+		
 		
 		Position[] send = new Position[moves.size()];
 		for (int i = 0; i < moves.size(); i++){
