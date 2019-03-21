@@ -20,8 +20,6 @@ public class HortzVertzValidator extends PieceValidator {
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
 		
-		System.out.println("\nBITCH1");
-
 		moves.addAll(checkLeft(rank, file, squares));
 		moves.addAll(checkRight(rank, file, squares));
 		moves.addAll(checkUp(rank, file, squares));

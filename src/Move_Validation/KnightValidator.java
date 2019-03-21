@@ -27,7 +27,6 @@ public class KnightValidator extends PieceValidator{
 		Position[] result;
 
 		SquareIF[][] squares = this.board.getSquares();
-		SquareIF sqAt;
 		ArrayList<Position> moves = new ArrayList<Position>();
 		for(int i = -2; i < 3; i++) {
 			for(int j = -2; j < 3; j++) {

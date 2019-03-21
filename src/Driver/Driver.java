@@ -30,8 +30,8 @@ public class Driver {
 		String uInput = "";
 		BoardIF game = new Board();
 	
-		//BoardStrategy gStrat = new Board_Mono_CLI();
-		BoardStrategy gStrat = new Board_Color_CLI();
+		BoardStrategy gStrat = new Board_Mono_CLI();
+		//BoardStrategy gStrat = new Board_Color_CLI();
 		game.setDrawStrategy(gStrat);
 		
 		
