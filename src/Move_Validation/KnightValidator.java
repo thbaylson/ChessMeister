@@ -33,17 +33,29 @@ public class KnightValidator extends PieceValidator{
 		System.out.println(inRange(file + 1, rank + 2));
 		if(inRange(file + 1, rank + 2) && squares[file + 1][rank + 2].getPiece() == null) {
 			moves.add(squares[file + 1][rank + 2].getPosition());
+		}else if(inRange(file + 1, rank + 2) && (squares[file + 1][rank + 2].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
+			moves.add(squares[file + 1][rank + 2].getPosition());
 		}
 		//The case where the possible position is one to the right and two lower
 		if(inRange(file + 1, rank - 2) && squares[file + 1][rank - 2].getPiece() == null) {
+			moves.add(squares[file + 1][rank - 2].getPosition());
+		}else if(inRange(file + 1, rank - 2) && (squares[file + 1][rank - 2].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
 			moves.add(squares[file + 1][rank - 2].getPosition());
 		}
 		//The case where the possible position is two to the right and one higher
 		if(inRange(file + 2, rank + 1) && squares[file + 2][rank + 1].getPiece() == null) {
 			moves.add(squares[file + 2][rank + 1].getPosition());
+		}else if(inRange(file + 2, rank + 1) && (squares[file + 2][rank + 1].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
+			moves.add(squares[file + 2][rank + 1].getPosition());
 		}
 		//The case where the possible position is two to the right and one lower
 		if(inRange(file + 2, rank - 1) && squares[file + 2][rank - 1].getPiece() == null) {
+			moves.add(squares[file + 2][rank - 1].getPosition());
+		}else if(inRange(file + 2, rank - 1) && (squares[file + 2][rank - 1].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
 			moves.add(squares[file + 2][rank - 1].getPosition());
 		}
 		
@@ -51,17 +63,29 @@ public class KnightValidator extends PieceValidator{
 		//The case where the possible position is one to the left and two higher
 		if(inRange(file - 1, rank + 2) && squares[file - 1][rank + 2].getPiece() == null) {
 			moves.add(squares[file - 1][rank + 2].getPosition());
+		}else if(inRange(file - 1, rank + 2) && (squares[file - 1][rank + 2].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
+			moves.add(squares[file - 1][rank + 2].getPosition());
 		}
 		//The case where the possible position is one to the left and two lower
 		if(inRange(file - 1, rank - 2) && squares[file - 1][rank - 2].getPiece() == null) {
+			moves.add(squares[file - 1][rank - 2].getPosition());
+		}else if(inRange(file - 1, rank - 2) && (squares[file - 1][rank - 2].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
 			moves.add(squares[file - 1][rank - 2].getPosition());
 		}
 		//The case where the possible position is two to the left and one higher
 		if(inRange(file - 2, rank + 1) && squares[file - 2][rank + 1].getPiece() == null) {
 			moves.add(squares[file - 2][rank + 1].getPosition());
-		}		
+		}else if(inRange(file - 2, rank + 1) && (squares[file - 2][rank + 1].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
+			moves.add(squares[file - 2][rank + 1].getPosition());
+		}
 		//The case where the possible position is two to the left and one lower
 		if(inRange(file - 2, rank - 1) && squares[file - 2][rank - 1].getPiece() == null) {
+			moves.add(squares[file - 2][rank - 1].getPosition());
+		}else if(inRange(file - 2, rank - 1) && (squares[file - 2][rank - 1].getPiece().getColor() != 
+				(squares[file][rank].getPiece().getColor() ))){
 			moves.add(squares[file - 2][rank - 1].getPosition());
 		}
 		System.out.println(moves);
