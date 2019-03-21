@@ -6,12 +6,24 @@ import Interfaces.BoardIF;
 import Interfaces.SquareIF;
 import Model.Position;
 
+/**
+ * Move validator for Rooks and Queens
+ *
+ * @author Tyler Baylson
+ * @version 1.0
+ */
 public class HortzVertzValidator extends PieceValidator {
 
 	public HortzVertzValidator(BoardIF board) {
 		super(board);
 	}
 
+	/**
+	 * Method to check the moves available to the current piece
+	 *
+	 * @param pos - The position of the piece currently selected
+	 * @return result - An array containing the moves available to this piece as position objects
+	 */
 	public Position[] showMoves(Position pos) {
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
@@ -44,6 +56,9 @@ public class HortzVertzValidator extends PieceValidator {
 		for (int i = file - 1; i >= 0; i--) {
 			if (inRange(i, rank) && squares[i][rank].getPiece() == null) {
 				moves.add(squares[i][rank].getPosition());
+			}else if(inRange(i, rank) && (squares[i][rank].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
+				moves.add(squares[i][rank].getPosition());
 			}else {
 				return moves;
 			}
@@ -62,6 +77,9 @@ public class HortzVertzValidator extends PieceValidator {
 		ArrayList<Position> moves = new ArrayList<Position>();
 		for (int i = file + 1; i < this.board.getWidth(); i++) {
 			if (inRange(i, rank) && squares[i][rank].getPiece() == null) {
+				moves.add(squares[i][rank].getPosition());
+			}else if(inRange(i, rank) && (squares[i][rank].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[i][rank].getPosition());
 			}else {
 				return moves;
@@ -82,6 +100,9 @@ public class HortzVertzValidator extends PieceValidator {
 		for (int j = rank + 1; j < this.board.getHeight(); j++) {
 			if (inRange(file, j) && squares[file][j].getPiece() == null) {
 				moves.add(squares[file][j].getPosition());
+			}else if(inRange(file, j) && (squares[file][j].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
+				moves.add(squares[file][j].getPosition());
 			}else {
 				return moves;
 			}
@@ -100,6 +121,9 @@ public class HortzVertzValidator extends PieceValidator {
 		ArrayList<Position> moves = new ArrayList<Position>();
 		for (int j = rank - 1; j >= 0; j--) {
 			if (inRange(file, j) && squares[file][j].getPiece() == null) {
+				moves.add(squares[file][j].getPosition());
+			}else if(inRange(file, j) && (squares[file][j].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[file][j].getPosition());
 			}else {
 				return moves;

@@ -24,17 +24,28 @@ public class KingValidator extends PieceValidator{
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
 		
+		/**
+		 * This if-statement allows the king to move right 1
+		 */
 		if (squares[file + 1][rank].getPiece() == null)
 			moves.add(squares[file + 1][rank].getPosition());
 		
+		/**
+		 * This if-statement allows the king to move left 1
+		 */
 		if (file - 1 > 0)
 			if (squares[file - 1][rank].getPiece() == null)
 				moves.add(squares[file - 1][rank].getPosition());
 		
-		
+		/**
+		 * This if-statement allows the king to move up 1
+		 */
 		if (squares[file][rank + 1].getPiece() == null)
 			moves.add(squares[file][rank + 1].getPosition());
 		
+		/**
+		 * This if-statement allows the king to move down 1
+		 */
 		if (rank - 1 > 0)
 			if (squares[file][rank - 1].getPiece() == null)
 				moves.add(squares[file][rank - 1].getPosition());
@@ -47,7 +58,7 @@ public class KingValidator extends PieceValidator{
 			
 			send[i] = moves.get(i);
 		}
-		System.out.println(moves.size());
+	
 		
 		
 		return send;
