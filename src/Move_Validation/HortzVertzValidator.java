@@ -44,6 +44,9 @@ public class HortzVertzValidator extends PieceValidator {
 		for (int i = file - 1; i >= 0; i--) {
 			if (inRange(i, rank) && squares[i][rank].getPiece() == null) {
 				moves.add(squares[i][rank].getPosition());
+			}else if(inRange(i, rank) && (squares[i][rank].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
+				moves.add(squares[i][rank].getPosition());
 			}else {
 				return moves;
 			}
@@ -62,6 +65,9 @@ public class HortzVertzValidator extends PieceValidator {
 		ArrayList<Position> moves = new ArrayList<Position>();
 		for (int i = file + 1; i < this.board.getWidth(); i++) {
 			if (inRange(i, rank) && squares[i][rank].getPiece() == null) {
+				moves.add(squares[i][rank].getPosition());
+			}else if(inRange(i, rank) && (squares[i][rank].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[i][rank].getPosition());
 			}else {
 				return moves;
@@ -82,6 +88,9 @@ public class HortzVertzValidator extends PieceValidator {
 		for (int j = rank + 1; j < this.board.getHeight(); j++) {
 			if (inRange(file, j) && squares[file][j].getPiece() == null) {
 				moves.add(squares[file][j].getPosition());
+			}else if(inRange(file, j) && (squares[file][j].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
+				moves.add(squares[file][j].getPosition());
 			}else {
 				return moves;
 			}
@@ -100,6 +109,9 @@ public class HortzVertzValidator extends PieceValidator {
 		ArrayList<Position> moves = new ArrayList<Position>();
 		for (int j = rank - 1; j >= 0; j--) {
 			if (inRange(file, j) && squares[file][j].getPiece() == null) {
+				moves.add(squares[file][j].getPosition());
+			}else if(inRange(file, j) && (squares[file][j].getPiece().getColor() != 
+					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[file][j].getPosition());
 			}else {
 				return moves;
