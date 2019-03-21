@@ -52,7 +52,8 @@ public class Driver {
 		int r;
 		
 		/**
-		 * This while loop is what continues 
+		 * This while loop is what continues the game, as of right now the 
+		 * EXIT command does not work
 		 */
 		while(!uInput.equals("EXIT")){
 			game.draw();
@@ -61,10 +62,16 @@ public class Driver {
 			f = (char) (uInput.charAt(0));
 			r = (uInput.charAt(1) - 48);
 			Piece curp = (Piece) game.getPiece(r, f);
-
-			while(checkInputLength(uInput) || checkInput(r, f) || checkInputPos(game, r, f)){
+			
+			/**
+			 * This loops is used the make sure the user selects a proper 
+			 * piece to moves
+			 */
+			while(checkInputLength(uInput) || checkInput(r, f) || 
+					checkInputPos(game, r, f)){
 				System.out.print("Select a piece to move > ");
-				uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
+				uInput = input.next().toUpperCase(); // This is where what the 
+													//user inputs is stored
 				f = (char) (uInput.charAt(0));
 				r = (uInput.charAt(1) - 48);
 			}
@@ -78,7 +85,11 @@ public class Driver {
 			uInput = input.next().toUpperCase();
 			f = (char) uInput.charAt(0);
 			r = (uInput.charAt(1) - 48);
-
+			
+			/**
+			 * This loop is used to make sure the user selects a proper 
+			 * destination for their piece
+			 */
 			while(checkInputLength(uInput) || checkInput(r, f)){
 
 				System.out.print("Select a destination to move to > ");
@@ -100,6 +111,13 @@ public class Driver {
 		}
 		input.close();
 	}
+	
+	/**
+	 * Method that is used to check if input is within board range
+	 * @param r rank of user input
+	 * @param f file of user input
+	 * @return if input is within range of the board
+	 */
 	private static boolean checkInput(int r, char f){
 		if (f >= 65 && f <= 72){
 			if (r >= 1 && r <= 8){
@@ -117,7 +135,12 @@ public class Driver {
 			return true;
 		}
 	}
-
+	
+	/**
+	 * Method that checks of input is of correct char length
+	 * @param fr string user entered
+	 * @return if input is correct length
+	 */
 	private static boolean checkInputLength(String fr){
 		if (fr.length() != 2){
 			System.out.println("Please enter in the format: 1 character "
@@ -129,6 +152,14 @@ public class Driver {
 			return false;
 		}
 	}
+	
+	/**
+	 * Used to check if the position the user selected is a valid piece
+	 * @param game the board
+	 * @param r the rank of user input
+	 * @param f the file of user input
+	 * @return if input is a valid piece
+	 */
 	private static boolean checkInputPos(BoardIF game, int r, char f){
 		if(game.getPiece(r, f) == null) {
 			System.out.println("The spot you have selected is empty");

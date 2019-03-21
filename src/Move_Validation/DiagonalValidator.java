@@ -11,8 +11,12 @@ public class DiagonalValidator extends PieceValidator{
 	public DiagonalValidator(BoardIF board) {
 		super(board);
 	}
-
+	
 	@Override
+	/**
+	 * This method gives a list of all valid moves that a piece that can move 
+	 * diagonal is allowed to make
+	 */
 	public Position[] showMoves(Position pos) {
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
