@@ -44,13 +44,16 @@ public class Driver {
 		game.setDrawStrategy(gStrat);
 
 
-		game.draw();
+	
 
 		
 
 		char f;
 		int r;
-
+		
+		/**
+		 * This while loop is what continues 
+		 */
 		while(!uInput.equals("EXIT")){
 			game.draw();
 			System.out.print("Select a piece to move > ");
@@ -90,7 +93,7 @@ public class Driver {
 				game.move(fromP, toP);
 			}
 			else{
-				System.out.println("TEST");
+				System.out.println("The position you chose is invlaid for that piece");
 			}
 
 
