@@ -29,19 +29,8 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 		String uInput = "";
 		BoardIF game = new Board();
-<<<<<<< HEAD
-		
 		BoardStrategy gStrat = new Board_Mono_CLI();
-		
-=======
-		BoardStrategy gStrat = new Board_Color_CLI();
->>>>>>> 9af0ee3ed68076895a103e08520799696ad954dc
 		game.setDrawStrategy(gStrat);
-		
-		
-		
-		
-		
 		char f;
 		int r;
 		

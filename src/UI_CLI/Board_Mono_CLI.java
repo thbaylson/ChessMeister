@@ -26,7 +26,7 @@ public class Board_Mono_CLI implements BoardStrategy{
 		
 		System.out.print("  ");
 		for (int i = 0; i < Files.values().length; i++) {
-			System.out.print("   "  + Files.values()[i].getFile());
+			System.out.print("      "  + Files.values()[i].getFile() + " ");
 		}
 		System.out.println("\n");
 		for (int j = board.getHeight()-1; j > -1; j--) {
@@ -34,9 +34,17 @@ public class Board_Mono_CLI implements BoardStrategy{
 			System.out.print("   ");
 			for (int i = 0; i < board.getWidth(); i++) {
 				if (layout[i][j].getPiece() == null) {
-					System.out.print("    ");
+					if (layout[i][j].getColor().getColor() == 'w'){
+						System.out.print("[      ]");
+					}else{
+						System.out.print("[#    #]");
+					}
 				}else {
-					System.out.print(layout[i][j].getPiece());
+					if (layout[i][j].getColor().getColor() == 'w') {
+						System.out.print("[ " + layout[i][j].getPiece().toString() + " ]");
+					}else{
+						System.out.print("[#" + layout[i][j].getPiece().toString() + "#]");
+					}
 				}
 			}
 				System.out.print("\n\n");
