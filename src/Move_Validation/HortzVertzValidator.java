@@ -6,12 +6,24 @@ import Interfaces.BoardIF;
 import Interfaces.SquareIF;
 import Model.Position;
 
+/**
+ * Move validator for Rooks and Queens
+ *
+ * @author Tyler Baylson
+ * @version 1.0
+ */
 public class HortzVertzValidator extends PieceValidator {
 
 	public HortzVertzValidator(BoardIF board) {
 		super(board);
 	}
 
+	/**
+	 * Method to check the moves available to the current piece
+	 *
+	 * @param pos - The position of the piece currently selected
+	 * @return result - An array containing the moves available to this piece as position objects
+	 */
 	public Position[] showMoves(Position pos) {
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
