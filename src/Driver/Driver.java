@@ -42,10 +42,26 @@ public class Driver {
 		}
 
 		game.setDrawStrategy(gStrat);
+<<<<<<< HEAD
 		char f;
 		int r;
 
 		do{
+=======
+
+
+	
+
+		
+
+		char f;
+		int r;
+		
+		/**
+		 * This while loop is what continues 
+		 */
+		while(!uInput.equals("EXIT")){
+>>>>>>> b8f7adebc7ea63d6812e673026829fcbbce3b55f
 			game.draw();
 			System.out.print("Select a piece to move > ");
 			uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
@@ -84,7 +100,7 @@ public class Driver {
 				game.move(fromP, toP);
 			}
 			else{
-				System.out.println("TEST");
+				System.out.println("The position you chose is invlaid for that piece");
 			}
 
 

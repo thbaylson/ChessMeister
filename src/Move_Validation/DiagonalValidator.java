@@ -28,7 +28,11 @@ public class DiagonalValidator extends PieceValidator{
 			
 			if (squares[j][i].getPiece() == null ) {
 				moves.add(squares[j][i].getPosition());
-			} else {
+			} 
+			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
+				moves.add(squares[j][i].getPosition());
+			}
+			else {
 				break;
 			}
 		}
@@ -38,7 +42,11 @@ public class DiagonalValidator extends PieceValidator{
 
 			if (squares[j][i].getPiece() == null ) {
 				moves.add(squares[j][i].getPosition());
-			} else {
+			} 
+			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
+				moves.add(squares[j][i].getPosition());
+			}
+			else {
 				break;
 			}
 		}
@@ -48,7 +56,11 @@ public class DiagonalValidator extends PieceValidator{
 			
 			if (squares[j][i].getPiece() == null ) {
 				moves.add(squares[j][i].getPosition());
-			} else {
+			} 
+			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
+				moves.add(squares[j][i].getPosition());
+			}
+			else {
 				break;
 			}
 		}
@@ -58,7 +70,11 @@ public class DiagonalValidator extends PieceValidator{
 			
 			if (squares[j][i].getPiece() == null ) {
 				moves.add(squares[j][i].getPosition());
-			} else {
+			}
+			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
+				moves.add(squares[j][i].getPosition());
+			}
+			else {
 				break;
 			}
 		}
