@@ -1,47 +1,18 @@
 package Driver;
 
-import
-		Model.Board;
-import Model.Piece;
-import Model.Position;
-
-import java.util.Scanner;
-
-import Interfaces.BoardIF;
+import Model.Board;
 import Interfaces.BoardStrategy;
-import UI_CLI.Board_Color_CLI;
 import UI_CLI.Board_Mono_CLI;
 
-/**
- * Driver that runs the game and accepts user input
- * @author Caleb Tupone
- * 
- *
- */
 public class Driver {
-	
-	
-	/**
-	 * The main method that creates a game of chess for two players to play
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		String uInput = "";
-		BoardIF game = new Board();
-		BoardStrategy gStrat;
-		
-		System.out.println("If you would like a colored board, please type "
-							+ "COLOR, else, press any key to continue");
-		uInput = input.next().toUpperCase();
-		if (uInput.equals("COLOR")){
-			gStrat = new Board_Color_CLI();
-		}
-		else{
-			gStrat = new Board_Mono_CLI();
-		}
-		
+		Board game = new Board();
+		BoardStrategy gStrat = new Board_Mono_CLI();
 		game.setDrawStrategy(gStrat);
+<<<<<<< HEAD
+		game.draw();
+=======
 		
 		char f;
 		int r;
@@ -85,47 +56,6 @@ public class Driver {
 		    }	
 		}
 		input.close();
+>>>>>>> 1da01ed22a1721bb34d9828f0c4fa836e2c760e5
 	}
-	private static boolean checkInput(int r, char f){
-	    if (f >= 65 && f <= 72){
-	    	 if (r >= 1 && r <= 8){
-	    		return false;
-	    	 }
-	    	 else{
-		    	 System.out.println("Invalid rank position, please enter second "
-		    	 		+ "a number from '1' to '8'");
-		    	 return true;
-		     }
-	     }
-	     else{
-	    	 System.out.println("Invalid file position, please enter first "
-	    	 		+ "a letter from 'a' to 'h'");
-	    	 return true;
-	     }
-	}
-	
-	private static boolean checkInputLength(String fr){
-		 if (fr.length() != 2){
-	    	 System.out.println("Please enter in the format: 1 character "
-	    	 		+ "(file or f) and then 1 number (rank or r) 'fr' ");
-	    	 
-	    	 return true;
-	     }
-		 else{
-			 return false;
-		 }
-	}
-	private static boolean checkInputPos(BoardIF game, int r, char f){
-		if(game.getPiece(r, f) == null) {
-   		 	System.out.println("The spot you have selected is empty");
-   		 	
-   		 	return true;
-   	 	}
-		else {
-   		 	return false;
-   	 	}
-		
-	}
-	
 }
-
