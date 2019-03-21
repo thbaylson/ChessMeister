@@ -7,7 +7,12 @@ import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 import Move_Validation.*;
 
-
+/**
+ * The concrete implementation of BoardIF
+ *
+ * @author Tyler Baylson
+ * @version 1.0
+ */
 public class Board implements BoardIF{
 	private SquareIF[][] bLayout;
 	private BoardStrategy strat;
@@ -78,15 +83,13 @@ public class Board implements BoardIF{
 			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
 			bLayout[i][6].getPiece().setPieceValidator(new PawnValidator(this));
 		}
-		//Test Piece
-		//
-		//
-		//
-		//
-		bLayout[0][2].setPiece(new Piece(ChessPieceType.Rook, GameColor.WHITE));
-		bLayout[0][2].getPiece().setPieceValidator(new HortzVertzValidator(this));
 	}
 	
+	/**
+	 * move- For a given position, moves the piece from that position to another given position
+	 * @param from- The position the desired piece will move from
+	 * @param to- The position the desired piece will move to
+	 */
 	public void move(Position from, Position to) {
 		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(
 				bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
@@ -138,6 +141,13 @@ public class Board implements BoardIF{
 		return bLayout[1].length;
 	}
 	
+	 /**
+	  * getPosition- For any given, valid rank (as an int) and file (as a char), this will return the piece
+	 * in that spot. If no piece exists there, this returns null.
+	 * @param r: The Rank int representing the rank on the board
+	 * @param f: The Files char representing a file on the board
+	 * @return: A position on the board
+	 */
 	public Position getPosition(int r, char f) {
 		int rank = Rank.getArrayp(r);
 		int file = Files.getArrayp(f);

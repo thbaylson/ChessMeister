@@ -7,19 +7,24 @@ import Interfaces.BoardIF;
 import Interfaces.SquareIF;
 import Model.Position;
 
+/**
+ * Move validator for Knight
+ *
+ * @author Tyler Baylson
+ * @version 1.0
+ */
 public class KnightValidator extends PieceValidator{
 
 	public KnightValidator(BoardIF board) {
 		super(board);
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void setPieceValidator(PieceValidator p) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	/**
+	 * Method to check the moves available to the current knight
+	 *
+	 * @param pos - The position of the knight currently selected
+	 * @return result - An array containing the moves available to this knight as position objects
+	 */
 	@Override
 	public Position[] showMoves(Position pos) {
 		int file = pos.getFile().getArrayp();
