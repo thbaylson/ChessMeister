@@ -86,7 +86,8 @@ public class Board implements BoardIF{
 	}
 	
 	public void move(Position from, Position to) {
-		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
+		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(
+				bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
 		
 		bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].setPiece(null);
 	}
@@ -144,7 +145,7 @@ public class Board implements BoardIF{
 	 */
 	@Override
 	public PieceIF getPiece(Rank r, Files f){
-		return bLayout[r.getArrayp()][f.getArrayp()].getPiece();
+		return bLayout[f.getArrayp()][r.getArrayp()].getPiece();
 	}
 	
 
@@ -162,8 +163,8 @@ public class Board implements BoardIF{
 	}
 	
 	public SquareIF getSquare(Position pos){
-		for(int i = 0; i < 7; i++){
-			for(int j = 0; j < 7; j++){
+		for(int i = 0; i < bLayout.length; i++){
+			for(int j = 0; j < bLayout[0].length; j++){
 				if(bLayout[i][j].getPosition().equals(pos)){
 					return bLayout[i][j];
 				}

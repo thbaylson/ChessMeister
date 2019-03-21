@@ -71,20 +71,9 @@ public class Driver {
 		    Position toP = new Position(f, r);
 		    if(curp.validateMove(game.getSquare(fromP).getPosition(), toP)){
 		    	 game.move(fromP, toP);
-		    }
-		    else{
-		    	System.out.println("TEST");
-		    }
-		   
-		    
-		    	
-			    
-		     
-
-		    
-	
+		    }	
 		}
-		input.close(); 	
+		input.close();
 	}
 	private static boolean checkInput(int r, char f){
 	    if (f >= 65 && f <= 72){
