@@ -10,9 +10,9 @@ public class Driver {
 		Board game = new Board();
 		BoardStrategy gStrat = new Board_Mono_CLI();
 		game.setDrawStrategy(gStrat);
-<<<<<<< HEAD
+
 		game.draw();
-=======
+
 		
 		char f;
 		int r;
@@ -56,6 +56,5 @@ public class Driver {
 		    }	
 		}
 		input.close();
->>>>>>> 1da01ed22a1721bb34d9828f0c4fa836e2c760e5
 	}
 }
