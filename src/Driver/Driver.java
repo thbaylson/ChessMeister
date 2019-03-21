@@ -42,16 +42,10 @@ public class Driver {
 		}
 
 		game.setDrawStrategy(gStrat);
-
-
-		game.draw();
-
-		
-
 		char f;
 		int r;
 
-		while(!uInput.equals("EXIT")){
+		do{
 			game.draw();
 			System.out.print("Select a piece to move > ");
 			uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
@@ -94,7 +88,7 @@ public class Driver {
 			}
 
 
-		}
+		}while(!uInput.equals("EXIT"));
 		input.close();
 	}
 	private static boolean checkInput(int r, char f){
