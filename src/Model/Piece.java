@@ -52,15 +52,31 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public void setChessPieceType(ChessPieceType t) {
 		this.cpt = t;
 	}
-	
+
+	/**
+	 * Gets the PieceValidator and returns it
+	 * @return Returns a PieceValidator
+	 */
 	public PieceValidator getPieceValidator() {
 		return this.pv;
 	}
-	
+
+	/**
+	 * Sets the PieceValidator
+	 *
+	 * @param p - The PieceValidator to set
+	 */
 	public void setPieceValidator(PieceValidator p) {
 		this.pv = p;
 	}
-	
+
+	/**
+	 * Validates the proposed move
+	 *
+	 * @param from - The position the piece is moving from
+	 * @param to - The position the piece is trying to move to
+	 * @return Returns boolean true if the move was successful and false otherwise
+	 */
 	public boolean validateMove(Position from, Position to) {
 			for(Position pos : this.pv.showMoves(from)){
 				if(pos.getRank() == to.getRank() && pos.getFile() == to.getFile()) {
@@ -69,12 +85,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 			}
 		return false;
 	}
-	
-	public Position[] showMoves() {
-		//this.pv.showMoves();
-		return null;
-	}
-	
+
 	/**
 	 * Prints out the color and type of the chess piece
 	 */
@@ -83,6 +94,11 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		return " " + this.color.getColor() + cpt.getLetter() + " ";
 	}
 
+	/**
+	 * Gets and returns the GameColor
+	 *
+	 * @return The color of the piece
+	 */
 	public GameColor getColor(){
 		return this.color;
 	}
