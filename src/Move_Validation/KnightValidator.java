@@ -22,22 +22,32 @@ public class KnightValidator extends PieceValidator{
 
 	@Override
 	public Position[] showMoves(Position pos) {
-		int rank =  pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
+		int rank =  pos.getRank().getArrayp();
+		Position[] result;
 
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
 		for(int i = -2; i < 3; i++) {
 			for(int j = -2; j < 3; j++) {
-				if(squares[rank + i][file + j] == null){
-					moves.add(squares[rank + i][file + j].getPosition());
+				if(inRange(file + i, rank + j) && squares[file + i][rank + j] == null){
+					moves.add(squares[file + i][rank + j].getPosition());
 				}else {
-					break;
+					if(inRange(file + i, rank + j) && squares[file + i][rank + j].getPiece() != null) {
+						if(squares[file + i][rank + j].getPiece().getColor() != 
+								pos.getSquare().getPiece().getColor()) {
+							moves.add(squares[file + i][rank + j].getPosition());
+						}
+					}
 				}
 			}
 		}
 		
-		return (Position[]) moves.toArray();
+		result = new Position[moves.size()];
+		for (int i = 0; i < moves.size(); i++){
+			result[i] = moves.get(i);
+		}
+		return result;
 	}
 
 }
