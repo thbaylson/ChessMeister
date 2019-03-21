@@ -15,8 +15,8 @@ public class Position {
 	
 	private SquareIF sq;
 	
-	private Rank rank;
 	private Files file;
+	private Rank rank;
 	
 	/**
 	 * Constructor for position
@@ -25,13 +25,13 @@ public class Position {
 	 * @param r - The rank position
 	 */
 	public Position(Files f, Rank r) {
-		this.rank = r;
 		this.file = f;
+		this.rank = r;
 	}
 	
 	public Position(char f, int r) {
-		this.rank = Rank.getRank(r);
 		this.file = Files.getFile(f);
+		this.rank = Rank.getRank(r);
 	}
 	
 	/**
