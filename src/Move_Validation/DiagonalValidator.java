@@ -24,7 +24,13 @@ public class DiagonalValidator extends PieceValidator{
 
 		for (int i = rank + 1, j = file + 1; i < this.board.getHeight() &&
 				j < this.board.getWidth(); i++, j++){
-			System.out.println(squares[j][i]);
+			
+			if (i > 8)
+				i = 8;
+				
+			if(j > 8)
+				j = 0;
+			
 			if (squares[j][i].getPiece() == null ) {
 				moves.add(squares[j][i].getPosition());
 			} else {
@@ -35,8 +41,13 @@ public class DiagonalValidator extends PieceValidator{
 		for (int i = rank + 1, j = file - 1; i < this.board.getHeight() &&
 				j > 0; i++, j--){
 			
+			if (i > 8)
+			i = 8;
+			
 			if(j < 0)
 			j = 0;
+			
+			
 			
 			if (squares[j][i].getPiece() == null ) {
 				moves.add(squares[j][i].getPosition());
@@ -67,6 +78,8 @@ public class DiagonalValidator extends PieceValidator{
 			if( i < 0)
 				i = 0;
 			
+			if( j > 8)
+				i = 8;
 			if (squares[j][i].getPiece() == null ) {
 				moves.add(squares[j][i].getPosition());
 			} else {
