@@ -88,8 +88,12 @@ public class Position {
 		this.sq = square;
 	}
 
-	
-
+	/**
+	 * Method to check if a object is equal to this position
+	 *
+	 * @param obj - The object being checked
+	 * @return A boolean true if the object is equal and false otherwise
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

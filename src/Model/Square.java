@@ -63,11 +63,22 @@ public class Square extends BlackAndWhite implements SquareIF{
 	public GameColor getColor() {
 		return this.color;
 	}
-	
+
+	/**
+	 * Sets the position of the square
+	 *
+	 * @param f - The file to set the square to
+	 * @param r - The rank to set the square to
+	 */
 	public void setPosition(Files f, Rank r) {
 		pos = new Position(f,r);
 	}
-	
+
+	/**
+	 * Gets and returns the position of the square
+	 *
+	 * @return The position of the square
+	 */
 	public Position getPosition() {
 		return pos;
 	}
