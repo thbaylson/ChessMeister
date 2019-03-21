@@ -29,18 +29,19 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 		String uInput = "";
 		BoardIF game = new Board();
-<<<<<<< HEAD
+		BoardStrategy gStrat;
 		
-		BoardStrategy gStrat = new Board_Mono_CLI();
+		System.out.println("If you would like a colored board, please type "
+							+ "COLOR, else, press any key to continue");
+		uInput = input.next().toUpperCase();
+		if (uInput.equals("COLOR")){
+			gStrat = new Board_Color_CLI();
+		}
+		else{
+			gStrat = new Board_Mono_CLI();
+		}
 		
-=======
-		BoardStrategy gStrat = new Board_Color_CLI();
->>>>>>> 9af0ee3ed68076895a103e08520799696ad954dc
 		game.setDrawStrategy(gStrat);
-		
-		
-		
-		
 		
 		char f;
 		int r;
