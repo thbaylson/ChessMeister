@@ -43,12 +43,11 @@ public class Driver {
 
 		game.setDrawStrategy(gStrat);
 
-<<<<<<< HEAD
+
 		game.draw();
 
 		
-=======
->>>>>>> 68785b9e4e1a9bdd88281d300dabe9c41f6e8239
+
 		char f;
 		int r;
 
@@ -93,12 +92,6 @@ public class Driver {
 			else{
 				System.out.println("TEST");
 			}
-
-
-
-
-
-
 
 
 		}
