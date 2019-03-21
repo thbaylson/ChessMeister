@@ -16,7 +16,7 @@ public class Board_Color_CLI implements BoardStrategy{
 	public static final String BOLD = "\u001b[1m";
 
 	/**
-	 * Method draws the chess board and pieces in the CLI
+	 * Method draws the chess board and pieces in the CLI in color
 	 *
 	 * @param board - A two dimensional array containing all the squares of the chess board
 	 */
@@ -34,18 +34,18 @@ public class Board_Color_CLI implements BoardStrategy{
 			System.out.print("   ");
 			for (int i = 0; i < board.getWidth(); i++) {
 				if (layout[i][j].getPiece() == null) {
-					if (layout[i][j].getColor().getColor() == 'w'){
-						System.out.print(WHITE_B + "    " + RESET);
-					}else{
-						System.out.print(BLACK_B + "    " + RESET);
-					}
-				}else {
-					if (layout[i][j].getColor().getColor() == 'w') {
-						System.out.print(WHITE_B + W_BLACK + BOLD + layout[i][j].getPiece().toString() + RESET);
-					}else{
-						System.out.print(BLACK_B + W_WHITE + BOLD + layout[i][j].getPiece().toString() + RESET);
-					}
-				}
+                    if (layout[i][j].getColor().getColor() == 'w'){
+                        System.out.print(WHITE_B + "    " + RESET);
+                    }else{
+                        System.out.print(BLACK_B + "    " + RESET);
+                    }
+                }else {
+                    if (layout[i][j].getColor().getColor() == 'w') {
+                        System.out.print(WHITE_B + W_BLACK + BOLD + layout[i][j].getPiece().toString() + RESET);
+                    }else{
+                        System.out.print(BLACK_B + W_WHITE + BOLD + layout[i][j].getPiece().toString() + RESET);
+                    }
+                }
 			}
 			System.out.print("\n");
 		}
