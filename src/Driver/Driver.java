@@ -24,17 +24,21 @@ public class Driver {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String uInput = "";
 		BoardIF game = new Board();
+		
 		BoardStrategy gStrat = new Board_Mono_CLI();
+		
 		game.setDrawStrategy(gStrat);
 		
 		
 		
-		Scanner input = new Scanner(System.in);
+		
 		
 		char f;
 		int r;
-		String uInput = "";
+		
 		while(!uInput.equals("EXIT")){
 			 game.draw();
 			 System.out.print("Select a piece to move > ");
@@ -69,6 +73,7 @@ public class Driver {
 		    }
 		    
 		    Position toP = new Position(f, r);
+		    System.out.println(game.getSquare(fromP));
 		    if(curp.validateMove(game.getSquare(fromP).getPosition(), toP)){
 		    	 game.move(fromP, toP);
 		    }
