@@ -63,7 +63,7 @@ public abstract class PieceValidator extends Piece{
 	 * @return- True if the given integers are within the range of the board array, otherwise false
 	 **/
 	public boolean inRange(int i, int j) {
-		return (0 <= i && i <= this.board.getWidth()) && (0 <= j && j <= this.board.getHeight());
+		return (0 <= i && i < this.board.getWidth()) && (0 <= j && j < this.board.getHeight());
 	}
 
 }
