@@ -1,6 +1,7 @@
 package Driver;
 
-import Model.Board;
+import
+		Model.Board;
 import Model.Piece;
 import Model.Position;
 
@@ -8,6 +9,7 @@ import java.util.Scanner;
 
 import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
+import UI_CLI.Board_Color_CLI;
 import UI_CLI.Board_Mono_CLI;
 
 /**
@@ -24,17 +26,21 @@ public class Driver {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String uInput = "";
 		BoardIF game = new Board();
-		BoardStrategy gStrat = new Board_Mono_CLI();
+	
+		//BoardStrategy gStrat = new Board_Mono_CLI();
+		BoardStrategy gStrat = new Board_Color_CLI();
 		game.setDrawStrategy(gStrat);
 		
 		
 		
-		Scanner input = new Scanner(System.in);
+		
 		
 		char f;
 		int r;
-		String uInput = "";
+		
 		while(!uInput.equals("EXIT")){
 			 game.draw();
 			 System.out.print("Select a piece to move > ");
@@ -69,6 +75,7 @@ public class Driver {
 		    }
 		    
 		    Position toP = new Position(f, r);
+		    System.out.println(game.getSquare(fromP));
 		    if(curp.validateMove(game.getSquare(fromP).getPosition(), toP)){
 		    	 game.move(fromP, toP);
 		    }	

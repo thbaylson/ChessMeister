@@ -1,15 +1,18 @@
 package Move_Validation;
 
+/**
+ * Move validator for pawns
+ *
+ * @author Dillon Ramsey
+ * @version 1.0
+ */
+
 import Enums.Files;
-import Enums.GameColor;
 import Enums.Rank;
 import Interfaces.BoardIF;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 import Model.Position;
-import Model.Square;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class PawnValidator extends PieceValidator{
@@ -17,16 +20,29 @@ public class PawnValidator extends PieceValidator{
 	LinkedList<Position> pos;
 	SquareIF sq[][];
 
+	/**
+	 *Constructor for PawnValidator Decorator
+	 *
+	 * @param board - An instance of the board object
+	 */
 	public PawnValidator(BoardIF board) {
 		super(board);
 		pos = new LinkedList<>();
 		sq = board.getSquares();
 	}
 
+	/**
+	 * Method to check the moves available to the current pawn
+	 *
+	 * @param pPos - The position of the pawn currently selected
+	 * @return send - An array containing the moves available to this pawn as position objects
+	 */
 	public Position[] showMoves(Position pPos) {
 		Files f = pPos.getFile();
 		Rank r = pPos.getRank();
+
 		pos.clear();
+
 		PieceIF p = pPos.getSquare().getPiece();
 		Boolean check = CheckAhead(f, r, p);
 		if (p.getColor().getColor() == 'w' && r.getArrayp() == 1 && check){
@@ -42,6 +58,13 @@ public class PawnValidator extends PieceValidator{
 		return send;
 	}
 
+	/**
+	 * A helper method that checks if a pawn can move two spaces forwards
+	 *
+	 * @param f - The file the pawn is currently at
+	 * @param r - The rank the pawn is currently at
+	 * @param curP - The piece currently being checked
+	 */
 	public void StartTwo(Files f, Rank r, PieceIF curP){
 		SquareIF curSquare;
 		if (curP.getColor().getColor() == 'w'){
@@ -57,6 +80,14 @@ public class PawnValidator extends PieceValidator{
 		}
 	}
 
+	/**
+	 * A helper method to check if the pawn can move forwards one space
+	 *
+	 * @param f - The file the pawn is currently at
+	 * @param r - The rank the pawn is currently at
+	 * @param curP - The piece currently being checked
+	 * @return Returs true if the piece can move forwards and false otherwise
+	 */
 	public Boolean CheckAhead(Files f, Rank r, PieceIF curP){
 		SquareIF curSquare;
 		if (curP.getColor().getColor() == 'w'){
@@ -73,6 +104,13 @@ public class PawnValidator extends PieceValidator{
 		}
 	}
 
+	/**
+	 * Helper method to check if the pawn can take a piece diagonally
+	 *
+	 * @param f - The file the pawn is currently at
+	 * @param r - The rank the pawn is currently at
+	 * @param curP - The piece currently being checked
+	 */
 	public void CheckDiagonal(Files f, Rank r, PieceIF curP){
 		SquareIF curSquare;
 		PieceIF p;
