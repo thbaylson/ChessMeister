@@ -80,7 +80,6 @@ public class Driver {
 		    }
 		    
 		    Position toP = new Position(f, r);
-		    System.out.println(game.getSquare(fromP));
 		    if(curp.validateMove(game.getSquare(fromP).getPosition(), toP)){
 		    	 game.move(fromP, toP);
 		    }	
