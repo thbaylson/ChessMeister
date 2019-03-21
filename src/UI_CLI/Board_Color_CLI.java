@@ -16,7 +16,7 @@ public class Board_Color_CLI implements BoardStrategy{
 	public static final String BOLD = "\u001b[1m";
 
 	/**
-	 * Method draws the chess board and pieces in the CLI
+	 * Method draws the chess board and pieces in the CLI in color
 	 *
 	 * @param board - A two dimensional array containing all the squares of the chess board
 	 */
