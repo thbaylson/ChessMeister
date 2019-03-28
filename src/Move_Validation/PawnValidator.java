@@ -111,10 +111,9 @@ public class PawnValidator extends PieceValidator{
 		 * The piece on the square two spaces ahead of the pawn
 		 */
 		PieceIF p = curSquare.getPiece();
-		/*Checks if the piece is null or the color of the piece does not match the color
-		of the current piece and places it in the linked list if true
+		/*Checks if the piece is null and places it in the linked list if true
 		*/
-		if (p == null || p.getColor().getColor() != curP.getColor().getColor()){
+		if (p == null){
 			pos.add(curSquare.getPosition());
 		}else{
 			return;
@@ -146,14 +145,10 @@ public class PawnValidator extends PieceValidator{
 		 * The piece on the square one space ahead of the pawn
 		 */
 		PieceIF p = curSquare.getPiece();
-		/*Checks if there is a piece ahead of the pawn and returns false if there
-		is a piece and true if null. Also adds the square to the linked list if the piece
-		is a different color or if the piece is null
+		/*Checks if there is a piece ahead of the pawn and adds the square to
+		 the linked list if null
 		*/
-		if (p.getColor().getColor() != curP.getColor().getColor()) {
-			pos.add(curSquare.getPosition());
-			return false;
-		}else if (p == null){
+		if (p == null) {
 			pos.add(curSquare.getPosition());
 			return true;
 		}else{
