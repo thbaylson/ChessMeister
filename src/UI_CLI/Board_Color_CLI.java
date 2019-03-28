@@ -16,9 +16,9 @@ public class Board_Color_CLI implements BoardStrategy{
 
 	public static final String RESET = "\u001b[0m";
 	public static final String BLACK_B= "\u001b[40m";
-	public static final String W_WHITE = "\u001b[37m";
+	public static final String W_WHITE = "\u001b[34m";
 	public static final String WHITE_B = "\u001b[48m";
-	public static final String W_BLACK = "\u001b[30m";
+	public static final String W_BLACK = "\u001b[31m";
 	public static final String BOLD = "\u001b[1m";
 
 	/**
