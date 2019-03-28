@@ -16,9 +16,9 @@ public class Board_Color_CLI implements BoardStrategy{
 
 	public static final String RESET = "\u001b[0m";
 	public static final String BLACK_B= "\u001b[40m";
-	public static final String W_WHITE = "\u001b[34m";
+	public static final String W_BLUE = "\u001b[36m";
 	public static final String WHITE_B = "\u001b[48m";
-	public static final String W_BLACK = "\u001b[31m";
+	public static final String W_RED = "\u001b[31m";
 	public static final String BOLD = "\u001b[1m";
 
 	/**
@@ -57,9 +57,17 @@ public class Board_Color_CLI implements BoardStrategy{
                 }else {
 					//Checkes the color of the square and piece and sets them accordingly
                     if (layout[i][j].getColor().getColor() == 'w') {
-                        System.out.print(WHITE_B + W_BLACK + BOLD + layout[i][j].getPiece().toString() + RESET);
+                    	if (layout[i][j].getPiece().getColor().getColor() == 'w'){
+							System.out.print(WHITE_B + W_BLUE + BOLD + layout[i][j].getPiece().toString() + RESET);
+						}else{
+							System.out.print(WHITE_B + W_RED + BOLD + layout[i][j].getPiece().toString() + RESET);
+						}
                     }else{
-                        System.out.print(BLACK_B + W_WHITE + BOLD + layout[i][j].getPiece().toString() + RESET);
+						if (layout[i][j].getPiece().getColor().getColor() == 'w'){
+							System.out.print(BLACK_B + W_BLUE + BOLD + layout[i][j].getPiece().toString() + RESET);
+						}else{
+							System.out.print(BLACK_B + W_RED + BOLD + layout[i][j].getPiece().toString() + RESET);
+						}
                     }
                 }
 			}
