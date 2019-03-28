@@ -23,7 +23,7 @@ public class Driver {
 
 	/**
 	 * The main method that creates a game of chess for two players to play
-	 * @param args
+	 * @param args Any arguments input when the game is started
 	 */
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -42,27 +42,8 @@ public class Driver {
 		}
 
 		game.setDrawStrategy(gStrat);
-<<<<<<< HEAD
 		char f;
 		int r;
-
-		do{
-=======
-
-
-	
-
-		
-
-		char f;
-		int r;
-		
-		/**
-		 * This while loop is what continues the game, as of right now the 
-		 * EXIT command does not work
-		 */
-		while(!uInput.equals("EXIT")){
->>>>>>> b8f7adebc7ea63d6812e673026829fcbbce3b55f
 			game.draw();
 			System.out.print("Select a piece to move > ");
 			uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
@@ -113,9 +94,6 @@ public class Driver {
 			else{
 				System.out.println("The position you chose is invlaid for that piece");
 			}
-
-
-		}while(!uInput.equals("EXIT"));
 		input.close();
 	}
 	
