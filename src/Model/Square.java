@@ -15,6 +15,7 @@ import Interfaces.SquareIF;
 public class Square extends BlackAndWhite implements SquareIF{
 	PieceIF sPiece;
 	Position pos;
+	boolean high;
 
 	/**
 	 * Constructor for a square
@@ -24,6 +25,8 @@ public class Square extends BlackAndWhite implements SquareIF{
 	public Square(GameColor c) {
 		this.color = c;
 		this.sPiece = null;
+		this.high = false;
+		this.pos = null;
 	}
 	
 	/**
@@ -31,7 +34,7 @@ public class Square extends BlackAndWhite implements SquareIF{
 	 */
 	@Override
 	public void clear() {
-		sPiece.setChessPieceType(null);
+		sPiece = null;
 	}
 
 	/**
@@ -42,6 +45,7 @@ public class Square extends BlackAndWhite implements SquareIF{
 	@Override
 	public void setPiece(PieceIF p) {
 		this.sPiece = p;
+		this.sPiece.setPosition(this.pos);
 	}
 
 	/**
@@ -81,5 +85,23 @@ public class Square extends BlackAndWhite implements SquareIF{
 	 */
 	public Position getPosition() {
 		return pos;
+	}
+
+	/**
+	 * Used to set highlighted to true or false
+	 *
+	 * @param high - Boolean variable as to if the square is highlighted
+	 */
+	public void setHighlight(boolean high){
+		this.high = high;
+	}
+
+	/**
+	 * Returns if the square is highlighted
+	 *
+	 * @return - Boolean true or false
+	 */
+	public boolean getHighlight(){
+		return high;
 	}
 }
