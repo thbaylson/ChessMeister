@@ -16,7 +16,11 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Board implements BoardIF{
+	
+	/** The array of squares that represent a chess board**/
 	private SquareIF[][] bLayout;
+	
+	/** The method in which everything will be displayed to the user**/
 	private BoardStrategy strat;
 	
 	public Board() {
@@ -184,8 +188,7 @@ public class Board implements BoardIF{
 	}
 
 	/**
-	 * Method to get the square at a position
-	 *
+	 * getSquare- Method to get the square at a given position
 	 * @param pos - The position of the desired square
 	 * @return Return a SquareIF
 	 */

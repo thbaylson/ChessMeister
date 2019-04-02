@@ -48,6 +48,7 @@ public class DiagonalValidator extends PieceValidator{
 			} 
 			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
 				moves.add(squares[j][i].getPosition());
+				break;
 			}
 			else {
 				break;
@@ -64,6 +65,7 @@ public class DiagonalValidator extends PieceValidator{
 			} 
 			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
 				moves.add(squares[j][i].getPosition());
+				break;
 			}
 			else {
 				break;
@@ -80,6 +82,7 @@ public class DiagonalValidator extends PieceValidator{
 			} 
 			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
 				moves.add(squares[j][i].getPosition());
+				break;
 			}
 			else {
 				break;
@@ -96,32 +99,20 @@ public class DiagonalValidator extends PieceValidator{
 			}
 			else if(squares[j][i].getPiece().getColor() != squares[file][rank].getPiece().getColor()){
 				moves.add(squares[j][i].getPosition());
+				break;
 			}
 			else {
 				break;
 			}
 		}
 		
-		
-		
+
 		Position[] send = new Position[moves.size()];
 		for (int i = 0; i < moves.size(); i++){
 			
 			send[i] = moves.get(i);
 		}
-		
-		
-		return send;
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		return send;	
 	}
 
 }
