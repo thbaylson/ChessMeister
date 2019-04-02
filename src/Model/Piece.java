@@ -73,7 +73,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	}
 
 	/**
-	 * Validates the proposed move
+	 * Validates the proposed move and checks for check
 	 *
 	 * @param from - The position the piece is moving from
 	 * @param to - The position the piece is trying to move to
