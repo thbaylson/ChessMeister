@@ -51,6 +51,7 @@ public class Driver {
             f = (char) (uInput.charAt(0));
             r = (uInput.charAt(1) - 48);
             Piece curp = (Piece) game.getPiece(r, f);
+            game.showMoves(curp);
 
             /**
              * This loops is used the make sure the user selects a proper

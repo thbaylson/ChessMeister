@@ -7,6 +7,8 @@ import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 import Move_Validation.*;
 
+import java.util.ArrayList;
+
 /**
  * The concrete implementation of BoardIF
  *
@@ -94,7 +96,7 @@ public class Board implements BoardIF{
 		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(
 				bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
 		
-		bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].setPiece(null);
+		bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].clear();
 	}
 
 	 /**
@@ -196,6 +198,25 @@ public class Board implements BoardIF{
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Prints out the valid moves for the piece
+	 *
+	 * @param curP - The current piece being worked with
+	 */
+	public void showMoves(PieceIF curP){
+		Position[] posArray = curP.showMoves();
+		ArrayList<SquareIF> sqArray = new ArrayList<>();
+		for (Position p : posArray){
+			SquareIF S = getSquare(p);
+			S.setHighlight(true);
+			sqArray.add(S);
+		}
+		this.draw();
+		for (SquareIF S : sqArray){
+			S.setHighlight(false);
+		}
 	}
 
 }

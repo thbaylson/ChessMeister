@@ -19,7 +19,9 @@ public class Board_Color_CLI implements BoardStrategy{
 	public static final String W_BLUE = "\u001b[36m";
 	public static final String WHITE_B = "\u001b[48m";
 	public static final String W_RED = "\u001b[31m";
+	public static final String YELLOW_B = "\u001b[45m";
 	public static final String BOLD = "\u001b[1m";
+
 
 	/**
 	 * Method draws the chess board and pieces in the CLI in color
@@ -49,14 +51,22 @@ public class Board_Color_CLI implements BoardStrategy{
 				//Checks if the piece is null
 				if (layout[i][j].getPiece() == null) {
 					//Checks the color of the current square and prints it accordingly
-                    if (layout[i][j].getColor().getColor() == 'w'){
+					if (layout[i][j].getHighlight()){
+						System.out.print(YELLOW_B + "    " + RESET);
+					}else if (layout[i][j].getColor().getColor() == 'w'){
                         System.out.print(WHITE_B + "    " + RESET);
                     }else{
                         System.out.print(BLACK_B + "    " + RESET);
                     }
                 }else {
 					//Checkes the color of the square and piece and sets them accordingly
-                    if (layout[i][j].getColor().getColor() == 'w') {
+					if (layout[i][j].getHighlight()) {
+						if (layout[i][j].getPiece().getColor().getColor() == 'w') {
+							System.out.print(YELLOW_B + W_BLUE + BOLD + layout[i][j].getPiece().toString() + RESET);
+						} else {
+							System.out.print(YELLOW_B + W_RED + BOLD + layout[i][j].getPiece().toString() + RESET);
+						}
+					}else if (layout[i][j].getColor().getColor() == 'w') {
                     	if (layout[i][j].getPiece().getColor().getColor() == 'w') {
 							System.out.print(WHITE_B + W_BLUE + BOLD + layout[i][j].getPiece().toString() + RESET);
 						}else{

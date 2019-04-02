@@ -88,5 +88,12 @@ public interface BoardIF{
 	 * @return The square at the specified position
 	 */
 	public SquareIF getSquare(Position fromP);
+
+	/**
+	 * Prints out the valid moves for the piece
+	 *
+	 * @param curP - The current piece being worked with
+	 */
+	public void showMoves(PieceIF curP);
 	
 }

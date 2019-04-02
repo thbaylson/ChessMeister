@@ -1,7 +1,9 @@
 package Model;
 
 import Enums.ChessPieceType;
+import Enums.Files;
 import Enums.GameColor;
+import Enums.Rank;
 import Interfaces.PieceIF;
 import Move_Validation.PieceValidator;
 
@@ -17,10 +19,12 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	private ChessPieceType cpt;
 	private GameColor color;
 	private PieceValidator pv;
+	private Position pos;
 
 	public Piece(){
 		this.cpt = null;
 		this.color = null;
+		this.pos = null;
 	}
 	/**
 	 * Constructor for Piece object
@@ -101,5 +105,31 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 */
 	public GameColor getColor(){
 		return this.color;
+	}
+
+	/**
+	 * Method to list the moves available to the piece
+	 *
+	 * @return An array containing all the valid moves
+	 */
+	public Position[] showMoves(){
+		return this.getPieceValidator().showMoves(this.pos);
+
+	}
+
+	/**
+	 * Sets the position of the piece
+	 */
+	public void setPosition(Position pos) {
+		this.pos = pos;
+	}
+
+	/**
+	 * Gets and returns the position of the piece
+	 *
+	 * @return The position of the piece
+	 */
+	public Position getPosition() {
+		return pos;
 	}
 }
