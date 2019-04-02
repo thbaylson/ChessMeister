@@ -102,26 +102,13 @@ public class DiagonalValidator extends PieceValidator{
 			}
 		}
 		
-		
-		
+
 		Position[] send = new Position[moves.size()];
 		for (int i = 0; i < moves.size(); i++){
 			
 			send[i] = moves.get(i);
 		}
-		
-		
-		return send;
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		return send;	
 	}
 
 }
