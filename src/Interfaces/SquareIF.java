@@ -52,4 +52,18 @@ public interface SquareIF {
 	 * @return The position of the square
 	 */
 	public Position getPosition();
+
+	/**
+	 * Used to set highlighted to true or false
+	 *
+	 * @param high - Boolean variable as to if the square is highlighted
+	 */
+	public void setHighlight(boolean high);
+
+	/**
+	 * Returns if the square is highlighted
+	 *
+	 * @return - Boolean true or false
+	 */
+	public boolean getHighlight();
 }
