@@ -36,7 +36,8 @@ public class KingValidator extends PieceValidator{
 		if (file + 1 < this.board.getWidth())
 			if (squares[file + 1][rank].getPiece() == null)
 				moves.add(squares[file + 1][rank].getPosition());
-			else if(squares[file + 1][rank].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file + 1][rank].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file + 1][rank].getPosition());
 			
 				
@@ -47,7 +48,8 @@ public class KingValidator extends PieceValidator{
 		if (file - 1 > 0)
 			if (squares[file - 1][rank].getPiece() == null)
 				moves.add(squares[file - 1][rank].getPosition());
-			else if(squares[file - 1][rank].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file - 1][rank].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file - 1][rank].getPosition());
 				
 		/**
@@ -56,7 +58,8 @@ public class KingValidator extends PieceValidator{
 		if (rank + 1 < this.board.getHeight())
 			if (squares[file][rank + 1].getPiece() == null)
 				moves.add(squares[file][rank + 1].getPosition());
-			else if(squares[file][rank + 1].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file][rank + 1].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file][rank + 1].getPosition());
 		
 		/**
@@ -65,7 +68,8 @@ public class KingValidator extends PieceValidator{
 		if (rank - 1 > 0)
 			if (squares[file][rank - 1].getPiece() == null)
 				moves.add(squares[file][rank - 1].getPosition());
-			else if(squares[file][rank - 1].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file][rank - 1].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file][rank - 1].getPosition());
 		
 		/**
@@ -74,7 +78,8 @@ public class KingValidator extends PieceValidator{
 		if (inRange(file + 1, rank + 1))
 			if (squares[file + 1][rank + 1].getPiece() == null)
 				moves.add(squares[file + 1][rank + 1].getPosition());
-			else if(squares[file + 1][rank + 1].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file + 1][rank + 1].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file + 1][rank + 1].getPosition());
 			
 		/**
@@ -83,7 +88,8 @@ public class KingValidator extends PieceValidator{
 		if (inRange(file - 1, rank + 1))
 			if (squares[file - 1][rank + 1].getPiece() == null)
 				moves.add(squares[file - 1][rank + 1].getPosition());
-			else if(squares[file - 1][rank + 1].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file - 1][rank + 1].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file - 1][rank + 1].getPosition());
 		
 		/**
@@ -92,7 +98,8 @@ public class KingValidator extends PieceValidator{
 		if (inRange(file - 1, rank - 1))
 			if (squares[file - 1][rank - 1].getPiece() == null)
 				moves.add(squares[file - 1][rank - 1].getPosition());
-			else if(squares[file - 1][rank - 1].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file - 1][rank - 1].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file - 1][rank - 1].getPosition());
 		
 		/**
@@ -101,7 +108,8 @@ public class KingValidator extends PieceValidator{
 		if (inRange(file + 1, rank - 1))
 			if (squares[file + 1][rank - 1].getPiece() == null)
 				moves.add(squares[file + 1][rank - 1].getPosition());
-			else if(squares[file + 1][rank - 1].getPiece().getColor() != squares[file][rank].getPiece().getColor())
+			else if(squares[file + 1][rank - 1].getPiece().getColor() 
+					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file + 1][rank - 1].getPosition());
 		
 		
