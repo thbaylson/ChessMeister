@@ -24,7 +24,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		this.pv = null;
 	}
 	/**
-	 * Constructor for Piece object
+	 * Constructor for the Piece object
 	 * 
 	 * @param cpt - The type of chess piece
 	 * @param color - The color of the chess piece
