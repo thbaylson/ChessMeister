@@ -21,6 +21,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public Piece(){
 		this.cpt = null;
 		this.color = null;
+		this.pv = null;
 	}
 	/**
 	 * Constructor for Piece object
@@ -31,6 +32,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public Piece(ChessPieceType cpt, GameColor color) {
 		this.cpt = cpt;
 		this.color = color;
+		this.pv = null;
 	}
 	
 	/**
@@ -78,12 +80,29 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 * @return Returns boolean true if the move was successful and false otherwise
 	 */
 	public boolean validateMove(Position from, Position to) {
-			for(Position pos : this.pv.showMoves(from)){
+		return validateMove(from, to, this.pv);
+	}
+	
+	/**
+	 * Recursive method in line with the decorator pattern to determine if a move is valid
+	 *
+	 * @param from - The position the piece is moving from
+	 * @param to - The position the piece is trying to move to
+	 * @param to - The position the piece is trying to move to
+	 * @return Returns boolean true if the move was successful and false otherwise
+	 */
+	public boolean validateMove(Position from, Position to, PieceValidator validator) {
+		boolean isValid = false;
+		Position[] possibleMoves = validator.showMoves(from);
+			for(Position pos : possibleMoves){
 				if(pos.getRank() == to.getRank() && pos.getFile() == to.getFile()) {
-					return true;
+					isValid = true;
 				}
 			}
-		return false;
+			if(validator.getPieceValidator() != null) {
+				isValid = isValid || validateMove(from, to, validator.getPieceValidator());
+			}
+		return isValid;
 	}
 
 	/**
