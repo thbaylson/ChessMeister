@@ -78,7 +78,7 @@ public class Driver {
 
 
 			Position fromP = new Position(f, r);
-
+			
 
 
 			System.out.print("Select a destination to move to > ");
