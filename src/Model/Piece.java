@@ -24,11 +24,9 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public Piece(){
 		this.cpt = null;
 		this.color = null;
-<<<<<<< HEAD
-		this.pv = null;
-=======
+
 		this.pos = null;
->>>>>>> origin/Dillon
+
 	}
 	/**
 	 * Constructor for the Piece object
