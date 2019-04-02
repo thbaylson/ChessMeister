@@ -84,6 +84,7 @@ public class PawnValidator extends PieceValidator{
 		for (int i = 0; i < pos.size(); i++){
 			send[i] = pos.get(i);
 		}
+
 		return send;
 	}
 

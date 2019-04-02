@@ -44,56 +44,56 @@ public class Driver {
 		game.setDrawStrategy(gStrat);
 		char f;
 		int r;
-			game.draw();
-			System.out.print("Select a piece to move > ");
-			uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
-			f = (char) (uInput.charAt(0));
-			r = (uInput.charAt(1) - 48);
-			Piece curp = (Piece) game.getPiece(r, f);
-			
-			/**
-			 * This loops is used the make sure the user selects a proper 
-			 * piece to moves
-			 */
-			while(checkInputLength(uInput) || checkInput(r, f) || 
-					checkInputPos(game, r, f)){
-				System.out.print("Select a piece to move > ");
-				uInput = input.next().toUpperCase(); // This is where what the 
-													//user inputs is stored
-				f = (char) (uInput.charAt(0));
-				r = (uInput.charAt(1) - 48);
-			}
+		while(!uInput.equals("EXIT")) {
+            game.draw();
+            System.out.print("Select a piece to move > ");
+            uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
+            f = (char) (uInput.charAt(0));
+            r = (uInput.charAt(1) - 48);
+            Piece curp = (Piece) game.getPiece(r, f);
+
+            /**
+             * This loops is used the make sure the user selects a proper
+             * piece to moves
+             */
+            while (checkInputLength(uInput) || checkInput(r, f) ||
+                    checkInputPos(game, r, f)) {
+                System.out.print("Select a piece to move > ");
+                uInput = input.next().toUpperCase(); // This is where what the
+                //user inputs is stored
+                f = (char) (uInput.charAt(0));
+                r = (uInput.charAt(1) - 48);
+            }
 
 
-			Position fromP = new Position(f, r);
+            Position fromP = new Position(f, r);
 
 
+            System.out.print("Select a destination to move to > ");
+            uInput = input.next().toUpperCase();
+            f = (char) uInput.charAt(0);
+            r = (uInput.charAt(1) - 48);
 
-			System.out.print("Select a destination to move to > ");
-			uInput = input.next().toUpperCase();
-			f = (char) uInput.charAt(0);
-			r = (uInput.charAt(1) - 48);
-			
-			/**
-			 * This loop is used to make sure the user selects a proper 
-			 * destination for their piece
-			 */
-			while(checkInputLength(uInput) || checkInput(r, f)){
+            /**
+             * This loop is used to make sure the user selects a proper
+             * destination for their piece
+             */
+            while (checkInputLength(uInput) || checkInput(r, f)) {
 
-				System.out.print("Select a destination to move to > ");
-				uInput = input.next().toUpperCase();
-				f = (char) uInput.charAt(0);
-				r = (uInput.charAt(1) - 48);
-			}
+                System.out.print("Select a destination to move to > ");
+                uInput = input.next().toUpperCase();
+                f = (char) uInput.charAt(0);
+                r = (uInput.charAt(1) - 48);
+            }
 
-			Position toP = new Position(f, r);
-			System.out.println(game.getSquare(fromP));
-			if(curp.validateMove(game.getSquare(fromP).getPosition(), toP)){
-				game.move(fromP, toP);
-			}
-			else{
-				System.out.println("The position you chose is invlaid for that piece");
-			}
+            Position toP = new Position(f, r);
+            System.out.println(game.getSquare(fromP));
+            if (curp.validateMove(game.getSquare(fromP).getPosition(), toP)) {
+                game.move(fromP, toP);
+            } else {
+                System.out.println("The position you chose is invlaid for that piece");
+            }
+        }
 		input.close();
 	}
 	

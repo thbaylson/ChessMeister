@@ -188,9 +188,9 @@ public class Board implements BoardIF{
 	 * @return Return a SquareIF
 	 */
 	public SquareIF getSquare(Position pos){
-		for(int i = 0; i < bLayout.length; i++){
-			for(int j = 0; j < bLayout[0].length; j++){
-				if(bLayout[i][j].getPosition().equals(pos)){
+		for(int i = 0; i < bLayout.length; i++) {
+			for (int j = 0; j < bLayout[0].length; j++) {
+				if (bLayout[i][j].getPosition().equals(pos)) {
 					return bLayout[i][j];
 				}
 			}
