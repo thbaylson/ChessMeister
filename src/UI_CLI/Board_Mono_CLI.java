@@ -43,14 +43,18 @@ public class Board_Mono_CLI implements BoardStrategy{
 				//Checks if the piece is null
 				if (layout[i][j].getPiece() == null) {
 					//Checks the color of the current square and prints it accordingly
-					if (layout[i][j].getColor().getColor() == 'w'){
+					if (layout[i][j].getHighlight()){
+						System.out.print("(%    %)");
+					}else if (layout[i][j].getColor().getColor() == 'w'){
 						System.out.print("[      ]");
 					}else{
 						System.out.print("[#    #]");
 					}
 				}else {
 					//Checkes the color of the square and piece and sets them accordingly
-					if (layout[i][j].getColor().getColor() == 'w') {
+					if (layout[i][j].getHighlight()){
+						System.out.print("(%" + layout[i][j].getPiece().toString() + "%)");
+					}else if (layout[i][j].getColor().getColor() == 'w') {
 						System.out.print("[ " + layout[i][j].getPiece().toString() + " ]");
 					}else{
 						System.out.print("[#" + layout[i][j].getPiece().toString() + "#]");
