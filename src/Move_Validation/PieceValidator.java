@@ -30,7 +30,10 @@ public abstract class PieceValidator extends Piece{
 	 * @param pos - The position of the piece to check
 	 * @return An array of positions that are valid to move to
 	 */
-	public abstract Position[] showMoves(Position pos);
+	public Position[] showMoves(Position pos) {
+		System.out.println("\nPV\n");
+		return null;
+	}
 	
 	/**
 	 * inRange- Ensures two given integers are within the range of the board array
