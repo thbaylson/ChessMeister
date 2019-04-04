@@ -38,7 +38,7 @@ public class KnightValidator extends PieceValidator{
 		
 		for(int i = -2; i <= 2; i++) {
 			for(int j = -2; j <= 2; j++) {
-				if(i != j && i != 0 && j != 0) {
+				if((Math.abs(i * j) == 2) || (Math.abs(i * j) == 3)) {
 					 tmp = findMove(file, rank, i, j);
 					 if(tmp != null) {
 						 moves.add(tmp);
@@ -46,12 +46,13 @@ public class KnightValidator extends PieceValidator{
 				}
 			}
 		}
-
+/**
 		result = new Position[moves.size()];
 		for (int i = 0; i < moves.size(); i++){
 			result[i] = moves.get(i);
 		}
-		return result;
+		return result;**/
+		return super.showMoves(moves, pos);
 	}
 	
 	/**

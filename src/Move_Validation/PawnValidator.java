@@ -77,7 +77,7 @@ public class PawnValidator extends PieceValidator{
 		CheckDiagonal(f, r, p);
 		/**
 		 * An array containing the valid positions the pawn can move to
-		 */
+
 		Position[] send = new Position[pos.size()];
 
 		//For loop to populate the valid positions array using the linked list
@@ -85,7 +85,8 @@ public class PawnValidator extends PieceValidator{
 			send[i] = pos.get(i);
 		}
 
-		return send;
+		return send;**/
+		return super.showMoves(pos, pPos);
 	}
 
 	/**

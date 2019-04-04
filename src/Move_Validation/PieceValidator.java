@@ -1,5 +1,8 @@
 package Move_Validation;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import Interfaces.BoardIF;
 import Model.Piece;
 import Model.Position;
@@ -30,9 +33,28 @@ public abstract class PieceValidator extends Piece{
 	 * @param pos - The position of the piece to check
 	 * @return An array of positions that are valid to move to
 	 */
-	public Position[] showMoves(Position pos) {
-		System.out.println("\nPV\n");
-		return null;
+	public abstract Position[] showMoves(Position position);
+	
+	/**
+	 * showMoves- To be used by subclasses to satisfy decorator pattern. Checks if this validator
+	 * is wrapped by another validator, and if so, collects the movement options from 
+	 * the outer validator and sends them back down to the inner validator
+	 * @param moves
+	 * @param position
+	 * @return
+	 */
+	public Position[] showMoves(Collection<Position> moves, Position position) {
+		ArrayList<Position> newMoves = new ArrayList<Position>();
+		Position[] allMoves = new Position[moves.size()];
+		if(this.getPieceValidator() != null) {
+			Position[] moveArray = this.getPieceValidator().showMoves(position);
+			for(int i = 0; i < moveArray.length; i++) {
+				newMoves.add(moveArray[i]);
+			}
+		}
+
+		newMoves.addAll(moves);
+		return newMoves.toArray(allMoves);
 	}
 	
 	/**
