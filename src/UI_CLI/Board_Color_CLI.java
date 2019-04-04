@@ -59,7 +59,7 @@ public class Board_Color_CLI implements BoardStrategy{
                         System.out.print(BLACK_B + "    " + RESET);
                     }
                 }else {
-					//Checkes the color of the square and piece and sets them accordingly
+					//Checks the color of the square and piece and sets them accordingly
 					if (layout[i][j].getHighlight()) {
 						if (layout[i][j].getPiece().getColor().getColor() == 'w') {
 							System.out.print(YELLOW_B + W_BLUE + BOLD + layout[i][j].getPiece().toString() + RESET);
