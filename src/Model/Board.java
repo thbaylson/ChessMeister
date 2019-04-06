@@ -5,6 +5,7 @@ import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
+import Memento.Memento;
 import Move_Validation.*;
 
 import java.util.ArrayList;
@@ -160,6 +161,15 @@ public class Board implements BoardIF{
 		return  bLayout[file][rank].getPosition();
 	}
 
+	/**
+	 * Returns the current draw strategy
+	 *
+	 * @return The draw strategy
+	 */
+	public BoardStrategy getDrawStrategy(){
+		return this.strat;
+	}
+
 	 /**
 	  * getPiece- For any given, valid rank and file, this will return the piece
 	 * in that spot. If no piece exists there, this returns null.
@@ -193,14 +203,7 @@ public class Board implements BoardIF{
 	 * @return Return a SquareIF
 	 */
 	public SquareIF getSquare(Position pos){
-		for(int i = 0; i < bLayout.length; i++) {
-			for (int j = 0; j < bLayout[0].length; j++) {
-				if (bLayout[i][j].getPosition().equals(pos)) {
-					return bLayout[i][j];
-				}
-			}
-		}
-		return null;
+		return pos.getSquare();
 	}
 
 	/**
@@ -220,6 +223,44 @@ public class Board implements BoardIF{
 		for (SquareIF S : sqArray){
 			S.setHighlight(false);
 		}
+	}
+
+	/**
+	 * Create a save state of the board
+	 *
+	 * @return A memento containing the board's save state
+	 */
+	public Memento<BoardIF> saveState(){
+		Memento<BoardIF> mem = new Memento<>(this.clone());
+		return mem;
+	}
+
+	/**
+	 * Restores a previous save state
+	 *
+	 * @param memento - The previous save state
+	 */
+	public void restoreState(Memento<BoardIF> memento){
+		BoardIF state = memento.getState();
+		this.bLayout = state.getSquares();
+		this.setDrawStrategy(state.getDrawStrategy());
+	}
+
+	/**
+	 * Creates a deep clone of board
+	 *
+	 * @return The clone of board
+	 */
+	public BoardIF clone(){
+		BoardIF newBoard = new Board();
+		SquareIF[][] newSQ = newBoard.getSquares();
+		newBoard.setDrawStrategy(this.strat);
+		for (int i = 0; i < this.getWidth(); i++){
+			for (int j = 0; j < this.getHeight(); j++){
+				newSQ[i][j] = bLayout[i][j].clone();
+			}
+		}
+		return newBoard;
 	}
 
 }

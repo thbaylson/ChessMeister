@@ -14,7 +14,6 @@ import Interfaces.SquareIF;
 public class Position {
 	
 	private SquareIF sq;
-	
 	private Files file;
 	private Rank rank;
 	
@@ -108,5 +107,10 @@ public class Position {
 		if (rank != other.rank)
 			return false;
 		return true;
+	}
+
+	public Position clone(){
+		Position newPos = new Position(this.file, this.rank);
+		return newPos;
 	}
 }

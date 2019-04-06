@@ -76,4 +76,11 @@ public interface PieceIF {
      * @return The position of the piece
      */
     public Position getPosition();
+
+	/**
+	 * Creates a clone of this object
+	 *
+	 * @return Clone of this object
+	 */
+	public PieceIF clone();
 }

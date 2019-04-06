@@ -16,6 +16,7 @@ public class Square extends BlackAndWhite implements SquareIF{
 	PieceIF sPiece;
 	Position pos;
 	boolean high;
+	GameColor color;
 
 	/**
 	 * Constructor for a square
@@ -75,7 +76,18 @@ public class Square extends BlackAndWhite implements SquareIF{
 	 * @param r - The rank to set the square to
 	 */
 	public void setPosition(Files f, Rank r) {
-		pos = new Position(f,r);
+		this.pos = new Position(f,r);
+		pos.setSquare(this);
+	}
+
+	/**
+	 * Sets the position of Sqaure using another position
+	 *
+	 * @param pos - The position to set the square to
+	 */
+	public void setPosition(Position pos){
+		this.pos = new Position(pos.getFile(), pos.getRank());
+		pos.setSquare(this);
 	}
 
 	/**
@@ -103,5 +115,22 @@ public class Square extends BlackAndWhite implements SquareIF{
 	 */
 	public boolean getHighlight(){
 		return high;
+	}
+
+	/**
+	 * Creates a deep clone of this Sqaure
+	 *
+	 * @return Clone of this Square
+	 */
+	public SquareIF clone(){
+		Square newSquare = new Square(this.getColor());
+		newSquare.setPosition(this.pos.clone());
+		newSquare.pos.setSquare(newSquare);
+		if (this.sPiece != null){
+			newSquare.setPiece(this.sPiece.clone());
+			System.out.println("This is position: " + sPiece.getPosition());
+		}
+		newSquare.setHighlight(this.high);
+		return newSquare;
 	}
 }

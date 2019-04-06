@@ -116,6 +116,10 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		return " " + this.color.getColor() + cpt.getLetter() + " ";
 	}
 
+	public void setColor(GameColor gc){
+		this.color = gc;
+	}
+
 	/**
 	 * Gets and returns the GameColor
 	 *
@@ -149,5 +153,19 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 */
 	public Position getPosition() {
 		return pos;
+	}
+
+	/**
+	 * Creates a deep clone of the piece object
+	 *
+	 * @return The clone of the piece object
+	 */
+	public PieceIF clone(){
+		Piece newPiece = new Piece();
+		newPiece.setChessPieceType(this.cpt);
+		newPiece.setColor(this.color);
+		newPiece.setPieceValidator(this.pv);
+		newPiece.setPosition(this.pos.clone());
+		return newPiece;
 	}
 }

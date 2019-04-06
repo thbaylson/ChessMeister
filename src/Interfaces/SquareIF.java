@@ -47,6 +47,13 @@ public interface SquareIF {
 	public void setPosition(Files f, Rank r);
 
 	/**
+	 * Sets the position of Sqaure using another position
+	 *
+	 * @param pos - The position to set the square to
+	 */
+	public void setPosition(Position pos);
+
+	/**
 	 * Gets the position of the square
 	 *
 	 * @return The position of the square
@@ -66,4 +73,11 @@ public interface SquareIF {
 	 * @return - Boolean true or false
 	 */
 	public boolean getHighlight();
+
+	/**
+	 * Creates a clone of this object
+	 *
+	 * @return Clone of this object
+	 */
+	public SquareIF clone();
 }
