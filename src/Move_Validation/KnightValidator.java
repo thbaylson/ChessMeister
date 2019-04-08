@@ -73,6 +73,12 @@ public class KnightValidator extends PieceValidator{
 		return foundMove;
 	}
 
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
 	public KnightValidator clone(BoardIF board){
 		KnightValidator KV = new KnightValidator(board);
 		return KV;

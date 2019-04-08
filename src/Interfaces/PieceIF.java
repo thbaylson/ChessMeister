@@ -84,5 +84,10 @@ public interface PieceIF {
 	 */
 	public PieceIF clone();
 
+	/**
+	 * Clones the PieceValidator assigned to this piece
+	 *
+	 * @param board - The game board
+	 */
 	public void clonePV(BoardIF board);
 }

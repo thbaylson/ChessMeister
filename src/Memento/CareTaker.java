@@ -17,10 +17,8 @@ public class CareTaker<T> {
      * @param state - The memento to add to the list
      */
     public void add(Memento<T> state){
-        System.out.println("Add before: " + pointer);
         mementoList.add(pointer, state);//Adds a memento to the list
         pointer++;
-        System.out.println("Add after: " + pointer);
         //Remove any memento ahead of the recently added one
         for (int i = pointer+1; i < mementoList.size(); i++){
             mementoList.remove(i);
@@ -44,11 +42,9 @@ public class CareTaker<T> {
      * @return The memento at the current pointer location
      */
     public Memento<T> get(){
-        System.out.println("Get before: " + pointer);
         pointer = pointer - 2;
         Memento<T> mem = this.mementoList.get(pointer);//gets memento
         pointer++;
-        System.out.println("Get after: " + pointer);
         return mem;
     }
 

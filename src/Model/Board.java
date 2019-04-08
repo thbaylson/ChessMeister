@@ -255,7 +255,7 @@ public class Board implements BoardIF{
 		BoardIF newBoard = new Board();
 		SquareIF[][] newSQ = newBoard.getSquares();
 		newBoard.setDrawStrategy(this.strat);
-		for (int i = 0; i < this.getWidth(); i++){
+		for (int i = 0; i < this.getWidth(); i++){ //Clones each piece and PieceValidator
 			for (int j = 0; j < this.getHeight(); j++){
 				newSQ[i][j] = bLayout[i][j].clone();
 				if (newSQ[i][j].getPiece() != null) {

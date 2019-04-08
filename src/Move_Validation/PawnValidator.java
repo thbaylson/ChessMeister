@@ -22,9 +22,7 @@ public class PawnValidator extends PieceValidator{
 	 * pawn to move to
 	 */
 	LinkedList<Position> pos;
-	/**
-	 * A 2D array containing all the sqaure that make up the chess board
-	 */
+	/**A 2D array containing all the sqaure that make up the chess board*/
 	SquareIF sq[][];
 
 	/**
@@ -45,24 +43,16 @@ public class PawnValidator extends PieceValidator{
 	 * @return send - An array containing the moves available to this pawn as position objects
 	 */
 	public Position[] showMoves(Position pPos) {
-		/**
-		 * The File position of the current piece
-		 */
+		/**The File position of the current piece*/
 		Files f = pPos.getFile();
-		/**
-		 * The Rank position of the current piece
-		 */
+		/**The Rank position of the current piece*/
 		Rank r = pPos.getRank();
 		//Clears the linked list so that it can be re-populated
 		pos.clear();
 
-		/**
-		 * The piece that is on the selected square
-		 */
+		/**The piece that is on the selected square*/
 		PieceIF p = pPos.getSquare().getPiece();
-		/**
-		 * Boolean variable for if there is a piece ahead of the current piece
-		 */
+		/**Boolean variable for if there is a piece ahead of the current piece*/
 		Boolean check = CheckAhead(f, r, p);
 
 		/*Checks the color, position and ahead of the piece to see if the pawn could
@@ -75,9 +65,7 @@ public class PawnValidator extends PieceValidator{
 		}
 		//Checks the diagonals of the pawn to see if it can take a piece
 		CheckDiagonal(f, r, p);
-		/**
-		 * An array containing the valid positions the pawn can move to
-		 */
+		/**An array containing the valid positions the pawn can move to*/
 		Position[] send = new Position[pos.size()];
 
 		//For loop to populate the valid positions array using the linked list
@@ -96,9 +84,7 @@ public class PawnValidator extends PieceValidator{
 	 * @param curP - The piece currently being checked
 	 */
 	public void StartTwo(Files f, Rank r, PieceIF curP){
-		/**
-		 * A instance of the current square being worked with
-		 */
+		/**A instance of the current square being worked with*/
 		SquareIF curSquare;
 		/*Checks the color of the current piece to determine the direction
 		to look ahead at
@@ -108,9 +94,7 @@ public class PawnValidator extends PieceValidator{
 		}else{
 			curSquare = sq[f.getArrayp()][r.getArrayp()-2];
 		}
-		/**
-		 * The piece on the square two spaces ahead of the pawn
-		 */
+		/**The piece on the square two spaces ahead of the pawn*/
 		PieceIF p = curSquare.getPiece();
 		/*Checks if the piece is null and places it in the linked list if true
 		*/
@@ -130,9 +114,7 @@ public class PawnValidator extends PieceValidator{
 	 * @return Returs true if the piece can move forwards and false otherwise
 	 */
 	public Boolean CheckAhead(Files f, Rank r, PieceIF curP){
-		/**
-		 * A instance of the current square being worked with
-		 */
+		/**A instance of the current square being worked with*/
 		SquareIF curSquare;
 		/*Checks the color of the current piece to determine the direction
 		/to look ahead at
@@ -142,9 +124,7 @@ public class PawnValidator extends PieceValidator{
 		}else{
 			curSquare = sq[f.getArrayp()][r.getArrayp()-1];
 		}
-		/**
-		 * The piece on the square one space ahead of the pawn
-		 */
+		/**The piece on the square one space ahead of the pawn*/
 		PieceIF p = curSquare.getPiece();
 		/*Checks if there is a piece ahead of the pawn and adds the square to
 		 the linked list if null
@@ -165,13 +145,9 @@ public class PawnValidator extends PieceValidator{
 	 * @param curP - The piece currently being checked
 	 */
 	public void CheckDiagonal(Files f, Rank r, PieceIF curP){
-		/**
-		 * A instance of the current square being worked with
-		 */
+		/**A instance of the current square being worked with*/
 		SquareIF curSquare;
-		/**
-		 * The piece currently being worked with
-		 */
+		/**The piece currently being worked with*/
 		PieceIF p;
 		/*Checkes the color of the current piece and checks the diagonals
 		from the piece to determine if there is a valid piece to take
@@ -210,6 +186,12 @@ public class PawnValidator extends PieceValidator{
 		return;
 	}
 
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
 	public PawnValidator clone(BoardIF board){
 		PawnValidator PV = new PawnValidator(board);
 		return PV;

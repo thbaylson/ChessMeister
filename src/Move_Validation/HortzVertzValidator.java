@@ -132,6 +132,12 @@ public class HortzVertzValidator extends PieceValidator {
 		return moves;
 	}
 
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
 	public HortzVertzValidator clone(BoardIF board){
 		HortzVertzValidator HVV = new HortzVertzValidator(board);
 		return HVV;
