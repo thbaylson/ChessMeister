@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
+import Interfaces.PieceIF;
 import Model.Board;
 import Model.Piece;
 import Model.Position;
@@ -11,11 +12,18 @@ import UI_CLI.Board_Color_CLI;
 import UI_CLI.Board_Mono_CLI;
 
 /**
- * 
+ * This class calls most if not all of the functions required to run the chess
+ * game correctly
  * @author Caleb Tupone
  *
  */
 public class Controller {
+	
+	
+	private BoardIF game = new Board();
+	String uInput = "";
+	private PieceIF curP;
+	private Scanner input = new Scanner(System.in);
 
 	public Controller(){
 		
@@ -23,94 +31,30 @@ public class Controller {
 	
 	public void go(){
 		
-		Scanner input = new Scanner(System.in);
-		String uInput = "";
-		BoardIF game = new Board();
-		BoardStrategy gStrat;
+		System.out.println("Would you like to play a game of chess? Y/N");
 
-		System.out.println("If you would like a colored board, please type "
-				+ "COLOR, if you would like MONO just enter anything else");
 		uInput = input.next().toUpperCase();
-		if (uInput.equals("COLOR")){
-			gStrat = new Board_Color_CLI();
-		}
-		else{
-			gStrat = new Board_Mono_CLI();
-		}
 
-		game.setDrawStrategy(gStrat);
-		
-		char f;
-		int r;
-		
-		/**
-		 * This while loop is what continues the game, as of right now the 
-		 * EXIT command does not work
-		 */
-		while(!uInput.equals("EXIT")){
-			game.draw();
-			System.out.print("Select a piece to move > ");
-			uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
-			f = (char) (uInput.charAt(0));
-			r = (uInput.charAt(1) - 48);
-			Piece curp = (Piece) game.getPiece(r, f);
-			game.showMoves(curp);
-			
-			/**
-			 * This loops is used the make sure the user selects a proper 
-			 * piece to moves
-			 */
-			while(checkInputLength(uInput) || checkInput(r, f) || 
-					checkInputPos(game, r, f)){
-				System.out.print("Select a piece to move > ");
-				uInput = input.next().toUpperCase(); // This is where what the 
-													//user inputs is stored
-				f = (char) (uInput.charAt(0));
-				r = (uInput.charAt(1) - 48);
+		while(!uInput.equals("N") && !uInput.equals("EXIT")){
+			chooseBoardType();
+			while(!uInput.equals("EXIT")){
+				Position fromP = selectPiece();
+				selectDestination(fromP);
 			}
-
-
-			Position fromP = new Position(f, r);
-			
-
-
-			System.out.print("Select a destination to move to > ");
-			uInput = input.next().toUpperCase();
-			f = (char) uInput.charAt(0);
-			r = (uInput.charAt(1) - 48);
-			
-			/**
-			 * This loop is used to make sure the user selects a proper 
-			 * destination for their piece
-			 */
-			while(checkInputLength(uInput) || checkInput(r, f)){
-
-				System.out.print("Select a destination to move to > ");
-				uInput = input.next().toUpperCase();
-				f = (char) uInput.charAt(0);
-				r = (uInput.charAt(1) - 48);
-			}
-
-			Position toP = new Position(f, r);
-			System.out.println(game.getSquare(fromP));
-			if(curp.validateMove(game.getSquare(fromP).getPosition(), toP)){
-				game.move(fromP, toP);
-			}
-			else{
-				System.out.println("The position you chose is invlaid for that piece");
-			}
-
 
 		}
 		input.close();
-	}
+
+		}
+		
+	
 	/**
 	 * Method that is used to check if input is within board range
 	 * @param r rank of user input
 	 * @param f file of user input
 	 * @return if input is within range of the board
 	 */
-	private static boolean checkInput(int r, char f){
+	private boolean checkInput(int r, char f){
 		if (f >= 65 && f <= 72){
 			if (r >= 1 && r <= 8){
 				return false;
@@ -133,7 +77,7 @@ public class Controller {
 	 * @param fr string user entered
 	 * @return if input is correct length
 	 */
-	private static boolean checkInputLength(String fr){
+	private boolean checkInputLength(String fr){
 		if (fr.length() != 2){
 			System.out.println("Please enter in the format: 1 character "
 					+ "(file or f) and then 1 number (rank or r) 'fr' ");
@@ -152,7 +96,7 @@ public class Controller {
 	 * @param f the file of user input
 	 * @return if input is a valid piece
 	 */
-	private static boolean checkInputPos(BoardIF game, int r, char f){
+	private boolean checkInputPos(BoardIF game, int r, char f){
 		if(game.getPiece(r, f) == null) {
 			System.out.println("The spot you have selected is empty");
 
@@ -163,4 +107,91 @@ public class Controller {
 		}
 
 	}
+	
+	/**
+	 * Used to choose the board type the user wants
+	 */
+	private void chooseBoardType(){
+
+		BoardStrategy strategy;
+		System.out.println("If you would like a colored board, please type "
+				+ "COLOR, if you would like MONO just enter anything else");
+		uInput = input.next().toUpperCase();
+		if (!uInput.equals("EXIT")){
+			if (uInput.equals("COLOR")){
+				strategy = new Board_Color_CLI();
+			}
+			else{
+				strategy = new Board_Mono_CLI();
+			}
+			game.setDrawStrategy(strategy);
+		}
+	}
+	
+	private Position selectPiece(){
+
+		char f;
+		int r;
+
+		game.draw();
+		System.out.print("Select a piece to move > ");
+		uInput = input.next().toUpperCase(); // This is where what the user
+											// inputs is stored
+		if (!uInput.equals("EXIT")){
+			f = (char) (uInput.charAt(0));
+			r = (uInput.charAt(1) - 48);
+
+
+			/**
+			 * This loops is used the make sure the user selects a proper
+			 * piece to moves
+			 */
+			while(checkInputLength(uInput) || checkInput(r, f) ||
+					checkInputPos(game, r, f)){
+				System.out.print("Select a piece to move > ");
+				uInput = input.next().toUpperCase(); // This is where what the
+				//user inputs is stored
+				f = (char) (uInput.charAt(0));
+				r = (uInput.charAt(1) - 48);
+			}
+
+			curP = (Piece) game.getPiece(r, f);
+			game.showMoves(curP);
+			Position fromP = new Position(f, r);
+
+			return fromP;
+		}
+		return null;
+	}
+	
+	private void selectDestination(Position fromP){
+
+		char f;
+		int r;
+		if (!uInput.equals("EXIT")) {
+			System.out.print("Select a destination to move to > ");
+			uInput = input.next().toUpperCase();
+			f = (char) uInput.charAt(0);
+			r = (uInput.charAt(1) - 48);
+			Position toP = new Position(f, r);
+			/**
+			 * This loop is used to make sure the user selects a proper
+			 * destination for their piece
+			 */
+			while(checkInputLength(uInput) || checkInput(r, f) ||
+					!curP.validateMove(game.getSquare(fromP).getPosition(), toP)){
+
+				System.out.print("Select a destination to move to > ");
+				uInput = input.next().toUpperCase();
+				f = (char) uInput.charAt(0);
+				r = (uInput.charAt(1) - 48);
+				toP = new Position(f, r);
+			}
+
+			game.move(fromP, toP);
+		}
+
+
+	}
+		
 }
