@@ -35,7 +35,9 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public Piece(ChessPieceType cpt, GameColor color) {
 		this.cpt = cpt;
 		this.color = color;
-		this.pv = null;
+		if(this.pv != null) {
+			this.pv.setColor(color);
+		}
 	}
 	
 	/**
@@ -64,15 +66,25 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 */
 	public PieceValidator getPieceValidator() {
 		return this.pv;
+		//return (this.pv != null) ? this.pv : null;
 	}
 
 	/**
-	 * Sets the PieceValidator
+	 * Sets the PieceValidator, the pieceValidator's color, and the color of the 
+	 * pieceValidators' piecevalidators;
 	 *
 	 * @param p - The PieceValidator to set
 	 */
 	public void setPieceValidator(PieceValidator p) {
+		PieceValidator temp;
 		this.pv = p;
+		this.pv.setColor(this.color);
+		
+		temp = this.pv.getPieceValidator();
+		while(temp != null) {
+			temp.setColor(this.color);
+			temp = temp.getPieceValidator();
+		}
 	}
 
 	/**

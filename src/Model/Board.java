@@ -20,6 +20,9 @@ public class Board implements BoardIF{
 	/** The array of squares that represent a chess board**/
 	private SquareIF[][] bLayout;
 	
+	private ArrayList<PieceIF> playerOnePieces;
+	private ArrayList<PieceIF> playerTwoPieces;
+	
 	/** The method in which everything will be displayed to the user**/
 	private BoardStrategy strat;
 	
@@ -34,6 +37,8 @@ public class Board implements BoardIF{
 	@Override
 	public void init_board() {
 		this.bLayout = new Square[8][8];
+		this.playerOnePieces = new ArrayList<PieceIF>();
+		this.playerTwoPieces = new ArrayList<PieceIF>();
 	}
 
 	 /**
@@ -53,41 +58,51 @@ public class Board implements BoardIF{
 			}
 		}
 		/** Correctly places the appropriate pieces, excluding pawns*/
+		PieceValidator queen;
 		for(int i = 0; i < GameColor.values().length; i++) {
-			bLayout[0][i * 7].setPiece(new Piece(ChessPieceType.Rook, GameColor.values()[i]));
-			bLayout[0][i * 7].getPiece().setPieceValidator(new HortzVertzValidator(this));
 			
-			bLayout[1][i * 7].setPiece(new Piece(ChessPieceType.Knight, GameColor.values()[i]));
-			bLayout[1][i * 7].getPiece().setPieceValidator(new KnightValidator(this));
+			placePiece(0, i * 7, i, ChessPieceType.Rook, new HortzVertzValidator(this));
+			placePiece(1, i * 7, i, ChessPieceType.Knight, new KnightValidator(this));
+			placePiece(2, i * 7, i, ChessPieceType.Bishop, new DiagonalValidator(this));
+			placePiece(3, i * 7, i, ChessPieceType.King, new KingValidator(this));
 			
-			bLayout[2][i * 7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.values()[i]));
-			bLayout[2][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
+			queen = new HortzVertzValidator(this);
+			queen.setPieceValidator(new DiagonalValidator(this));
+			placePiece(4, i * 7, i, ChessPieceType.Queen, queen);
 			
-			bLayout[3][i * 7].setPiece(new Piece(ChessPieceType.King, GameColor.values()[i]));
-			bLayout[3][i * 7].getPiece().setPieceValidator(new KingValidator(this));
-			
-			bLayout[4][i * 7].setPiece(new Piece(ChessPieceType.Queen, GameColor.values()[i]));
-			bLayout[4][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
-			bLayout[4][i * 7].getPiece().getPieceValidator().setPieceValidator(new HortzVertzValidator(this));
-			
-			bLayout[5][i * 7].setPiece(new Piece(ChessPieceType.Bishop, GameColor.values()[i]));
-			bLayout[5][i * 7].getPiece().setPieceValidator(new DiagonalValidator(this));
-			
-			bLayout[6][i * 7].setPiece(new Piece(ChessPieceType.Knight, GameColor.values()[i]));
-			bLayout[6][i * 7].getPiece().setPieceValidator(new KnightValidator(this));
-			
-			bLayout[7][i * 7].setPiece(new Piece(ChessPieceType.Rook, GameColor.values()[i]));
-			bLayout[7][i * 7].getPiece().setPieceValidator(new HortzVertzValidator(this));
+			placePiece(5, i * 7, i, ChessPieceType.Bishop, new DiagonalValidator(this));
+			placePiece(6, i * 7, i, ChessPieceType.Knight, new KnightValidator(this));
+			placePiece(7, i * 7, i, ChessPieceType.Rook, new HortzVertzValidator(this));
+
 		}
 
 		
 		/** Places all the pawns*/
 		for (int i = 0; i < 8; i++) {
-			bLayout[i][1].setPiece(new Piece(ChessPieceType.Pawn, GameColor.WHITE));
-			bLayout[i][1].getPiece().setPieceValidator(new PawnValidator(this));
-
-			bLayout[i][6].setPiece(new Piece(ChessPieceType.Pawn, GameColor.BLACK));
-			bLayout[i][6].getPiece().setPieceValidator(new PawnValidator(this));
+			/** Places all the white pawns along the first rank**/
+			placePiece(i, 1, 0, ChessPieceType.Pawn, new PawnValidator(this));
+			
+			/** Places all the black pawns along the sixth rank**/
+			placePiece(i, 6, 1, ChessPieceType.Pawn, new PawnValidator(this));
+		}
+	}
+	
+	/**
+	 * placePiece- Creates, colors, sets player ownership, and places a piece onto the board
+	 * @param file- The file the piece will be placed on
+	 * @param rank- The rank the piece will be placed on
+	 * @param colorIndex- The index in the GameColor enumeration that relates to this piece's color
+	 * @param piece- The chess piece type of this piece
+	 * @param pv- The piece validator for this piece
+	 */
+	private void placePiece(int file, int rank, int colorIndex, ChessPieceType piece, PieceValidator pv) {
+		//pv.setColor(GameColor.values()[colorIndex]);
+		//System.out.println(pv.getColor());
+		bLayout[file][rank].setPiece(new Piece(piece, GameColor.values()[colorIndex]), pv);
+		if(colorIndex == 0) {
+			playerOnePieces.add(bLayout[file][rank].getPiece());
+		}else {
+			playerTwoPieces.add(bLayout[file][rank].getPiece());
 		}
 	}
 	
@@ -148,8 +163,8 @@ public class Board implements BoardIF{
 	}
 	
 	 /**
-	  * getPosition- For any given, valid rank (as an int) and file (as a char), this will return the piece
-	 * in that spot. If no piece exists there, this returns null.
+	  * getPosition- For any given, valid rank (as an int) and file (as a char), this will return 
+	  * the piece in that spot. If no piece exists there, this returns null.
 	 * @param r: The Rank int representing the rank on the board
 	 * @param f: The Files char representing a file on the board
 	 * @return: A position on the board
@@ -201,6 +216,23 @@ public class Board implements BoardIF{
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * getPlayerPieces- Returns the piece ArrayList for the specified player
+	 * @param p- The player whose pieces are to be returned
+	 * @return- The piece ArrayList for the specified player
+	 * @throws IllegalArgumentException- Thrown when called with an invalid player number
+	 */
+	public ArrayList<PieceIF> getPlayerPieces(int p) throws IllegalArgumentException{
+		if(p == 1) {
+			return this.playerOnePieces;
+		}
+		else if(p ==2) {
+			return this.playerTwoPieces;
+		}else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	/**
