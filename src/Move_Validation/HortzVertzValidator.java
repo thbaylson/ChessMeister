@@ -131,4 +131,9 @@ public class HortzVertzValidator extends PieceValidator {
 		}
 		return moves;
 	}
+
+	public HortzVertzValidator clone(BoardIF board){
+		HortzVertzValidator HVV = new HortzVertzValidator(board);
+		return HVV;
+	}
 }

@@ -123,4 +123,9 @@ public class KingValidator extends PieceValidator{
 		return send;
 	}
 
+	public KingValidator clone(BoardIF board){
+		KingValidator KV = new KingValidator(board);
+		return KV;
+	}
+
 }

@@ -62,7 +62,6 @@ public class Controller {
 				f = (char) (uInput.charAt(0));
 				r = (uInput.charAt(1) - 48);
 				Piece curp = (Piece) game.getPiece(r, f);
-				System.out.println("Square position: " + game.getPosition(r,f).getSquare().getPiece().getPosition());
 				game.showMoves(curp);
 
 				/**

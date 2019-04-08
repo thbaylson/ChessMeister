@@ -209,4 +209,9 @@ public class PawnValidator extends PieceValidator{
 		}
 		return;
 	}
+
+	public PawnValidator clone(BoardIF board){
+		PawnValidator PV = new PawnValidator(board);
+		return PV;
+	}
 }

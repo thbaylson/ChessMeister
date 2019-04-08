@@ -83,4 +83,6 @@ public interface PieceIF {
 	 * @return Clone of this object
 	 */
 	public PieceIF clone();
+
+	public void clonePV(BoardIF board);
 }

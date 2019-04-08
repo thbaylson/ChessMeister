@@ -258,6 +258,9 @@ public class Board implements BoardIF{
 		for (int i = 0; i < this.getWidth(); i++){
 			for (int j = 0; j < this.getHeight(); j++){
 				newSQ[i][j] = bLayout[i][j].clone();
+				if (newSQ[i][j].getPiece() != null) {
+					newSQ[i][j].getPiece().clonePV(newBoard);
+				}
 			}
 		}
 		return newBoard;

@@ -72,4 +72,9 @@ public class KnightValidator extends PieceValidator{
 		}
 		return foundMove;
 	}
+
+	public KnightValidator clone(BoardIF board){
+		KnightValidator KV = new KnightValidator(board);
+		return KV;
+	}
 }

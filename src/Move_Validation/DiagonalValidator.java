@@ -115,4 +115,9 @@ public class DiagonalValidator extends PieceValidator{
 		return send;	
 	}
 
+	public DiagonalValidator clone(BoardIF board){
+		DiagonalValidator DV = new DiagonalValidator(board);
+		return DV;
+	}
+
 }
