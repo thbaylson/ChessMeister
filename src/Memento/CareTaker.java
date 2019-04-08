@@ -56,11 +56,12 @@ public class CareTaker<T> {
      * if there is no mementos to redo
      */
     public Memento<T> redo(){
-        if (pointer+1 >= mementoList.size()){//Checks there is mementos to redo
+        if (pointer >= mementoList.size()){//Checks there is mementos to redo
             return null;
         }else{
+            Memento<T> mem = mementoList.get(pointer);//gets memento4
             pointer++;
-            return mementoList.get(pointer);//gets memento
+            return mem;
         }
     }
 }
