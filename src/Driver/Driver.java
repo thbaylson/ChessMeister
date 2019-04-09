@@ -13,10 +13,7 @@ public class Driver {
 	 * @param args Any arguments input when the game is started
 	 */
 	public static void main(String[] args) {
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/tyler
 		Controller chessMeister = new Controller();
 		chessMeister.go();
 	}

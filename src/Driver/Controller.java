@@ -6,7 +6,6 @@ import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.PieceIF;
 import Model.Board;
-import Model.Piece;
 import Model.Position;
 import UI_CLI.Board_Color_CLI;
 import UI_CLI.Board_Mono_CLI;
@@ -17,35 +16,60 @@ import UI_CLI.Board_Mono_CLI;
  * @author Caleb Tupone
  *
  */
-public class Controller {
+class Controller {
 	
 	
 	private BoardIF game = new Board();
-	String uInput = "";
+	private String uInput = "";
 	private PieceIF curP;
 	private Scanner input = new Scanner(System.in);
 
-	public Controller(){
+	Controller(){
 		
 	}
-	
-	public void go(){
-		
+
+	/**
+	 * This method starts up a game of chess or quits the game
+	 */
+	void go(){
+		boolean gameIsRunning = true;
 		System.out.println("Would you like to play a game of chess? Y/N");
 
-		uInput = input.next().toUpperCase();
 
-		while(!uInput.equals("N") && !uInput.equals("EXIT")){
-			chooseBoardType();
-			while(!uInput.equals("EXIT")){
-				Position fromP = selectPiece();
-				selectDestination(fromP);
+		while(gameIsRunning){
+			uInput = input.next().toUpperCase();
+			if(uInput.equals("Y")){
+				runGame();
+
 			}
-
+			else if(uInput.equals("N")){
+				gameIsRunning = false;
+			}
+			else{
+				System.out.println("Please enter either yes or no Y/N");
+			}
 		}
+
+
 		input.close();
 
 		}
+
+	/**
+	 * This method is used for running the game
+ 	 */
+	private void runGame(){
+		System.out.println("If at anytime you would like to exit the game just " +
+				"type 'exit'\n");
+		chooseBoardType();
+		while(!wantToExit(uInput)){
+			Position fromP = selectPiece();
+			selectDestination(fromP);
+		}
+
+
+
+	}
 		
 	
 	/**
@@ -117,7 +141,10 @@ public class Controller {
 		System.out.println("If you would like a colored board, please type "
 				+ "COLOR, if you would like MONO just enter anything else");
 		uInput = input.next().toUpperCase();
-		if (!uInput.equals("EXIT")){
+		if (wantToExit(uInput)){
+			System.exit(0);
+		}
+		else{
 			if (uInput.equals("COLOR")){
 				strategy = new Board_Color_CLI();
 			}
@@ -127,7 +154,12 @@ public class Controller {
 			game.setDrawStrategy(strategy);
 		}
 	}
-	
+
+	/**
+	 * This method selects a piece and shows the available moves that piece can
+	 * make
+	 * @return the position of the piece that the user has selected
+	 */
 	private Position selectPiece(){
 
 		char f;
@@ -137,61 +169,76 @@ public class Controller {
 		System.out.print("Select a piece to move > ");
 		uInput = input.next().toUpperCase(); // This is where what the user
 											// inputs is stored
-		if (!uInput.equals("EXIT")){
-			f = (char) (uInput.charAt(0));
+		if (wantToExit(uInput)){
+			System.exit(0);
+
+		}
+		else {
+			f = (uInput.charAt(0));
 			r = (uInput.charAt(1) - 48);
 
 
-			/**
-			 * This loops is used the make sure the user selects a proper
-			 * piece to moves
-			 */
+
+			// This loops is used the make sure the user selects a proper
+			//piece to move
 			while(checkInputLength(uInput) || checkInput(r, f) ||
 					checkInputPos(game, r, f)){
 				System.out.print("Select a piece to move > ");
 				uInput = input.next().toUpperCase(); // This is where what the
+
+				if (wantToExit(uInput)){
+					System.exit(0);
+				}
+
 				//user inputs is stored
-				f = (char) (uInput.charAt(0));
+				f = (uInput.charAt(0));
 				r = (uInput.charAt(1) - 48);
 			}
 
-			curP = (Piece) game.getPiece(r, f);
+			curP = game.getPiece(r, f);
 			game.showMoves(curP);
 			Position fromP = new Position(f, r);
 
 			return fromP;
 		}
 		return null;
+
 	}
 	
 	private void selectDestination(Position fromP){
 
 		char f;
 		int r;
-		if (!uInput.equals("EXIT")) {
+
 			System.out.print("Select a destination to move to > ");
 			uInput = input.next().toUpperCase();
-			f = (char) uInput.charAt(0);
+			f =  uInput.charAt(0);
 			r = (uInput.charAt(1) - 48);
 			Position toP = new Position(f, r);
-			/**
-			 * This loop is used to make sure the user selects a proper
-			 * destination for their piece
-			 */
+			if (wantToExit(uInput)) {
+				System.exit(0);
+
+			}
+
+
+			// This loop is used to make sure the user selects a proper
+			//	destination for their piece
 			while(checkInputLength(uInput) || checkInput(r, f) ||
 					!curP.validateMove(game.getSquare(fromP).getPosition(), toP)){
 
 				System.out.print("Select a destination to move to > ");
 				uInput = input.next().toUpperCase();
-				f = (char) uInput.charAt(0);
+				if (wantToExit(uInput)){
+					System.exit(0);
+				}
+				f = uInput.charAt(0);
 				r = (uInput.charAt(1) - 48);
 				toP = new Position(f, r);
 			}
-
 			game.move(fromP, toP);
-		}
-
-
+	}
+	private boolean wantToExit(String input){
+		return input.equals("EXIT");
 	}
 		
 }
