@@ -3,6 +3,7 @@ package Move_Validation;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import Enums.ChessPieceType;
 import Enums.GameColor;
 import Interfaces.BoardIF;
 import Interfaces.PieceIF;
@@ -32,7 +33,7 @@ public abstract class PieceValidator extends Piece{
 	/**
 	 * Abstract method for making an array of valid moves of a piece
 	 *
-	 * @param pos - The position of the piece to check
+	 * @param position - The position of the piece to check
 	 * @return An array of positions that are valid to move to
 	 */
 	public abstract Position[] showMoves(Position position);
@@ -48,33 +49,49 @@ public abstract class PieceValidator extends Piece{
 	public Position[] showMoves(Collection<Position> moves, Position position) {
 		ArrayList<Position> newMoves = new ArrayList<Position>();
 		Position[] allMoves = new Position[moves.size()];
-		//System.out.println("THIS is null?: " + (this == null));
 
+		/** If this validator is wrapped, we need to collect the moves of the wrapping validator**/
 		if(this.getPieceValidator() != null) {
-			
-			//System.out.println("This.pv() is null?: " + (this.getPieceValidator() == null));
-			
 			Position[] moveArray = this.getPieceValidator().showMoves(position);
-			for(int i = 0; i < moveArray.length; i++) {
+			for (int i = 0; i < moveArray.length; i++) {
 				newMoves.add(moveArray[i]);
 			}
-		}else {
-			/**Base case- there are no more layers of validators 
-			 * This part can probably be threaded!**/
+		}
+		
+		/** Once we've gathered our movement options, cut out the ones that put us into check**/
+		newMoves.addAll(moves);
+		if(this.getPieceValidator() == null) {
+			/**Base case- there are no more layers of validators
+			 * This part can probably be threaded!?**/
 			if(this.isWhite()) {
+				PieceIF wKing = findKing(board.getPlayerPieces(1), GameColor.WHITE);
 				for(PieceIF enemy : board.getPlayerPieces(2)) {
-					for(Position options : enemy.showMoves()) {
-						//
-					}
-					
-					//System.out.println("\n"+enemy+"\n");
-					
+					for(Position option : enemy.showMoves()) {
+						if(option.getSquare().getPiece() == wKing){
+							newMoves.remove(option);
+						}
+					}					
 				}
 			}
 		}
-
-		newMoves.addAll(moves);
 		return newMoves.toArray(allMoves);
+	}
+
+	/**
+	 * findKing- For any given, valid color and piece type, this will attempt to return that
+	 * piece. If that piece is not on the board, this returns null.
+	 * @param color: The color of the desired piece
+	 * @param chessPiece: The desired piece type
+	 * @return: A piece on the board or null
+	 */
+	private PieceIF findKing(ArrayList<PieceIF> pieces, GameColor color){
+		if(color.getColor() == 'w'){
+			;
+		}
+		else if(color.getColor() == 'b'){
+			;
+		}
+		return null;
 	}
 	
 	/**

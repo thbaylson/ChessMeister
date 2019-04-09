@@ -51,7 +51,7 @@ public class Board implements BoardIF{
 		/** Cycles through all the squares to assign them to black or white*/
 		for (int i = 0; i < this.getWidth(); i++) {
 			for (int j = 0; j < this.getHeight(); j++) {
-				currentColor = ((i + j) % 2 == 1) ? GameColor.WHITE : GameColor.BLACK;
+				currentColor = ((i + j) % 2 == 1) ? GameColor.values()[0] : GameColor.values()[1];
 				bLayout[i][j] = new Square(currentColor);
 				bLayout[i][j].setPosition(Files.values()[i], Rank.values()[j]);
 				bLayout[i][j].getPosition().setSquare(bLayout[i][j]);
@@ -186,7 +186,6 @@ public class Board implements BoardIF{
 	public PieceIF getPiece(Rank r, Files f){
 		return bLayout[f.getArrayp()][r.getArrayp()].getPiece();
 	}
-	
 
 	 /**
 	  * getPiece- For any given, valid rank and file, this will return the piece
@@ -220,15 +219,15 @@ public class Board implements BoardIF{
 	
 	/**
 	 * getPlayerPieces- Returns the piece ArrayList for the specified player
-	 * @param p- The player whose pieces are to be returned
+	 * @param player- The player whose pieces are to be returned
 	 * @return- The piece ArrayList for the specified player
 	 * @throws IllegalArgumentException- Thrown when called with an invalid player number
 	 */
-	public ArrayList<PieceIF> getPlayerPieces(int p) throws IllegalArgumentException{
-		if(p == 1) {
+	public ArrayList<PieceIF> getPlayerPieces(int player) throws IllegalArgumentException{
+		if(player == 1) {
 			return this.playerOnePieces;
 		}
-		else if(p ==2) {
+		else if(player ==2) {
 			return this.playerTwoPieces;
 		}else {
 			throw new IllegalArgumentException();
