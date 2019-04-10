@@ -24,10 +24,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public Piece(){
 		this.cpt = null;
 		this.color = null;
-<<<<<<< HEAD
-=======
 		this.pos = null;
->>>>>>> origin/caleb
 
 	}
 	/**
