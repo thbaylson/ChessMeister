@@ -5,6 +5,7 @@ import Enums.Rank;
 import Enums.Files;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
+import Move_Validation.PieceValidator;
 
 /**
  * Model for a square on the chess board
@@ -131,5 +132,11 @@ public class Square extends BlackAndWhite implements SquareIF{
 		}
 		newSquare.setHighlight(this.high);
 		return newSquare;
+
+	@Override
+	public void setPiece(Piece piece, PieceValidator pv) {
+		this.sPiece = piece;
+		this.sPiece.setPosition(this.pos);
+		sPiece.setPieceValidator(pv);
 	}
 }

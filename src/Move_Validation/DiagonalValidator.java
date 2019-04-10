@@ -20,12 +20,12 @@ public class DiagonalValidator extends PieceValidator{
 		super(board);
 	}
 	
-	@Override
 	/**
 	 * This method gives a list of all valid moves that a piece that can move 
 	 * diagonal is allowed to make
 	 * @param the position of the piece the user has selected
 	 */
+	@Override
 	public Position[] showMoves(Position pos) {
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
@@ -106,14 +106,16 @@ public class DiagonalValidator extends PieceValidator{
 			}
 		}
 		
-
+		return super.showMoves(moves, pos);
+		/**
 		Position[] send = new Position[moves.size()];
 		for (int i = 0; i < moves.size(); i++){
 			
 			send[i] = moves.get(i);
 		}
 		super.showMoves(pos);
-		return send;	
+		return send;
+		**/
 	}
 
 	/**

@@ -3,7 +3,9 @@ package Interfaces;
 import Enums.Files;
 import Enums.GameColor;
 import Enums.Rank;
+import Model.Piece;
 import Model.Position;
+import Move_Validation.PieceValidator;
 
 /**
  * Interface for square
@@ -23,6 +25,14 @@ public interface SquareIF {
 	 * @param p - The piece to set on the square
 	 */
 	public void setPiece(PieceIF p);
+	
+	/**
+	 * Sets a piece for the square
+	 *
+	 * @param piece - The piece to set on the square
+	 * @param pv - The piece validator for this piece
+	 */
+	public void setPiece(Piece piece, PieceValidator pv);
 
 	/**
 	 * Gets the piece currently on the square
