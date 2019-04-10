@@ -19,13 +19,11 @@ import UI_CLI.Board_Mono_CLI;
  */
 class Controller {
 
-
     private int currentPlayer = 1;
     private BoardIF game = new Board();
     private MenuIF inGameMenu = new InGameMenu();
     private PieceIF curP;
     private MenuIF mainMenu = new MainMenu();
-
 
     Controller() {
 
@@ -53,7 +51,6 @@ class Controller {
                 System.out.println("Please enter either yes or no Y/N");
             }
         }
-
     }
 
     /**
@@ -82,6 +79,12 @@ class Controller {
                     break;
                 case "1":
                     game.draw();
+                    break;
+                case "2":
+                    //Undo implementation
+                    break;
+                case "3":
+                    //Redo implementation
                     break;
                 case "EXIT":
                     System.exit(0);
@@ -144,18 +147,15 @@ class Controller {
                         return null;
                     }
                 }
-
                 //user inputs is stored
                 f = (uInput.charAt(0));
                 r = (uInput.charAt(1) - 48);
                 curP = game.getPiece(r, f);
             }
-
             curP = game.getPiece(r, f);
             game.showMoves(curP);
             return new Position(f, r);
         }
-
     }
 
     /**
@@ -191,7 +191,7 @@ class Controller {
         // This loop is used to make sure the user selects a proper
         //	destination for their piece
         while (checkIfSamePos(fromP, toP) || checkInput(r, f) ||
-                checkIfValidMove(fromP,toP)) {
+                checkIfValidMove(fromP, toP)) {
             System.out.print("If you would like to select a different piece type " +
                     "back \nSelect a destination to move to > ");
             uInput = inGameMenu.askInput();
@@ -206,17 +206,16 @@ class Controller {
                     return null;
                 }
             }
-
             f = uInput.charAt(0);
             r = (uInput.charAt(1) - 48);
         }
         return new Position(f, r);
-
     }
 
     /**
      * This method is used to determine if the player has decided to exit the
      * program part way, specifically when choosing the board type
+     *
      * @param input user's input
      * @return the result if the user wants to exit the program or not
      */
@@ -259,9 +258,8 @@ class Controller {
                     + "(file or f) and then 1 number (rank or r) 'fr' ");
 
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -277,10 +275,8 @@ class Controller {
             System.out.println("The spot you have selected is empty");
 
             return true;
-        } else {
-            return false;
         }
-
+        return false;
     }
 
     /**
@@ -298,7 +294,6 @@ class Controller {
             return true;
         }
         return false;
-
     }
 
     /**
@@ -321,12 +316,13 @@ class Controller {
     /**
      * This method is used to check if the position that the user selected
      * is withing the valid move set for the piece they selected
+     *
      * @param fromP the position of the piece the player wants to move
-     * @param toP the position the player wants to move the piece to
+     * @param toP   the position the player wants to move the piece to
      * @return whether or not the user selected a valid position
      */
-    private boolean checkIfValidMove(Position fromP, Position toP){
-        if (!curP.validateMove(game.getSquare(fromP).getPosition(), toP)){
+    private boolean checkIfValidMove(Position fromP, Position toP) {
+        if (!curP.validateMove(game.getSquare(fromP).getPosition(), toP)) {
             System.out.println("That piece cannot move there, please " +
                     "select a highlighted position");
             return true;
@@ -337,6 +333,7 @@ class Controller {
 
     /**
      * Used to choose the board type the user wants
+     *
      * @return returns the type of board the user wants
      */
     private BoardStrategy chooseBoardType() {

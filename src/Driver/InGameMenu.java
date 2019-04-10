@@ -24,7 +24,8 @@ public class InGameMenu implements MenuIF {
     @Override
     public void display(){
         System.out.println("What would you like to do?\n 0: Move a Piece\n" +
-                " 1: Redraw Board \n EXIT: Exit the program");
+                " 1: Redraw Board \n 2: Undo Move \n 3: Redo Move \n " +
+                "EXIT: Exit the program");
 
     }
 
