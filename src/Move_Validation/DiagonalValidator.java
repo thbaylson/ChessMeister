@@ -112,6 +112,7 @@ public class DiagonalValidator extends PieceValidator{
 			
 			send[i] = moves.get(i);
 		}
+		super.showMoves(pos);
 		return send;	
 	}
 

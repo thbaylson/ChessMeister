@@ -18,7 +18,7 @@ public enum GameColor {
 	 * 
 	 * @param color - The color
 	 */
-	private GameColor(final char color){
+	GameColor(final char color){
 		this.color = color;
 	}
 	

@@ -26,6 +26,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		this.cpt = null;
 		this.color = null;
 		this.pos = null;
+
 	}
 	/**
 	 * Constructor for the Piece object

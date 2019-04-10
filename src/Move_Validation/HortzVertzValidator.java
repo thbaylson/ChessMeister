@@ -41,6 +41,7 @@ public class HortzVertzValidator extends PieceValidator {
 		for (int i = 0; i < moves.size(); i++){
 			result[i] = moves.get(i);
 		}
+		super.showMoves(pos);
 		return result;
 	}
 	
