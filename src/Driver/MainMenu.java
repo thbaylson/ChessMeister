@@ -36,44 +36,12 @@ public class MainMenu implements MenuIF {
     }
 
     /**
-     * This method accepts input in reference to the main menu.
+     * This method accepts input
      * @return returns user's input
      */
     public String askInput() {
         return input.next().toUpperCase();
     }
 
-    /**
-     * Used to choose the board type the user wants
-     * @return returns the type of board the user wants
-     */
-    BoardStrategy chooseBoardType() {
-
-        BoardStrategy strategy;
-        System.out.println("If you would like a colored board, please type "
-                + "COLOR, if you would like MONO just enter anything else");
-        String uInput = input.next().toUpperCase();
-        if (wantToExit(uInput)) {
-            System.exit(0);
-        } else {
-            if (uInput.equals("COLOR")) {
-                strategy = new Board_Color_CLI();
-            } else {
-                strategy = new Board_Mono_CLI();
-            }
-            return strategy;
-        }
-        return null;
-    }
-
-    /**
-     * This method is used to determine if the player has decided to exit the
-     * program part way, specifically when choosing the board type
-     * @param input user's input
-     * @return the result if the user wants to exit the program or not
-     */
-    private boolean wantToExit(String input) {
-        return input.equals("EXIT");
-    }
 
 }

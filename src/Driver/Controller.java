@@ -3,9 +3,12 @@ package Driver;
 
 import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
+import Interfaces.MenuIF;
 import Interfaces.PieceIF;
 import Model.Board;
 import Model.Position;
+import UI_CLI.Board_Color_CLI;
+import UI_CLI.Board_Mono_CLI;
 
 
 /**
@@ -19,9 +22,9 @@ class Controller {
 
     private int currentPlayer = 1;
     private BoardIF game = new Board();
-    private InGameMenu inGameMenu = new InGameMenu();
+    private MenuIF inGameMenu = new InGameMenu();
     private PieceIF curP;
-    private MainMenu mainMenu = new MainMenu();
+    private MenuIF mainMenu = new MainMenu();
 
 
     Controller() {
@@ -40,9 +43,7 @@ class Controller {
             String uInput = mainMenu.askInput();
 
             if (uInput.equals("Y") || uInput.equals("YES")) {
-                System.out.println("If at anytime you would like to exit the game just " +
-                        "type 'exit'\n");
-                BoardStrategy strategy = mainMenu.chooseBoardType();
+                BoardStrategy strategy = chooseBoardType();
                 game.setDrawStrategy(strategy);
                 runGame();
 
@@ -79,6 +80,9 @@ class Controller {
                         }
                     }
                     break;
+                case "1":
+                    game.draw();
+                    break;
                 case "EXIT":
                     System.exit(0);
                 default:
@@ -103,14 +107,17 @@ class Controller {
 
         char f;
         int r;
-
-        String uInput = inGameMenu.selectPiece();
+        System.out.print("If you would like to do something else type 'back'\n" +
+                "Select a piece > ");
+        String uInput = inGameMenu.askInput();
 
         if (uInput.equals("BACK")) {
             return null;
         } else {
             while (checkInputLength(uInput)) {
-                uInput = inGameMenu.selectPiece();
+                System.out.print("If you would like to do something else type 'back'\n" +
+                        "Select a piece > ");
+                uInput = inGameMenu.askInput();
                 if (uInput.equals("BACK")) {
                     return null;
                 }
@@ -122,13 +129,17 @@ class Controller {
             //piece to move
             while (checkInput(r, f) || checkInputPos(game, r, f) ||
                     checkIfCorrectPlayer(curP.getColor().getColor(), currentPlayerColor)) {
-                uInput = inGameMenu.selectPiece(); // This is where what the
+                System.out.print("If you would like to do something else type 'back'\n" +
+                        "Select a piece > ");
+                uInput = inGameMenu.askInput(); // This is where what the
 
                 if (uInput.equals("BACK")) {
                     return null;
                 }
                 while (checkInputLength(uInput)) {
-                    uInput = inGameMenu.selectPiece();
+                    System.out.print("If you would like to do something else type 'back'\n" +
+                            "Select a piece > ");
+                    uInput = inGameMenu.askInput();
                     if (uInput.equals("BACK")) {
                         return null;
                     }
@@ -158,14 +169,17 @@ class Controller {
         char f;
         int r;
 
-
-        String uInput = inGameMenu.selectDestination();
+        System.out.print("If you would like to select a different piece type " +
+                "back \nSelect a destination to move to > ");
+        String uInput = inGameMenu.askInput();
 
         if (uInput.equals("BACK")) {
             return null;
         }
         while (checkInputLength(uInput)) {
-            uInput = inGameMenu.selectDestination();
+            System.out.print("If you would like to select a different piece type " +
+                    "back \nSelect a destination to move to > ");
+            uInput = inGameMenu.askInput();
             if (uInput.equals("BACK")) {
                 return null;
             }
@@ -177,15 +191,17 @@ class Controller {
         // This loop is used to make sure the user selects a proper
         //	destination for their piece
         while (checkIfSamePos(fromP, toP) || checkInput(r, f) ||
-                !curP.validateMove(game.getSquare(fromP).getPosition(),
-                        toP)) {
-
-            uInput = inGameMenu.selectDestination();
+                checkIfValidMove(fromP,toP)) {
+            System.out.print("If you would like to select a different piece type " +
+                    "back \nSelect a destination to move to > ");
+            uInput = inGameMenu.askInput();
             if (uInput.equals("BACK")) {
                 return null;
             }
             while (checkInputLength(uInput)) {
-                uInput = inGameMenu.selectDestination();
+                System.out.print("If you would like to select a different piece type " +
+                        "back \nSelect a destination to move to > ");
+                uInput = inGameMenu.askInput();
                 if (uInput.equals("BACK")) {
                     return null;
                 }
@@ -280,9 +296,8 @@ class Controller {
             System.out.println("You have selected the same position as the" +
                     " current location of the piece");
             return true;
-        } else {
-            return false;
         }
+        return false;
 
     }
 
@@ -299,9 +314,48 @@ class Controller {
             System.out.println("You cannot select the other players " +
                     "pieces");
             return true;
-        } else {
-            return false;
         }
+        return false;
+    }
+
+    /**
+     * This method is used to check if the position that the user selected
+     * is withing the valid move set for the piece they selected
+     * @param fromP the position of the piece the player wants to move
+     * @param toP the position the player wants to move the piece to
+     * @return whether or not the user selected a valid position
+     */
+    private boolean checkIfValidMove(Position fromP, Position toP){
+        if (!curP.validateMove(game.getSquare(fromP).getPosition(), toP)){
+            System.out.println("That piece cannot move there, please " +
+                    "select a highlighted position");
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Used to choose the board type the user wants
+     * @return returns the type of board the user wants
+     */
+    private BoardStrategy chooseBoardType() {
+
+        BoardStrategy strategy;
+        System.out.println("If you would like a colored board, please type "
+                + "COLOR, if you would like MONO just enter anything else");
+        String uInput = mainMenu.askInput();
+        if (wantToExit(uInput)) {
+            System.exit(0);
+        } else {
+            if (uInput.equals("COLOR")) {
+                strategy = new Board_Color_CLI();
+            } else {
+                strategy = new Board_Mono_CLI();
+            }
+            return strategy;
+        }
+        return null;
     }
 
     /**
