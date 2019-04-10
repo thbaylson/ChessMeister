@@ -134,4 +134,24 @@ public interface BoardIF{
 	 * @return Clone of the object
 	 */
 	public BoardIF clone();
+
+	/**
+	 * Gets who's turn it is
+	 *
+	 * @return boolean true if black turn and false if white
+	 */
+	public boolean getTurn();
+
+	/**
+	 * Switches who's turn it is
+	 */
+	public void switchTurn();
+
+	/**
+	 * Sets the turn to the specified player
+	 * true for black and false for white
+	 *
+	 * @param turn - boolean variable for turn
+	 */
+	public void setTurn(boolean turn);
 }

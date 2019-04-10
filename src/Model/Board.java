@@ -20,6 +20,7 @@ public class Board implements BoardIF{
 	
 	/** The array of squares that represent a chess board**/
 	private SquareIF[][] bLayout;
+	private boolean turn;
 	
 	/** The method in which everything will be displayed to the user**/
 	private BoardStrategy strat;
@@ -35,6 +36,7 @@ public class Board implements BoardIF{
 	@Override
 	public void init_board() {
 		this.bLayout = new Square[8][8];
+		turn = false;
 	}
 
 	 /**
@@ -242,8 +244,17 @@ public class Board implements BoardIF{
 	 */
 	public void restoreState(Memento<BoardIF> memento){
 		BoardIF state = memento.getState();
-		this.bLayout = state.getSquares();
+		SquareIF[][] SQ = state.getSquares();
+		for (int i = 0; i < this.getWidth(); i++){ //Clones each piece and PieceValidator
+			for (int j = 0; j < this.getHeight(); j++){
+				bLayout[i][j] = SQ[i][j].clone();
+				if (bLayout[i][j].getPiece() != null) {
+					bLayout[i][j].getPiece().clonePV(this);
+				}
+			}
+		}
 		this.setDrawStrategy(state.getDrawStrategy());
+		this.turn = state.getTurn();
 	}
 
 	/**
@@ -255,6 +266,7 @@ public class Board implements BoardIF{
 		BoardIF newBoard = new Board();
 		SquareIF[][] newSQ = newBoard.getSquares();
 		newBoard.setDrawStrategy(this.strat);
+		newBoard.setTurn(this.turn);
 		for (int i = 0; i < this.getWidth(); i++){ //Clones each piece and PieceValidator
 			for (int j = 0; j < this.getHeight(); j++){
 				newSQ[i][j] = bLayout[i][j].clone();
@@ -266,4 +278,33 @@ public class Board implements BoardIF{
 		return newBoard;
 	}
 
+	/**
+	 * Gets who's turn it is
+	 *
+	 * @return boolean true if black turn and false if white
+	 */
+	public boolean getTurn(){
+		return turn;
+	}
+
+	/**
+	 * Switches who's turn it is
+	 */
+	public void switchTurn(){
+		if (turn){
+			turn = false;
+		}else{
+			turn = true;
+		}
+	}
+
+	/**
+	 * Sets the turn to the specified player
+	 * true for black and false for white
+	 *
+	 * @param turn - boolean variable for turn
+	 */
+	public void setTurn(boolean turn){
+		this.turn = turn;
+	}
 }
