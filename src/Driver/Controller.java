@@ -198,7 +198,12 @@ class Controller {
 
     }
 
-
+    /**
+     * This method is used to determine if the player has decided to exit the
+     * program part way, specifically when choosing the board type
+     * @param input user's input
+     * @return the result if the user wants to exit the program or not
+     */
     private boolean wantToExit(String input) {
         return input.equals("EXIT");
     }
