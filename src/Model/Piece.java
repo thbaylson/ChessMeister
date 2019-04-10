@@ -6,6 +6,7 @@ import Enums.GameColor;
 import Enums.Rank;
 import Interfaces.PieceIF;
 import Move_Validation.PieceValidator;
+import Interfaces.BoardIF;
 
 
 /**
@@ -167,5 +168,14 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		newPiece.setPieceValidator(this.pv);
 		newPiece.setPosition(this.pos.clone());
 		return newPiece;
+	}
+
+	/**
+	 * Clones the PieceValidator assigned to this piece
+	 *
+	 * @param board - The game board
+	 */
+	public void clonePV(BoardIF board){
+		this.pv = this.pv.clone(board);
 	}
 }

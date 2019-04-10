@@ -7,6 +7,7 @@ import Interfaces.BoardStrategy;
 import Memento.CareTaker;
 import Model.Board;
 import Model.Piece;
+import Interfaces.PieceIF;
 import Model.Position;
 import UI_CLI.Board_Color_CLI;
 import UI_CLI.Board_Mono_CLI;
@@ -55,14 +56,13 @@ public class Controller {
 			System.out.print("Select a piece to move or U or R> ");
 			uInput = input.next().toUpperCase(); // This is where what the user inputs is stored
 			if (uInput.charAt(0) == 'U') {
-				game.restoreState(ct.get());
+				game.restoreState(ct.undo());
 			} else if (uInput.charAt(0) == 'R') {
 				game.restoreState(ct.redo());
 			} else {
 				f = (char) (uInput.charAt(0));
 				r = (uInput.charAt(1) - 48);
-				Piece curp = (Piece) game.getPiece(r, f);
-				System.out.println("Square position: " + game.getPosition(r,f).getSquare().getPiece().getPosition());
+				PieceIF curp = game.getPiece(r, f);
 				game.showMoves(curp);
 
 				/**
@@ -103,8 +103,9 @@ public class Controller {
 				if (curp.validateMove(fromP, toP)) {
 					game.move(fromP, toP);
 				} else {
-					System.out.println("The position you chose is invlaid for that piece");
+					System.out.println("The position you chose is invalid for that piece");
 				}
+				game.switchTurn();
 				ct.add(game.saveState());
 			}
 		}

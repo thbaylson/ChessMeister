@@ -115,4 +115,15 @@ public class DiagonalValidator extends PieceValidator{
 		return send;	
 	}
 
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
+	public DiagonalValidator clone(BoardIF board){
+		DiagonalValidator DV = new DiagonalValidator(board);
+		return DV;
+	}
+
 }

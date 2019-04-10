@@ -123,4 +123,15 @@ public class KingValidator extends PieceValidator{
 		return send;
 	}
 
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
+	public KingValidator clone(BoardIF board){
+		KingValidator KV = new KingValidator(board);
+		return KV;
+	}
+
 }

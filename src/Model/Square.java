@@ -127,8 +127,7 @@ public class Square extends BlackAndWhite implements SquareIF{
 		newSquare.setPosition(this.pos.clone());
 		newSquare.pos.setSquare(newSquare);
 		if (this.sPiece != null){
-			newSquare.setPiece(this.sPiece.clone());
-			System.out.println("This is position: " + sPiece.getPosition());
+			newSquare.setPiece(this.sPiece.clone()); //Clone piece only if one exists on the square
 		}
 		newSquare.setHighlight(this.high);
 		return newSquare;

@@ -43,4 +43,11 @@ public abstract class PieceValidator extends Piece{
 		return (0 <= i && i < this.board.getWidth()) && (0 <= j && j < this.board.getHeight());
 	}
 
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
+	public abstract PieceValidator clone(BoardIF board);
 }

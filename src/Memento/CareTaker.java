@@ -6,7 +6,7 @@ import java.util.List;
 public class CareTaker<T> {
 
     /**A pointer for the currently selected memento*/
-    private int pointer = 0;
+    private int pointer = -1;
 
     /**A list of the previous states of the chess board*/
     private List<Memento<T>> mementoList = new ArrayList<>();
@@ -17,14 +17,14 @@ public class CareTaker<T> {
      * @param state - The memento to add to the list
      */
     public void add(Memento<T> state){
-        System.out.println("Add before: " + pointer);
-        mementoList.add(pointer, state);//Adds a memento to the list
-        pointer++;
-        System.out.println("Add after: " + pointer);
-        //Remove any memento ahead of the recently added one
-        for (int i = pointer+1; i < mementoList.size(); i++){
-            mementoList.remove(i);
+        //Remove any mementos after the add
+        List<Memento<T>> newList = new ArrayList<>();
+        for (int i = 0; i <= pointer; i++){
+            newList.add(mementoList.get(i));
         }
+        mementoList = newList;
+        mementoList.add(state);//add memento
+        pointer++;
     }
 
     /**
@@ -34,22 +34,17 @@ public class CareTaker<T> {
      * @return The desired memento
      */
     public Memento<T> get(int index){
-        pointer = index;
-        return mementoList.get(pointer);//gets memento
+        return mementoList.get(index);//gets memento
     }
 
     /**
-     * Gets the memento at the current pointer location
+     * undoes the memento at the current pointer location
      *
      * @return The memento at the current pointer location
      */
-    public Memento<T> get(){
-        System.out.println("Get before: " + pointer);
-        pointer = pointer - 2;
-        Memento<T> mem = this.mementoList.get(pointer);//gets memento
-        pointer++;
-        System.out.println("Get after: " + pointer);
-        return mem;
+    public Memento<T> undo(){
+        pointer --;
+        return get(pointer);
     }
 
     /**
@@ -60,11 +55,9 @@ public class CareTaker<T> {
      * if there is no mementos to redo
      */
     public Memento<T> redo(){
-        if (pointer+1 >= mementoList.size()){//Checks there is mementos to redo
-            return null;
-        }else{
+        if(pointer < mementoList.size() -1) {
             pointer++;
-            return mementoList.get(pointer);//gets memento
         }
+        return get(pointer);
     }
 }
