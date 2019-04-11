@@ -123,18 +123,19 @@ public class Square extends BlackAndWhite implements SquareIF{
 	 *
 	 * @return Clone of this Square
 	 */
-	public SquareIF clone(){
+	public SquareIF clone() {
 		Square newSquare = new Square(this.getColor());
 		newSquare.setPosition(this.pos.clone());
 		newSquare.pos.setSquare(newSquare);
-		if (this.sPiece != null){
+		if (this.sPiece != null) {
 			newSquare.setPiece(this.sPiece.clone()); //Clone piece only if one exists on the square
 		}
 		newSquare.setHighlight(this.high);
 		return newSquare;
+	}
 
 	@Override
-	public void setPiece(Piece piece, PieceValidator pv) {
+	public void setPiece(Piece piece, PieceValidator pv){
 		this.sPiece = piece;
 		this.sPiece.setPosition(this.pos);
 		sPiece.setPieceValidator(pv);

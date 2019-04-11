@@ -147,6 +147,10 @@ public class Board implements BoardIF{
 		this.strat = d;
 	}
 
+	public BoardStrategy getDrawStrategy(){
+		return this.strat;
+	}
+
 	 /**
 	  * getWidth- Gets the width of the board
 	 * @return: An int representing the width of the board
