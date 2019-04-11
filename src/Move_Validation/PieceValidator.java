@@ -14,7 +14,7 @@ import Model.Board;
 public abstract class PieceValidator extends Piece{
 	
 	Board board;
-	PieceValidator PV;
+	//PieceValidator PV;
 
 	/**
 	 * Constructor for PieceValidators
@@ -31,7 +31,7 @@ public abstract class PieceValidator extends Piece{
 	 * @param from - The position the piece is moving from
 	 * @param to - The position the piece is trying to move to
 	 * @return Boolean true if the move is valid and false otherwise
-	 */
+	 *
 	public boolean validateMove(Position from, Position to) {
 		Position[] pos = showMoves(from);
 		boolean valid = false;
@@ -45,7 +45,7 @@ public abstract class PieceValidator extends Piece{
 			}
 		}
 		return valid;
-	}
+	}*/
 
 	/**
 	 * Abstract method for making an array of valid moves of a piece
