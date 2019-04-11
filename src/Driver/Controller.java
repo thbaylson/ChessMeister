@@ -88,9 +88,11 @@ class Controller {
                     break;
                 case "2":
                     game.restoreState(ct.undo());
+                    switchPlayer();
                     break;
                 case "3":
                     game.restoreState(ct.redo());
+                    switchPlayer();
                     break;
                 case "EXIT":
                     System.exit(0);
