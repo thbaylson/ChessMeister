@@ -5,6 +5,7 @@ import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.MenuIF;
 import Interfaces.PieceIF;
+import Memento.CareTaker;
 import Model.Board;
 import Model.Position;
 import UI_CLI.Board_Color_CLI;
@@ -20,13 +21,17 @@ import UI_CLI.Board_Mono_CLI;
 class Controller {
 
     private int currentPlayer = 1;
-    private BoardIF game = new Board();
-    private MenuIF inGameMenu = new InGameMenu();
+    private BoardIF game;
+    private MenuIF inGameMenu;
     private PieceIF curP;
-    private MenuIF mainMenu = new MainMenu();
+    private MenuIF mainMenu;
+    private CareTaker<BoardIF> ct;
 
     Controller() {
-
+        game = new Board();
+        inGameMenu = new InGameMenu();
+        mainMenu = new MainMenu();
+        ct = new CareTaker<BoardIF>();
     }
 
     /**
@@ -35,7 +40,6 @@ class Controller {
     void go() {
 
         boolean gameIsRunning = true;
-
         while (gameIsRunning) {
             mainMenu.display();
             String uInput = mainMenu.askInput();
@@ -59,6 +63,7 @@ class Controller {
     private void runGame() {
 
         String uInput = "";
+        ct.add(game.saveState());
         while (!wantToExit(uInput)) {
             game.draw();
             System.out.println("Player " + currentPlayer + " It is your turn!");
@@ -73,7 +78,8 @@ class Controller {
                         if (toP != null) {
                             game.move(fromP, toP);
                             switchPlayer();
-                            //game.flipBoard();
+                            game.switchTurn();
+                            ct.add(game.saveState());
                         }
                     }
                     break;
@@ -81,10 +87,12 @@ class Controller {
                     game.draw();
                     break;
                 case "2":
-                    //Undo implementation
+                    game.restoreState(ct.undo());
+                    switchPlayer();
                     break;
                 case "3":
-                    //Redo implementation
+                    game.restoreState(ct.redo());
+                    switchPlayer();
                     break;
                 case "EXIT":
                     System.exit(0);
@@ -154,7 +162,7 @@ class Controller {
             }
             curP = game.getPiece(r, f);
             game.showMoves(curP);
-            return new Position(f, r);
+            return game.getPosition(r, f);
         }
     }
 
@@ -186,7 +194,7 @@ class Controller {
         }
         f = uInput.charAt(0);
         r = (uInput.charAt(1) - 48);
-        Position toP = new Position(f, r);
+        Position toP = game.getPosition(r, f);
 
         // This loop is used to make sure the user selects a proper
         //	destination for their piece

@@ -33,18 +33,31 @@ public class Board_Color_CLI implements BoardStrategy{
 		/**
 		 * Variable holding a 2D array of squares
 		 */
-		SquareIF[][] layout = board.getSquares();
-
+		SquareIF[][] layout = new SquareIF[8][8];
+		if (board.getTurn()){
+			SquareIF[][] flip = board.getSquares();
+			int R = 0;
+			for (int i = board.getWidth()-1; i >= 0; i--){
+				int F = 0;
+				for (int j = board.getHeight()-1; j >= 0; j--){
+					layout[R][F] = flip[i][j].clone();
+					F++;
+				}
+				R++;
+			}
+		}else{
+			layout = board.getSquares();
+		}
 		System.out.print("  ");
 		//Prints the Files above the board
 		for (int i = 0; i < Files.values().length; i++) {
-			System.out.print("   "  + Files.values()[i].getFile());
+			System.out.print("   "  + layout[i][0].getPosition().getFile().getFile());
 		}
 		System.out.println("\n");
 		//Outer loop for setting pieces on the board
 		for (int j = board.getHeight()-1; j > -1; j--) {
 			//Prints the rank to the left of the board
-			System.out.print(Rank.values()[j].getRank());
+			System.out.print(layout[0][j].getPosition().getRank().getRank());
 			System.out.print("   ");
 			//Inner for loop that sets pieces on the board
 			for (int i = 0; i < board.getWidth(); i++) {
@@ -59,7 +72,7 @@ public class Board_Color_CLI implements BoardStrategy{
                         System.out.print(BLACK_B + "    " + RESET);
                     }
                 }else {
-					//Checkes the color of the square and piece and sets them accordingly
+					//Checks the color of the square and piece and sets them accordingly
 					if (layout[i][j].getHighlight()) {
 						if (layout[i][j].getPiece().getColor().getColor() == 'w') {
 							System.out.print(YELLOW_B + W_BLUE + BOLD + layout[i][j].getPiece().toString() + RESET);

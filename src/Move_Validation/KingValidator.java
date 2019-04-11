@@ -111,7 +111,7 @@ public class KingValidator extends PieceValidator{
 					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file + 1][rank - 1].getPosition());
 		
-		
+		/**
 		Position[] send = new Position[moves.size()];
 		for (int i = 0; i < moves.size(); i++){
 			
@@ -120,7 +120,19 @@ public class KingValidator extends PieceValidator{
 	
 		
 		
-		return send;
+		return send;**/
+		return super.showMoves(moves, pos);
+	}
+
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
+	public KingValidator clone(BoardIF board){
+		KingValidator KV = new KingValidator(board);
+		return KV;
 	}
 
 }

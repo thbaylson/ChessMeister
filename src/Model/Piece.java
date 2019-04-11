@@ -6,6 +6,7 @@ import Enums.GameColor;
 import Enums.Rank;
 import Interfaces.PieceIF;
 import Move_Validation.PieceValidator;
+import Interfaces.BoardIF;
 
 
 /**
@@ -36,7 +37,9 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public Piece(ChessPieceType cpt, GameColor color) {
 		this.cpt = cpt;
 		this.color = color;
-		this.pv = null;
+		if(this.pv != null) {
+			this.pv.setColor(color);
+		}
 	}
 	
 	/**
@@ -65,15 +68,25 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 */
 	public PieceValidator getPieceValidator() {
 		return this.pv;
+		//return (this.pv != null) ? this.pv : null;
 	}
 
 	/**
-	 * Sets the PieceValidator
+	 * Sets the PieceValidator, the pieceValidator's color, and the color of the 
+	 * pieceValidators' piecevalidators;
 	 *
 	 * @param p - The PieceValidator to set
 	 */
 	public void setPieceValidator(PieceValidator p) {
+		PieceValidator temp;
 		this.pv = p;
+		this.pv.setColor(this.color);
+		
+		temp = this.pv.getPieceValidator();
+		while(temp != null) {
+			temp.setColor(this.color);
+			temp = temp.getPieceValidator();
+		}
 	}
 
 	/**
@@ -117,6 +130,10 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		return " " + this.color.getColor() + cpt.getLetter() + " ";
 	}
 
+	public void setColor(GameColor gc){
+		this.color = gc;
+	}
+
 	/**
 	 * Gets and returns the GameColor
 	 *
@@ -150,5 +167,28 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 */
 	public Position getPosition() {
 		return pos;
+	}
+
+	/**
+	 * Creates a deep clone of the piece object
+	 *
+	 * @return The clone of the piece object
+	 */
+	public PieceIF clone(){
+		Piece newPiece = new Piece();
+		newPiece.setChessPieceType(this.cpt);
+		newPiece.setColor(this.color);
+		newPiece.setPieceValidator(this.pv);
+		newPiece.setPosition(this.pos.clone());
+		return newPiece;
+	}
+
+	/**
+	 * Clones the PieceValidator assigned to this piece
+	 *
+	 * @param board - The game board
+	 */
+	public void clonePV(BoardIF board){
+		this.pv = this.pv.clone(board);
 	}
 }
