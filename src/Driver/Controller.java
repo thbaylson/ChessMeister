@@ -208,6 +208,7 @@ class Controller {
             }
             f = uInput.charAt(0);
             r = (uInput.charAt(1) - 48);
+            toP = new Position(f, r);
         }
         return new Position(f, r);
     }
