@@ -10,7 +10,7 @@ import Model.Position;
 /**
  * This validator is used to look in the diagonal directions of a piece and 
  * determine if the squares are valid positons to move to
- * @author Caleb Tupone
+ * @author Caleb Tupone 100% All
  *
  */
 

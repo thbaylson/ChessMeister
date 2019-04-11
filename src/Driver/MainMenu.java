@@ -28,6 +28,8 @@ public class MainMenu implements MenuIF {
 
     /**
      * This method displays the main menu
+     *
+     * @author Caleb Tupone 100%
      */
     @Override
     public void display() {

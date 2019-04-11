@@ -16,8 +16,8 @@ import UI_CLI.Board_Mono_CLI;
  * This class calls most if not all of the functions required to run the chess
  * game correctly
  *
- * @author Caleb Tupone 99%
- * @author Dillon Ramsey 1%
+ * @author Caleb Tupone 95% All methods
+ * @author Dillon Ramsey 5%
  */
 class Controller {
 
@@ -75,7 +75,7 @@ class Controller {
 
         String uInput = "";
         ct.add(game.saveState());
-        while (!wantToExit(uInput)) {
+        while (true) {
             game.draw();
             if (currentPlayer == 1)
                 System.out.println(player1 + " it is your turn!");

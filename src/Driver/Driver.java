@@ -1,7 +1,7 @@
 package Driver;
 /**
  * Driver that runs the game and accepts user input
- * @author Caleb Tupone 100%
+ * @author Caleb Tupone 100% All
  *
  *
  */

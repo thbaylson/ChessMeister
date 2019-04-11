@@ -9,7 +9,7 @@ import Model.Position;
 /**
  * Interface for the board
  *
- * @author Caleb
+ * @author Caleb Tupone 100% All
  * @version 1.0
  */
 public interface BoardIF{

@@ -14,7 +14,7 @@ import Model.Board;
 /**
  * Abstract class that is used for the decorator subclasses
  *
- * @author Tyler (100%)
+ * @author Tyler 100% all
  * @version 1.0
  */
 public abstract class PieceValidator extends Piece{
@@ -62,12 +62,12 @@ public abstract class PieceValidator extends Piece{
 		/** Once we've gathered our movement options, cut out the ones that put us into check**/
 		newMoves.addAll(moves);
 		ArrayList<Position> removable = new ArrayList<Position>();
-		for(Position to : newMoves){
-			if(!checkSafe(from, to, player)){
-				removable.add(to);
-			}
-		}
-		newMoves.removeAll(removable);
+//		for(Position to : newMoves){
+//			if(!checkSafe(from, to, player)){
+//				removable.add(to);
+//			}
+//		}
+//		newMoves.removeAll(removable);
 		return newMoves.toArray(allMoves);
 	}
 

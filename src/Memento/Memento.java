@@ -4,7 +4,7 @@ package Memento;
  * A Memento class that takes in the previous state of the chess board
  * and saves it so that it may later be returned.
  *
- * @author Dillon Ramsey
+ * @author Dillon Ramsey 100% All
  * @version 1.0
  */
 public class Memento<T> {

@@ -10,8 +10,8 @@ import Move_Validation.PieceValidator;
 /**
  * The interface for piece
  *
- * @author Caleb
- * @version 1.0
+ * @author Caleb Tupone %60 everything else
+ * @author Dillon Ramsey %40 clone and clonePV
  */
 public interface PieceIF {
 	/**

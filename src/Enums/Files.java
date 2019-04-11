@@ -3,8 +3,8 @@ package Enums;
 /**
  * Enum for the files on the chess board
  * 
- * @author Caleb, Tyler
- *
+ * @author Caleb Tupone %70 the enum itself and the getter
+ * @author Tyler Baylson %30 both the switch cases
  */
 public enum Files {
 	

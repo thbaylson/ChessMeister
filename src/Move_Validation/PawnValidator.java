@@ -3,7 +3,7 @@ package Move_Validation;
 /**
  * Move validator for pawns
  *
- * @author Dillon Ramsey
+ * @author Dillon Ramsey 100% all
  * @version 1.0
  */
 

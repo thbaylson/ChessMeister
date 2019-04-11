@@ -3,7 +3,7 @@ package Interfaces;
 /**
  * Interface for board strategy
  *
- * @author Caleb
+ * @author Caleb Tupone 100% All
  * @version 1.0
  */
 public interface BoardStrategy {
