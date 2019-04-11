@@ -76,4 +76,6 @@ public interface PieceIF {
      * @return The position of the piece
      */
     public Position getPosition();
+
+    public void changeValidator(PieceValidator pv);
 }

@@ -121,6 +121,13 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		return isValid;
 	}
 
+	public void changeValidator(PieceValidator pv){
+		this.setPieceValidator(pv);
+		this.getPieceValidator().setChessPieceType(this.getChessPieceType());
+		this.getPieceValidator().setPosition(this.getPosition());
+		this.getPieceValidator().setColor(this.getColor());
+	}
+
 	/**
 	 * Prints out the color and type of the chess piece
 	 */
@@ -145,7 +152,6 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 */
 	public Position[] showMoves(){
 		return this.getPieceValidator().showMoves(this.pos);
-
 	}
 
 	/**

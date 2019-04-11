@@ -48,7 +48,6 @@ public abstract class PieceValidator extends Piece{
 	 */
 	public Position[] showMoves(Collection<Position> moves, Position from) {
 		ArrayList<Position> newMoves = new ArrayList<Position>();
-		Position[] allMoves = new Position[moves.size()];
 		int player = (this.isWhite()) ? 1 : 2;
 
 		/** If this validator is wrapped, we need to collect the moves of the wrapping validator**/
@@ -57,17 +56,24 @@ public abstract class PieceValidator extends Piece{
 			for (int i = 0; i < moveArray.length; i++) {
 				newMoves.add(moveArray[i]);
 			}
+			newMoves.addAll(moves);
+
+		}else{
+			/**==============Recursion Base Case==================
+			* Once we've gathered our movement options, cut out the ones that put us into check**/
+			newMoves.addAll(moves);
+			ArrayList<Position> removable = new ArrayList<Position>();
+			for(Position to : newMoves){
+				/** Calls ShowMoves, thus starts the recursion over from the top and leads to infinite recursion**/
+				if(!checkSafe(from, to, player)){
+					removable.add(to);
+				}
+			}
+			newMoves.removeAll(removable);
 		}
 		
-		/** Once we've gathered our movement options, cut out the ones that put us into check**/
-		newMoves.addAll(moves);
-		ArrayList<Position> removable = new ArrayList<Position>();
-		for(Position to : newMoves){
-			if(!checkSafe(from, to, player)){
-				removable.add(to);
-			}
-		}
-		newMoves.removeAll(removable);
+
+		Position[] allMoves = new Position[moves.size()];
 		return newMoves.toArray(allMoves);
 	}
 
@@ -75,7 +81,67 @@ public abstract class PieceValidator extends Piece{
 	 * Will look at the current board state to ascertain if the given player is in check
 	 * @return
 	 */
-	private boolean isChecked(int player){
+	private boolean isChecked(PieceIF king, int player){
+		PieceValidator old = king.getPieceValidator();
+		GameColor myColor = (player == 1) ? GameColor.WHITE : GameColor.BLACK;
+
+		//Check if the king is checked by an enemy rook
+		king.changeValidator(new HortzVertzValidator(board));
+		Position[] rookMoves = king.getPieceValidator().showMoves();
+		for(Position p : rookMoves){
+			System.out.println(p);
+			if(p.getSquare().getPiece() != null){
+				if(p.getSquare().getPiece().getChessPieceType() == ChessPieceType.Rook ||
+						p.getSquare().getPiece().getChessPieceType() == ChessPieceType.Queen){
+					if(p.getSquare().getPiece().getColor() != myColor){
+						return true;
+					}
+				}
+			}
+		}
+		//Check if the king is checked by an enemy bishop
+		king.changeValidator(new DiagonalValidator(board));
+		Position[] bishopMoves = king.getPieceValidator().showMoves();
+		for(Position p : bishopMoves){
+			if(p.getSquare().getPiece() != null){
+				if(p.getSquare().getPiece().getChessPieceType() == ChessPieceType.Bishop ||
+						p.getSquare().getPiece().getChessPieceType() == ChessPieceType.Queen){
+					if(p.getSquare().getPiece().getColor() != myColor){
+						return true;
+					}
+				}
+			}
+		}
+
+		//Check if the king is checked by an enemy knight
+		king.changeValidator(new KnightValidator(board));
+		Position[] knightMoves = king.getPieceValidator().showMoves();
+		for(Position p : knightMoves){
+			System.out.println(p);
+			if(p.getSquare().getPiece() != null){
+				if(p.getSquare().getPiece().getChessPieceType() == ChessPieceType.Knight){
+					if(p.getSquare().getPiece().getColor() != myColor){
+						return true;
+					}
+				}
+			}
+		}
+		//Check if the king is checked by an enemy pawn
+		king.changeValidator(new PawnValidator(board));
+		Position[] pawnMoves = king.getPieceValidator().showMoves();
+		for(Position p : pawnMoves){
+			if(p.getSquare().getPiece() != null){
+				if(p.getSquare().getPiece().getChessPieceType() == ChessPieceType.Pawn){
+					if(p.getSquare().getPiece().getColor() != myColor){
+						return true;
+					}
+				}
+			}
+		}
+
+
+
+		/** CALEB IS A GOD
 		PieceIF king;
 		int enemyNum;
 		if(player == 1){
@@ -85,21 +151,21 @@ public abstract class PieceValidator extends Piece{
 			king = findKing(board.getPlayerPieces(player), GameColor.BLACK);
 			enemyNum = 1;
 		}
-//		for(PieceIF enemy : board.getPlayerPieces(enemyNum)) {
-//			for(Position option : enemy.showMoves()) {
-//				if(option.getSquare().getPiece() == king){
-//					System.out.println("Player " + player + "is in Check!");
-//					return true;
-//				}
-//			}
-//		}
+		for(PieceIF enemy : board.getPlayerPieces(enemyNum)) {
+			for(Position option : enemy.showMoves()) {
+				if(option.getSquare().getPiece() == king){
+					System.out.println("Player " + player + "is in Check!");
+					return true;
+				}
+			}
+		}**/
 		return false;
 	}
 
 	private boolean checkSafe(Position from, Position to, int player){
 		boolean check = false;
 		board.move(from, to);//Move the piece to that position to check if it's safe
-		if(!isChecked(player)){
+		if(!isChecked(findKing(board.getPlayerPieces(player), player), player)){
 			check = true;
 		}
 		board.move(to, from);//Move the piece back to its original position
@@ -110,10 +176,11 @@ public abstract class PieceValidator extends Piece{
 	 * findKing- For any given, valid color and piece type, this will attempt to return that
 	 * piece. If that piece is not on the board, this returns null.
 	 * @param pieces: The pieces of a single person
-	 * @param color: The color of the desired piece
+	 * @param player:
 	 * @return A piece on the board or null
 	 */
-	private PieceIF findKing(ArrayList<PieceIF> pieces, GameColor color){
+	private PieceIF findKing(ArrayList<PieceIF> pieces, int player){
+		GameColor color = (player == 1) ? GameColor.WHITE : GameColor.BLACK;
 		for(PieceIF p : pieces){
 			if(p.getColor().equals(color) && p.getChessPieceType().equals(ChessPieceType.King)){
 				return p;
