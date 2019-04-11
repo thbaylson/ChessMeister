@@ -24,28 +24,24 @@ public class HortzVertzValidator extends PieceValidator {
 	 * @param pos - The position of the piece currently selected
 	 * @return result - An array containing the moves available to this piece as position objects
 	 */
+	@Override
 	public Position[] showMoves(Position pos) {
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
-		Position[] result;
 
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
 		
-		moves.addAll(checkLeft(rank, file, squares));
-		moves.addAll(checkRight(rank, file, squares));
-		moves.addAll(checkUp(rank, file, squares));
-		moves.addAll(checkDown(rank, file, squares));
+		moves.addAll(checkLeft(rank, file, squares));// 	(file-- until 0)			, rank
+		moves.addAll(checkRight(rank, file, squares));// 	(file++ until board.length)	, rank
+		moves.addAll(checkUp(rank, file, squares));// 		file						, (rank++ until board.length)
+		moves.addAll(checkDown(rank, file, squares));// 	file						, (rank-- until 0)
 
-		result = new Position[moves.size()];
-		for (int i = 0; i < moves.size(); i++){
-			result[i] = moves.get(i);
-		}
-		return result;
+		return super.showMoves(moves, pos);
 	}
 	
 	/**
-	 * checkDown- Helper method to check all squares to the left of this piece
+	 * checkLeft- Helper method to check all squares to the left of this piece
 	 * @param rank- Relates to an integer spanning the width of the board
 	 * @param file- Relates to an integer spanning the height of the board
 	 * @param squares- The 2D array of squares that compose the board
@@ -59,6 +55,7 @@ public class HortzVertzValidator extends PieceValidator {
 			}else if(inRange(i, rank) && (squares[i][rank].getPiece().getColor() != 
 					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[i][rank].getPosition());
+				break;
 			}else {
 				return moves;
 			}
@@ -67,7 +64,7 @@ public class HortzVertzValidator extends PieceValidator {
 	}
 	
 	/**
-	 * checkDown- Helper method to check all squares to the right of this piece
+	 * checkRight- Helper method to check all squares to the right of this piece
 	 * @param rank- Relates to an integer spanning the width of the board
 	 * @param file- Relates to an integer spanning the height of the board
 	 * @param squares- The 2D array of squares that compose the board
@@ -81,6 +78,7 @@ public class HortzVertzValidator extends PieceValidator {
 			}else if(inRange(i, rank) && (squares[i][rank].getPiece().getColor() != 
 					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[i][rank].getPosition());
+				break;
 			}else {
 				return moves;
 			}
@@ -89,7 +87,7 @@ public class HortzVertzValidator extends PieceValidator {
 	}
 	
 	/**
-	 * checkDown- Helper method to check all squares above this piece
+	 * checkUp- Helper method to check all squares above this piece
 	 * @param rank- Relates to an integer spanning the width of the board
 	 * @param file- Relates to an integer spanning the height of the board
 	 * @param squares- The 2D array of squares that compose the board
@@ -103,6 +101,7 @@ public class HortzVertzValidator extends PieceValidator {
 			}else if(inRange(file, j) && (squares[file][j].getPiece().getColor() != 
 					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[file][j].getPosition());
+				break;
 			}else {
 				return moves;
 			}
@@ -125,10 +124,22 @@ public class HortzVertzValidator extends PieceValidator {
 			}else if(inRange(file, j) && (squares[file][j].getPiece().getColor() != 
 					(squares[file][rank].getPiece().getColor() ))){
 				moves.add(squares[file][j].getPosition());
+				break;
 			}else {
 				return moves;
 			}
 		}
 		return moves;
+	}
+
+	/**
+	 * Clones this validator
+	 *
+	 * @param board - The game board
+	 * @return Returns a clone of this validator using a new board
+	 */
+	public HortzVertzValidator clone(BoardIF board){
+		HortzVertzValidator HVV = new HortzVertzValidator(board);
+		return HVV;
 	}
 }

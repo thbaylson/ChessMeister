@@ -1,7 +1,9 @@
 package Interfaces;
 
 import Enums.ChessPieceType;
+import Enums.Files;
 import Enums.GameColor;
+import Enums.Rank;
 import Model.Position;
 import Move_Validation.PieceValidator;
 
@@ -52,12 +54,9 @@ public interface PieceIF {
 	/**
 	 * Method to list the moves available to the piece
 	 *
-	 * @param pos - The position of the piece to check
 	 * @return An array containing all the valid moves
 	 */
-	public default Position[] showMoves(Position pos) {
-		return this.getPieceValidator().showMoves(pos);
-	}
+	public Position[] showMoves();
 
 	/**
 	 * Gets the color of the piece
@@ -65,4 +64,30 @@ public interface PieceIF {
 	 * @return The color of the piece
 	 */
 	public GameColor getColor();
+
+    /**
+     * Sets the position of the piece
+     */
+    public void setPosition(Position pos);
+
+    /**
+     * Gets and returns the position of the piece
+     *
+     * @return The position of the piece
+     */
+    public Position getPosition();
+
+	/**
+	 * Creates a clone of this object
+	 *
+	 * @return Clone of this object
+	 */
+	public PieceIF clone();
+
+	/**
+	 * Clones the PieceValidator assigned to this piece
+	 *
+	 * @param board - The game board
+	 */
+	public void clonePV(BoardIF board);
 }

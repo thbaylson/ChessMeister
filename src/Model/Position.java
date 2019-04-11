@@ -14,7 +14,6 @@ import Interfaces.SquareIF;
 public class Position {
 	
 	private SquareIF sq;
-	
 	private Files file;
 	private Rank rank;
 	
@@ -87,6 +86,15 @@ public class Position {
 	public void setSquare(SquareIF square) {
 		this.sq = square;
 	}
+	
+	/**
+	 * toString- Returns an appropriate string representing this object.
+	 * @return The string version of this object
+	 */
+	@Override
+	public String toString() {
+		return "[".concat(this.file.toString()).concat("][").concat(this.rank.toString()).concat("]");
+	}
 
 	/**
 	 * Method to check if a object is equal to this position
@@ -108,5 +116,10 @@ public class Position {
 		if (rank != other.rank)
 			return false;
 		return true;
+	}
+
+	public Position clone(){
+		Position newPos = new Position(this.file, this.rank);
+		return newPos;
 	}
 }
