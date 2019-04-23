@@ -1,5 +1,6 @@
 package Move_Validation;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -133,6 +134,26 @@ public abstract class PieceValidator extends Piece{
 	boolean inRange(int i, int j) {
 		return (0 <= i && i < this.board.getWidth()) && (0 <= j && j < this.board.getHeight());
 	}
+
+	ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
+		ArrayList<Position> endMoves = new ArrayList<>();
+		System.out.println("The piece position: " + piecePos);
+		System.out.println("The first position in array: " + moves.get(0));
+		for (Position pos : moves){
+			BoardIF newBoard = board.clone();
+			Position newPPos = newBoard.getPosition(piecePos.getRank().getRank(), piecePos.getFile().getFile());
+			Position newPos = newBoard.getPosition(pos.getRank().getRank(), pos.getFile().getFile());
+			newBoard.move(newPPos, newPos);
+			System.out.println("new Pos: " + newPos);
+			if (!newBoard.check()){
+				System.out.println("Pos: " + pos);
+				endMoves.add(pos);
+			}
+		}
+		return endMoves;
+	}
+
+	public abstract ArrayList<Position> checkMoves(Position pos);
 
 	/**
 	 * Clones this validator

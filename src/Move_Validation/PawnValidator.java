@@ -13,7 +13,7 @@ import Interfaces.BoardIF;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 import Model.Position;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class PawnValidator extends PieceValidator{
 
@@ -21,7 +21,7 @@ public class PawnValidator extends PieceValidator{
 	 * A linked list containing the valid positions for the selected
 	 * pawn to move to
 	 */
-	LinkedList<Position> pos;
+	ArrayList<Position> pos;
 	/**A 2D array containing all the sqaure that make up the chess board*/
 	SquareIF sq[][];
 
@@ -32,7 +32,7 @@ public class PawnValidator extends PieceValidator{
 	 */
 	public PawnValidator(BoardIF board) {
 		super(board);
-		pos = new LinkedList<>();
+		pos = new ArrayList<>();
 		sq = board.getSquares();
 	}
 
@@ -43,6 +43,24 @@ public class PawnValidator extends PieceValidator{
 	 * @return send - An array containing the moves available to this pawn as position objects
 	 */
 	public Position[] showMoves(Position pPos) {
+
+		pos = checkMoves(pPos);
+		System.out.println("The validator: " + pPos);
+		pos = super.checkForCheck(pos, pPos);
+
+		/**An array containing the valid positions the pawn can move to*/
+		Position[] send = new Position[pos.size()];
+
+		//For loop to populate the valid positions array using the linked list
+		for (int i = 0; i < pos.size(); i++){
+			send[i] = pos.get(i);
+		}
+
+		return send;
+	}
+
+	@Override
+	public ArrayList<Position> checkMoves(Position pPos) {
 		/**The File position of the current piece*/
 		Files f = pPos.getFile();
 		/**The Rank position of the current piece*/
@@ -65,15 +83,8 @@ public class PawnValidator extends PieceValidator{
 		}
 		//Checks the diagonals of the pawn to see if it can take a piece
 		CheckDiagonal(f, r, p);
-		/**An array containing the valid positions the pawn can move to*/
-		Position[] send = new Position[pos.size()];
 
-		//For loop to populate the valid positions array using the linked list
-		for (int i = 0; i < pos.size(); i++){
-			send[i] = pos.get(i);
-		}
-
-		return send;
+		return pos;
 	}
 
 	/**

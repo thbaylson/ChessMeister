@@ -26,18 +26,28 @@ public class HortzVertzValidator extends PieceValidator {
 	 */
 	@Override
 	public Position[] showMoves(Position pos) {
+		System.out.println("Show Moves Rank and file: " + pos.getRank() + "   " + pos.getFile());
+		ArrayList<Position> moves = checkMoves(pos);
+		moves = super.checkForCheck(moves, pos);
+
+		return super.showMoves(moves, pos);
+	}
+
+	public ArrayList<Position> checkMoves(Position pos){
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
 
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
-		
+
+		System.out.println("Rank and file: " + pos.getRank() + "   " + pos.getFile());
+
 		moves.addAll(checkLeft(rank, file, squares));// 	(file-- until 0)			, rank
 		moves.addAll(checkRight(rank, file, squares));// 	(file++ until board.length)	, rank
 		moves.addAll(checkUp(rank, file, squares));// 		file						, (rank++ until board.length)
 		moves.addAll(checkDown(rank, file, squares));// 	file						, (rank-- until 0)
 
-		return super.showMoves(moves, pos);
+		return moves;
 	}
 	
 	/**
@@ -76,7 +86,7 @@ public class HortzVertzValidator extends PieceValidator {
 			if (inRange(i, rank) && squares[i][rank].getPiece() == null) {
 				moves.add(squares[i][rank].getPosition());
 			}else if(inRange(i, rank) && (squares[i][rank].getPiece().getColor() != 
-					(squares[file][rank].getPiece().getColor() ))){
+					(squares[file][rank].getPiece().getColor()))){
 				moves.add(squares[i][rank].getPosition());
 				break;
 			}else {

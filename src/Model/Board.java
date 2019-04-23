@@ -293,14 +293,23 @@ public class Board implements BoardIF{
 		SquareIF[][] newSQ = newBoard.getSquares();
 		newBoard.setDrawStrategy(this.strat);
 		newBoard.setTurn(this.turn);
+		ArrayList<PieceIF> P1 = new ArrayList<>();
+		ArrayList<PieceIF> P2 = new ArrayList<>();
 		for (int i = 0; i < this.getWidth(); i++){ //Clones each piece and PieceValidator
 			for (int j = 0; j < this.getHeight(); j++){
 				newSQ[i][j] = bLayout[i][j].clone();
 				if (newSQ[i][j].getPiece() != null) {
 					newSQ[i][j].getPiece().clonePV(newBoard);
+					if (newSQ[i][j].getPiece().getColor().getColor() == 'w'){
+						P1.add(newSQ[i][j].getPiece());
+					}else if (newSQ[i][j].getPiece().getColor().getColor() == 'b'){
+						P2.add(newSQ[i][j].getPiece());
+					}
 				}
 			}
 		}
+		newBoard.setPOne(P1);
+		newBoard.setPTwo(P2);
 		return newBoard;
 	}
 
@@ -332,5 +341,59 @@ public class Board implements BoardIF{
 	 */
 	public void setTurn(boolean turn){
 		this.turn = turn;
+	}
+
+	public boolean check(){
+		ArrayList<PieceIF> Pieces = new ArrayList<>();
+		boolean isCheck = false;
+		if (!turn){
+			Pieces = playerTwoPieces;
+			for (PieceIF p : playerOnePieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					KingValidator kv = (KingValidator)p.getPieceValidator();
+					isCheck = kv.check(Pieces, p.getPosition());
+				}
+			}
+		}else{
+			Pieces = playerOnePieces;
+			for (PieceIF p : playerTwoPieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					KingValidator kv = (KingValidator)p.getPieceValidator();
+					isCheck = kv.check(Pieces, p.getPosition());
+				}
+			}
+		}
+		return isCheck;
+	}
+
+	public boolean checkmate(){
+		ArrayList<PieceIF> Pieces = new ArrayList<>();
+		boolean isCheckmate = false;
+		if (turn){
+			Pieces = playerTwoPieces;
+			for (PieceIF p : playerOnePieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					KingValidator kv = (KingValidator)p.getPieceValidator();
+					isCheckmate = kv.checkmate(Pieces);
+				}
+			}
+		}else{
+			Pieces = playerOnePieces;
+			for (PieceIF p : playerTwoPieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					KingValidator kv = (KingValidator)p.getPieceValidator();
+					isCheckmate = kv.checkmate(Pieces);
+				}
+			}
+		}
+		return isCheckmate;
+	}
+
+	public void setPOne(ArrayList<PieceIF> P1){
+		playerOnePieces = P1;
+	}
+
+	public void setPTwo(ArrayList<PieceIF> P2){
+		playerTwoPieces = P2;
 	}
 }

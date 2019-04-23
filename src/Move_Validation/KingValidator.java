@@ -4,8 +4,11 @@ package Move_Validation;
 import java.util.ArrayList;
 
 
+import Enums.ChessPieceType;
 import Interfaces.BoardIF;
+import Interfaces.PieceIF;
 import Interfaces.SquareIF;
+import Model.Piece;
 import Model.Position;
 /**
  * 
@@ -19,7 +22,20 @@ public class KingValidator extends PieceValidator{
 		super(board);
 	}
 
-	public Position[] showMoves(Position pos) {
+	public Position[] showMoves(Position pos){
+		ArrayList<Position> moves = new ArrayList<>();
+		for (Position kPos : this.checkMoves(pos)){
+			moves.add(kPos);
+		}
+		moves = super.checkForCheck(moves, pos);
+
+		Position[] moveList = new Position[moves.size()];
+		for (int i = 0; i < moves.size(); i++){
+			moveList[i] = moves.get(i);
+		}
+		return moveList;
+	}
+	public ArrayList<Position> checkMoves(Position pos) {
 		
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
@@ -33,6 +49,7 @@ public class KingValidator extends PieceValidator{
 		 * This if-statement allows the king to move right 1
 		 */
 		if (file + 1 < this.board.getWidth())
+			System.out.println("KingVal Right: " + squares[file][rank].getPiece());
 			if (squares[file + 1][rank].getPiece() == null)
 				moves.add(squares[file + 1][rank].getPosition());
 			else if(squares[file + 1][rank].getPiece().getColor() 
@@ -110,18 +127,47 @@ public class KingValidator extends PieceValidator{
 			else if(squares[file + 1][rank - 1].getPiece().getColor() 
 					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file + 1][rank - 1].getPosition());
-		
-		/**
-		Position[] send = new Position[moves.size()];
-		for (int i = 0; i < moves.size(); i++){
-			
-			send[i] = moves.get(i);
+
+		return moves;
+	}
+
+	public boolean check(ArrayList<PieceIF> op, Position kPos){
+		ArrayList<Position> allPos = new ArrayList<>();
+		ArrayList<PieceIF> Pieces = op;
+		for (PieceIF piece : Pieces){
+			if (piece.getChessPieceType() != ChessPieceType.King){
+				System.out.println("Check in king: " + piece.getPosition());
+				ArrayList<Position> ray = piece.getPieceValidator().checkMoves(piece.getPosition());
+				for (Position pos : ray){
+					allPos.add(pos);
+				}
+			}else{
+				KingValidator kv = (KingValidator)piece.getPieceValidator();
+				ArrayList<Position> ray = kv.checkMoves(piece.getPosition());
+				for (Position pos : ray){
+					allPos.add(pos);
+				}
+			}
 		}
-	
-		
-		
-		return send;**/
-		return super.showMoves(moves, pos);
+		for (Position pos : allPos){
+			if (kPos == pos){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkmate(ArrayList<PieceIF> pieceRay){
+		ArrayList<Position> posList = new ArrayList<>();
+		for (PieceIF piece : pieceRay){
+			for (Position thePos : piece.showMoves()){
+				posList.add(thePos);
+			}
+		}
+		if (posList.isEmpty()){
+			return true;
+		}
+		return false;
 	}
 
 	/**

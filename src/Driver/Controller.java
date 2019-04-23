@@ -67,6 +67,13 @@ class Controller {
         while (!wantToExit(uInput)) {
             game.draw();
             System.out.println("Player " + currentPlayer + " It is your turn!");
+            if (game.check()){
+                if (game.checkmate()){
+                    System.out.println("Player " + currentPlayer + ", you lose");
+                }else{
+                    System.out.println("Player " + currentPlayer + ", you are in check");
+                }
+            }
             inGameMenu.display();
 
             uInput = inGameMenu.askInput();

@@ -6,6 +6,8 @@ import Memento.Memento;
 import Model.Board;
 import Model.Position;
 
+import java.util.ArrayList;
+
 /**
  * Interface for the board
  *
@@ -154,4 +156,12 @@ public interface BoardIF{
 	 * @param turn - boolean variable for turn
 	 */
 	public void setTurn(boolean turn);
+
+	public boolean check();
+
+	public boolean checkmate();
+
+	public void setPOne(ArrayList<PieceIF> P1);
+
+	public void setPTwo(ArrayList<PieceIF> P2);
 }

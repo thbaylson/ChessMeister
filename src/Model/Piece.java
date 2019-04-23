@@ -149,8 +149,8 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 * @return An array containing all the valid moves
 	 */
 	public Position[] showMoves(){
+		System.out.println("This piece: " + this.pos);
 		return this.getPieceValidator().showMoves(this.pos);
-
 	}
 
 	/**

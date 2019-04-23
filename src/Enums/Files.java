@@ -58,29 +58,31 @@ public enum Files {
 	 */
 	public static int getArrayp(char f) {
 		Files files = Files.A;
+		String s = "" + f;
+		f = s.toLowerCase().toCharArray()[0];
 		switch(f) {
-		case 'A':
+		case 'a':
 			files = Files.A;
 			break;
-		case 'B':
+		case 'b':
 			files = Files.B;
 			break;
-		case 'C':
+		case 'c':
 			files = Files.C;
 			break;
-		case 'D':
+		case 'd':
 			files = Files.D;
 			break;
-		case 'E':
+		case 'e':
 			files = Files.E;
 			break;
-		case 'F':
+		case 'f':
 			files = Files.F;
 			break;
-		case 'G':
+		case 'g':
 			files = Files.G;
 			break;
-		case 'H':
+		case 'h':
 			files = Files.H;
 			break;
 		}
