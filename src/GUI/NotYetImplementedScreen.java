@@ -1,4 +1,4 @@
-package Driver;
+package GUI;
 
 /**
  * @author Caleb Tupone

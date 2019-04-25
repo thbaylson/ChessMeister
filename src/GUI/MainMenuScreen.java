@@ -2,18 +2,21 @@ package GUI;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
  * @author Caleb Tupone
  */
-public class MainMenu extends VBox implements EventHandler<ActionEvent>{
+public class MainMenuScreen extends VBox implements EventHandler<ActionEvent>{
 
-    private static MainMenu mainMenu;
+    private static MainMenuScreen mainMenuScreen;
+
+    Label title;
 
     Button twoPlayerButton;
     Button cpuPlayerButton;
@@ -24,9 +27,13 @@ public class MainMenu extends VBox implements EventHandler<ActionEvent>{
 
     ScreenChangeHandler sch;
 
-    private MainMenu() {
+    private MainMenuScreen() {
+        title = new Label("Chess-Meister");
+        title.setScaleX(8);
+        title.setScaleY(8);
+        title.setPadding(new Insets(0,0,30,0));
 
-
+        getChildren().add(title);
         setAlignment(Pos.CENTER);
         setSpacing(50);
 
@@ -48,10 +55,8 @@ public class MainMenu extends VBox implements EventHandler<ActionEvent>{
      * @return returns a button
      */
     private Button addButton(Pane pane, String text){
-        Button btn = new Button();
-        btn.setPrefHeight(30);
-        btn.setPrefWidth(200);
-        btn.setText(text);
+        Button btn = new Button(text);
+        btn.setPrefSize(200, 30);
         btn.setOnAction(this);
         pane.getChildren().add(btn);
         return btn;
@@ -61,10 +66,12 @@ public class MainMenu extends VBox implements EventHandler<ActionEvent>{
     public void handle(ActionEvent event) {
 
         if(event.getSource() == twoPlayerButton){
+            System.out.println("TEST");
             sch.switchScreen(ScreenChangeHandler.Screens.GAMESCREEN);
 
         }
         else if(event.getSource() == cpuPlayerButton){
+
             //sch.switchUI(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == onlinePlayButton){
@@ -80,11 +87,11 @@ public class MainMenu extends VBox implements EventHandler<ActionEvent>{
     }
 
     /**Get a singleton instance of this class**/
-    static MainMenu getInstance(){
-        if(mainMenu == null)
-            mainMenu = new MainMenu();
+    static MainMenuScreen getInstance(){
+        if(mainMenuScreen == null)
+            mainMenuScreen = new MainMenuScreen();
 
-        return mainMenu;
+        return mainMenuScreen;
     }
 
     void register(ScreenChangeHandler screen){

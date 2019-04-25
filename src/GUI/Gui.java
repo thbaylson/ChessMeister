@@ -1,13 +1,9 @@
 package GUI;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -29,7 +25,7 @@ public class Gui extends Application implements ScreenChangeHandler {
         try{
             switchScreen(Screens.MAINMENU);
 
-            MainMenu.getInstance().register(this);
+            MainMenuScreen.getInstance().register(this);
 
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -55,6 +51,7 @@ public class Gui extends Application implements ScreenChangeHandler {
     }
 
 
+
     public void startGui(String[] args){
         main(args);
     }
@@ -64,7 +61,7 @@ public class Gui extends Application implements ScreenChangeHandler {
 
         switch(screen){
             case MAINMENU:
-                root = MainMenu.getInstance();
+                root = MainMenuScreen.getInstance();
 
                 break;
             case GAMESCREEN:
@@ -74,6 +71,7 @@ public class Gui extends Application implements ScreenChangeHandler {
                 break;
             case OPTIONS:
                 //root = new optionMenu();
+
                 break;
             case NOTYETIMPLEMENTED:
                 //root = notYetImplementedScreen.getInstance();

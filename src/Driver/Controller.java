@@ -11,6 +11,8 @@ import Model.Board;
 import Model.Position;
 import UI_CLI.Board_Color_CLI;
 import UI_CLI.Board_Mono_CLI;
+import UI_CLI.InGameMenu;
+import UI_CLI.MainMenu;
 
 
 /**
@@ -395,7 +397,7 @@ class Controller {
     private void launchGUI(){
         Gui gui = new Gui();
         String[] stuff = {"A"};
-        gui.startGui(stuff);
+        gui.main(stuff);
     }
 
 
