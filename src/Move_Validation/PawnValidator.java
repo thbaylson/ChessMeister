@@ -77,6 +77,51 @@ public class PawnValidator extends PieceValidator{
 	}
 
 	/**
+	 * Method to check the moves available to the current pawn
+	 *
+	 * @return send - An array containing the moves available to this pawn as position objects
+	 */
+	public Position[] showMoves() {
+		Position pPos = this.getPosition();
+		/**
+		 * The File position of the current piece
+		 */
+		Files f = pPos.getFile();
+		/**
+		 * The Rank position of the current piece
+		 */
+		Rank r = pPos.getRank();
+		//Clears the linked list so that it can be re-populated
+		pos.clear();
+
+		/**
+		 * The piece that is on the selected square
+		 */
+		PieceIF p = pPos.getSquare().getPiece();
+		/**
+		 * Boolean variable for if there is a piece ahead of the current piece
+		 */
+		Boolean check = CheckAhead(f, r, p);
+
+		/*Checks the color, position and ahead of the piece to see if the pawn could
+		move two spaces forwards
+		*/
+		if (p.getColor().getColor() == 'w' && r.getArrayp() == 1 && check){
+			StartTwo(f, r, p);
+		}else if (p.getColor().getColor() == 'b' && r.getArrayp() == 6 && check){
+			StartTwo(f, r, p);
+		}
+		//Checks the diagonals of the pawn to see if it can take a piece
+		CheckDiagonal(f, r, p);
+
+		Position[] endMoves = new Position[pos.size() - 1];
+		for(int i = 0; i < pos.size() - 1; i++){
+			endMoves[i] = pos.remove(0);
+		}
+		return endMoves;
+	}
+
+	/**
 	 * A helper method that checks if a pawn can move two spaces forwards
 	 *
 	 * @param f - The file the pawn is currently at

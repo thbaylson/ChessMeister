@@ -10,8 +10,8 @@ import Move_Validation.PieceValidator;
 /**
  * The interface for piece
  *
- * @author Caleb Tupone %60 everything else
- * @author Dillon Ramsey %40 clone and clonePV
+ * @author Caleb
+ * @version 1.0
  */
 public interface PieceIF {
 	/**
@@ -90,4 +90,6 @@ public interface PieceIF {
 	 * @param board - The game board
 	 */
 	public void clonePV(BoardIF board);
+
+    public void changeValidator(PieceValidator pv);
 }
