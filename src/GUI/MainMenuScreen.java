@@ -37,15 +37,12 @@ public class MainMenuScreen extends VBox implements EventHandler<ActionEvent>{
         setAlignment(Pos.CENTER);
         setSpacing(50);
 
-        //Add a button to the root.
+        //Add buttons to the root.
         twoPlayerButton = addButton(this, "Player vs Player");
         cpuPlayerButton = addButton(this, "Player vs CPU");
         onlinePlayButton = addButton(this, "Online Play");
         rulesButton = addButton(this, "Rules of chess");
         tutorialButton = addButton(this, "Tutorial");
-
-
-
     }
 
     /**
@@ -66,9 +63,8 @@ public class MainMenuScreen extends VBox implements EventHandler<ActionEvent>{
     public void handle(ActionEvent event) {
 
         if(event.getSource() == twoPlayerButton){
-            System.out.println("TEST");
-            sch.switchScreen(ScreenChangeHandler.Screens.GAMESCREEN);
-
+            System.out.println("MainMenu: Player vs Player");
+            sch.switchScreen(ScreenChangeHandler.Screens.PLAYERNAMESCREEN);
         }
         else if(event.getSource() == cpuPlayerButton){
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
