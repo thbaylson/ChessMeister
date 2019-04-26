@@ -71,17 +71,16 @@ public class MainMenuScreen extends VBox implements EventHandler<ActionEvent>{
 
         }
         else if(event.getSource() == cpuPlayerButton){
-
-            //sch.switchUI(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == onlinePlayButton){
-            //sch.switchUI(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == rulesButton){
-            //sch.switchUI(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == tutorialButton){
-            //sch.switchUI(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
 
     }

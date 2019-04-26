@@ -26,6 +26,7 @@ public class Gui extends Application implements ScreenChangeHandler {
             switchScreen(Screens.MAINMENU);
 
             MainMenuScreen.getInstance().register(this);
+            NotYetImplementedScreen.getInstance().register(this);
 
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -74,7 +75,7 @@ public class Gui extends Application implements ScreenChangeHandler {
 
                 break;
             case NOTYETIMPLEMENTED:
-                //root = notYetImplementedScreen.getInstance();
+                root = NotYetImplementedScreen.getInstance();
         }
 
         //Change the screen
