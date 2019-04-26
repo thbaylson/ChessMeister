@@ -40,21 +40,21 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
 
         // Player One Label
         playerOneEnterName = new Label("Player 1 Name");
-        title.setScaleX(3);
-        title.setScaleY(3);
+        playerOneEnterName.setScaleX(3);
+        playerOneEnterName.setScaleY(3);
 
         // Player One TextField
         playerOneName = new TextField();
-        playerOneName.setPrefSize(500, 10);
+        playerOneName.setMaxSize(200, 10);
 
         // Player Two Label
         playerTwoEnterName = new Label("Player 2 Name");
-        title.setScaleX(3);
-        title.setScaleY(3);
+        playerTwoEnterName.setScaleX(3);
+        playerTwoEnterName.setScaleY(3);
 
         // Player Two TextField
         playerTwoName = new TextField();
-        playerTwoName.setPrefSize(500, 10);
+        playerTwoName.setMaxSize(200, 10);
 
         HBox buttonHolder = new HBox();
 
