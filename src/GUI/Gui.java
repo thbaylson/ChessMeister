@@ -61,7 +61,7 @@ public class Gui extends Application implements ScreenChangeHandler {
     @Override
     public void switchScreen(Screens screen) {
 
-        switch(screen){
+        switch (screen) {
             case MAINMENU:
                 root = MainMenuScreen.getInstance();
                 break;
@@ -80,8 +80,8 @@ public class Gui extends Application implements ScreenChangeHandler {
         }
 
         //Change the screen
-        if(scene == null)
-            scene = new Scene(root,WIDTH,HEIGHT);
+        if (scene == null)
+            scene = new Scene(root, WIDTH, HEIGHT);
         else
             scene.setRoot(root);
     }

@@ -86,16 +86,24 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
             sch.switchScreen(ScreenChangeHandler.Screens.PLAYERNAMESCREEN);
         }
         else if(event.getSource() == cpuPlayerButton){
+            System.out.println("MainMenu: Player vs CPU");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == onlinePlayButton){
+            System.out.println("MainMenu: Online");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == rulesButton){
+            System.out.println("MainMenu: Rules");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == tutorialButton){
+            System.out.println("MainMenu: Tutorial");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+        }
+        else if(event.getSource() == exitButton){
+            System.out.println("MainMenu: Tutorial");
+            System.exit(0);
         }
 
     }

@@ -94,7 +94,7 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
             GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         }else if(event.getSource() == playButton){
             System.out.println("PlayerNameScreen: Play");
-            GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
+            GUI.switchScreen(ScreenChangeHandler.Screens.GAMESCREEN);
         }
     }
 

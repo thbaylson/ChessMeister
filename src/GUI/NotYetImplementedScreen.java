@@ -34,7 +34,7 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
         btn.setOnAction(this);
 
         getChildren().addAll(label, btn);
-    }
+    }//End NotYetImplementedScreen Constructor
 
     /**
      * handle- Handles button press
@@ -43,7 +43,7 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
     public void handle(ActionEvent ae){
         System.out.println("NotYetImplementedAction: Back");
         GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
-    }
+    }//End handle()
 
     /**
      * register- Registers an observer
@@ -51,7 +51,7 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
      */
     void register(ScreenChangeHandler gui){
         this.GUI = gui;
-    }
+    }//End register()
 
     /**
      * getInstance- Returns a singleton instance of 'this'
@@ -63,6 +63,6 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
         }else{
             instance = new NotYetImplementedScreen();
             return instance;
-        }
-    }
-}
+        }//End if/else
+    }//End getInstance()
+}//End NotYetImplemented Class
