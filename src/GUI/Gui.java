@@ -48,7 +48,6 @@ public class Gui extends Application implements ScreenChangeHandler {
     }
 
     public static void main(String[] args) {
-
        launch(args);
     }
 

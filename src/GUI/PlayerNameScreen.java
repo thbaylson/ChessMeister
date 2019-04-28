@@ -2,10 +2,13 @@ package GUI;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 
@@ -18,18 +21,21 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
 
     private ScreenChangeHandler GUI;
 
-    private Label title;
-    private Label playerOneEnterName;
-    private Label playerTwoEnterName;
-
-    private TextField playerOneName;
-    private TextField playerTwoName;
-
     private Button playButton;
     private Button exitButton;
 
     private PlayerNameScreen(){
 
+        // Labels
+        Label title;
+        Label playerOneEnterName;
+        Label playerTwoEnterName;
+
+        // TextFields
+        TextField playerOneName;
+        TextField playerTwoName;
+
+        // Sets alignment and spacing for the VBox
         setAlignment(Pos.CENTER);
         setSpacing(50);
 
@@ -56,7 +62,7 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
         playerTwoName = new TextField();
         playerTwoName.setMaxSize(200, 10);
 
-        HBox buttonHolder = new HBox();
+
 
         // The back button
         playButton = new Button("Play");
@@ -68,7 +74,11 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
         exitButton.setPrefSize(100, 50);
         exitButton.setOnAction(this);
 
-        buttonHolder.getChildren().addAll(playButton, exitButton);
+        // This will hold the bottom two buttons
+        BorderPane buttonHolder = new BorderPane();
+        buttonHolder.setPadding(new Insets(0,25,0,125));
+        buttonHolder.setCenter(playButton);
+        buttonHolder.setRight(exitButton);
 
         getChildren().addAll(title,
                 playerOneEnterName,
@@ -88,7 +98,7 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
         }
     }
 
-    public static PlayerNameScreen getInstance(){
+    static PlayerNameScreen getInstance(){
         if(instance != null){
             return instance;
         }else{
@@ -97,8 +107,7 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
         }
     }
 
-    public void register(ScreenChangeHandler gui){
+    void register(ScreenChangeHandler gui){
         this.GUI = gui;
     }
-
 }
