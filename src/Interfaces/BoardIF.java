@@ -157,16 +157,40 @@ public interface BoardIF{
 	 */
 	public void setTurn(boolean turn);
 
+	/**
+	 * Sees if the current player's king is in check
+	 * @return True if king is in check
+	 */
 	public boolean check();
 
+	/**
+	 * Sees if the current player's king is in checkmate
+	 * @return True if the player is in checkmate
+	 */
 	public boolean checkmate();
 
+	/**
+	 * Sets player 1's pieces
+	 * @param P1 - The pieces to set
+	 */
 	public void setPOne(ArrayList<PieceIF> P1);
 
+	/**
+	 * Sets player 2's pieces
+	 * @param P2 - The pieces to set
+	 */
 	public void setPTwo(ArrayList<PieceIF> P2);
 
+	/**
+	 * Gets the enemy's king
+	 * @return The enemy's king
+	 */
 	public PieceIF getEnemyKing();
 
+	/**
+	 * Gets the current player's king
+	 * @return The current player's king
+	 */
 	public PieceIF getCurKing();
 
 	/**

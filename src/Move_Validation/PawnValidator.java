@@ -58,6 +58,11 @@ public class PawnValidator extends PieceValidator{
 		return send;
 	}
 
+	/**
+	 * Gets a list of valid moves
+	 * @param pPos - The position of the piece
+	 * @return A list of valid moves
+	 */
 	@Override
 	public ArrayList<Position> checkMoves(Position pPos) {
 		/**The File position of the current piece*/

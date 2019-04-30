@@ -22,6 +22,11 @@ public class KingValidator extends PieceValidator{
 		super(board);
 	}
 
+	/**
+	 * Gets a list of valid moves
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
 	public Position[] showMoves(Position pos){
 		ArrayList<Position> moves = new ArrayList<>();
 		for (Position kPos : this.checkMoves(pos)){
@@ -35,6 +40,12 @@ public class KingValidator extends PieceValidator{
 		}
 		return moveList;
 	}
+
+	/**
+	 * Gets a list of valid moves
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
 	public ArrayList<Position> checkMoves(Position pos) {
 		
 		int rank = pos.getRank().getArrayp();
@@ -128,44 +139,6 @@ public class KingValidator extends PieceValidator{
 				moves.add(squares[file + 1][rank - 1].getPosition());
 
 		return moves;
-	}
-
-	public boolean check(ArrayList<PieceIF> op, Position kPos){
-		ArrayList<Position> allPos = new ArrayList<>();
-		ArrayList<PieceIF> Pieces = op;
-		for (PieceIF piece : Pieces){
-			if (piece.getChessPieceType() != ChessPieceType.King){
-				ArrayList<Position> ray = piece.getPieceValidator().checkMoves(piece.getPosition());
-				for (Position pos : ray){
-					allPos.add(pos);
-				}
-			}else{
-				KingValidator kv = (KingValidator)piece.getPieceValidator();
-				ArrayList<Position> ray = kv.checkMoves(piece.getPosition());
-				for (Position pos : ray){
-					allPos.add(pos);
-				}
-			}
-		}
-		for (Position pos : allPos){
-			if (kPos == pos){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean checkmate(ArrayList<PieceIF> pieceRay){
-		ArrayList<Position> posList = new ArrayList<>();
-		for (PieceIF piece : pieceRay){
-			for (Position thePos : piece.showMoves()){
-				posList.add(thePos);
-			}
-		}
-		if (posList.isEmpty()){
-			return true;
-		}
-		return false;
 	}
 
 	/**

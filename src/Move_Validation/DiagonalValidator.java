@@ -43,6 +43,11 @@ public class DiagonalValidator extends PieceValidator{
 		**/
 	}
 
+	/**
+	 * Gets a list of valid moves
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
 	@Override
 	public ArrayList<Position> checkMoves(Position pos) {
 		int rank = pos.getRank().getArrayp();

@@ -402,14 +402,26 @@ public class Board implements BoardIF{
 		return false;
 	}
 
+	/**
+	 * Sets the pieces of player 1
+	 * @param P1 - A list of player 1's pieces
+	 */
 	public void setPOne(ArrayList<PieceIF> P1){
 		playerOnePieces = P1;
 	}
 
+	/**
+	 * Sets the pieces of player 2
+	 * @param P2 - A list of player 2's pieces
+	 */
 	public void setPTwo(ArrayList<PieceIF> P2){
 		playerTwoPieces = P2;
 	}
 
+	/**
+	 * Gets the king of the enemy
+	 * @return The enemy's king
+	 */
 	public PieceIF getEnemyKing(){
 		if (turn == false){
 			for (PieceIF p : playerTwoPieces){
@@ -427,6 +439,10 @@ public class Board implements BoardIF{
 		return null;
 	}
 
+	/**
+	 * Gets the king of the current player
+	 * @return The current player's king
+	 */
 	public PieceIF getCurKing(){
 		if (turn == true){
 			for (PieceIF p : playerTwoPieces){

@@ -66,43 +66,6 @@ public abstract class PieceValidator extends Piece{
 	}
 
 	/**
-	 * Will look at the current board state to ascertain if the given player is in check
-	 * @return
-	 */
-	private boolean isChecked(int player){
-		PieceIF king;
-		int enemyNum;
-		if(player == 1){
-			king = findKing(board.getPlayerPieces(player), GameColor.WHITE);
-			enemyNum = 2;
-		}else{
-			king = findKing(board.getPlayerPieces(player), GameColor.BLACK);
-			enemyNum = 1;
-		}
-//		for(PieceIF enemy : board.getPlayerPieces(enemyNum)) {
-//			for(Position option : enemy.showMoves()) {
-//				if(option.getSquare().getPiece() == king){
-//					System.out.println("Player " + player + "is in Check!");
-//					return true;
-//				}
-//			}
-//		}
-		return false;
-	}
-
-	/**
-	private boolean checkSafe(Position from, Position to, int player){
-		boolean check = false;
-		board.move(from, to);//Move the piece to that position to check if it's safe
-		if(!isChecked(player)){
-			check = true;
-		}
-		board.move(to, from);//Move the piece back to its original position
-		return check;
-	}
-
-	 */
-	/**
 	 * findKing- For any given, valid color and piece type, this will attempt to return that
 	 * piece. If that piece is not on the board, this returns null.
 	 * @param pieces: The pieces of a single person
@@ -130,6 +93,12 @@ public abstract class PieceValidator extends Piece{
 		return (0 <= i && i < this.board.getWidth()) && (0 <= j && j < this.board.getHeight());
 	}
 
+	/**
+	 * Checks each move a piece can make to see if it puts the king in check
+	 * @param moves - The list of moves to check
+	 * @param piecePos - The position of the piece moving
+	 * @return A list of valid moves
+	 */
 	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
 		int turn = 2;
 		if(board.getTurn()){
@@ -162,75 +131,11 @@ public abstract class PieceValidator extends Piece{
 		return moveList;
 	}
 
-	public ArrayList<Position> kingCheck(ArrayList<Position> kMoves){
-		PieceIF pKing = board.getCurKing();
-		int turn = 2;
-		if(board.getTurn()){
-			turn = 1;
-		}
-		ArrayList<PieceIF> pieces = board.getPlayerPieces(turn);
-		for (PieceIF eP : pieces){
-			for (Position pos : eP.checkMoves()){
-				if (kMoves.contains(pos)){
-					kMoves.remove(pos);
-				}
-			}
-		}
-		return kMoves;
-	}
-
-/**
-	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
-		PieceValidator pv = (KingValidator)board.getEnemyKing().getPieceValidator();
-		ArrayList<Position> otherKingPos = pv.checkMoves(board.getEnemyKing().getPosition());
-		ArrayList<Position> valid = new ArrayList<>();
-		int turn = 1;
-		if (board.getTurn()){
-			turn = 2;
-		}
-		Position kingPos = board.getCurKing().getPosition();
-		for (PieceIF piece : board.getPlayerPieces(turn)){
-			if (piece.getChessPieceType() != ChessPieceType.King) {
-				BoardIF newBoard = board.clone();
-				int rank = piece.getPosition().getRank().getRank();
-				char file = piece.getPosition().getFile().getFile();
-				PieceIF newP = newBoard.getPiece(rank, file);
-				for (Position thePos : newP.checkMoves()) {
-					newBoard = board.clone();
-					int r = thePos.getRank().getRank();
-					char f = thePos.getFile().getFile();
-					Position from = newBoard.getPosition(rank, file);
-					Position to = newBoard.getPosition(r, f);
-					newBoard.move(from, to);
-					for (Position vPos : newBoard.getPiece(r, f).checkMoves()){
-						valid.add(vPos);
-					}
-				}
-			}
-		}
-		ArrayList<Position> temp = (ArrayList<Position>)moves.clone();
-		for (Position kp : temp){
-			int r1 = kp.getRank().getRank();
-			char f1 = kp.getFile().getFile();
-			ArrayList<Integer> r2 = new ArrayList<>();
-			ArrayList<Character> f2 = new ArrayList<>();
-			for (Position p : valid){
-				r2.add(p.getRank().getRank());
-				f2.add(p.getFile().getFile());
-			}
-			if (valid.contains(kp) || otherKingPos.contains(kp)){
-				moves.remove(kp);
-			}
-			for (int i = 0; i < r2.size(); i++){
-				if (r2.get(i) == r1 && f2.get(i) == f1){
-					moves.remove(kp);
-				}
-			}
-		}
-		return moves;
-	}
- */
-
+	/**
+	 * Checks the valid moves for a piece
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
 	public abstract ArrayList<Position> checkMoves(Position pos);
 
 	/**

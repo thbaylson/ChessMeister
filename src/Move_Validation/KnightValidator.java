@@ -35,6 +35,11 @@ public class KnightValidator extends PieceValidator{
 		return super.showMoves(moves, pos);
 	}
 
+	/**
+	 * Gets a list of valid moves
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
 	public ArrayList<Position> checkMoves(Position pos){
 		int file = pos.getFile().getArrayp();
 		int rank =  pos.getRank().getArrayp();
