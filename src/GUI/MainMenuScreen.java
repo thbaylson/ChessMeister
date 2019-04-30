@@ -102,7 +102,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == exitButton){
-            System.out.println("MainMenu: Tutorial");
+            System.out.println("MainMenu: Exit");
             System.exit(0);
         }
 
