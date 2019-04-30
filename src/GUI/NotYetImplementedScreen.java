@@ -16,7 +16,7 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
     private static NotYetImplementedScreen instance;
 
     /** The observer pattern implementation**/
-    private ScreenChangeHandler sch;
+    private ScreenChangeHandler GUI;
 
     /** Private constructor, adheres to singleton pattern**/
     private NotYetImplementedScreen(){
@@ -34,24 +34,24 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
         btn.setOnAction(this);
 
         getChildren().addAll(label, btn);
-    }
+    }//End NotYetImplementedScreen Constructor
 
     /**
      * handle- Handles button press
      * @param ae The ActionEvent to be handled
      */
     public void handle(ActionEvent ae){
-        System.out.println("Back Button in NotYetImplementedAction");
-        sch.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
-    }
+        System.out.println("NotYetImplementedAction: Back");
+        GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
+    }//End handle()
 
     /**
      * register- Registers an observer
-     * @param sch An object that can handle screen changes. Here, this is Gui
+     * @param gui An object that can handle screen changes. Here, this is Gui
      */
-    void register(ScreenChangeHandler sch){
-        this.sch = sch;
-    }
+    void register(ScreenChangeHandler gui){
+        this.GUI = gui;
+    }//End register()
 
     /**
      * getInstance- Returns a singleton instance of 'this'
@@ -63,7 +63,6 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
         }else{
             instance = new NotYetImplementedScreen();
             return instance;
-        }
-    }
-
-}
+        }//End if/else
+    }//End getInstance()
+}//End NotYetImplemented Class

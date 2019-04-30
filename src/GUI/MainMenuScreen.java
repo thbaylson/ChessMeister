@@ -35,18 +35,13 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
 
     private MainMenuScreen() {
 
-
         settingsAndExit = new HBox();
         centerButtonList = new VBox();
-
 
         title = new Label("Chess-Meister");
         title.setScaleX(8);
         title.setScaleY(8);
         title.setPadding(new Insets(25,0,0,0));
-
-
-
 
         //Add a button to the root.
         twoPlayerButton = addButton(centerButtonList, "Player vs Player");
@@ -57,25 +52,16 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         centerButtonList.setAlignment(Pos.CENTER);
         centerButtonList.setSpacing(50);
 
-
         settingsButton = addButton(settingsAndExit, "Settings");
         exitButton = addButton(settingsAndExit, "Exit");
         settingsAndExit.setAlignment(Pos.TOP_CENTER);
         settingsAndExit.setSpacing(200);
         settingsAndExit.setPadding(new Insets(0, 0, 50, 0));
 
-
-
         setTop(title);
         setAlignment(title, Pos.CENTER);
         setCenter(centerButtonList);
         setBottom(settingsAndExit);
-
-
-
-
-
-
     }
 
     /**
@@ -96,21 +82,28 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     public void handle(ActionEvent event) {
 
         if(event.getSource() == twoPlayerButton){
-            System.out.println("TEST");
-            sch.switchScreen(ScreenChangeHandler.Screens.GAMESCREEN);
-
+            System.out.println("MainMenu: Player vs Player");
+            sch.switchScreen(ScreenChangeHandler.Screens.PLAYERNAMESCREEN);
         }
         else if(event.getSource() == cpuPlayerButton){
+            System.out.println("MainMenu: Player vs CPU");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == onlinePlayButton){
+            System.out.println("MainMenu: Online");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == rulesButton){
+            System.out.println("MainMenu: Rules");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == tutorialButton){
+            System.out.println("MainMenu: Tutorial");
             sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+        }
+        else if(event.getSource() == exitButton){
+            System.out.println("MainMenu: Exit");
+            System.exit(0);
         }
 
     }

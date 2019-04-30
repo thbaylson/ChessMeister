@@ -27,6 +27,8 @@ public class Gui extends Application implements ScreenChangeHandler {
 
             MainMenuScreen.getInstance().register(this);
             NotYetImplementedScreen.getInstance().register(this);
+            PlayerNameScreen.getInstance().register(this);
+            GameScreen.getInstance().register(this);
 
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -47,7 +49,6 @@ public class Gui extends Application implements ScreenChangeHandler {
     }
 
     public static void main(String[] args) {
-
        launch(args);
     }
 
@@ -60,29 +61,28 @@ public class Gui extends Application implements ScreenChangeHandler {
     @Override
     public void switchScreen(Screens screen) {
 
-        switch(screen){
+        switch (screen) {
             case MAINMENU:
                 root = MainMenuScreen.getInstance();
-
+                break;
+            case PLAYERNAMESCREEN:
+                root = PlayerNameScreen.getInstance();
                 break;
             case GAMESCREEN:
-                //GameScreen gs = GameScreen.getInstance();
-
-                //root = gs;
+                root = GameScreen.getInstance();
                 break;
             case OPTIONS:
-                //root = new optionMenu();
-
+                //root = new OptionMenu.getInstance();
                 break;
             case NOTYETIMPLEMENTED:
                 root = NotYetImplementedScreen.getInstance();
+                break;
         }
 
         //Change the screen
-        if(scene == null)
-            scene = new Scene(root,WIDTH,HEIGHT);
+        if (scene == null)
+            scene = new Scene(root, WIDTH, HEIGHT);
         else
             scene.setRoot(root);
-
     }
 }
