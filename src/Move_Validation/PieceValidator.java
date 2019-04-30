@@ -131,15 +131,6 @@ public abstract class PieceValidator extends Piece{
 	}
 
 	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
-		ArrayList<Position> allMoves = new ArrayList<>();
-		/** If this validator is wrapped, we need to collect the moves of the wrapping validator**/
-		if(this.getPieceValidator() != null) {
-			ArrayList<Position> moveArray = this.getPieceValidator().checkMoves(piecePos);
-			for (int i = 0; i < moveArray.size(); i++) {
-				allMoves.add(moveArray.get(i));
-			}
-		}
-		moves = allMoves;
 		PieceIF pKing = board.getCurKing();
 		int turn = 2;
 		if(board.getTurn()){
@@ -161,7 +152,6 @@ public abstract class PieceValidator extends Piece{
 			ArrayList<PieceIF> pieces = newB.getPlayerPieces(turn);
 			newB.move(newpPos, endPos);
 			for (PieceIF ePieces : pieces){
-				System.out.println(ePieces.toString());
 				for (Position ePos : ePieces.checkMoves()){
 					int r1 = ePos.getRank().getRank();
 					char f1 = ePos.getFile().getFile();

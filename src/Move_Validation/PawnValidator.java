@@ -45,9 +45,7 @@ public class PawnValidator extends PieceValidator{
 	public Position[] showMoves(Position pPos) {
 
 		pos = checkMoves(pPos);
-		System.out.println("Before checkForCheck: " + pos.toString());
 		pos = super.checkForCheck(pos, pPos);
-		System.out.println("After checkforCHeck: " + pos.toString());
 
 		/**An array containing the valid positions the pawn can move to*/
 		Position[] send = new Position[pos.size()];
