@@ -131,8 +131,16 @@ public abstract class PieceValidator extends Piece{
 	}
 
 	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
+		ArrayList<Position> allMoves = new ArrayList<>();
+		/** If this validator is wrapped, we need to collect the moves of the wrapping validator**/
+		if(this.getPieceValidator() != null) {
+			ArrayList<Position> moveArray = this.getPieceValidator().checkMoves(piecePos);
+			for (int i = 0; i < moveArray.size(); i++) {
+				allMoves.add(moveArray.get(i));
+			}
+		}
+		moves = allMoves;
 		PieceIF pKing = board.getCurKing();
-		PieceIF eKing = board.getEnemyKing();
 		int turn = 2;
 		if(board.getTurn()){
 			turn = 1;
@@ -140,15 +148,32 @@ public abstract class PieceValidator extends Piece{
 		if (pKing.getPosition().equals(piecePos)){
 			return kingCheck(moves);
 		}
+		ArrayList<Position> moveList = new ArrayList<>();
+		for (Position move : moves){
+			moveList.add(move);
+		}
 		for (Position pPos : moves) {
-			ArrayList<PieceIF> pieces = board.getPlayerPieces(turn);
-			for (PieceIF eP : pieces) {
-				for (Position pos : eP.checkMoves()) {
-					BoardIF newB = board.clone();
-					
+			int rank = piecePos.getRank().getRank();
+			char file = piecePos.getFile().getFile();
+			BoardIF newB = board.clone();
+			Position newpPos = newB.getPosition(rank, file);
+			Position endPos = newB.getPosition(pPos.getRank().getRank(), pPos.getFile().getFile());
+			ArrayList<PieceIF> pieces = newB.getPlayerPieces(turn);
+			newB.move(newpPos, endPos);
+			for (PieceIF ePieces : pieces){
+				System.out.println(ePieces.toString());
+				for (Position ePos : ePieces.checkMoves()){
+					int r1 = ePos.getRank().getRank();
+					char f1 = ePos.getFile().getFile();
+					int kr1 = newB.getCurKing().getPosition().getRank().getRank();
+					char kf1 = newB.getCurKing().getPosition().getFile().getFile();
+					if(r1 == kr1 && f1 == kf1) {
+						moveList.remove(pPos);
+					}
 				}
 			}
 		}
+		return moveList;
 	}
 
 	public ArrayList<Position> kingCheck(ArrayList<Position> kMoves){
@@ -167,6 +192,7 @@ public abstract class PieceValidator extends Piece{
 		}
 		return kMoves;
 	}
+
 /**
 	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
 		PieceValidator pv = (KingValidator)board.getEnemyKing().getPieceValidator();

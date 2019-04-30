@@ -115,6 +115,13 @@ public class Board implements BoardIF{
 	 * @param to- The position the desired piece will move to
 	 */
 	public void move(Position from, Position to) {
+		if(to.getSquare().getPiece() != null){
+			if (to.getSquare().getPiece().getColor().getColor() == 'w'){
+				playerOnePieces.remove(to.getSquare().getPiece());
+			}else{
+				playerTwoPieces.remove(to.getSquare().getPiece());
+			}
+		}
 		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(
 				bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
 		

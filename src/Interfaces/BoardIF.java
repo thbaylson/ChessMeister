@@ -168,4 +168,12 @@ public interface BoardIF{
 	public PieceIF getEnemyKing();
 
 	public PieceIF getCurKing();
+
+	/**
+	 * getPlayerPieces- Returns the piece ArrayList for the specified player
+	 * @param player- The player whose pieces are to be returned
+	 * @return- The piece ArrayList for the specified player
+	 * @throws IllegalArgumentException- Thrown when called with an invalid player number
+	 */
+	public ArrayList<PieceIF> getPlayerPieces(int player) throws IllegalArgumentException;
 }
