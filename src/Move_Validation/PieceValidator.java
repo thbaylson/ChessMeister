@@ -62,13 +62,6 @@ public abstract class PieceValidator extends Piece{
 		
 		/** Once we've gathered our movement options, cut out the ones that put us into check**/
 		newMoves.addAll(moves);
-		ArrayList<Position> removable = new ArrayList<Position>();
-		for(Position to : newMoves){
-			if(!checkSafe(from, to, player)){
-				removable.add(to);
-			}
-		}
-		newMoves.removeAll(removable);
 		return newMoves.toArray(allMoves);
 	}
 
@@ -97,6 +90,7 @@ public abstract class PieceValidator extends Piece{
 		return false;
 	}
 
+	/**
 	private boolean checkSafe(Position from, Position to, int player){
 		boolean check = false;
 		board.move(from, to);//Move the piece to that position to check if it's safe
@@ -107,6 +101,7 @@ public abstract class PieceValidator extends Piece{
 		return check;
 	}
 
+	 */
 	/**
 	 * findKing- For any given, valid color and piece type, this will attempt to return that
 	 * piece. If that piece is not on the board, this returns null.
@@ -135,23 +130,94 @@ public abstract class PieceValidator extends Piece{
 		return (0 <= i && i < this.board.getWidth()) && (0 <= j && j < this.board.getHeight());
 	}
 
-	ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
-		ArrayList<Position> endMoves = new ArrayList<>();
-		System.out.println("The piece position: " + piecePos);
-		System.out.println("The first position in array: " + moves.get(0));
-		for (Position pos : moves){
-			BoardIF newBoard = board.clone();
-			Position newPPos = newBoard.getPosition(piecePos.getRank().getRank(), piecePos.getFile().getFile());
-			Position newPos = newBoard.getPosition(pos.getRank().getRank(), pos.getFile().getFile());
-			newBoard.move(newPPos, newPos);
-			System.out.println("new Pos: " + newPos);
-			if (!newBoard.check()){
-				System.out.println("Pos: " + pos);
-				endMoves.add(pos);
+	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
+		PieceIF pKing = board.getCurKing();
+		PieceIF eKing = board.getEnemyKing();
+		int turn = 2;
+		if(board.getTurn()){
+			turn = 1;
+		}
+		if (pKing.getPosition().equals(piecePos)){
+			return kingCheck(moves);
+		}
+		for (Position pPos : moves) {
+			ArrayList<PieceIF> pieces = board.getPlayerPieces(turn);
+			for (PieceIF eP : pieces) {
+				for (Position pos : eP.checkMoves()) {
+					BoardIF newB = board.clone();
+					
+				}
 			}
 		}
-		return endMoves;
 	}
+
+	public ArrayList<Position> kingCheck(ArrayList<Position> kMoves){
+		PieceIF pKing = board.getCurKing();
+		int turn = 2;
+		if(board.getTurn()){
+			turn = 1;
+		}
+		ArrayList<PieceIF> pieces = board.getPlayerPieces(turn);
+		for (PieceIF eP : pieces){
+			for (Position pos : eP.checkMoves()){
+				if (kMoves.contains(pos)){
+					kMoves.remove(pos);
+				}
+			}
+		}
+		return kMoves;
+	}
+/**
+	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
+		PieceValidator pv = (KingValidator)board.getEnemyKing().getPieceValidator();
+		ArrayList<Position> otherKingPos = pv.checkMoves(board.getEnemyKing().getPosition());
+		ArrayList<Position> valid = new ArrayList<>();
+		int turn = 1;
+		if (board.getTurn()){
+			turn = 2;
+		}
+		Position kingPos = board.getCurKing().getPosition();
+		for (PieceIF piece : board.getPlayerPieces(turn)){
+			if (piece.getChessPieceType() != ChessPieceType.King) {
+				BoardIF newBoard = board.clone();
+				int rank = piece.getPosition().getRank().getRank();
+				char file = piece.getPosition().getFile().getFile();
+				PieceIF newP = newBoard.getPiece(rank, file);
+				for (Position thePos : newP.checkMoves()) {
+					newBoard = board.clone();
+					int r = thePos.getRank().getRank();
+					char f = thePos.getFile().getFile();
+					Position from = newBoard.getPosition(rank, file);
+					Position to = newBoard.getPosition(r, f);
+					newBoard.move(from, to);
+					for (Position vPos : newBoard.getPiece(r, f).checkMoves()){
+						valid.add(vPos);
+					}
+				}
+			}
+		}
+		ArrayList<Position> temp = (ArrayList<Position>)moves.clone();
+		for (Position kp : temp){
+			int r1 = kp.getRank().getRank();
+			char f1 = kp.getFile().getFile();
+			ArrayList<Integer> r2 = new ArrayList<>();
+			ArrayList<Character> f2 = new ArrayList<>();
+			for (Position p : valid){
+				r2.add(p.getRank().getRank());
+				f2.add(p.getFile().getFile());
+			}
+			if (valid.contains(kp) || otherKingPos.contains(kp)){
+				moves.remove(kp);
+			}
+			for (int i = 0; i < r2.size(); i++){
+				if (r2.get(i) == r1 && f2.get(i) == f1){
+					moves.remove(kp);
+				}
+			}
+		}
+		return moves;
+	}
+ */
 
 	public abstract ArrayList<Position> checkMoves(Position pos);
 

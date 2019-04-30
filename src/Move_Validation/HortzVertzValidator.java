@@ -26,7 +26,6 @@ public class HortzVertzValidator extends PieceValidator {
 	 */
 	@Override
 	public Position[] showMoves(Position pos) {
-		System.out.println("Show Moves Rank and file: " + pos.getRank() + "   " + pos.getFile());
 		ArrayList<Position> moves = checkMoves(pos);
 		moves = super.checkForCheck(moves, pos);
 
@@ -39,8 +38,6 @@ public class HortzVertzValidator extends PieceValidator {
 
 		SquareIF[][] squares = this.board.getSquares();
 		ArrayList<Position> moves = new ArrayList<Position>();
-
-		System.out.println("Rank and file: " + pos.getRank() + "   " + pos.getFile());
 
 		moves.addAll(checkLeft(rank, file, squares));// 	(file-- until 0)			, rank
 		moves.addAll(checkRight(rank, file, squares));// 	(file++ until board.length)	, rank

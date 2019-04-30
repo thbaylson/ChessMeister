@@ -164,4 +164,8 @@ public interface BoardIF{
 	public void setPOne(ArrayList<PieceIF> P1);
 
 	public void setPTwo(ArrayList<PieceIF> P2);
+
+	public PieceIF getEnemyKing();
+
+	public PieceIF getCurKing();
 }

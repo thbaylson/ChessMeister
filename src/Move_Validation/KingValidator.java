@@ -49,7 +49,6 @@ public class KingValidator extends PieceValidator{
 		 * This if-statement allows the king to move right 1
 		 */
 		if (file + 1 < this.board.getWidth())
-			System.out.println("KingVal Right: " + squares[file][rank].getPiece());
 			if (squares[file + 1][rank].getPiece() == null)
 				moves.add(squares[file + 1][rank].getPosition());
 			else if(squares[file + 1][rank].getPiece().getColor() 
@@ -136,7 +135,6 @@ public class KingValidator extends PieceValidator{
 		ArrayList<PieceIF> Pieces = op;
 		for (PieceIF piece : Pieces){
 			if (piece.getChessPieceType() != ChessPieceType.King){
-				System.out.println("Check in king: " + piece.getPosition());
 				ArrayList<Position> ray = piece.getPieceValidator().checkMoves(piece.getPosition());
 				for (Position pos : ray){
 					allPos.add(pos);

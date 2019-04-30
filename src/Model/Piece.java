@@ -8,6 +8,8 @@ import Interfaces.PieceIF;
 import Move_Validation.PieceValidator;
 import Interfaces.BoardIF;
 
+import java.util.ArrayList;
+
 
 /**
  * Class modeling a piece
@@ -149,8 +151,16 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	 * @return An array containing all the valid moves
 	 */
 	public Position[] showMoves(){
-		System.out.println("This piece: " + this.pos);
 		return this.getPieceValidator().showMoves(this.pos);
+	}
+
+	/**
+	 * Method to list the moves available to the piece
+	 *
+	 * @return An ArrayList containing all the valid moves
+	 */
+	public ArrayList<Position> checkMoves(){
+		return this.getPieceValidator().checkMoves(this.pos);
 	}
 
 	/**

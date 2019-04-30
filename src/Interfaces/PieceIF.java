@@ -7,6 +7,8 @@ import Enums.Rank;
 import Model.Position;
 import Move_Validation.PieceValidator;
 
+import java.util.ArrayList;
+
 /**
  * The interface for piece
  *
@@ -57,6 +59,13 @@ public interface PieceIF {
 	 * @return An array containing all the valid moves
 	 */
 	public Position[] showMoves();
+
+	/**
+	 * Method to list the moves available to the piece
+	 *
+	 * @return An ArrayList containing all the valid moves
+	 */
+	public ArrayList<Position> checkMoves();
 
 	/**
 	 * Gets the color of the piece

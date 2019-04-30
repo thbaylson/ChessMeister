@@ -344,6 +344,8 @@ public class Board implements BoardIF{
 	}
 
 	public boolean check(){
+		return false;
+		/**
 		ArrayList<PieceIF> Pieces = new ArrayList<>();
 		boolean isCheck = false;
 		if (!turn){
@@ -364,9 +366,12 @@ public class Board implements BoardIF{
 			}
 		}
 		return isCheck;
+		 */
 	}
 
 	public boolean checkmate(){
+		return false;
+		/**
 		ArrayList<PieceIF> Pieces = new ArrayList<>();
 		boolean isCheckmate = false;
 		if (turn){
@@ -387,6 +392,7 @@ public class Board implements BoardIF{
 			}
 		}
 		return isCheckmate;
+		 */
 	}
 
 	public void setPOne(ArrayList<PieceIF> P1){
@@ -395,5 +401,39 @@ public class Board implements BoardIF{
 
 	public void setPTwo(ArrayList<PieceIF> P2){
 		playerTwoPieces = P2;
+	}
+
+	public PieceIF getEnemyKing(){
+		if (turn == false){
+			for (PieceIF p : playerTwoPieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}else{
+			for (PieceIF p : playerOnePieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}
+		return null;
+	}
+
+	public PieceIF getCurKing(){
+		if (turn == true){
+			for (PieceIF p : playerTwoPieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}else{
+			for (PieceIF p : playerOnePieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}
+		return null;
 	}
 }
