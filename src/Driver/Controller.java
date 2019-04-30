@@ -224,7 +224,7 @@ class Controller {
             f = uInput.charAt(0);
             r = (uInput.charAt(1) - 48);
         }
-        return new Position(f, r);
+        return toP;
     }
 
     /**
