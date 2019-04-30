@@ -350,56 +350,56 @@ public class Board implements BoardIF{
 		this.turn = turn;
 	}
 
+	/**
+	 * Checks if current player's king is in check at start of turn
+	 * @return True if king is in check
+	 */
 	public boolean check(){
-		return false;
-		/**
-		ArrayList<PieceIF> Pieces = new ArrayList<>();
 		boolean isCheck = false;
 		if (!turn){
-			Pieces = playerTwoPieces;
-			for (PieceIF p : playerOnePieces){
-				if (p.getChessPieceType() == ChessPieceType.King){
-					KingValidator kv = (KingValidator)p.getPieceValidator();
-					isCheck = kv.check(Pieces, p.getPosition());
+			for (PieceIF piece : playerTwoPieces){
+				for (Position pos : piece.checkMoves()){
+					if (getCurKing().getPosition().equals(pos)){
+						isCheck = true;
+					}
 				}
 			}
 		}else{
-			Pieces = playerOnePieces;
-			for (PieceIF p : playerTwoPieces){
-				if (p.getChessPieceType() == ChessPieceType.King){
-					KingValidator kv = (KingValidator)p.getPieceValidator();
-					isCheck = kv.check(Pieces, p.getPosition());
+			for (PieceIF piece : playerOnePieces){
+				for (Position pos : piece.checkMoves()){
+					if (getCurKing().getPosition().equals(pos)){
+						isCheck = true;
+					}
 				}
 			}
 		}
 		return isCheck;
-		 */
 	}
 
+	/**
+	 * Checks if current player is in checkmate
+	 * @return True if current player is in checkmate
+	 */
 	public boolean checkmate(){
-		return false;
-		/**
-		ArrayList<PieceIF> Pieces = new ArrayList<>();
-		boolean isCheckmate = false;
+		ArrayList<Position> Moves = new ArrayList<>();
 		if (turn){
-			Pieces = playerTwoPieces;
-			for (PieceIF p : playerOnePieces){
-				if (p.getChessPieceType() == ChessPieceType.King){
-					KingValidator kv = (KingValidator)p.getPieceValidator();
-					isCheckmate = kv.checkmate(Pieces);
+			for (PieceIF piece : playerTwoPieces){
+				for (Position pos : piece.showMoves()){
+					Moves.add(pos);
 				}
 			}
 		}else{
-			Pieces = playerOnePieces;
-			for (PieceIF p : playerTwoPieces){
-				if (p.getChessPieceType() == ChessPieceType.King){
-					KingValidator kv = (KingValidator)p.getPieceValidator();
-					isCheckmate = kv.checkmate(Pieces);
+			for (PieceIF piece : playerOnePieces){
+				for (Position pos : piece.showMoves()){
+					Moves.add(pos);
+					System.out.println(pos.toString());
 				}
 			}
 		}
-		return isCheckmate;
-		 */
+		if(Moves.isEmpty()){
+			return true;
+		}
+		return false;
 	}
 
 	public void setPOne(ArrayList<PieceIF> P1){

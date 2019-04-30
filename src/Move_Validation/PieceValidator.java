@@ -131,13 +131,9 @@ public abstract class PieceValidator extends Piece{
 	}
 
 	public ArrayList<Position> checkForCheck(ArrayList<Position> moves, Position piecePos){
-		PieceIF pKing = board.getCurKing();
 		int turn = 2;
 		if(board.getTurn()){
 			turn = 1;
-		}
-		if (pKing.getPosition().equals(piecePos)){
-			return kingCheck(moves);
 		}
 		ArrayList<Position> moveList = new ArrayList<>();
 		for (Position move : moves){

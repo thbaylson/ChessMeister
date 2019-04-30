@@ -70,6 +70,7 @@ class Controller {
             if (game.check()){
                 if (game.checkmate()){
                     System.out.println("Player " + currentPlayer + ", you lose");
+                    System.exit(0);
                 }else{
                     System.out.println("Player " + currentPlayer + ", you are in check");
                 }
