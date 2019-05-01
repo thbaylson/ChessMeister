@@ -1,26 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+  <component name="ChangeListManager">
+    <list default="true" id="5c8d3a0b-4017-4550-b5fe-43fbfce5e492" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Driver/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Driver/Driver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Enums/ChessPieceType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Enums/Files.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Enums/GameColor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Enums/Rank.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/GameScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/Gui$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/Gui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/MainMenuScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/NotYetImplementedScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/PlayerNameEntry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/PlayerNameScreen$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/PlayerNameScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/PlayerPane.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/ScreenChangeHandler$Screens.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/ScreenChangeHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Interfaces/BlackAndWhiteIF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Interfaces/BoardBuilderInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Interfaces/BoardIF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Interfaces/BoardStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Interfaces/MenuIF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Interfaces/PieceIF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Interfaces/SquareIF.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Memento/CareTaker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Memento/Memento.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Model/BlackAndWhite.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Model/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Model/Piece.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Model/Position.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Model/Square.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Move_Validation/DiagonalValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Move_Validation/HortzVertzValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Move_Validation/KingValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Move_Validation/KnightValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Move_Validation/PawnValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Move_Validation/PieceValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/UI_CLI/BoardBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/UI_CLI/Board_Color_CLI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/UI_CLI/Board_GUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/UI_CLI/Board_Mono_CLI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/UI_CLI/InGameMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/UI_CLI/MainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Move_Validation/PieceValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Move_Validation/PieceValidator.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/bin/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GradleLocalSettings">
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$/../../MC_Mods/BuildingGadgets" value="PREVIEW" />
-      </map>
-    </option>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Move_Validation/PieceValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="15" />
-    <option name="y" value="24" />
+    <option name="x" value="-14" />
+    <option name="y" value="23" />
     <option name="width" value="1366" />
     <option name="height" value="745" />
   </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="chess-meister" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess-meister" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess-meister" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess-meister" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess-meister" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess-meister" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Driver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess-meister" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess-meister" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess-meister" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess-meister" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Move_Validation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess-meister" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess-meister" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI_CLI" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -41,6 +171,53 @@
         <item itemvalue="Application.Driver" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c8d3a0b-4017-4550-b5fe-43fbfce5e492" name="Default Changelist" comment="" />
+      <created>1556743367229</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556743367229</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1366" height="745" extended-state="6" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13670695" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25114855" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Move_Validation/PieceValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

@@ -1,9 +1,7 @@
 package Move_Validation;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
-
 import Enums.ChessPieceType;
 import Enums.GameColor;
 import Interfaces.BoardIF;
