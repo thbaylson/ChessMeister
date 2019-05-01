@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Class modeling a piece
  * 
- * @author Tyler Baylson 80% everything else
+ * @author Tyler Baylson 80% everything else validate move
  * @author Caleb Tupone 10% getter and setter
  * @author Dillon Ramsey 10% clones methods
  * @version 1.0

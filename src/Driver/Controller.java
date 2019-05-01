@@ -1,6 +1,7 @@
 package Driver;
 
 
+import GUI.Gui;
 import Interfaces.BoardIF;
 import Interfaces.BoardStrategy;
 import Interfaces.MenuIF;
@@ -10,6 +11,8 @@ import Model.Board;
 import Model.Position;
 import UI_CLI.Board_Color_CLI;
 import UI_CLI.Board_Mono_CLI;
+import UI_CLI.InGameMenu;
+import UI_CLI.MainMenu;
 
 
 /**
@@ -48,6 +51,7 @@ class Controller {
             String uInput = mainMenu.askInput();
 
             if (uInput.equals("Y") || uInput.equals("YES")) {
+                launchGUI();
                 BoardStrategy strategy = chooseBoardType();
                 game.setDrawStrategy(strategy);
                 runGame();
@@ -391,6 +395,12 @@ class Controller {
         else {
             currentPlayer = 1;
         }
+    }
+
+    private void launchGUI(){
+        Gui gui = new Gui();
+        String[] stuff = {"A"};
+        gui.main(stuff);
     }
 
 

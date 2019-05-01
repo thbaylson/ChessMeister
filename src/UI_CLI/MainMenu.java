@@ -1,4 +1,4 @@
-package Driver;
+package UI_CLI;
 
 
 import Interfaces.BoardStrategy;
@@ -22,9 +22,6 @@ public class MainMenu implements MenuIF {
     private Scanner input = new Scanner(System.in);
 
 
-    MainMenu() {
-
-    }
 
     /**
      * This method displays the main menu

@@ -1,4 +1,4 @@
-package Driver;
+package UI_CLI;
 
 
 import Interfaces.MenuIF;
@@ -18,9 +18,6 @@ public class InGameMenu implements MenuIF {
 
     private Scanner input = new Scanner(System.in);
 
-    InGameMenu(){
-
-    }
 
     /**
      * This method displays the in-game menu
