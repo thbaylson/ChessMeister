@@ -1,5 +1,6 @@
 package GUI;
 
+import Model.Square;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -13,9 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-import javax.xml.soap.Text;
-
-public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent> {
+public class OptionsScreen extends BorderPane implements
+        EventHandler<ActionEvent>, SquareColorHandler{
 
     private static OptionsScreen instance;
     private ScreenChangeHandler GUI;
@@ -32,8 +32,12 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
     private Button saveButton;
     private Button exitButton;
-//    private Button blackSquareButton;
-//    private Button whiteSquareButton;
+
+    SquareColorPanel blackSquareField;
+    SquareColorPanel whiteSquareField;
+
+    int currentButton;
+
 
     private CheckBox showMoves;
     private CheckBox enabled;
@@ -46,40 +50,28 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
         setTitle();
         setCenterSection(setLeftSide(), setRightSide());
+        SquareColorChooser.getInstance().colorRegister(this);
+
+
 
 
 
 
     }
 
-    /**
-     *
-     * @param labelText
-     * @return
-     */
-    private HBox squareColorCreator(String labelText){
-        squareColorField = new HBox(25);
-        Label desc = new Label(labelText);
-        squareColorField.getChildren().addAll(desc);
-        Button btn = addButton(squareColorField, "");
-
-
-        return squareColorField;
-    }
-
-    /**
-     *
-     * @param labelText
-     * @return
-     */
-    private HBox maxUndoNumCreator(String labelText){
-        maxUndoNum = new HBox(25);
-        Label desc = new Label(labelText);
-        maxUndoNum.getChildren().addAll(desc);
-
-
-        return maxUndoNum;
-    }
+//    /**
+//     *
+//     * @param labelText
+//     * @return
+//     */
+//    private HBox maxUndoNumCreator(String labelText){
+//        maxUndoNum = new HBox(25);
+//        Label desc = new Label(labelText);
+//        maxUndoNum.getChildren().addAll(desc);
+//
+//
+//        return maxUndoNum;
+//    }
 
     /**
      *
@@ -107,6 +99,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         exitButton = addButton(rightSide, "Exit");
 
         rightSide.setAlignment(Pos.CENTER);
+        rightSide.setSpacing(20);
 
 
         return rightSide;
@@ -121,8 +114,10 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         leftSide = new VBox();
 
         colors = new Label("Colors:");
-        HBox blackSquareField = squareColorCreator("Black Squares: ");
-        HBox whiteSquareField = squareColorCreator("White Squares: ");
+        blackSquareField = new SquareColorPanel("Black Squares: ");
+        whiteSquareField = new SquareColorPanel("White Squares: ");
+        blackSquareField.getColoredButton().setOnAction(this);
+        whiteSquareField.getColoredButton().setOnAction(this);
 
 
         undo = new Label("Undo");
@@ -135,7 +130,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
         leftSide.getChildren().addAll(colors, blackSquareField,
                 whiteSquareField, undo, enabled, unlimitedUndo, maxUndo);
-
+        leftSide.setSpacing(20);
 
         return leftSide;
 
@@ -162,7 +157,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      */
     private Button addButton(Pane pane, String text){
         Button btn = new Button(text);
-        btn.setPrefSize(30, 5);
+        btn.setPrefWidth(100);
         btn.setOnAction(this);
         pane.getChildren().add(btn);
         return btn;
@@ -174,7 +169,17 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         if(event.getSource() == exitButton)
             GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         else if(event.getSource() == saveButton)
-            System.out.println("Saving Game (Not Really)");
+            System.out.println("Saving Options (Not Really)");
+        else if(event.getSource() == whiteSquareField.getColoredButton()){
+            currentButton = 0;
+            GUI.switchScreen(ScreenChangeHandler.Screens.SQUARECOLORCHOOSER);
+
+        }
+        else if(event.getSource() == blackSquareField.getColoredButton()){
+            currentButton = 1;
+            GUI.switchScreen(ScreenChangeHandler.Screens.SQUARECOLORCHOOSER);
+        }
+
 
     }
 
@@ -191,5 +196,12 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     }
 
 
-
+    @Override
+    public void changeColor(String color) {
+        if (currentButton == 0)
+            whiteSquareField.setColorOfButton(color);
+        else{
+            blackSquareField.setColorOfButton(color);
+        }
+    }
 }

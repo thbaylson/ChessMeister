@@ -125,10 +125,10 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
             GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         }else if(event.getSource() == loadButton) {
             System.out.println("GameScreen: Load");
-            //GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }else if(event.getSource() == saveButton) {
             System.out.println("GameScreen: Save");
-            //GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }else if(event.getSource() == undoButton) {
             System.out.println("GameScreen: Undo");
             //GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);

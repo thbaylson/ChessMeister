@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -26,11 +27,16 @@ public class Gui extends Application implements ScreenChangeHandler {
             primaryStage.setResizable(false);
             switchScreen(Screens.MAINMENU);
 
+
+
             MainMenuScreen.getInstance().register(this);
             NotYetImplementedScreen.getInstance().register(this);
             PlayerNameScreen.getInstance().register(this);
             GameScreen.getInstance().register(this);
             OptionsScreen.getInstance().register(this);
+            SquareColorChooser.getInstance().register(this);
+
+
 
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -76,6 +82,9 @@ public class Gui extends Application implements ScreenChangeHandler {
             case NOTYETIMPLEMENTED:
                 root = NotYetImplementedScreen.getInstance();
                 break;
+            case SQUARECOLORCHOOSER:
+                root = SquareColorChooser.getInstance();
+                break;
         }
 
         //Change the screen
@@ -84,4 +93,6 @@ public class Gui extends Application implements ScreenChangeHandler {
         else
             scene.setRoot(root);
     }
+
+
 }
