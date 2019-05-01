@@ -28,7 +28,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private BoardBuilderInterface builder;
 
     private GameScreen(){
-        setPrefSize(800, 800);
+        setPrefSize(1000, 1000);
         setPadding(new Insets(20,20,20,20));
         //This needs to be created here before setPlayerPane call
         exitButton = new Button("Exit");
@@ -80,6 +80,11 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private void setPlayerPane(int player) {
         VBox container = new VBox();
         container.getChildren().add(new PlayerPane(player));
+        if (player == 1) {
+            container.setAlignment(Pos.CENTER_LEFT);
+        }else{
+            container.setAlignment(Pos.CENTER_RIGHT);
+        }
         if(player == 1){
             //container.getChildren().add(showButton);
             setLeft(container);
@@ -94,12 +99,11 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      */
     private void setBoard() {
         builder.buildBoard();
-        board.setMinSize(400, 500);
-        board.setMaxSize(400, 500);
-        board.setHgap(1);
-        board.setVgap(1);
-
-
+        board = builder.getGrid();
+        board.setMinSize(400, 400);
+        board.setMaxSize(400, 400);
+        board.setAlignment(Pos.CENTER);
+        System.out.println(board.toString());
         setCenter(board);
     }//End setBoard
 

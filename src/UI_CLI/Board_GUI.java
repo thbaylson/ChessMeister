@@ -1,6 +1,7 @@
 package UI_CLI;
 
 import Interfaces.*;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
@@ -23,19 +24,18 @@ public class Board_GUI implements BoardStrategy{
          */
         SquareIF[][] layout = new SquareIF[8][8];
         gPane = new GridPane();
-        if (board.getTurn()){
-            SquareIF[][] flip = board.getSquares();
-            int R = 0;
-            for (int i = board.getWidth()-1; i >= 0; i--){
-                int F = 0;
-                for (int j = board.getHeight()-1; j >= 0; j--){
-                    layout[R][F] = flip[i][j].clone();
-                    F++;
-                }
-                R++;
+        gPane.setHgap(1);
+        gPane.setVgap(1);
+        gPane.setGridLinesVisible(true);
+        SquareIF[][] flip = board.getSquares();
+        int R = 0;
+        for (int i = board.getWidth()-1; i >= 0; i--){
+            int F = 0;
+            for (int j = board.getHeight()-1; j >= 0; j--){
+                layout[R][F] = flip[i][j].clone();
+                F++;
             }
-        }else{
-            layout = board.getSquares();
+            R++;
         }
         for (int j = board.getHeight()-1; j > -1; j--) {
             //Inner for loop that sets pieces on the board
@@ -44,31 +44,31 @@ public class Board_GUI implements BoardStrategy{
                 if (layout[i][j].getPiece() == null) {
                     //Checks the color of the current square and prints it accordingly
                     if (layout[i][j].getHighlight()){
-                        gridBuilder(layout[i][j].getPiece(), j, i, 'w', 'w', true);
+                        gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', true);
                     }else if (layout[i][j].getColor().getColor() == 'w'){
-                        gridBuilder(layout[i][j].getPiece(), j, i, 'w', 'w', false);
+                        gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', false);
                     }else{
-                        gridBuilder(layout[i][j].getPiece(), j, i, 'b', 'w', false);
+                        gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'w', false);
                     }
                 }else {
                     //Checks the color of the square and piece and sets them accordingly
                     if (layout[i][j].getHighlight()) {
                         if (layout[i][j].getPiece().getColor().getColor() == 'w') {
-                            gridBuilder(layout[i][j].getPiece(), j, i, 'w', 'w', true);
+                            gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', true);
                         } else {
-                            gridBuilder(layout[i][j].getPiece(), j, i, 'b', 'b', true);
+                            gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'b', true);
                         }
                     }else if (layout[i][j].getColor().getColor() == 'w') {
                         if (layout[i][j].getPiece().getColor().getColor() == 'w') {
-                            gridBuilder(layout[i][j].getPiece(), j, i, 'w', 'w', false);
+                            gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', false);
                         }else{
-                            gridBuilder(layout[i][j].getPiece(), j, i, 'w', 'b', false);
+                            gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'b', false);
                         }
                     }else{
                         if (layout[i][j].getPiece().getColor().getColor() == 'w'){
-                            gridBuilder(layout[i][j].getPiece(), j, i, 'b', 'w', false);
+                            gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'w', false);
                         }else{
-                            gridBuilder(layout[i][j].getPiece(), j, i, 'b', 'b', false);
+                            gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'b', false);
                         }
                     }
                 }
@@ -84,6 +84,9 @@ public class Board_GUI implements BoardStrategy{
             text = piece.toString();
         }
         butt.setText(text);
+        butt.setMaxSize(47, 45);
+        butt.setMinSize(47,45);
+        butt.setAlignment(Pos.CENTER);
         if (hl){
             butt.setStyle("-fx-background-color: #50148c");
         }else if (sColor == 'w'){
@@ -97,6 +100,10 @@ public class Board_GUI implements BoardStrategy{
             butt.setStyle("-fx-text-fill: #ff0000");
         }
         gPane.add(butt, col, row, 1, 1);
+    }
+
+    public void setBuilder(BoardBuilder builder){
+        this.builder = builder;
     }
 }
 

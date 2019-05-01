@@ -2,6 +2,7 @@ package UI_CLI;
 
 import Interfaces.BoardBuilderInterface;
 import Interfaces.BoardIF;
+import Model.Board;
 import javafx.scene.layout.GridPane;
 
 public class BoardBuilder implements BoardBuilderInterface {
@@ -12,9 +13,12 @@ public class BoardBuilder implements BoardBuilderInterface {
 
     private static BoardBuilder singleton;
 
-    private BoardBuilder(GridPane board, BoardIF gameBoard){
+    private BoardBuilder(GridPane board){
         this.board = board;
-        this.gameBoard = gameBoard;
+        gameBoard = new Board();
+        Board_GUI GUI = new Board_GUI();
+        GUI.setBuilder(this);
+        gameBoard.setDrawStrategy(GUI);
     }
 
     @Override
@@ -22,9 +26,9 @@ public class BoardBuilder implements BoardBuilderInterface {
         board = gPane;
     }
 
-    public static BoardBuilder getInstance(GridPane board, BoardIF gameBoard){
+    public static BoardBuilder getInstance(GridPane board){
         if(singleton == null)
-            singleton = new BoardBuilder(board, gameBoard);
+            singleton = new BoardBuilder(board);
         return singleton;
     }
 
@@ -34,5 +38,9 @@ public class BoardBuilder implements BoardBuilderInterface {
 
     public void buildBoard(){
         gameBoard.draw();
+    }
+
+    public GridPane getGrid(){
+        return board;
     }
 }
