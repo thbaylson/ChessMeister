@@ -16,7 +16,8 @@ import UI_CLI.Board_Mono_CLI;
  * This class calls most if not all of the functions required to run the chess
  * game correctly
  *
- * @author Caleb Tupone
+ * @author Caleb Tupone 95% All methods
+ * @author Dillon Ramsey 5%
  */
 class Controller {
 
@@ -26,6 +27,8 @@ class Controller {
     private PieceIF curP;
     private MenuIF mainMenu;
     private CareTaker<BoardIF> ct;
+
+
 
     Controller() {
         game = new Board();
@@ -61,10 +64,18 @@ class Controller {
      * This method is used for running the game
      */
     private void runGame() {
+        System.out.println("Player 1, please enter your name, you will be " +
+                "the White(blue) pieces further denoted by the prenote 'w' " +
+                "before each piece.");
+        String player1 = inGameMenu.askInput();
+        System.out.println("Player 2, please enter your name, you will be " +
+                "the Black(red) pieces further denoted by the prenote 'b' " +
+                "before each piece");
+        String player2 = inGameMenu.askInput();
 
         String uInput = "";
         ct.add(game.saveState());
-        while (!wantToExit(uInput)) {
+        while (true) {
             game.draw();
             System.out.println("Player " + currentPlayer + " It is your turn!");
             if (game.check()){
@@ -74,8 +85,7 @@ class Controller {
                 }else{
                     System.out.println("Player " + currentPlayer + ", you are in check");
                 }
-            }
-            inGameMenu.display();
+            }            inGameMenu.display();
 
             uInput = inGameMenu.askInput();
             switch (uInput) {
@@ -224,6 +234,7 @@ class Controller {
             }
             f = uInput.charAt(0);
             r = (uInput.charAt(1) - 48);
+            toP = new Position(f, r);
         }
         return toP;
     }
@@ -381,4 +392,7 @@ class Controller {
             currentPlayer = 1;
         }
     }
+
+
+
 }

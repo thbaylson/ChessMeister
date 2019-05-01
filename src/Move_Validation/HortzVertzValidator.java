@@ -9,7 +9,7 @@ import Model.Position;
 /**
  * Move validator for Rooks and Queens
  *
- * @author Tyler Baylson
+ * @author Tyler Baylson 100% All
  * @version 1.0
  */
 public class HortzVertzValidator extends PieceValidator {

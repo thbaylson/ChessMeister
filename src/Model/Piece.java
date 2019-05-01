@@ -14,7 +14,9 @@ import java.util.ArrayList;
 /**
  * Class modeling a piece
  * 
- * @author Tyler, Caleb, Dillon
+ * @author Tyler Baylson 80% everything else
+ * @author Caleb Tupone 10% getter and setter
+ * @author Dillon Ramsey 10% clones methods
  * @version 1.0
  */
 public class Piece extends BlackAndWhite implements PieceIF{

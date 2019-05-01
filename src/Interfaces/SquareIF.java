@@ -10,8 +10,8 @@ import Move_Validation.PieceValidator;
 /**
  * Interface for square
  *
- * @author Caleb
- * @version 1.0
+ * @author Caleb Tupone 60% everything else
+ * @author Dillon Ramsey 40% clone, getHighlight, and setHighlight
  */
 public interface SquareIF {
 	/**

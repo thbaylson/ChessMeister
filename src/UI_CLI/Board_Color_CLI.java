@@ -9,7 +9,7 @@ import Interfaces.SquareIF;
 /**
  * This class prints out the chess board and pieces in the CLI in color
  *
- * @author Dillon Ramsey
+ * @author Dillon Ramsey 100% all
  * @version 1.0
  */
 public class Board_Color_CLI implements BoardStrategy{

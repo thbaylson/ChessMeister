@@ -13,7 +13,8 @@ import java.util.ArrayList;
 /**
  * The concrete implementation of BoardIF
  *
- * @author Tyler Baylson
+ * @author Tyler Baylson 70%
+ * @author Dillon Ramsey 30%
  * @version 1.0
  */
 public class Board implements BoardIF{

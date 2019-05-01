@@ -9,8 +9,8 @@ import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 import Model.Position;
 /**
- * 
- * @author Caleb Tupone
+ * This class creates a list of positions for a king to move to
+ * @author Caleb Tupone 100% all
  *
  */
 

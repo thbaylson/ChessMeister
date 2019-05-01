@@ -5,10 +5,14 @@ import Interfaces.MenuIF;
 
 import java.util.Scanner;
 
+
+
 /**
  * This class displays a menu that the players can use to decide how they would
  * like to interact with the game. It also displays current options at each
  * step of the game.
+ *
+ * @author Caleb Tupone 100% all
  */
 public class InGameMenu implements MenuIF {
 

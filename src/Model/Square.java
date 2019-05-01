@@ -10,7 +10,9 @@ import Move_Validation.PieceValidator;
 /**
  * Model for a square on the chess board
  * 
- * @author Dillon, Tyler, Caleb
+ * @author Dillon Ramsey 33% clone and highlight methods
+ * @author Tyler Baylson 33% getter and setter for positions
+ * @author Caleb Tupone 33% getter and setter for piece and color
  * @version 1.0
  */
 public class Square extends BlackAndWhite implements SquareIF{

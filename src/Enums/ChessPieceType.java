@@ -3,7 +3,7 @@ package Enums;
 /**
  * Enum containing chess piece types
  * 
- * @author Caleb
+ * @author Caleb Tupone 100% All
  * @version 1.0
  */
 public enum ChessPieceType {

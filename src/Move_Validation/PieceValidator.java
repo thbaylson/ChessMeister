@@ -15,11 +15,11 @@ import Model.Board;
 /**
  * Abstract class that is used for the decorator subclasses
  *
- * @author Tyler (100%)
+ * @author Tyler 100% all
  * @version 1.0
  */
 public abstract class PieceValidator extends Piece{
-	
+
 	Board board;
 
 	/**
@@ -38,9 +38,9 @@ public abstract class PieceValidator extends Piece{
 	 * @return An array of positions that are valid to move to
 	 */
 	public abstract Position[] showMoves(Position from);
-	
+
 	/**
-	 * showMoves- To be used by subclasses. Checks if this validator is wrapped by another 
+	 * showMoves- To be used by subclasses. Checks if this validator is wrapped by another
 	 * validator, and if so, collects the movement options from the outer validator and sends them
 	 * back down to the inner validator.
 	 * @param moves
@@ -59,7 +59,7 @@ public abstract class PieceValidator extends Piece{
 				newMoves.add(moveArray[i]);
 			}
 		}
-		
+
 		/** Once we've gathered our movement options, cut out the ones that put us into check**/
 		newMoves.addAll(moves);
 		return newMoves.toArray(allMoves);
@@ -81,7 +81,7 @@ public abstract class PieceValidator extends Piece{
 		System.out.println("KING NOT FOUND. PANIC.");
 		return null;
 	}
-	
+
 	/**
 	 * inRange- Ensures two given integers are within the range of the board array
 	 *

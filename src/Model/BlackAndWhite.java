@@ -6,7 +6,7 @@ import Interfaces.BlackAndWhiteIF;
 /**
  * Class to set and get the color of pieces and squares in the chess board
  *
- * @author Caleb
+ * @author Caleb Tupone 100% all
  * @version 1.0
  */
 public class BlackAndWhite implements BlackAndWhiteIF{

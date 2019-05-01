@@ -7,8 +7,8 @@ import Interfaces.SquareIF;
 /**
  * The position.
  * 
- * @author Caleb
- * @author Dillon Ramsey
+ * @author Caleb Tupone getter and setter and equals %60
+ * @author Dillon Ramsey clone and toString %40
  * @version 1.0
  */
 public class Position {

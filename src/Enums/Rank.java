@@ -2,9 +2,9 @@ package Enums;
 
 /**
  * Enum for the rank
- * 
- * @author Caleb, Tyler
- * @version 1.0
+ *
+ * @author Caleb Tupone %70 the enum itself and the getter
+ * @author Tyler Baylson %30 both the switch cases
  */
 public enum Rank {
 	

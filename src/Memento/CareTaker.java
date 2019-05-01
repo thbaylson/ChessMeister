@@ -3,6 +3,11 @@ package Memento;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Holds memento objects
+ * @author Dillon Ramsey 100% All
+ */
 public class CareTaker<T> {
 
     /**A pointer for the currently selected memento*/

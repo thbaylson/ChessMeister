@@ -10,7 +10,7 @@ import Model.Position;
 /**
  * This validator is used to look in the diagonal directions of a piece and 
  * determine if the squares are valid positons to move to
- * @author Caleb Tupone
+ * @author Caleb Tupone 100% All
  *
  */
 
@@ -23,7 +23,7 @@ public class DiagonalValidator extends PieceValidator{
 	/**
 	 * This method gives a list of all valid moves that a piece that can move 
 	 * diagonal is allowed to make
-	 * @param the position of the piece the user has selected
+	 * @param pos position of the piece the user has selected
 	 */
 	@Override
 	public Position[] showMoves(Position pos) {
