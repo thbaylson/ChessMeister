@@ -7,14 +7,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import sun.plugin.javascript.navig.Anchor;
 
 /**
  * @author Caleb Tupone
  */
 public class MainMenuScreen extends BorderPane implements EventHandler<ActionEvent>{
 
-    private static MainMenuScreen mainMenuScreen;
+    private static MainMenuScreen instance;
 
     HBox settingsAndExit;
 
@@ -31,7 +30,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     Button exitButton;
 
 
-    ScreenChangeHandler sch;
+    ScreenChangeHandler GUI;
 
     private MainMenuScreen() {
 
@@ -43,17 +42,12 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         title.setScaleY(8);
         title.setPadding(new Insets(25,0,0,0));
 
-        //Add a button to the root.
-        twoPlayerButton = addButton(centerButtonList, "Player vs Player");
-        cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
-        onlinePlayButton = addButton(centerButtonList, "Online Play");
-        rulesButton = addButton(centerButtonList, "Rules of chess");
-        tutorialButton = addButton(centerButtonList, "Tutorial");
+        createButtons();
+
         centerButtonList.setAlignment(Pos.CENTER);
         centerButtonList.setSpacing(50);
 
-        settingsButton = addButton(settingsAndExit, "Settings");
-        exitButton = addButton(settingsAndExit, "Exit");
+
         settingsAndExit.setAlignment(Pos.TOP_CENTER);
         settingsAndExit.setSpacing(200);
         settingsAndExit.setPadding(new Insets(0, 0, 50, 0));
@@ -62,6 +56,21 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         setAlignment(title, Pos.CENTER);
         setCenter(centerButtonList);
         setBottom(settingsAndExit);
+    }
+
+    /**
+     *
+     */
+    private void createButtons(){
+        //Add a button to the root.
+        twoPlayerButton = addButton(centerButtonList, "Player vs Player");
+        cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
+        onlinePlayButton = addButton(centerButtonList, "Online Play");
+        rulesButton = addButton(centerButtonList, "Rules of chess");
+        tutorialButton = addButton(centerButtonList, "Tutorial");
+
+        settingsButton = addButton(settingsAndExit, "Settings");
+        exitButton = addButton(settingsAndExit, "Exit");
     }
 
     /**
@@ -83,41 +92,44 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
 
         if(event.getSource() == twoPlayerButton){
             System.out.println("MainMenu: Player vs Player");
-            sch.switchScreen(ScreenChangeHandler.Screens.PLAYERNAMESCREEN);
+            GUI.switchScreen(ScreenChangeHandler.Screens.PLAYERNAMESCREEN);
         }
         else if(event.getSource() == cpuPlayerButton){
             System.out.println("MainMenu: Player vs CPU");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == onlinePlayButton){
             System.out.println("MainMenu: Online");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == rulesButton){
             System.out.println("MainMenu: Rules");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == tutorialButton){
             System.out.println("MainMenu: Tutorial");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == exitButton){
             System.out.println("MainMenu: Exit");
             System.exit(0);
+        }
+        else if(event.getSource() == settingsButton){
+            GUI.switchScreen(ScreenChangeHandler.Screens.OPTIONS);
         }
 
     }
 
     /**Get a singleton instance of this class**/
     static MainMenuScreen getInstance(){
-        if(mainMenuScreen == null)
-            mainMenuScreen = new MainMenuScreen();
+        if(instance == null)
+            instance = new MainMenuScreen();
 
-        return mainMenuScreen;
+        return instance;
     }
 
     void register(ScreenChangeHandler screen){
-        sch = screen;
+        GUI = screen;
     }
 
 }

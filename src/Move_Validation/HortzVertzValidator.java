@@ -51,6 +51,32 @@ public class HortzVertzValidator extends PieceValidator {
 
 		return moves;
 	}
+
+	/**
+	 * Method to check the moves available to the current piece
+	 *
+	 * @return result - An array containing the moves available to this piece as position objects
+	 */
+	@Override
+	public Position[] showMoves() {
+		Position pos = this.getPosition();
+		int rank = pos.getRank().getArrayp();
+		int file = pos.getFile().getArrayp();
+
+		SquareIF[][] squares = this.board.getSquares();
+		ArrayList<Position> moves = new ArrayList<Position>();
+
+		moves.addAll(checkLeft(rank, file, squares));// 	(file-- until 0)			, rank
+		moves.addAll(checkRight(rank, file, squares));// 	(file++ until board.length)	, rank
+		moves.addAll(checkUp(rank, file, squares));// 		file						, (rank++ until board.length)
+		moves.addAll(checkDown(rank, file, squares));// 	file						, (rank-- until 0)
+
+		Position[] endMoves = new Position[moves.size()];
+		for(int i = 0; i < moves.size(); i++){
+			endMoves[i] = moves.remove(0);
+		}
+		return endMoves;
+	}
 	
 	/**
 	 * checkLeft- Helper method to check all squares to the left of this piece

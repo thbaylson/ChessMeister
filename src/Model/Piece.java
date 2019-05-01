@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * Class modeling a piece
- * 
+ *
  * @author Tyler Baylson 80% everything else validate move
  * @author Caleb Tupone 10% getter and setter
  * @author Dillon Ramsey 10% clones methods
@@ -35,7 +35,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	}
 	/**
 	 * Constructor for the Piece object
-	 * 
+	 *
 	 * @param cpt - The type of chess piece
 	 * @param color - The color of the chess piece
 	 */
@@ -46,20 +46,20 @@ public class Piece extends BlackAndWhite implements PieceIF{
 			this.pv.setColor(color);
 		}
 	}
-	
+
 	/**
 	 * Returns the chess piece type
-	 * 
+	 *
 	 * @return cpt - Chess piece type
 	 */
 	@Override
 	public ChessPieceType getChessPieceType() {
 		return this.cpt;
 	}
-	
+
 	/**
 	 * Sets the type of chess piece
-	 * 
+	 *
 	 * @param t - The chess piece type to set to
 	 */
 	@Override
@@ -77,7 +77,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	}
 
 	/**
-	 * Sets the PieceValidator, the pieceValidator's color, and the color of the 
+	 * Sets the PieceValidator, the pieceValidator's color, and the color of the
 	 * pieceValidators' piecevalidators;
 	 *
 	 * @param p - The PieceValidator to set
@@ -86,7 +86,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		PieceValidator temp;
 		this.pv = p;
 		this.pv.setColor(this.color);
-		
+
 		temp = this.pv.getPieceValidator();
 		while(temp != null) {
 			temp.setColor(this.color);
@@ -104,7 +104,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public boolean validateMove(Position from, Position to) {
 		return validateMove(from, to, this.pv);
 	}
-	
+
 	/**
 	 * Recursive method in line with the decorator pattern to determine if a move is valid
 	 *
@@ -125,6 +125,13 @@ public class Piece extends BlackAndWhite implements PieceIF{
 				isValid = isValid || validateMove(from, to, validator.getPieceValidator());
 			}
 		return isValid;
+	}
+
+	public void changeValidator(PieceValidator pv){
+		this.setPieceValidator(pv);
+		this.getPieceValidator().setChessPieceType(this.getChessPieceType());
+		this.getPieceValidator().setPosition(this.getPosition());
+		this.getPieceValidator().setColor(this.getColor());
 	}
 
 	/**

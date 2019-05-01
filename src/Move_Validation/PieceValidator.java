@@ -13,7 +13,7 @@ import Model.Board;
 /**
  * Abstract class that is used for the decorator subclasses
  *
- * @author Tyler 100% all
+ * @author Tyler (100%)
  * @version 1.0
  */
 public abstract class PieceValidator extends Piece{
@@ -47,7 +47,6 @@ public abstract class PieceValidator extends Piece{
 	 */
 	public Position[] showMoves(Collection<Position> moves, Position from) {
 		ArrayList<Position> newMoves = new ArrayList<Position>();
-		Position[] allMoves = new Position[moves.size()];
 		int player = (this.isWhite()) ? 1 : 2;
 
 		/** If this validator is wrapped, we need to collect the moves of the wrapping validator**/
@@ -56,6 +55,20 @@ public abstract class PieceValidator extends Piece{
 			for (int i = 0; i < moveArray.length; i++) {
 				newMoves.add(moveArray[i]);
 			}
+			newMoves.addAll(moves);
+
+		}else{
+			/**==============Recursion Base Case==================
+			* Once we've gathered our movement options, cut out the ones that put us into check**/
+			newMoves.addAll(moves);
+			ArrayList<Position> removable = new ArrayList<Position>();
+			for(Position to : newMoves){
+				/** Calls ShowMoves, thus starts the recursion over from the top and leads to infinite recursion**/
+				if(!checkSafe(from, to, player)){
+					removable.add(to);
+				}
+			}
+			newMoves.removeAll(removable);
 		}
 
 		/** Once we've gathered our movement options, cut out the ones that put us into check**/
@@ -67,10 +80,11 @@ public abstract class PieceValidator extends Piece{
 	 * findKing- For any given, valid color and piece type, this will attempt to return that
 	 * piece. If that piece is not on the board, this returns null.
 	 * @param pieces: The pieces of a single person
-	 * @param color: The color of the desired piece
+	 * @param player:
 	 * @return A piece on the board or null
 	 */
-	private PieceIF findKing(ArrayList<PieceIF> pieces, GameColor color){
+	private PieceIF findKing(ArrayList<PieceIF> pieces, int player){
+		GameColor color = (player == 1) ? GameColor.WHITE : GameColor.BLACK;
 		for(PieceIF p : pieces){
 			if(p.getColor().equals(color) && p.getChessPieceType().equals(ChessPieceType.King)){
 				return p;
@@ -143,4 +157,5 @@ public abstract class PieceValidator extends Piece{
 	 * @return Returns a clone of this validator using a new board
 	 */
 	public abstract PieceValidator clone(BoardIF board);
+
 }

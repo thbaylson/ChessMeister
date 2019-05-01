@@ -12,8 +12,8 @@ import java.util.ArrayList;
 /**
  * The interface for piece
  *
- * @author Caleb Tupone %60 everything else
- * @author Dillon Ramsey %40 clone and clonePV
+ * @author Caleb
+ * @version 1.0
  */
 public interface PieceIF {
 	/**
