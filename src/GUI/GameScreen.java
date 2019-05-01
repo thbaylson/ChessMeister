@@ -1,5 +1,7 @@
 package GUI;
 
+import Interfaces.BoardBuilderInterface;
+import UI_CLI.BoardBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,6 +24,8 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private Button undoButton;
     private Button redoButton;
     private Button settingsButton;
+    private GridPane board;
+    private BoardBuilderInterface builder;
 
     private GameScreen(){
         setPrefSize(800, 800);
@@ -29,6 +33,8 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         //This needs to be created here before setPlayerPane call
         exitButton = new Button("Exit");
         exitButton.setOnAction(this);
+        board = new GridPane();
+        builder = BoardBuilder.getInstance(board);
 
         setHeaderBar();
         setPlayerPane(1);
@@ -87,19 +93,12 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * The board on which players will play on. This may need to be its own class
      */
     private void setBoard() {
-        TilePane board = new TilePane();
+        builder.buildBoard();
         board.setMinSize(400, 500);
         board.setMaxSize(400, 500);
-        board.setPrefColumns(8);
         board.setHgap(1);
         board.setVgap(1);
 
-        Button tmp;
-        for(int i = 0; i < 64; i++){
-            tmp = new Button("0");
-            tmp.setPrefSize(45, 45);
-            board.getChildren().add(tmp);
-        }
 
         setCenter(board);
     }//End setBoard
