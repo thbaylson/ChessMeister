@@ -3,12 +3,10 @@ package Move_Validation;
 
 import java.util.ArrayList;
 
-
 import Enums.ChessPieceType;
 import Interfaces.BoardIF;
 import Interfaces.PieceIF;
 import Interfaces.SquareIF;
-import Model.Piece;
 import Model.Position;
 /**
  * 
@@ -138,6 +136,38 @@ public class KingValidator extends PieceValidator{
 					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file + 1][rank - 1].getPosition());
 
+		return moves;
+	}
+
+	/**
+	 * Checks if the king can castle
+	 * @param kPos - The position of the king
+	 * @return A list of valid positions
+	 */
+	public ArrayList<Position> canCastle(Position kPos){
+		ArrayList<Position> moves = new ArrayList<>();
+		ArrayList<Position> rook = new ArrayList<>();
+		PieceIF theKing = board.getCurKing();
+		boolean king = theKing.getMoved();
+		int turn = 1;
+		if (board.getTurn()){
+			turn = 2;
+		}
+		if (king){
+			return moves;
+		}
+		for (PieceIF r1 : board.getPlayerPieces(turn)){
+			if(r1.getChessPieceType() == ChessPieceType.Rook && r1.getMoved()){
+				return moves;
+			}
+		}
+		if (theKing.getColor().getColor() == 'w'){
+			moves.add(new Position('b', 1));
+			moves.add(new Position('c', 1));
+		}else{
+			moves.add(new Position('b', 8));
+			moves.add(new Position('c', 8));
+		}
 		return moves;
 	}
 

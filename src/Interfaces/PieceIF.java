@@ -99,4 +99,16 @@ public interface PieceIF {
 	 * @param board - The game board
 	 */
 	public void clonePV(BoardIF board);
+
+	/**
+	 * Sets that the piece has moved
+	 * @param move - Whether the piece has moved
+	 */
+	public void setMoved(boolean move);
+
+	/**
+	 * Gets whether the piece has moved
+	 * @return True if the piece has moved
+	 */
+	public boolean getMoved();
 }

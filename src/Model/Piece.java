@@ -23,12 +23,13 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	private GameColor color;
 	private PieceValidator pv;
 	private Position pos;
+	private boolean hadMoved;
 
 	public Piece(){
 		this.cpt = null;
 		this.color = null;
 		this.pos = null;
-
+		this.hadMoved = false;
 	}
 	/**
 	 * Constructor for the Piece object
@@ -190,7 +191,24 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		newPiece.setColor(this.color);
 		newPiece.setPieceValidator(this.pv);
 		newPiece.setPosition(this.pos.clone());
+		newPiece.setMoved(this.hadMoved);
 		return newPiece;
+	}
+
+	/**
+	 * Sets whether the piece has moved
+	 * @param moved - Whether the piece has moved
+	 */
+	public void setMoved(boolean moved){
+		this.hadMoved = moved;
+	}
+
+	/**
+	 * Gets whether the piece has moved
+	 * @return True if the piece has moved
+	 */
+	public boolean getMoved(){
+		return this.hadMoved;
 	}
 
 	/**

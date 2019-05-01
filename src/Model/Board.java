@@ -122,10 +122,44 @@ public class Board implements BoardIF{
 				playerTwoPieces.remove(to.getSquare().getPiece());
 			}
 		}
+		isCastling(from, to);
+		bLayout[from.getFile().getArrayp()][from.getFile().getArrayp()].getPiece().setMoved(true);
 		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(
 				bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
-		
+
 		bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].clear();
+	}
+
+	/**
+	 * Checks if the piece is a king and if it is castling and moves rooks accordingly
+	 * @param from
+	 * @param to
+	 */
+	public void isCastling(Position from, Position to){
+		PieceIF piece = from.getSquare().getPiece();
+		if (piece.getChessPieceType() == ChessPieceType.King && !piece.getMoved()){
+			if (piece.getColor().getColor() == 'w'){
+				if (to.getFile().getFile() == 'b' && !getPiece(1, 'a').getMoved()){
+					if (getPiece(1, 'a').checkMoves().contains(getPosition(1, 'c'))){
+						move(getPosition(1,'a'), getPosition(1,'c'));
+					}
+				}else if(to.getFile().getFile() == 'f' && !getPiece(1, 'h').getMoved()) {
+					if (getPiece(1, 'h').checkMoves().contains(getPosition(1, 'e'))) {
+						move(getPosition(1, 'h'), getPosition(1, 'e'));
+					}
+				}
+			}else if(piece.getColor().getColor() == 'b'){
+				if (from.getFile().getFile() == 'b' && !getPiece(8, 'a').getMoved()){
+					if (getPiece(8, 'a').checkMoves().contains(getPosition(8, 'c'))){
+						move(getPosition(8,'a'), getPosition(8,'c'));
+					}
+				}else if(to.getFile().getFile() == 'f' && !getPiece(8, 'h').getMoved()) {
+					if (getPiece(8, 'h').checkMoves().contains(getPosition(8, 'e'))) {
+						move(getPosition(8, 'h'), getPosition(8, 'e'));
+					}
+				}
+			}
+		}
 	}
 
 	 /**
