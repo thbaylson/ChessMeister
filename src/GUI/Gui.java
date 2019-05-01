@@ -31,6 +31,7 @@ public class Gui extends Application implements ScreenChangeHandler {
             PlayerNameScreen.getInstance().register(this);
             GameScreen.getInstance().register(this);
 
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch(Exception e) {
@@ -39,10 +40,6 @@ public class Gui extends Application implements ScreenChangeHandler {
 
         if(instance == null)
             instance = this;
-
-
-        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
     }
 
     public static Gui getInstance(){

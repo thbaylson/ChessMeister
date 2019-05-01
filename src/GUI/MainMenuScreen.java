@@ -34,11 +34,13 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     ScreenChangeHandler sch;
 
     private MainMenuScreen() {
+        getStyleClass().add("menu");
 
         settingsAndExit = new HBox();
         centerButtonList = new VBox();
 
         title = new Label("Chess-Meister");
+        title.getStyleClass().add("label");
         title.setScaleX(8);
         title.setScaleY(8);
         title.setPadding(new Insets(25,0,0,0));
@@ -72,6 +74,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
      */
     private Button addButton(Pane pane, String text){
         Button btn = new Button(text);
+        btn.getStyleClass().add("button");
         btn.setPrefSize(200, 30);
         btn.setOnAction(this);
         pane.getChildren().add(btn);

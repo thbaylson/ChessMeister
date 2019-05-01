@@ -20,11 +20,14 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
 
     /** Private constructor, adheres to singleton pattern**/
     private NotYetImplementedScreen(){
+        getStyleClass().add("not-a-feature");
+
         setAlignment(Pos.CENTER);
         setSpacing(50);
 
         // Label informing the user that this feature in not yet implemented
         Label label = new Label("Feature Not Yet Implemented");
+        label.getStyleClass().add("label");
         label.setScaleX(4);
         label.setScaleY(4);
 

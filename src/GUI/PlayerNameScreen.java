@@ -26,8 +26,9 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
     private Button exitButton;
 
     private PlayerNameScreen(){
+        getStyleClass().add("menu");
 
-        // Name Entreis
+        // Name Entries
         Label title;
         PlayerNameEntry playerOneName;
         PlayerNameEntry playerTwoName;
@@ -38,14 +39,17 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
 
         // Title of the screen
         title = new Label("Enter Player Names");
+        title.getStyleClass().add("label");
         title.setScaleX(4);
         title.setScaleY(4);
 
         // Player One Label
         playerOneName = new PlayerNameEntry("Player 1 Name");
+        playerOneName.getStyleClass().add("label");
 
         // Player Two TextField
         playerTwoName = new PlayerNameEntry("Player 2 Name");
+        playerTwoName.getStyleClass().add("label");
 
         // The back button
         playButton = new Button("Play");

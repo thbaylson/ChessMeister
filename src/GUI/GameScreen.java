@@ -24,6 +24,8 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private Button settingsButton;
 
     private GameScreen(){
+        getStyleClass().add("menu");
+
         setPrefSize(800, 800);
         setPadding(new Insets(20,20,20,20));
         //This needs to be created here before setPlayerPane call
@@ -111,6 +113,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         HBox container = new HBox();
         container.setAlignment(Pos.TOP_CENTER);
         Label info = new Label("GameStart");
+        info.getStyleClass().add("label");
         info.setScaleX(1.5);
         info.setScaleY(1.5);
 
