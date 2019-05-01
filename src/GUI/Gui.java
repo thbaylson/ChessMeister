@@ -23,6 +23,7 @@ public class Gui extends Application implements ScreenChangeHandler {
     @Override
     public void start(Stage primaryStage) {
         try{
+            primaryStage.setResizable(false);
             switchScreen(Screens.MAINMENU);
 
             MainMenuScreen.getInstance().register(this);

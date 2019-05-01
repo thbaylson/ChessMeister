@@ -25,6 +25,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
 
     private GameScreen(){
         setPrefSize(800, 800);
+        setPadding(new Insets(20,20,20,20));
         //This needs to be created here before setPlayerPane call
         exitButton = new Button("Exit");
         exitButton.setOnAction(this);
@@ -43,11 +44,10 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * redo move, and open settings window.
      */
     private void setHeaderBar() {
-        HBox tabs = new HBox();
+        HBox tabs = new HBox(50);
         tabs.setMinSize(800, 50);
         tabs.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tabs.setAlignment(Pos.CENTER);
-        tabs.setSpacing(50);
 
         loadButton = new Button("Load");
         saveButton = new Button("Save");
@@ -110,7 +110,6 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private void SetFooterBar() {
         HBox container = new HBox();
         container.setAlignment(Pos.TOP_CENTER);
-        container.setPadding(new Insets(0,0,20,0));
         Label info = new Label("GameStart");
         info.setScaleX(1.5);
         info.setScaleY(1.5);

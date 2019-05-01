@@ -1,5 +1,8 @@
 package GUI;
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -24,14 +27,10 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
 
     private PlayerNameScreen(){
 
-        // Labels
+        // Name Entreis
         Label title;
-        Label playerOneEnterName;
-        Label playerTwoEnterName;
-
-        // TextFields
-        TextField playerOneName;
-        TextField playerTwoName;
+        PlayerNameEntry playerOneName;
+        PlayerNameEntry playerTwoName;
 
         // Sets alignment and spacing for the VBox
         setAlignment(Pos.CENTER);
@@ -43,24 +42,10 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
         title.setScaleY(4);
 
         // Player One Label
-        playerOneEnterName = new Label("Player 1 Name");
-        playerOneEnterName.setScaleX(3);
-        playerOneEnterName.setScaleY(3);
-
-        // Player One TextField
-        playerOneName = new TextField();
-        playerOneName.setMaxSize(200, 10);
-
-        // Player Two Label
-        playerTwoEnterName = new Label("Player 2 Name");
-        playerTwoEnterName.setScaleX(3);
-        playerTwoEnterName.setScaleY(3);
+        playerOneName = new PlayerNameEntry("Player 1 Name");
 
         // Player Two TextField
-        playerTwoName = new TextField();
-        playerTwoName.setMaxSize(200, 10);
-
-
+        playerTwoName = new PlayerNameEntry("Player 2 Name");
 
         // The back button
         playButton = new Button("Play");
@@ -79,12 +64,17 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
         buttonHolder.setRight(exitButton);
 
         getChildren().addAll(title,
-                playerOneEnterName,
                 playerOneName,
-                playerTwoEnterName,
                 playerTwoName,
                 buttonHolder);
     }
+
+    ChangeListener<String> ch = new ChangeListener<String>() {
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+        }
+    };
 
     public void handle(ActionEvent event){
         if(event.getSource() == exitButton){
@@ -108,4 +98,5 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
     void register(ScreenChangeHandler gui){
         this.GUI = gui;
     }
+
 }
