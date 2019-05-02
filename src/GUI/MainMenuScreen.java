@@ -52,15 +52,6 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         title.getStyleClass().add("title");
         setAlignment(title, Pos.CENTER);
 
-        createButtons();
-
-        centerButtonList.setAlignment(Pos.CENTER);
-        centerButtonList.setSpacing(50);
-
-
-        settingsAndExit.setAlignment(Pos.TOP_CENTER);
-        settingsAndExit.setSpacing(200);
-        settingsAndExit.setPadding(new Insets(0, 0, 50, 0));
         //Add buttons to the root.
         twoPlayerButton = addButton(centerButtonList, "Player vs Player");
         cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
