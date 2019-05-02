@@ -1,6 +1,5 @@
 package GUI;
 
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -9,14 +8,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
  * Author: Tyler Baylson
  */
-public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> {
+public class PlayerNameScreen extends BorderPane implements EventHandler<ActionEvent> {
 
     private static PlayerNameScreen instance;
 
@@ -28,49 +27,37 @@ public class PlayerNameScreen extends VBox implements EventHandler<ActionEvent> 
     private PlayerNameScreen(){
         getStyleClass().add("menu");
 
-        // Name Entries
-        Label title;
-        PlayerNameEntry playerOneName;
-        PlayerNameEntry playerTwoName;
+        VBox centerView = new VBox();
+        centerView.getStyleClass().add("vertical-group");
 
-        // Sets alignment and spacing for the VBox
-        setAlignment(Pos.CENTER);
-        setSpacing(50);
+        HBox bottomView = new HBox();
+        bottomView.getStyleClass().add("horizontal-group");
 
         // Title of the screen
-        title = new Label("Enter Player Names");
-        title.getStyleClass().add("label");
-        title.setScaleX(4);
-        title.setScaleY(4);
+        Label title = new Label("Enter Player Names");
+        title.getStyleClass().add("title");
+        setAlignment(title, Pos.CENTER);
 
-        // Player One Label
-        playerOneName = new PlayerNameEntry("Player 1 Name");
-        playerOneName.getStyleClass().add("label");
+        // Player Entries
+        PlayerNameEntry playerOneName = new PlayerNameEntry("Player 1 Name");
+        PlayerNameEntry playerTwoName = new PlayerNameEntry("Player 2 Name");
+        centerView.getChildren().addAll(playerOneName, playerTwoName);
 
-        // Player Two TextField
-        playerTwoName = new PlayerNameEntry("Player 2 Name");
-        playerTwoName.getStyleClass().add("label");
-
-        // The back button
+        // The play button
         playButton = new Button("Play");
-        playButton.setPrefSize(100, 50);
+        playButton.getStyleClass().add("button");
         playButton.setOnAction(this);
 
         // The back button
         exitButton = new Button("Back");
-        exitButton.setPrefSize(100, 50);
+        exitButton.getStyleClass().add("button");
         exitButton.setOnAction(this);
 
-        // This will hold the bottom two buttons
-        BorderPane buttonHolder = new BorderPane();
-        buttonHolder.setPadding(new Insets(0,25,0,125));
-        buttonHolder.setCenter(playButton);
-        buttonHolder.setRight(exitButton);
+        bottomView.getChildren().addAll(playButton, exitButton);
 
-        getChildren().addAll(title,
-                playerOneName,
-                playerTwoName,
-                buttonHolder);
+        setTop(title);
+        setCenter(centerView);
+        setBottom(bottomView);
     }
 
     ChangeListener<String> ch = new ChangeListener<String>() {

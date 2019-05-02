@@ -24,7 +24,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private Button settingsButton;
 
     private GameScreen(){
-        getStyleClass().add("menu");
+        //getStyleClass().add("menu");
 
         setPrefSize(800, 800);
         setPadding(new Insets(20,20,20,20));
