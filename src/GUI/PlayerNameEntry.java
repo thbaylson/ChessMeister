@@ -15,12 +15,11 @@ public class PlayerNameEntry extends VBox {
     private TextField name;
 
     PlayerNameEntry(String playerName){
-        setAlignment(Pos.CENTER);
+        getStyleClass().add("vertical-group");
+        //setAlignment(Pos.CENTER);
 
         title = new Label(playerName);
-        title.setAlignment(Pos.CENTER);
-        title.setScaleX(3);
-        title.setScaleY(3);
+        title.getStyleClass().add("header");
 
         name = new TextField();
         name.setAlignment(Pos.CENTER);

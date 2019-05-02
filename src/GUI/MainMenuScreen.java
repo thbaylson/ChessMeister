@@ -6,7 +6,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * @author Caleb Tupone
@@ -15,32 +21,36 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
 
     private static MainMenuScreen instance;
 
-    HBox settingsAndExit;
+    private HBox settingsAndExit;
 
-    VBox centerButtonList;
+    private VBox centerButtonList;
 
-    Label title;
+    private Label title;
 
-    Button twoPlayerButton;
-    Button cpuPlayerButton;
-    Button onlinePlayButton;
-    Button rulesButton;
-    Button tutorialButton;
-    Button settingsButton;
-    Button exitButton;
+    private Button twoPlayerButton;
+    private Button cpuPlayerButton;
+    private Button onlinePlayButton;
+    private Button rulesButton;
+    private Button tutorialButton;
+    private Button settingsButton;
+    private Button exitButton;
 
 
     ScreenChangeHandler GUI;
+    private ScreenChangeHandler sch;
 
     private MainMenuScreen() {
+        getStyleClass().add("menu");
+
+        centerButtonList = new VBox();
+        centerButtonList.getStyleClass().add("vertical-group");
 
         settingsAndExit = new HBox();
-        centerButtonList = new VBox();
+        settingsAndExit.getStyleClass().add("horizontal-group");
 
         title = new Label("Chess-Meister");
-        title.setScaleX(8);
-        title.setScaleY(8);
-        title.setPadding(new Insets(25,0,0,0));
+        title.getStyleClass().add("title");
+        setAlignment(title, Pos.CENTER);
 
         createButtons();
 
@@ -51,9 +61,19 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         settingsAndExit.setAlignment(Pos.TOP_CENTER);
         settingsAndExit.setSpacing(200);
         settingsAndExit.setPadding(new Insets(0, 0, 50, 0));
+        //Add buttons to the root.
+        twoPlayerButton = addButton(centerButtonList, "Player vs Player");
+        cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
+        onlinePlayButton = addButton(centerButtonList, "Online Play");
+        rulesButton = addButton(centerButtonList, "Rules of chess");
+        tutorialButton = addButton(centerButtonList, "Tutorial");
+
+        settingsButton = addButton(settingsAndExit, "Settings");
+        exitButton = addButton(settingsAndExit, "Exit");
 
         setTop(title);
-        setAlignment(title, Pos.CENTER);
+        setLeft(getImage("king"));
+        setRight(getImage("queen"));
         setCenter(centerButtonList);
         setBottom(settingsAndExit);
     }
@@ -81,10 +101,32 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
      */
     private Button addButton(Pane pane, String text){
         Button btn = new Button(text);
-        btn.setPrefSize(200, 30);
+        btn.getStyleClass().add("button");
         btn.setOnAction(this);
         pane.getChildren().add(btn);
         return btn;
+    }
+
+    private Pane getImage(String image){
+        Pane picture = new Pane();
+        FileInputStream file;
+        try{
+            switch(image.toLowerCase()){
+                case "king":
+                    System.out.println(new File(".").getAbsolutePath());
+                    file = new FileInputStream("images/WK_smooth.png");
+                    picture.getChildren().add(new ImageView(new Image(file)));
+                    break;
+                case "queen":
+                    file = new FileInputStream("./images/WQ_smooth.png");
+                    picture.getChildren().add(new ImageView(new Image(file)));
+                    break;
+            }
+        } catch(FileNotFoundException fnfe){
+            fnfe.printStackTrace();
+        }
+
+        return picture;
     }
 
     @Override
