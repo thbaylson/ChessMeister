@@ -42,15 +42,15 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         title.setScaleY(8);
         title.setPadding(new Insets(25,0,0,0));
 
-        createButtons();
+        //Add buttons to the root.
+        twoPlayerButton = addButton(centerButtonList, "Player vs Player");
+        cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
+        onlinePlayButton = addButton(centerButtonList, "Online Play");
+        rulesButton = addButton(centerButtonList, "Rules of chess");
+        tutorialButton = addButton(centerButtonList, "Tutorial");
 
-        centerButtonList.setAlignment(Pos.CENTER);
-        centerButtonList.setSpacing(50);
-
-
-        settingsAndExit.setAlignment(Pos.TOP_CENTER);
-        settingsAndExit.setSpacing(200);
-        settingsAndExit.setPadding(new Insets(0, 0, 50, 0));
+        settingsButton = addButton(settingsAndExit, "Settings");
+        exitButton = addButton(settingsAndExit, "Exit");
 
         setTop(title);
         setAlignment(title, Pos.CENTER);
