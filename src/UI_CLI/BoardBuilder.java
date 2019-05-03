@@ -32,10 +32,6 @@ public class BoardBuilder implements BoardBuilderInterface {
         return singleton;
     }
 
-    public void setGameBoard(BoardIF gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-
     public void buildBoard(){
         gameBoard.draw();
     }
