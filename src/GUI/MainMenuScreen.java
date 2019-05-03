@@ -92,7 +92,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
      */
     private Button addButton(Pane pane, String text){
         Button btn = new Button(text);
-        btn.getStyleClass().add("button");
+        btn.getStyleClass().add("my-button");
         btn.setOnAction(this);
         pane.getChildren().add(btn);
         return btn;

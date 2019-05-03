@@ -119,6 +119,8 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
         exit = new Button("Exit");
         select.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         exit.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        select.getStyleClass().add("my-button");
+        exit.getStyleClass().add("my-button");
 
         sliders.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         color.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
