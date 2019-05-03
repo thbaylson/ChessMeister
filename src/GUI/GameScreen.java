@@ -1,7 +1,6 @@
 package GUI;
 
 import Interfaces.BoardBuilderInterface;
-import UI_CLI.BoardBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

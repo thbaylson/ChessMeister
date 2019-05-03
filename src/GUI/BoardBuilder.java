@@ -1,4 +1,4 @@
-package UI_CLI;
+package GUI;
 
 import Interfaces.BoardBuilderInterface;
 import Interfaces.BoardIF;

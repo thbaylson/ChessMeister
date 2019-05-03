@@ -1,9 +1,14 @@
-package UI_CLI;
+package GUI;
 
+import Enums.ChessPieceType;
+import Enums.GameColor;
 import Interfaces.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Board_GUI implements BoardStrategy{
 
@@ -79,25 +84,65 @@ public class Board_GUI implements BoardStrategy{
 
     public void gridBuilder(PieceIF piece, int col, int row, char sColor, char pColor, boolean hl){
         Button butt = new Button();
-        String text = "";
-        if (piece != null) {
-            text = piece.toString();
-        }
-        butt.setText(text);
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("./images/WP.png")));
         butt.setMaxSize(47, 45);
         butt.setMinSize(47,45);
+        if (piece != null) {
+            switch (piece.getChessPieceType()){
+                case King :
+                    if (piece.getColor() == GameColor.WHITE){
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WK_smooth.png")));
+                    }else{
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/BK.png")));
+                    }
+                    break;
+                case Queen :
+                    if (piece.getColor() == GameColor.WHITE){
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WQ_smooth.png")));
+                    }else{
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/BQ.png")));
+                    }
+                    break;
+                case Rook :
+                    if (piece.getColor() == GameColor.WHITE){
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WR.png")));
+                    }else{
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/BR.png")));
+                    }
+                    break;
+                case Knight :
+                    if (piece.getColor() == GameColor.WHITE){
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WN.png")));
+                    }else{
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/BN.png")));
+                    }
+                    break;
+                case Bishop :
+                    if (piece.getColor() == GameColor.WHITE){
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WB.png")));
+                    }else{
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/BB.png")));
+                    }
+                    break;
+                case Pawn :
+                    if (piece.getColor() == GameColor.WHITE){
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WP.png")));
+                    }else{
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/BP.png")));
+                    }
+                    break;
+            }
+            image.setFitWidth(butt.getMaxWidth());
+            image.setFitHeight(butt.getMaxHeight());
+            butt.setGraphic(image);
+        }
         butt.setAlignment(Pos.CENTER);
         if (hl){
             butt.setStyle("-fx-background-color: #50148c");
         }else if (sColor == 'w'){
-            butt.setStyle("-fx-background-color: #ffffff");
-        }else{
-            butt.setStyle("-fx-background-color: #000000");
-        }
-        if (pColor == 'w'){
-            butt.setStyle("-fx-text-fill: #0000ff");
-        }else{
-            butt.setStyle("-fx-text-fill: #ff0000");
+            butt.setStyle("-fx-background-color: #b49646");
+        }else {
+            butt.setStyle("-fx-background-color: #785000");
         }
         gPane.add(butt, col, row, 1, 1);
     }
