@@ -51,7 +51,7 @@ class Controller {
             String uInput = mainMenu.askInput();
 
             if (uInput.equals("Y") || uInput.equals("YES")) {
-                launchGUI();
+                //launchGUI();
                 BoardStrategy strategy = chooseBoardType();
                 game.setDrawStrategy(strategy);
                 runGame();
