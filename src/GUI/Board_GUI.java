@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 public class Board_GUI implements BoardStrategy{
 
@@ -83,10 +84,16 @@ public class Board_GUI implements BoardStrategy{
     }
 
     public void gridBuilder(PieceIF piece, int col, int row, char sColor, char pColor, boolean hl){
-        Button butt = new Button();
+        BoardButton butt = new BoardButton(builder);
+        String background;
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("./images/WP.png")));
-        butt.setMaxSize(47, 45);
-        butt.setMinSize(47,45);
+        if (hl){
+            background = "-fx-background-color: #50148c";
+        }else if (sColor == 'w'){
+            background = "-fx-background-color: #b49646";
+        }else {
+            background = "-fx-background-color: #785000";
+        }
         if (piece != null) {
             switch (piece.getChessPieceType()){
                 case King :
@@ -132,18 +139,12 @@ public class Board_GUI implements BoardStrategy{
                     }
                     break;
             }
-            image.setFitWidth(butt.getMaxWidth());
-            image.setFitHeight(butt.getMaxHeight());
-            butt.setGraphic(image);
+            butt.setMaxHeight(45);
+            butt.setMaxWidth(47);
+            butt.setPiece(piece);
+            butt.setImage(image);
         }
-        butt.setAlignment(Pos.CENTER);
-        if (hl){
-            butt.setStyle("-fx-background-color: #50148c");
-        }else if (sColor == 'w'){
-            butt.setStyle("-fx-background-color: #b49646");
-        }else {
-            butt.setStyle("-fx-background-color: #785000");
-        }
+        butt.setBackground(background);
         gPane.add(butt, col, row, 1, 1);
     }
 

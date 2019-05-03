@@ -9,4 +9,8 @@ public interface BoardBuilderInterface {
     public void buildBoard();
 
     public GridPane getGrid();
+
+    public void showMoves(PieceIF piece);
+
+    public void reDraw();
     }
