@@ -90,6 +90,8 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
         saveButton = addButton(rightSide, "Save");
         exitButton = addButton(rightSide, "Exit");
+        saveButton.getStyleClass().add("my-button");
+        exitButton.getStyleClass().add("my-button");
 
         rightSide.setAlignment(Pos.CENTER);
         rightSide.setSpacing(20);
