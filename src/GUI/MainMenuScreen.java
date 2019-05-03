@@ -88,7 +88,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         return btn;
     }
 
-    private Pane getImage(String image){
+    public static Pane getImage(String image){
         Pane picture = new Pane();
         FileInputStream file;
         try{
@@ -107,6 +107,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
             fnfe.printStackTrace();
         }
         picture.getStyleClass().add("image");
+        picture.setPrefWidth(200);
         return picture;
     }
 

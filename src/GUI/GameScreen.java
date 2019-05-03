@@ -24,12 +24,13 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private Button settingsButton;
 
     private GameScreen(){
-        //getStyleClass().add("menu");
+        getStyleClass().add("menu");
 
         setPrefSize(800, 800);
         setPadding(new Insets(20,20,20,20));
         //This needs to be created here before setPlayerPane call
         exitButton = new Button("Exit");
+        exitButton.getStyleClass().add("my-tab-button");
         exitButton.setOnAction(this);
 
         setHeaderBar();
@@ -46,16 +47,20 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * redo move, and open settings window.
      */
     private void setHeaderBar() {
-        HBox tabs = new HBox(50);
-        tabs.setMinSize(800, 50);
+        HBox tabs = new HBox(10);
         tabs.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tabs.setAlignment(Pos.CENTER);
 
         loadButton = new Button("Load");
+        loadButton.getStyleClass().add("my-tab-button");
         saveButton = new Button("Save");
+        saveButton.getStyleClass().add("my-tab-button");
         undoButton = new Button("Undo");
+        undoButton.getStyleClass().add("my-tab-button");
         redoButton = new Button("Redo");
+        redoButton.getStyleClass().add("my-tab-button");
         settingsButton = new Button("Settings");
+        settingsButton.getStyleClass().add("my-tab-button");
 
         tabs.getChildren().addAll(
                 loadButton,
@@ -113,7 +118,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         HBox container = new HBox();
         container.setAlignment(Pos.TOP_CENTER);
         Label info = new Label("GameStart");
-        info.getStyleClass().add("label");
+        info.getStyleClass().add("my-label");
         info.setScaleX(1.5);
         info.setScaleY(1.5);
 

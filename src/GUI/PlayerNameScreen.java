@@ -45,17 +45,19 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
 
         // The play button
         playButton = new Button("Play");
-        playButton.getStyleClass().add("button");
+        playButton.getStyleClass().add("my-button");
         playButton.setOnAction(this);
 
         // The back button
         exitButton = new Button("Back");
-        exitButton.getStyleClass().add("button");
+        exitButton.getStyleClass().add("my-button");
         exitButton.setOnAction(this);
 
         bottomView.getChildren().addAll(playButton, exitButton);
 
         setTop(title);
+        setLeft(MainMenuScreen.getImage("king"));
+        setRight(MainMenuScreen.getImage("queen"));
         setCenter(centerView);
         setBottom(bottomView);
     }
