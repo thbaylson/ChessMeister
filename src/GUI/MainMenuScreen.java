@@ -106,7 +106,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         } catch(FileNotFoundException fnfe){
             fnfe.printStackTrace();
         }
-
+        picture.getStyleClass().add("image");
         return picture;
     }
 

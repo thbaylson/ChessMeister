@@ -152,6 +152,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         Button btn = new Button(text);
         btn.setPrefWidth(100);
         btn.setOnAction(this);
+        btn.setPrefSize(50, 20);
         pane.getChildren().add(btn);
         return btn;
     }

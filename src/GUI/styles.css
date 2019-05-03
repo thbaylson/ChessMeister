@@ -23,6 +23,11 @@
     -fx-spacing: 200; /* This is in px by default, should be percentage*/
 }
 
+.image{
+    -fx-scale-x: 0.5;
+    -fx-scale-y: 0.5;
+}
+
 .label, .title{
     -fx-text-fill: #f8f8ff; /*Label's Color: ghostwhite*/
     -fx-font-family: "Times New Roman", Times, serif;
