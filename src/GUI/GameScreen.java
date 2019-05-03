@@ -1,6 +1,7 @@
 package GUI;
 
 import Interfaces.BoardManagerInterface;
+import Interfaces.ScreenChangeHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

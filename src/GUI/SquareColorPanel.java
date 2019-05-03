@@ -1,8 +1,6 @@
 package GUI;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import Interfaces.SquareColorHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -19,6 +17,7 @@ public class SquareColorPanel extends HBox{
         this.title = new Label(desc);
         getChildren().add(title);
         coloredButton = addButton(this, "");
+        setSpacing(10);
 
     }
 

@@ -1,4 +1,4 @@
-package GUI;
+package Interfaces;
 
 /**
  * @author Caleb Tupone

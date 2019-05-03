@@ -1,4 +1,4 @@
-package GUI;
+package Interfaces;
 
 public interface SquareColorHandler {
 

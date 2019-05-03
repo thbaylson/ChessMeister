@@ -1,10 +1,10 @@
 package GUI;
 
+import Interfaces.ScreenChangeHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
