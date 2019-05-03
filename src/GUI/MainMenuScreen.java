@@ -52,6 +52,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
 
         createButtons();
 
+
         setTop(title);
         setLeft(getImage("king"));
         setRight(getImage("queen"));
