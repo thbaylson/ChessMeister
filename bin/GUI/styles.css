@@ -2,12 +2,13 @@
 * Author: Tyler Baylson
 */
 
-.my-button, .vertical-button-group, .horizontal-button-group{
+.my-button, .my-tab-button{
     -fx-border-color: darkslategrey;
     -fx-color: grey; /*Button's Background*/
     -fx-font-family: "Times New Roman", Times, serif;
+    -fx-font-size: 2em;
     -fx-pref-width: 200;
-    -fx-pref-height: 30;
+    -fx-pref-height: 20;
     -fx-text-fill: white; /*Button's Text*/
 }
 
@@ -23,13 +24,26 @@
     -fx-spacing: 200; /* This is in px by default, should be percentage*/
 }
 
-.label, .title{
+.image{
+    -fx-scale-x: 0.5;
+    -fx-scale-y: 0.5;
+}
+
+.my-label, .title{
     -fx-text-fill: #f8f8ff; /*Label's Color: ghostwhite*/
     -fx-font-family: "Times New Roman", Times, serif;
 }
 
+.my-label{
+    -fx-font-size: 2em;
+}
+
 .menu{
 	-fx-background-color: #000000; /*Menus: Background*/
+}
+
+.my-tab-button{
+    -fx-pref-width: 100;
 }
 
 .not-a-feature{
