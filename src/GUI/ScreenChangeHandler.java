@@ -6,7 +6,7 @@ package GUI;
 public interface ScreenChangeHandler {
 
     enum Screens {MAINMENU, GAMESCREEN, OPTIONS, NOTYETIMPLEMENTED,
-        PLAYERNAMESCREEN}
+        PLAYERNAMESCREEN, SQUARECOLORCHOOSER}
 
 
     /**Sub screens must call this to switch screen.

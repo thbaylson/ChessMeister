@@ -3,7 +3,9 @@ package GUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -25,12 +27,20 @@ public class Gui extends Application implements ScreenChangeHandler {
         try{
             primaryStage.setResizable(false);
             primaryStage.setFullScreen(true);
+            primaryStage.setFullScreenExitKeyCombination(new KeyCombination() {});
+            //primaryStage.getFullScreenExitKeyCombination().
             switchScreen(Screens.MAINMENU);
+
+
 
             MainMenuScreen.getInstance().register(this);
             NotYetImplementedScreen.getInstance().register(this);
             PlayerNameScreen.getInstance().register(this);
             GameScreen.getInstance().register(this);
+            OptionsScreen.getInstance().register(this);
+            SquareColorChooser.getInstance().register(this);
+
+
 
             scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             primaryStage.setScene(scene);
@@ -43,9 +53,6 @@ public class Gui extends Application implements ScreenChangeHandler {
             instance = this;
     }
 
-    public static Gui getInstance(){
-        return instance;
-    }
 
     public static void main(String[] args) {
        launch(args);
@@ -71,10 +78,13 @@ public class Gui extends Application implements ScreenChangeHandler {
                 root = GameScreen.getInstance();
                 break;
             case OPTIONS:
-                //root = new OptionMenu.getInstance();
+                root = OptionsScreen.getInstance();
                 break;
             case NOTYETIMPLEMENTED:
                 root = NotYetImplementedScreen.getInstance();
+                break;
+            case SQUARECOLORCHOOSER:
+                root = SquareColorChooser.getInstance();
                 break;
         }
 
@@ -84,4 +94,6 @@ public class Gui extends Application implements ScreenChangeHandler {
         else
             scene.setRoot(root);
     }
+
+
 }

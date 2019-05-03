@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import sun.plugin.javascript.navig.Anchor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +19,7 @@ import java.io.FileNotFoundException;
  */
 public class MainMenuScreen extends BorderPane implements EventHandler<ActionEvent>{
 
-    private static MainMenuScreen mainMenuScreen;
+    private static MainMenuScreen instance;
 
     private HBox settingsAndExit;
 
@@ -36,8 +35,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     private Button settingsButton;
     private Button exitButton;
 
-
-    private ScreenChangeHandler sch;
+    ScreenChangeHandler GUI;
 
     private MainMenuScreen() {
         getStyleClass().add("menu");
@@ -52,7 +50,20 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         title.getStyleClass().add("title");
         setAlignment(title, Pos.CENTER);
 
-        //Add buttons to the root.
+        createButtons();
+
+        setTop(title);
+        setLeft(getImage("king"));
+        setRight(getImage("queen"));
+        setCenter(centerButtonList);
+        setBottom(settingsAndExit);
+    }
+
+    /**
+     *
+     */
+    private void createButtons(){
+        //Add a button to the root.
         twoPlayerButton = addButton(centerButtonList, "Player vs Player");
         cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
         onlinePlayButton = addButton(centerButtonList, "Online Play");
@@ -61,12 +72,6 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
 
         settingsButton = addButton(settingsAndExit, "Settings");
         exitButton = addButton(settingsAndExit, "Exit");
-
-        setTop(title);
-        setLeft(getImage("king"));
-        setRight(getImage("queen"));
-        setCenter(centerButtonList);
-        setBottom(settingsAndExit);
     }
 
     /**
@@ -110,41 +115,44 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
 
         if(event.getSource() == twoPlayerButton){
             System.out.println("MainMenu: Player vs Player");
-            sch.switchScreen(ScreenChangeHandler.Screens.PLAYERNAMESCREEN);
+            GUI.switchScreen(ScreenChangeHandler.Screens.PLAYERNAMESCREEN);
         }
         else if(event.getSource() == cpuPlayerButton){
             System.out.println("MainMenu: Player vs CPU");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == onlinePlayButton){
             System.out.println("MainMenu: Online");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == rulesButton){
             System.out.println("MainMenu: Rules");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == tutorialButton){
             System.out.println("MainMenu: Tutorial");
-            sch.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
+            GUI.switchScreen(ScreenChangeHandler.Screens.NOTYETIMPLEMENTED);
         }
         else if(event.getSource() == exitButton){
             System.out.println("MainMenu: Exit");
             System.exit(0);
+        }
+        else if(event.getSource() == settingsButton){
+            GUI.switchScreen(ScreenChangeHandler.Screens.OPTIONS);
         }
 
     }
 
     /**Get a singleton instance of this class**/
     static MainMenuScreen getInstance(){
-        if(mainMenuScreen == null)
-            mainMenuScreen = new MainMenuScreen();
+        if(instance == null)
+            instance = new MainMenuScreen();
 
-        return mainMenuScreen;
+        return instance;
     }
 
     void register(ScreenChangeHandler screen){
-        sch = screen;
+        GUI = screen;
     }
 
 }
