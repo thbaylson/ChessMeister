@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4160e81c-a72f-4d3e-895e-c46fc8581591" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Piece.java" afterDir="false" />
-    </list>
+    <list default="true" id="4160e81c-a72f-4d3e-895e-c46fc8581591" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Model/Piece.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+            <state relative-caret-position="405">
+              <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
               <folding>
                 <element signature="e#4194#4195#0" expanded="true" />
                 <element signature="e#4253#4254#0" expanded="true" />
