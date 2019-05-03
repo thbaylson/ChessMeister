@@ -1,8 +1,10 @@
 package GUI;
 
+import Enums.GameColor;
 import Interfaces.BoardBuilderInterface;
 import Interfaces.BoardIF;
 import Interfaces.PieceIF;
+import Model.Position;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
@@ -19,6 +21,10 @@ public class BoardButton extends BorderPane {
 
     private Button butt;
 
+    private boolean highlighted;
+
+    private Position pos;
+
     public BoardButton(BoardBuilderInterface builder){
         this.builder = builder;
         butt = new Button();
@@ -26,14 +32,23 @@ public class BoardButton extends BorderPane {
         butt.setMinSize(47,45);
         this.setCenter(butt);
         butt.pressedProperty().addListener(PressedListener);
+        this.highlighted = false;
+        this.pos = null;
     }
 
     ChangeListener<Boolean> PressedListener = new ChangeListener<Boolean>() {
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             if (newValue) {
-                if (piece != null) {
-                    builder.showMoves(piece);
+                if (highlighted) {
+                    builder.movePiece(pos);
+                    builder.switchTurn();
+                }else if (piece != null){
+                    if ((piece.getColor()==GameColor.BLACK&&builder.getTurn())||(piece.getColor()==GameColor.WHITE&&!builder.getTurn())) {
+                        builder.showMoves(piece);
+                    } else {
+                        builder.reDraw();
+                    }
                 }else{
                     builder.reDraw();
                 }
@@ -54,5 +69,13 @@ public class BoardButton extends BorderPane {
 
     public void setBackground(String background){
         butt.setStyle(background);
+    }
+
+    public void setHighlighted(boolean highlighted){
+        this.highlighted = highlighted;
+    }
+
+    public void setPosition(Position pos){
+        this.pos = pos;
     }
 }

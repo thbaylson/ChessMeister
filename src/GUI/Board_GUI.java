@@ -1,6 +1,7 @@
 package GUI;
 
 import Enums.ChessPieceType;
+import Enums.Files;
 import Enums.GameColor;
 import Interfaces.*;
 import javafx.geometry.Pos;
@@ -50,31 +51,31 @@ public class Board_GUI implements BoardStrategy{
                 if (layout[i][j].getPiece() == null) {
                     //Checks the color of the current square and prints it accordingly
                     if (layout[i][j].getHighlight()){
-                        gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', true);
+                        gridBuilder(layout[i][j], i, j, 'w', 'w', true);
                     }else if (layout[i][j].getColor().getColor() == 'w'){
-                        gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', false);
+                        gridBuilder(layout[i][j], i, j, 'w', 'w', false);
                     }else{
-                        gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'w', false);
+                        gridBuilder(layout[i][j], i, j, 'b', 'w', false);
                     }
                 }else {
                     //Checks the color of the square and piece and sets them accordingly
                     if (layout[i][j].getHighlight()) {
                         if (layout[i][j].getPiece().getColor().getColor() == 'w') {
-                            gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', true);
+                            gridBuilder(layout[i][j], i, j, 'w', 'w', true);
                         } else {
-                            gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'b', true);
+                            gridBuilder(layout[i][j], i, j, 'b', 'b', true);
                         }
                     }else if (layout[i][j].getColor().getColor() == 'w') {
                         if (layout[i][j].getPiece().getColor().getColor() == 'w') {
-                            gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'w', false);
+                            gridBuilder(layout[i][j], i, j, 'w', 'w', false);
                         }else{
-                            gridBuilder(layout[i][j].getPiece(), i, j, 'w', 'b', false);
+                            gridBuilder(layout[i][j], i, j, 'w', 'b', false);
                         }
                     }else{
                         if (layout[i][j].getPiece().getColor().getColor() == 'w'){
-                            gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'w', false);
+                            gridBuilder(layout[i][j], i, j, 'b', 'w', false);
                         }else{
-                            gridBuilder(layout[i][j].getPiece(), i, j, 'b', 'b', false);
+                            gridBuilder(layout[i][j], i, j, 'b', 'b', false);
                         }
                     }
                 }
@@ -83,12 +84,15 @@ public class Board_GUI implements BoardStrategy{
         builder.updateBoard(gPane);
     }
 
-    public void gridBuilder(PieceIF piece, int col, int row, char sColor, char pColor, boolean hl){
+    public void gridBuilder(SquareIF square, int col, int row, char sColor, char pColor, boolean hl){
         BoardButton butt = new BoardButton(builder);
+        butt.setPosition(square.getPosition());
         String background;
+        PieceIF piece = square.getPiece();
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("./images/WP.png")));
         if (hl){
             background = "-fx-background-color: #50148c";
+            butt.setHighlighted(true);
         }else if (sColor == 'w'){
             background = "-fx-background-color: #b49646";
         }else {

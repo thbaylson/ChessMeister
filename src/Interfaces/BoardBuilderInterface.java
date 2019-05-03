@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Model.Position;
 import javafx.scene.layout.GridPane;
 
 public interface BoardBuilderInterface {
@@ -13,4 +14,10 @@ public interface BoardBuilderInterface {
     public void showMoves(PieceIF piece);
 
     public void reDraw();
+
+    public void movePiece(Position pos);
+
+    public boolean getTurn();
+
+    public void switchTurn();
     }
