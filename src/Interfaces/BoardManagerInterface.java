@@ -3,7 +3,7 @@ package Interfaces;
 import Model.Position;
 import javafx.scene.layout.GridPane;
 
-public interface BoardBuilderInterface {
+public interface BoardManagerInterface {
 
     public void updateBoard(GridPane gPane);
 

@@ -1,6 +1,6 @@
 package GUI;
 
-import Interfaces.BoardBuilderInterface;
+import Interfaces.BoardManagerInterface;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -24,7 +24,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private Button redoButton;
     private Button settingsButton;
     private GridPane board;
-    private BoardBuilderInterface builder;
+    private BoardManagerInterface builder;
 
     private GameScreen(){
         setPrefSize(1000, 1000);
@@ -33,7 +33,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         exitButton = new Button("Exit");
         exitButton.setOnAction(this);
         board = new GridPane();
-        builder = BoardBuilder.getInstance(board, this);
+        builder = BoardManager.getInstance(board, this);
 
         setHeaderBar();
         setPlayerPane(1);

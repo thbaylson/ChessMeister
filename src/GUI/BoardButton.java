@@ -1,8 +1,7 @@
 package GUI;
 
 import Enums.GameColor;
-import Interfaces.BoardBuilderInterface;
-import Interfaces.BoardIF;
+import Interfaces.BoardManagerInterface;
 import Interfaces.PieceIF;
 import Model.Position;
 import javafx.beans.value.ChangeListener;
@@ -17,7 +16,7 @@ public class BoardButton extends BorderPane {
 
     private ImageView image;
 
-    private BoardBuilderInterface builder;
+    private BoardManagerInterface builder;
 
     private Button butt;
 
@@ -25,7 +24,7 @@ public class BoardButton extends BorderPane {
 
     private Position pos;
 
-    public BoardButton(BoardBuilderInterface builder){
+    public BoardButton(BoardManagerInterface builder){
         this.builder = builder;
         butt = new Button();
         butt.setMaxSize(47, 45);

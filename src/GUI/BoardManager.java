@@ -1,13 +1,13 @@
 package GUI;
 
-import Interfaces.BoardBuilderInterface;
+import Interfaces.BoardManagerInterface;
 import Interfaces.BoardIF;
 import Interfaces.PieceIF;
 import Model.Board;
 import Model.Position;
 import javafx.scene.layout.GridPane;
 
-public class BoardBuilder implements BoardBuilderInterface {
+public class BoardManager implements BoardManagerInterface {
 
     private GridPane board;
 
@@ -15,11 +15,11 @@ public class BoardBuilder implements BoardBuilderInterface {
 
     private GameScreen screen;
 
-    private static BoardBuilder singleton;
+    private static BoardManager singleton;
 
     private PieceIF piece;
 
-    private BoardBuilder(GridPane board, GameScreen screen){
+    private BoardManager(GridPane board, GameScreen screen){
         this.board = board;
         this.screen = screen;
         gameBoard = new Board();
@@ -35,9 +35,9 @@ public class BoardBuilder implements BoardBuilderInterface {
         screen.updateBoard(board);
     }
 
-    public static BoardBuilder getInstance(GridPane board, GameScreen screen){
+    public static BoardManager getInstance(GridPane board, GameScreen screen){
         if(singleton == null)
-            singleton = new BoardBuilder(board, screen);
+            singleton = new BoardManager(board, screen);
         return singleton;
     }
 

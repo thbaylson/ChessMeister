@@ -1,23 +1,17 @@
 package GUI;
 
-import Enums.ChessPieceType;
-import Enums.Files;
 import Enums.GameColor;
 import Interfaces.*;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 public class Board_GUI implements BoardStrategy{
 
     /**The grid pane representing the board*/
     private GridPane gPane;
 
-    private BoardBuilderInterface builder;
+    private BoardManagerInterface builder;
 
     /**
      * Method draws the chess board and pieces in the CLI in color
@@ -152,7 +146,7 @@ public class Board_GUI implements BoardStrategy{
         gPane.add(butt, col, row, 1, 1);
     }
 
-    public void setBuilder(BoardBuilder builder){
+    public void setBuilder(BoardManager builder){
         this.builder = builder;
     }
 }
