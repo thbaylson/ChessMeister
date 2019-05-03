@@ -124,7 +124,7 @@ public class Board implements BoardIF{
 			}
 		}
 		isCastling(from, to);
-		bLayout[from.getFile().getArrayp()][from.getFile().getArrayp()].getPiece().setMoved(true);
+		from.getSquare().getPiece().setMoved(true);
 		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(
 				bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
 

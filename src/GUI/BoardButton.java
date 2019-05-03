@@ -54,6 +54,5 @@ public class BoardButton extends BorderPane {
 
     public void setBackground(String background){
         butt.setStyle(background);
-        System.out.println(background);
     }
 }
