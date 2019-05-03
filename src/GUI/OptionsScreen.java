@@ -2,6 +2,7 @@ package GUI;
 
 import Interfaces.ScreenChangeHandler;
 import Interfaces.SquareColorHandler;
+import Model.Square;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -42,23 +43,30 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     private CheckBox showMoves;
     private CheckBox enabled;
     private CheckBox unlimitedUndo;
-    private HBox maxUndo;
+    private TextField maxUndo;
 
 
     private OptionsScreen(){
-
+        getStyleClass().add("menu");
 
         setTitle();
         setCenterSection(setLeftSide(), setRightSide());
         SquareColorChooser.getInstance().colorRegister(this);
-
-
-
-
-
-
     }
 
+//    /**
+//     *
+//     * @param labelText
+//     * @return
+//     */
+//    private HBox maxUndoNumCreator(String labelText){
+//        maxUndoNum = new HBox(25);
+//        Label desc = new Label(labelText);
+//        maxUndoNum.getChildren().addAll(desc);
+//
+//
+//        return maxUndoNum;
+//    }
 
     /**
      *
@@ -124,7 +132,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         unlimitedUndo.getStyleClass().add("my-label");
 
 
-        maxUndo = new MaxNumOfUndoPanel("Max number of undos: ");
+        maxUndo = new TextField();
 
         leftSide.getChildren().addAll(colors, blackSquareField,
                 whiteSquareField, undo, enabled, unlimitedUndo, maxUndo);
@@ -157,6 +165,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         Button btn = new Button(text);
         btn.setPrefWidth(100);
         btn.setOnAction(this);
+        btn.setPrefSize(50, 20);
         pane.getChildren().add(btn);
         return btn;
     }

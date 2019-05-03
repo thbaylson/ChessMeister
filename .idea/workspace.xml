@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fe54fdb-54ea-43b9-b936-371cf7ca7927" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GUI/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainMenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/GameScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/GameScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/Gui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/Gui$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/Gui.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/Gui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/MainMenuScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/MainMenuScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/NotYetImplementedScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/NotYetImplementedScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/OptionsScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/OptionsScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/PlayerNameScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/PlayerNameScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/ScreenChangeHandler$Screens.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/ScreenChangeHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/SquareColorChooser$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/SquareColorChooser$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/SquareColorChooser.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/SquareColorChooser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/SquareColorHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/GUI/SquareColorPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/GUI/SquareColorPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Gui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/OptionsScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/OptionsScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/PlayerNameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/PlayerNameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/PlayerPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/PlayerPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,18 +30,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/GameScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="-441">
+              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5097#5098#0" expanded="true" />
-                <element signature="e#5127#5128#0" expanded="true" />
-                <element signature="e#10460#10461#0" expanded="true" />
-                <element signature="e#10490#10491#0" expanded="true" />
+                <element signature="e#5223#5224#0" expanded="true" />
+                <element signature="e#5253#5254#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GUI/styles.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="52" column="7" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/OptionsScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Gui.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="59">
+              <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -58,6 +97,8 @@
         <option value="$PROJECT_DIR$/src/Interfaces/BoardBuilderInterface.java" />
         <option value="$PROJECT_DIR$/src/GUI/BoardButton.java" />
         <option value="$PROJECT_DIR$/src/GUI/GameScreen.java" />
+        <option value="$PROJECT_DIR$/src/GUI/OptionsScreen.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Gui.java" />
       </list>
     </option>
   </component>
@@ -183,27 +224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GameScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5097#5098#0" expanded="true" />
-            <element signature="e#5127#5128#0" expanded="true" />
-            <element signature="e#10460#10461#0" expanded="true" />
-            <element signature="e#10490#10491#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Driver/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -310,6 +330,42 @@
             <element signature="e#2129#2130#0" expanded="true" />
             <element signature="e#2159#2160#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/OptionsScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-441">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5223#5224#0" expanded="true" />
+            <element signature="e#5253#5254#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="52" column="7" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
         </state>
       </provider>
     </entry>
