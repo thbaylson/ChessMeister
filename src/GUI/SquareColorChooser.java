@@ -1,15 +1,14 @@
 package GUI;
 
-import UI_CLI.MainMenu;
+import Interfaces.ScreenChangeHandler;
+import Interfaces.SquareColorHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 /**A simple color chooser using three SliderPanes**/
 public class SquareColorChooser extends GridPane implements EventHandler<ActionEvent> /*Any more needed??*/ {

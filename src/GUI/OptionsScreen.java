@@ -1,6 +1,7 @@
 package GUI;
 
-import Model.Square;
+import Interfaces.ScreenChangeHandler;
+import Interfaces.SquareColorHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler{
+public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler {
 
     private static OptionsScreen instance;
     private ScreenChangeHandler GUI;
@@ -41,7 +42,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     private CheckBox showMoves;
     private CheckBox enabled;
     private CheckBox unlimitedUndo;
-    private TextField maxUndo;
+    private HBox maxUndo;
 
 
     private OptionsScreen(){
@@ -52,19 +53,6 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         SquareColorChooser.getInstance().colorRegister(this);
     }
 
-//    /**
-//     *
-//     * @param labelText
-//     * @return
-//     */
-//    private HBox maxUndoNumCreator(String labelText){
-//        maxUndoNum = new HBox(25);
-//        Label desc = new Label(labelText);
-//        maxUndoNum.getChildren().addAll(desc);
-//
-//
-//        return maxUndoNum;
-//    }
 
     /**
      *
@@ -119,7 +107,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         enabled = new CheckBox("Enabled");
         unlimitedUndo = new CheckBox("Unlimited Undo");
 
-        maxUndo = new TextField();
+        maxUndo = new MaxNumOfUndoPanel("Max number of undos: ");
 
         leftSide.getChildren().addAll(colors, blackSquareField,
                 whiteSquareField, undo, enabled, unlimitedUndo, maxUndo);
