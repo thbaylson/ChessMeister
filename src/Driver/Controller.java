@@ -51,7 +51,7 @@ class Controller {
             String uInput = mainMenu.askInput();
 
             if (uInput.equals("Y") || uInput.equals("YES")) {
-                launchGUI();
+                //launchGUI();
                 BoardStrategy strategy = chooseBoardType();
                 game.setDrawStrategy(strategy);
                 runGame();
@@ -81,12 +81,15 @@ class Controller {
         ct.add(game.saveState());
         while (true) {
             game.draw();
-            if (currentPlayer == 1)
-                System.out.println(player1 + " it is your turn!");
-            else
-                System.out.println(player2 + " it is your turn!");
-
-            inGameMenu.display();
+            System.out.println("Player " + currentPlayer + " It is your turn!");
+            if (game.check()){
+                if (game.checkmate()){
+                    System.out.println("Player " + currentPlayer + ", you lose");
+                    System.exit(0);
+                }else{
+                    System.out.println("Player " + currentPlayer + ", you are in check");
+                }
+            }            inGameMenu.display();
 
             uInput = inGameMenu.askInput();
             switch (uInput) {
@@ -237,7 +240,7 @@ class Controller {
             r = (uInput.charAt(1) - 48);
             toP = new Position(f, r);
         }
-        return new Position(f, r);
+        return toP;
     }
 
     /**

@@ -30,29 +30,34 @@ public class KnightValidator extends PieceValidator{
 	 */
 	@Override
 	public Position[] showMoves(Position pos) {
+		ArrayList<Position> moves = checkMoves(pos);
+		moves = super.checkForCheck(moves, pos);
+		return super.showMoves(moves, pos);
+	}
+
+	/**
+	 * Gets a list of valid moves
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
+	public ArrayList<Position> checkMoves(Position pos){
 		int file = pos.getFile().getArrayp();
 		int rank =  pos.getRank().getArrayp();
 		ArrayList<Position> moves = new ArrayList<Position>();
 		Position[] result;
 		Position tmp;
-		
+
 		for(int i = -2; i <= 2; i++) {
 			for(int j = -2; j <= 2; j++) {
 				if((Math.abs(i * j) == 2) || (Math.abs(i * j) == 3)) {
-					 tmp = findMove(file, rank, i, j);
-					 if(tmp != null) {
-						 moves.add(tmp);
-					 }
+					tmp = findMove(file, rank, i, j);
+					if(tmp != null) {
+						moves.add(tmp);
+					}
 				}
 			}
 		}
-/**
-		result = new Position[moves.size()];
-		for (int i = 0; i < moves.size(); i++){
-			result[i] = moves.get(i);
-		}
-		return result;**/
-		return super.showMoves(moves, pos);
+		return moves;
 	}
 
 	/**

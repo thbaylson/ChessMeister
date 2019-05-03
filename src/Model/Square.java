@@ -136,6 +136,11 @@ public class Square extends BlackAndWhite implements SquareIF{
 		return newSquare;
 	}
 
+	/**
+	 * Sets a piece on the square
+	 * @param piece - The piece to set on the square
+	 * @param pv - The piece validator for this piece
+	 */
 	@Override
 	public void setPiece(Piece piece, PieceValidator pv){
 		this.sPiece = piece;

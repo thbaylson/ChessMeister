@@ -3,7 +3,6 @@ package GUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -26,6 +25,7 @@ public class Gui extends Application implements ScreenChangeHandler {
     public void start(Stage primaryStage) {
         try{
             primaryStage.setResizable(false);
+            primaryStage.setFullScreen(true);
             switchScreen(Screens.MAINMENU);
 
 

@@ -8,6 +8,8 @@ import Interfaces.PieceIF;
 import Move_Validation.PieceValidator;
 import Interfaces.BoardIF;
 
+import java.util.ArrayList;
+
 
 /**
  * Class modeling a piece
@@ -23,16 +25,17 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	private GameColor color;
 	private PieceValidator pv;
 	private Position pos;
+	private boolean hadMoved;
 
 	public Piece(){
 		this.cpt = null;
 		this.color = null;
 		this.pos = null;
-
+		this.hadMoved = false;
 	}
 	/**
 	 * Constructor for the Piece object
-	 * 
+	 *
 	 * @param cpt - The type of chess piece
 	 * @param color - The color of the chess piece
 	 */
@@ -43,20 +46,20 @@ public class Piece extends BlackAndWhite implements PieceIF{
 			this.pv.setColor(color);
 		}
 	}
-	
+
 	/**
 	 * Returns the chess piece type
-	 * 
+	 *
 	 * @return cpt - Chess piece type
 	 */
 	@Override
 	public ChessPieceType getChessPieceType() {
 		return this.cpt;
 	}
-	
+
 	/**
 	 * Sets the type of chess piece
-	 * 
+	 *
 	 * @param t - The chess piece type to set to
 	 */
 	@Override
@@ -74,7 +77,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	}
 
 	/**
-	 * Sets the PieceValidator, the pieceValidator's color, and the color of the 
+	 * Sets the PieceValidator, the pieceValidator's color, and the color of the
 	 * pieceValidators' piecevalidators;
 	 *
 	 * @param p - The PieceValidator to set
@@ -83,7 +86,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		PieceValidator temp;
 		this.pv = p;
 		this.pv.setColor(this.color);
-		
+
 		temp = this.pv.getPieceValidator();
 		while(temp != null) {
 			temp.setColor(this.color);
@@ -101,7 +104,7 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	public boolean validateMove(Position from, Position to) {
 		return validateMove(from, to, this.pv);
 	}
-	
+
 	/**
 	 * Recursive method in line with the decorator pattern to determine if a move is valid
 	 *
@@ -162,6 +165,15 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	}
 
 	/**
+	 * Method to list the moves available to the piece
+	 *
+	 * @return An ArrayList containing all the valid moves
+	 */
+	public ArrayList<Position> checkMoves(){
+		return this.getPieceValidator().checkMoves(this.pos);
+	}
+
+	/**
 	 * Sets the position of the piece
 	 */
 	public void setPosition(Position pos) {
@@ -188,7 +200,24 @@ public class Piece extends BlackAndWhite implements PieceIF{
 		newPiece.setColor(this.color);
 		newPiece.setPieceValidator(this.pv);
 		newPiece.setPosition(this.pos.clone());
+		newPiece.setMoved(this.hadMoved);
 		return newPiece;
+	}
+
+	/**
+	 * Sets whether the piece has moved
+	 * @param moved - Whether the piece has moved
+	 */
+	public void setMoved(boolean moved){
+		this.hadMoved = moved;
+	}
+
+	/**
+	 * Gets whether the piece has moved
+	 * @return True if the piece has moved
+	 */
+	public boolean getMoved(){
+		return this.hadMoved;
 	}
 
 	/**

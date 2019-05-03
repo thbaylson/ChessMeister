@@ -3,8 +3,9 @@ package Move_Validation;
 
 import java.util.ArrayList;
 
-
+import Enums.ChessPieceType;
 import Interfaces.BoardIF;
+import Interfaces.PieceIF;
 import Interfaces.SquareIF;
 import Model.Position;
 /**
@@ -19,7 +20,31 @@ public class KingValidator extends PieceValidator{
 		super(board);
 	}
 
-	public Position[] showMoves(Position pos) {
+	/**
+	 * Gets a list of valid moves
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
+	public Position[] showMoves(Position pos){
+		ArrayList<Position> moves = new ArrayList<>();
+		for (Position kPos : this.checkMoves(pos)){
+			moves.add(kPos);
+		}
+		moves = super.checkForCheck(moves, pos);
+
+		Position[] moveList = new Position[moves.size()];
+		for (int i = 0; i < moves.size(); i++){
+			moveList[i] = moves.get(i);
+		}
+		return moveList;
+	}
+
+	/**
+	 * Gets a list of valid moves
+	 * @param pos - The position of the piece
+	 * @return A list of valid moves
+	 */
+	public ArrayList<Position> checkMoves(Position pos) {
 		
 		int rank = pos.getRank().getArrayp();
 		int file = pos.getFile().getArrayp();
@@ -110,18 +135,40 @@ public class KingValidator extends PieceValidator{
 			else if(squares[file + 1][rank - 1].getPiece().getColor() 
 					!= squares[file][rank].getPiece().getColor())
 				moves.add(squares[file + 1][rank - 1].getPosition());
-		
-		/**
-		Position[] send = new Position[moves.size()];
-		for (int i = 0; i < moves.size(); i++){
-			
-			send[i] = moves.get(i);
+
+		return moves;
+	}
+
+	/**
+	 * Checks if the king can castle
+	 * @param kPos - The position of the king
+	 * @return A list of valid positions
+	 */
+	public ArrayList<Position> canCastle(Position kPos){
+		ArrayList<Position> moves = new ArrayList<>();
+		ArrayList<Position> rook = new ArrayList<>();
+		PieceIF theKing = board.getCurKing();
+		boolean king = theKing.getMoved();
+		int turn = 1;
+		if (board.getTurn()){
+			turn = 2;
 		}
-	
-		
-		
-		return send;**/
-		return super.showMoves(moves, pos);
+		if (king){
+			return moves;
+		}
+		for (PieceIF r1 : board.getPlayerPieces(turn)){
+			if(r1.getChessPieceType() == ChessPieceType.Rook && r1.getMoved()){
+				return moves;
+			}
+		}
+		if (theKing.getColor().getColor() == 'w'){
+			moves.add(new Position('b', 1));
+			moves.add(new Position('c', 1));
+		}else{
+			moves.add(new Position('b', 8));
+			moves.add(new Position('c', 8));
+		}
+		return moves;
 	}
 
 	/**

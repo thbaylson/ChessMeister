@@ -116,10 +116,51 @@ public class Board implements BoardIF{
 	 * @param to- The position the desired piece will move to
 	 */
 	public void move(Position from, Position to) {
+		if(to.getSquare().getPiece() != null){
+			if (to.getSquare().getPiece().getColor().getColor() == 'w'){
+				playerOnePieces.remove(to.getSquare().getPiece());
+			}else{
+				playerTwoPieces.remove(to.getSquare().getPiece());
+			}
+		}
+		isCastling(from, to);
+		from.getSquare().getPiece().setMoved(true);
 		bLayout[to.getFile().getArrayp()][to.getRank().getArrayp()].setPiece(
 				bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].getPiece());
-		
+
 		bLayout[from.getFile().getArrayp()][from.getRank().getArrayp()].clear();
+	}
+
+	/**
+	 * Checks if the piece is a king and if it is castling and moves rooks accordingly
+	 * @param from
+	 * @param to
+	 */
+	public void isCastling(Position from, Position to){
+		PieceIF piece = from.getSquare().getPiece();
+		if (piece.getChessPieceType() == ChessPieceType.King && !piece.getMoved()){
+			if (piece.getColor().getColor() == 'w'){
+				if (to.getFile().getFile() == 'b' && !getPiece(1, 'a').getMoved()){
+					if (getPiece(1, 'a').checkMoves().contains(getPosition(1, 'c'))){
+						move(getPosition(1,'a'), getPosition(1,'c'));
+					}
+				}else if(to.getFile().getFile() == 'f' && !getPiece(1, 'h').getMoved()) {
+					if (getPiece(1, 'h').checkMoves().contains(getPosition(1, 'e'))) {
+						move(getPosition(1, 'h'), getPosition(1, 'e'));
+					}
+				}
+			}else if(piece.getColor().getColor() == 'b'){
+				if (from.getFile().getFile() == 'b' && !getPiece(8, 'a').getMoved()){
+					if (getPiece(8, 'a').checkMoves().contains(getPosition(8, 'c'))){
+						move(getPosition(8,'a'), getPosition(8,'c'));
+					}
+				}else if(to.getFile().getFile() == 'f' && !getPiece(8, 'h').getMoved()) {
+					if (getPiece(8, 'h').checkMoves().contains(getPosition(8, 'e'))) {
+						move(getPosition(8, 'h'), getPosition(8, 'e'));
+					}
+				}
+			}
+		}
 	}
 
 	 /**
@@ -294,14 +335,23 @@ public class Board implements BoardIF{
 		SquareIF[][] newSQ = newBoard.getSquares();
 		newBoard.setDrawStrategy(this.strat);
 		newBoard.setTurn(this.turn);
+		ArrayList<PieceIF> P1 = new ArrayList<>();
+		ArrayList<PieceIF> P2 = new ArrayList<>();
 		for (int i = 0; i < this.getWidth(); i++){ //Clones each piece and PieceValidator
 			for (int j = 0; j < this.getHeight(); j++){
 				newSQ[i][j] = bLayout[i][j].clone();
 				if (newSQ[i][j].getPiece() != null) {
 					newSQ[i][j].getPiece().clonePV(newBoard);
+					if (newSQ[i][j].getPiece().getColor().getColor() == 'w'){
+						P1.add(newSQ[i][j].getPiece());
+					}else if (newSQ[i][j].getPiece().getColor().getColor() == 'b'){
+						P2.add(newSQ[i][j].getPiece());
+					}
 				}
 			}
 		}
+		newBoard.setPOne(P1);
+		newBoard.setPTwo(P2);
 		return newBoard;
 	}
 
@@ -333,5 +383,115 @@ public class Board implements BoardIF{
 	 */
 	public void setTurn(boolean turn){
 		this.turn = turn;
+	}
+
+	/**
+	 * Checks if current player's king is in check at start of turn
+	 * @return True if king is in check
+	 */
+	public boolean check(){
+		boolean isCheck = false;
+		if (!turn){
+			for (PieceIF piece : playerTwoPieces){
+				for (Position pos : piece.checkMoves()){
+					if (getCurKing().getPosition().equals(pos)){
+						isCheck = true;
+					}
+				}
+			}
+		}else{
+			for (PieceIF piece : playerOnePieces){
+				for (Position pos : piece.checkMoves()){
+					if (getCurKing().getPosition().equals(pos)){
+						isCheck = true;
+					}
+				}
+			}
+		}
+		return isCheck;
+	}
+
+	/**
+	 * Checks if current player is in checkmate
+	 * @return True if current player is in checkmate
+	 */
+	public boolean checkmate(){
+		ArrayList<Position> Moves = new ArrayList<>();
+		if (turn){
+			for (PieceIF piece : playerTwoPieces){
+				for (Position pos : piece.showMoves()){
+					Moves.add(pos);
+				}
+			}
+		}else{
+			for (PieceIF piece : playerOnePieces){
+				for (Position pos : piece.showMoves()){
+					Moves.add(pos);
+					System.out.println(pos.toString());
+				}
+			}
+		}
+		if(Moves.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Sets the pieces of player 1
+	 * @param P1 - A list of player 1's pieces
+	 */
+	public void setPOne(ArrayList<PieceIF> P1){
+		playerOnePieces = P1;
+	}
+
+	/**
+	 * Sets the pieces of player 2
+	 * @param P2 - A list of player 2's pieces
+	 */
+	public void setPTwo(ArrayList<PieceIF> P2){
+		playerTwoPieces = P2;
+	}
+
+	/**
+	 * Gets the king of the enemy
+	 * @return The enemy's king
+	 */
+	public PieceIF getEnemyKing(){
+		if (turn == false){
+			for (PieceIF p : playerTwoPieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}else{
+			for (PieceIF p : playerOnePieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the king of the current player
+	 * @return The current player's king
+	 */
+	public PieceIF getCurKing(){
+		if (turn == true){
+			for (PieceIF p : playerTwoPieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}else{
+			for (PieceIF p : playerOnePieces){
+				if (p.getChessPieceType() == ChessPieceType.King){
+					return p;
+				}
+			}
+		}
+		return null;
 	}
 }
