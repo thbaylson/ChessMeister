@@ -1,6 +1,5 @@
 package GUI;
 
-import Interfaces.BoardManagerInterface;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -27,10 +26,13 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private BoardManagerInterface builder;
 
     private GameScreen(){
-        setPrefSize(1000, 1000);
+        getStyleClass().add("menu");
+
+        setPrefSize(800, 800);
         setPadding(new Insets(20,20,20,20));
         //This needs to be created here before setPlayerPane call
         exitButton = new Button("Exit");
+        exitButton.getStyleClass().add("my-tab-button");
         exitButton.setOnAction(this);
         board = new GridPane();
         builder = BoardManager.getInstance(board, this);
@@ -49,16 +51,20 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * redo move, and open settings window.
      */
     private void setHeaderBar() {
-        HBox tabs = new HBox(50);
-        tabs.setMinSize(800, 50);
+        HBox tabs = new HBox(10);
         tabs.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         tabs.setAlignment(Pos.CENTER);
 
         loadButton = new Button("Load");
+        loadButton.getStyleClass().add("my-tab-button");
         saveButton = new Button("Save");
+        saveButton.getStyleClass().add("my-tab-button");
         undoButton = new Button("Undo");
+        undoButton.getStyleClass().add("my-tab-button");
         redoButton = new Button("Redo");
+        redoButton.getStyleClass().add("my-tab-button");
         settingsButton = new Button("Settings");
+        settingsButton.getStyleClass().add("my-tab-button");
 
         tabs.getChildren().addAll(
                 loadButton,
@@ -79,11 +85,6 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private void setPlayerPane(int player) {
         VBox container = new VBox();
         container.getChildren().add(new PlayerPane(player));
-        if (player == 1) {
-            container.setAlignment(Pos.CENTER_LEFT);
-        }else{
-            container.setAlignment(Pos.CENTER_RIGHT);
-        }
         if(player == 1){
             //container.getChildren().add(showButton);
             setLeft(container);
@@ -97,12 +98,12 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * The board on which players will play on. This may need to be its own class
      */
     private void setBoard() {
-        builder.buildBoard();
-        board = builder.getGrid();
-        board.setMinSize(400, 400);
-        board.setMaxSize(400, 400);
-        board.setAlignment(Pos.CENTER);
-        setCenter(board);
+      builder.buildBoard();
+      board = builder.getGrid();
+      board.setMinSize(400, 400);
+      board.setMaxSize(400, 400);
+      board.setAlignment(Pos.CENTER);
+      setCenter(board);
     }//End setBoard
 
     /**
@@ -112,7 +113,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         HBox container = new HBox();
         container.setAlignment(Pos.TOP_CENTER);
         Label info = new Label("GameStart");
-        info.getStyleClass().add("label");
+        info.getStyleClass().add("my-label");
         info.setScaleX(1.5);
         info.setScaleY(1.5);
 

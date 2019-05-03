@@ -89,10 +89,11 @@ public class OptionsScreen extends BorderPane implements
      *
      */
     private VBox setRightSide() {
-
         rightSide = new VBox();
 
         showMoves = new CheckBox("Show Moves");
+        showMoves.getStyleClass().add("my-label");
+
         rightSide.getChildren().add(showMoves);
 
         saveButton = addButton(rightSide, "Save");
@@ -103,7 +104,6 @@ public class OptionsScreen extends BorderPane implements
         rightSide.setAlignment(Pos.CENTER);
         rightSide.setSpacing(20);
 
-
         return rightSide;
     }
 
@@ -112,21 +112,30 @@ public class OptionsScreen extends BorderPane implements
      *
      */
     private VBox setLeftSide() {
-
         leftSide = new VBox();
 
         colors = new Label("Colors:");
+        colors.getStyleClass().add("my-label");
+
         blackSquareField = new SquareColorPanel("Black Squares: ");
+        blackSquareField.getStyleClass().add("my-label");
+
         whiteSquareField = new SquareColorPanel("White Squares: ");
+        whiteSquareField.getStyleClass().add("my-label");
+
         blackSquareField.getColoredButton().setOnAction(this);
         whiteSquareField.getColoredButton().setOnAction(this);
 
-
         undo = new Label("Undo");
+        undo.getStyleClass().add("my-label");
 
         leftSide.setAlignment(Pos.CENTER_LEFT);
         enabled = new CheckBox("Enabled");
+        enabled.getStyleClass().add("my-label");
+
         unlimitedUndo = new CheckBox("Unlimited Undo");
+        unlimitedUndo.getStyleClass().add("my-label");
+
 
         maxUndo = new TextField();
 
