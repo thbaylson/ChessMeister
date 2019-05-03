@@ -37,7 +37,7 @@ public class SquareColorPanel extends HBox{
 
     void setColorOfButton(String colorSelection){
         selectedColor = colorSelection;
-        coloredButton.setStyle("-fx-background-color: #"+ colorSelection);
+        coloredButton.setStyle("-fx-background-color: #"+ selectedColor);
     }
 
 
