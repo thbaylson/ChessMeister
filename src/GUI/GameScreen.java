@@ -1,6 +1,7 @@
 package GUI;
 
-import Interfaces.BoardManagerInterface;
+import Interfaces.BoardBuilderInterface;
+import UI_CLI.BoardBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -24,7 +25,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private Button redoButton;
     private Button settingsButton;
     private GridPane board;
-    private BoardManagerInterface builder;
+    private BoardBuilderInterface builder;
 
     private GameScreen(){
         setPrefSize(1000, 1000);
@@ -33,7 +34,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         exitButton = new Button("Exit");
         exitButton.setOnAction(this);
         board = new GridPane();
-        builder = BoardManager.getInstance(board, this);
+        builder = BoardBuilder.getInstance(board);
 
         setHeaderBar();
         setPlayerPane(1);
@@ -102,6 +103,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         board.setMinSize(400, 400);
         board.setMaxSize(400, 400);
         board.setAlignment(Pos.CENTER);
+        System.out.println(board.toString());
         setCenter(board);
     }//End setBoard
 
@@ -142,14 +144,6 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
             //GUI.switchScreen(ScreenChangeHandler.Screens.SETTINGS);
         }//End if/else
     }//End handle()
-
-    public void updateBoard(GridPane gPane){
-        board = gPane;
-        board.setMinSize(400, 400);
-        board.setMaxSize(400, 400);
-        board.setAlignment(Pos.CENTER);
-        setCenter(board);
-    }
 
     void register(ScreenChangeHandler gui){
         this.GUI = gui;

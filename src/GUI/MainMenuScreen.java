@@ -35,9 +35,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     private Button settingsButton;
     private Button exitButton;
 
-
     ScreenChangeHandler GUI;
-    private ScreenChangeHandler sch;
 
     private MainMenuScreen() {
         getStyleClass().add("menu");
@@ -52,15 +50,8 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         title.getStyleClass().add("title");
         setAlignment(title, Pos.CENTER);
 
-        //Add buttons to the root.
-        twoPlayerButton = addButton(centerButtonList, "Player vs Player");
-        cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
-        onlinePlayButton = addButton(centerButtonList, "Online Play");
-        rulesButton = addButton(centerButtonList, "Rules of chess");
-        tutorialButton = addButton(centerButtonList, "Tutorial");
+        createButtons();
 
-        settingsButton = addButton(settingsAndExit, "Settings");
-        exitButton = addButton(settingsAndExit, "Exit");
 
         setTop(title);
         setLeft(getImage("king"));
@@ -116,7 +107,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         } catch(FileNotFoundException fnfe){
             fnfe.printStackTrace();
         }
-
+        picture.getStyleClass().add("image");
         return picture;
     }
 
