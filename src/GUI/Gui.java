@@ -24,6 +24,7 @@ public class Gui extends Application implements ScreenChangeHandler {
     public void start(Stage primaryStage) {
         try{
             primaryStage.setResizable(false);
+            primaryStage.setFullScreen(true);
             switchScreen(Screens.MAINMENU);
 
             MainMenuScreen.getInstance().register(this);
@@ -32,6 +33,7 @@ public class Gui extends Application implements ScreenChangeHandler {
             GameScreen.getInstance().register(this);
             OptionsScreen.getInstance().register(this);
 
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch(Exception e) {
@@ -40,10 +42,6 @@ public class Gui extends Application implements ScreenChangeHandler {
 
         if(instance == null)
             instance = this;
-
-
-        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
     }
 
 

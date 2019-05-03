@@ -114,6 +114,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         HBox container = new HBox();
         container.setAlignment(Pos.TOP_CENTER);
         Label info = new Label("GameStart");
+        info.getStyleClass().add("label");
         info.setScaleX(1.5);
         info.setScaleY(1.5);
 
