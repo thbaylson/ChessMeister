@@ -2,7 +2,7 @@
 * Author: Tyler Baylson
 */
 
-.button, .vertical-button-group, .horizontal-button-group{
+.my-button, .vertical-button-group, .horizontal-button-group{
     -fx-border-color: darkslategrey;
     -fx-color: grey; /*Button's Background*/
     -fx-font-family: "Times New Roman", Times, serif;
