@@ -14,8 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class OptionsScreen extends BorderPane implements
-        EventHandler<ActionEvent>, SquareColorHandler{
+public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler{
 
     private static OptionsScreen instance;
     private ScreenChangeHandler GUI;
@@ -46,17 +45,11 @@ public class OptionsScreen extends BorderPane implements
 
 
     private OptionsScreen(){
-
+        getStyleClass().add("menu");
 
         setTitle();
         setCenterSection(setLeftSide(), setRightSide());
         SquareColorChooser.getInstance().colorRegister(this);
-
-
-
-
-
-
     }
 
 //    /**
