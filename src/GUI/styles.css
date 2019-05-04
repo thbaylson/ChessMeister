@@ -17,6 +17,15 @@
     -fx-font-family: "Times New Roman", Times, serif;
 }
 
+.capped-pieces{
+    -fx-background-color: white;
+    -fx-alignment: top-left;
+    -fx-scale-x: .1;
+    -fx-scale-y: .1;
+    -fx-translate-x: -150;
+    -fx-translate-y: -150;
+}
+
 .header{
     -fx-alignment: center;
     -fx-scale-x: 3;
@@ -39,7 +48,7 @@
 }
 
 .menu{
-	-fx-background-color: #000000; /*Menus: Background*/
+	-fx-background-color: darkslategrey; /*Menus: Background*/
 }
 
 .my-tab-button{
@@ -48,6 +57,15 @@
 
 .not-a-feature{
     -fx-background-color: #2f4f4f; /*FeatureNotYetImplemented: Background*/
+}
+
+.player-pane{
+    -fx-spacing: 40;
+    /*-fx-border-color: red;
+    -fx-border-width: 2;
+    -fx-spacing: 0;
+    -fx-max-width: 100;
+    -fx-max-height: 400;*/
 }
 
 .title{

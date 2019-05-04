@@ -32,10 +32,11 @@ public class PlayerPane extends VBox {
      * @param playerNumber - The player number
      */
     public PlayerPane(int playerNumber){
+        getStyleClass().add("player-pane");
+
         this.player = playerNumber;
         iArray = new ArrayList<>();
-        setPrefSize(200, 400);
-        setSpacing(40);
+
         Label title = new Label("Player " + playerNumber);
         title.getStyleClass().add("my-label");
         title.setPadding(new Insets(20,0,0,0));
@@ -55,9 +56,12 @@ public class PlayerPane extends VBox {
         capturedLabel.setScaleY(1.2);
 
         capturedPieces = new TilePane();
-        capturedPieces.setPrefColumns(2);
-        capturedPieces.setMaxHeight(30);
-        capturedPieces.setMinWidth(10);
+        //capturedPieces.setPrefColumns(3);
+        //capturedPieces.setAlignment(Pos.TOP_LEFT);
+
+        //capturedPieces.setMaxHeight(30);
+        //capturedPieces.setMinWidth(10);
+        //capturedPieces.getStyleClass().add("capped-pieces");
 
         getChildren().addAll(
                 title,
@@ -71,7 +75,7 @@ public class PlayerPane extends VBox {
      * @param pieces - The pieces to add
      */
     public void addChilden(ArrayList<PieceIF> pieces){
-        capturedPieces.getChildren().removeAll(iArray);
+        capturedPieces.getChildren().clear();
         iArray = new ArrayList<>();
         for (PieceIF piece : pieces){
             ImageView image = null;
@@ -122,12 +126,13 @@ public class PlayerPane extends VBox {
                 }
             }
             if (image != null) {
-                image.setFitHeight(capturedPieces.getMaxHeight());
-                image.setFitWidth(capturedPieces.getMaxWidth());
+                //image.setFitHeight(capturedPieces.getMaxHeight());
+                //image.setFitWidth(capturedPieces.getMaxWidth());
+                image.getStyleClass().add("capped-pieces");
                 iArray.add(image);
             }
         }
-        capturedPieces.getChildren().addAll(iArray);
+        //capturedPieces.getChildren().addAll(iArray);
     }
 
     /**
