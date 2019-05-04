@@ -200,4 +200,28 @@ public interface BoardIF{
 	 * @throws IllegalArgumentException- Thrown when called with an invalid player number
 	 */
 	public ArrayList<PieceIF> getPlayerPieces(int player) throws IllegalArgumentException;
+
+	/**
+	 * Sets the pieces of player 1
+	 * @param P1 - A list of player 1's pieces
+	 */
+	public void setPOneTaken(ArrayList<PieceIF> P1);
+
+	/**
+	 * Sets the pieces of player 2
+	 * @param P2 - A list of player 2's pieces
+	 */
+	public void setPTwoTaken(ArrayList<PieceIF> P2);
+
+	/**
+	 * Gets a list of Player 1 captured pieces
+	 * @return The list of captured pieces
+	 */
+	public ArrayList<PieceIF> getpOneCapPieces();
+
+	/**
+	 * Gets a list of Player 1 captured pieces
+	 * @return The list of captured pieces
+	 */
+	public ArrayList<PieceIF> getpTwoCapPieces();
 }

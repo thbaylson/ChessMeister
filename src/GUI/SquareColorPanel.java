@@ -15,6 +15,8 @@ public class SquareColorPanel extends HBox{
 
     SquareColorPanel(String desc){
         Label title = new Label(desc);
+        this.title = new Label(desc);
+        title.getStyleClass().add("my-label");
         getChildren().add(title);
         coloredButton = addButton(this, "");
         setSpacing(10);

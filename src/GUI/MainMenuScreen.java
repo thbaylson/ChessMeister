@@ -1,6 +1,6 @@
 package GUI;
 
-import Interfaces.ScreenChangeHandler;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,24 +9,29 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-
+import Interfaces.ScreenChangeHandler;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
- * @author Caleb Tupone
+ * @author Caleb Tupone and Tyler Baylson
  */
 public class MainMenuScreen extends BorderPane implements EventHandler<ActionEvent>{
 
+    /** The singleton instance of this class**/
     private static MainMenuScreen instance;
 
+    /** A container for the settings and exit buttons**/
     private HBox settingsAndExit;
 
+    /** A container for the main menu buttons**/
     private VBox centerButtonList;
 
+    /** The title of the screen**/
     private Label title;
 
+    /** All of the buttons of the main menu screen**/
     private Button twoPlayerButton;
     private Button cpuPlayerButton;
     private Button onlinePlayButton;
@@ -35,10 +40,13 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     private Button settingsButton;
     private Button exitButton;
 
+    /** An observer to listen to screen change requests**/
+    private ScreenChangeHandler GUI;
 
-    ScreenChangeHandler GUI;
-    private ScreenChangeHandler sch;
-
+    /**
+     * Creates a MainMenuScreen object. This is the first screen players see
+     * upon starting the GUI
+     */
     private MainMenuScreen() {
         getStyleClass().add("menu");
 
@@ -52,6 +60,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         title.getStyleClass().add("title");
         setAlignment(title, Pos.CENTER);
 
+        //Add buttons to the root.
         createButtons();
 
         setTop(title);
@@ -62,7 +71,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     }
 
     /**
-     *
+     * createButtons- A helper method to organize the creation of buttons in the scene
      */
     private void createButtons(){
         //Add a button to the root.
@@ -90,6 +99,12 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         return btn;
     }
 
+    /**
+     * getImage- Given king or gueen, will return a Pane object containing the
+     * ImageView of that chess piece.
+     * @param image king or queen, this represents the desired picture piece
+     * @return A pane with a chess piece image as a child of the pane
+     */
     public static Pane getImage(String image){
         Pane picture = new Pane();
         FileInputStream file;
@@ -113,6 +128,11 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         return picture;
     }
 
+    /**
+     * handle- Handles a series of button presses. Handles player vs player,
+     * player vs cpu, online, rules, tutorial, exit, settings
+     * @param event The ActionEvent to be handled
+     */
     @Override
     public void handle(ActionEvent event) {
 
@@ -141,12 +161,16 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
             System.exit(0);
         }
         else if(event.getSource() == settingsButton){
+            System.out.println("MainMenu: Options");
             GUI.switchScreen(ScreenChangeHandler.Screens.OPTIONS);
         }
 
     }
 
-    /**Get a singleton instance of this class**/
+    /**
+     * getInstance- Gets a singleton instance of this class
+     * @return a singleton instance of this class
+     */
     static MainMenuScreen getInstance(){
         if(instance == null)
             instance = new MainMenuScreen();
@@ -154,6 +178,10 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         return instance;
     }
 
+    /**
+     * register- Registers the Gui screen change handler as an observer
+     * @param screen An observer
+     */
     void register(ScreenChangeHandler screen){
         GUI = screen;
     }

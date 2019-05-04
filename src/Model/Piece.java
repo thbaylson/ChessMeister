@@ -27,6 +27,9 @@ public class Piece extends BlackAndWhite implements PieceIF{
 	private Position pos;
 	private boolean hadMoved;
 
+	/**
+	 * Constructor for piece
+	 */
 	public Piece(){
 		this.cpt = null;
 		this.color = null;

@@ -6,12 +6,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 
-
+/**
+ * Constructs a gridPane representing the chess board
+ *
+ * @author Dillon Ramsey 100%
+ */
 public class Board_GUI implements BoardStrategy{
 
     /**The grid pane representing the board*/
     private GridPane gPane;
 
+    /**Board Manager*/
     private BoardManagerInterface builder;
 
     private String whiteSquareColor = "b49646";
@@ -83,6 +88,16 @@ public class Board_GUI implements BoardStrategy{
         builder.updateBoard(gPane);
     }
 
+    /**
+     * Fills in each square of the grid with the correct square
+     *
+     * @param square - The square that is being assigned
+     * @param col - The file of the square being assigned
+     * @param row - The row of the square being assigned
+     * @param sColor - The color of the square
+     * @param pColor - The color of the piece on the square
+     * @param hl - If the square is highlighted
+     */
     public void gridBuilder(SquareIF square, int col, int row, char sColor, char pColor, boolean hl){
         BoardButton butt = new BoardButton(builder);
         butt.setPosition(square.getPosition());
@@ -103,14 +118,14 @@ public class Board_GUI implements BoardStrategy{
             switch (piece.getChessPieceType()){
                 case King :
                     if (piece.getColor() == GameColor.WHITE){
-                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WK_smooth.png")));
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WK.png")));
                     }else{
                         image = new ImageView(new Image(getClass().getResourceAsStream("./images/BK.png")));
                     }
                     break;
                 case Queen :
                     if (piece.getColor() == GameColor.WHITE){
-                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WQ_smooth.png")));
+                        image = new ImageView(new Image(getClass().getResourceAsStream("./images/WQ.png")));
                     }else{
                         image = new ImageView(new Image(getClass().getResourceAsStream("./images/BQ.png")));
                     }
@@ -153,10 +168,13 @@ public class Board_GUI implements BoardStrategy{
         gPane.add(butt, col, row, 1, 1);
     }
 
+    /**
+     * Assigns the Board Manager
+     * @param builder - The Board Manager
+     */
     public void setBuilder(BoardManager builder){
         this.builder = builder;
         OptionsScreen.getInstance().setManager(builder);
     }
-
 }
 
