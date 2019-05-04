@@ -105,10 +105,10 @@ public class BoardManager implements BoardManagerInterface {
         gameBoard.draw();
         screen.updateBoard(board);
         if (!gameBoard.getpOneCapPieces().isEmpty()) {
-            pPaneOne.addChilden(gameBoard.getpOneCapPieces());
+            //pPaneOne.addChilden(gameBoard.getpOneCapPieces());
         }
         if (!gameBoard.getpTwoCapPieces().isEmpty()){
-        pPaneTwo.addChilden(gameBoard.getpTwoCapPieces());
+        //pPaneTwo.addChilden(gameBoard.getpTwoCapPieces());
         }
     }
 
