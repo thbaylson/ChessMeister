@@ -1,5 +1,6 @@
 package GUI;
 
+import Interfaces.BoardManagerInterface;
 import Interfaces.ScreenChangeHandler;
 import Interfaces.SquareColorHandler;
 import javafx.event.ActionEvent;
@@ -13,6 +14,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+/**
+ * @author Caleb Tupone
+ */
 public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler {
 
     /** The singleton instance of this class**/
@@ -21,27 +25,20 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     /** An observer to listen to screen change requests**/
     private ScreenChangeHandler GUI;
 
-    /** Labels for title, colors, and undo**/
-    private Label title;
-    private Label colors;
-    private Label undo;
-
-    private HBox center;
-    private VBox leftSide;
-    private VBox rightSide;
-
     private Button saveButton;
     private Button backButton;
 
-    SquareColorPanel blackSquareField;
-    SquareColorPanel whiteSquareField;
+    private SquareColorPanel blackSquareField;
+    private SquareColorPanel whiteSquareField;
 
-    int currentButton;
+    private String whiteSquareColor = "785000";
+    private String blackSquareColor = "b49646";
 
-    private CheckBox showMoves;
-    private CheckBox enabled;
-    private CheckBox unlimitedUndo;
-    private HBox maxUndo;
+    private int currentButton;
+
+    private BoardManagerInterface bmi;
+
+
 
     /**
      * Creates an OptionsScreen object. Here lives all the settings
@@ -73,7 +70,8 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      * setCenterSection- A helper method to set the center of the border pane
      */
     private void setCenterSection(VBox leftSide, VBox rightSide) {
-        center = new HBox(350);
+
+        HBox center = new HBox(350);
         center.getChildren().addAll(leftSide, rightSide);
         center.setAlignment(Pos.CENTER);
 
@@ -85,9 +83,9 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      * setRightSide- A helper method to set the right side of the border pane
      */
     private VBox setRightSide() {
-        rightSide = new VBox();
+        VBox rightSide = new VBox();
 
-        showMoves = new CheckBox("Show Moves");
+        CheckBox showMoves = new CheckBox("Show Moves");
         showMoves.getStyleClass().add("my-label");
 
         rightSide.getChildren().add(showMoves);
@@ -107,9 +105,9 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      * setLeftSide- A helper method to set the left side of the border pane
      */
     private VBox setLeftSide() {
-        leftSide = new VBox();
+        VBox leftSide = new VBox();
 
-        colors = new Label("Colors:");
+        Label colors = new Label("Colors:");
         colors.getStyleClass().add("my-label");
 
         blackSquareField = new SquareColorPanel("Black Squares: ");
@@ -118,18 +116,18 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         blackSquareField.getColoredButton().setOnAction(this);
         whiteSquareField.getColoredButton().setOnAction(this);
 
-        undo = new Label("Undo");
+        Label undo = new Label("Undo");
         undo.getStyleClass().add("my-label");
 
         leftSide.setAlignment(Pos.CENTER_LEFT);
-        enabled = new CheckBox("Enabled");
+        CheckBox enabled = new CheckBox("Enabled");
         enabled.getStyleClass().add("my-label");
 
-        unlimitedUndo = new CheckBox("Unlimited Undo");
+        CheckBox unlimitedUndo = new CheckBox("Unlimited Undo");
         unlimitedUndo.getStyleClass().add("my-label");
 
 
-        maxUndo = new MaxNumOfUndoPanel("Max num of undos");
+        MaxNumOfUndoPanel maxUndo = new MaxNumOfUndoPanel("Max num of undos");
 
         leftSide.getChildren().addAll(colors, blackSquareField,
                 whiteSquareField, undo, enabled, unlimitedUndo, maxUndo);
@@ -142,8 +140,11 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      * setTitle- A helper method to set the top of the border pane
      */
     private void setTitle(){
-        title = new Label("Settings");
-        title.getStyleClass().add("title");
+        Label title = new Label("Settings");
+        setTop(title);
+        title.setScaleX(6);
+        title.setScaleY(6);
+        title.setPadding(new Insets(15,0,0,0));
         setAlignment(title, Pos.CENTER);
 
         setTop(title);
@@ -214,10 +215,28 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      */
     @Override
     public void changeColor(String color) {
-        if (currentButton == 0)
+        if (currentButton == 0) {
             whiteSquareField.setColorOfButton(color);
+            whiteSquareColor = color;
+            bmi.reDraw();
+        }
         else{
             blackSquareField.setColorOfButton(color);
+            blackSquareColor = color;
+            bmi.reDraw();
         }
+    }
+
+
+    public String getWhiteSquareColor() {
+        return whiteSquareColor;
+    }
+
+    public String getBlackSquareColor() {
+        return blackSquareColor;
+    }
+
+    public void setManager(BoardManager manager){
+        this.bmi = manager;
     }
 }

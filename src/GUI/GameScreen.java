@@ -86,7 +86,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * @param player The number representation of the player, ie: 1 for player
      *               one and 2 for player two.
      */
-    private void setPlayerPane(int player) {
+    void setPlayerPane(int player) {
         VBox container = new VBox();
         PlayerPane pPane = new PlayerPane(player);
         builder.setPlayerPane(pPane, player);

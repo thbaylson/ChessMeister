@@ -8,14 +8,13 @@ import javafx.scene.layout.Pane;
 
 public class SquareColorPanel extends HBox{
 
-    private Label title;
+
     private Button coloredButton;
     private String selectedColor;
-    SquareColorHandler sch;
+
 
     SquareColorPanel(String desc){
-        this.title = new Label(desc);
-        title.getStyleClass().add("my-label");
+        Label title = new Label(desc);
         getChildren().add(title);
         coloredButton = addButton(this, "");
         setSpacing(10);
@@ -35,9 +34,14 @@ public class SquareColorPanel extends HBox{
         return btn;
     }
 
+
     void setColorOfButton(String colorSelection){
         selectedColor = colorSelection;
         coloredButton.setStyle("-fx-background-color: #"+ colorSelection);
+    }
+
+    String getColor(){
+        return selectedColor;
     }
 
 

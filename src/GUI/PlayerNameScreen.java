@@ -24,10 +24,12 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
     private Button playButton;
     private Button exitButton;
 
-    /**
-     * Creates a PlayerNameScreen object. This is the screen where player's
-     * choose their names
-     */
+    private PlayerNameEntry playerOneName;
+    private PlayerNameEntry playerTwoName;
+
+    private String playerOneField;
+    private String playerTwoField;
+
     private PlayerNameScreen(){
         getStyleClass().add("menu");
 
@@ -43,8 +45,10 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
         setAlignment(title, Pos.CENTER);
 
         // Player Entries
-        PlayerNameEntry playerOneName = new PlayerNameEntry("Player 1 Name");
-        PlayerNameEntry playerTwoName = new PlayerNameEntry("Player 2 Name");
+        playerOneName = new PlayerNameEntry("Player 1 Name");
+        playerTwoName = new PlayerNameEntry("Player 2 Name");
+        playerOneField = playerOneName.getPlayerName();
+        playerTwoField = playerTwoName.getPlayerName();
         centerView.getChildren().addAll(playerOneName, playerTwoName);
 
         // The play button
@@ -71,12 +75,44 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
      * @param event The ActionEvent to be handled
      */
     public void handle(ActionEvent event){
+        boolean isCorrectLengthP1 = false;
+        boolean isCorrectLengthP2 = false;
+
         if(event.getSource() == exitButton){
             System.out.println("PlayerNameScreen: Back");
             GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         }else if(event.getSource() == playButton){
             System.out.println("PlayerNameScreen: Play");
-            GUI.switchScreen(ScreenChangeHandler.Screens.GAMESCREEN);
+            if(isCorrectLengthP1 == false){
+                if(!(playerOneName.getPlayerName().length() <= 12)){
+                    System.out.println("Player one's name is too long, " +
+                            "must be no more than 12 characters");
+
+                }
+                else{
+                    playerOneField = playerOneName.getPlayerName();
+                    isCorrectLengthP1 = true;
+                }
+            }
+            if(isCorrectLengthP2 == false){
+                if(!(playerTwoName.getPlayerName().length() <= 12)){
+                    System.out.println("Player two's name is too long, " +
+                            "must be no more than 12 characters");
+
+                }
+                else{
+                    playerTwoField = playerTwoName.getPlayerName();
+                    isCorrectLengthP2 = true;
+                }
+            }
+
+
+            if (isCorrectLengthP1 && isCorrectLengthP2){
+                GameScreen.getInstance().setPlayerPane(1);
+                GameScreen.getInstance().setPlayerPane(2);
+                GUI.switchScreen(ScreenChangeHandler.Screens.GAMESCREEN);
+            }
+
         }
     }
 
@@ -99,6 +135,14 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
      */
     void register(ScreenChangeHandler gui){
         this.GUI = gui;
+    }
+
+    public String getPlayerOneField() {
+        return playerOneField;
+    }
+
+    public String getPlayerTwoField() {
+        return playerTwoField;
     }
 
 }
