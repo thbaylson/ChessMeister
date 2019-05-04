@@ -102,8 +102,8 @@ public class BoardManager implements BoardManagerInterface {
         if (!gameBoard.getpOneCapPieces().isEmpty()) {
             pPaneOne.addChilden(gameBoard.getpOneCapPieces());
         }
-        if (!gameBoard.getpTwoCapPieces().isEmpty()) {
-            pPaneTwo.addChilden(gameBoard.getpTwoCapPieces());
+        if (!gameBoard.getpTwoCapPieces().isEmpty()){
+        pPaneTwo.addChilden(gameBoard.getpTwoCapPieces());
         }
     }
 
@@ -130,6 +130,7 @@ public class BoardManager implements BoardManagerInterface {
      */
     public void switchTurn(){
         gameBoard.switchTurn();
+        screen.setFooterBar();
     }
 
     /**

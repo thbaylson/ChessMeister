@@ -109,13 +109,14 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
       board.setMaxSize(400, 400);
       board.setAlignment(Pos.CENTER);
       setCenter(board);
+      setFooterBar();
     }//End setBoard
 
     /**
      * setFooterBar- The bottom of the screen that will display info about the game
      * as well as hold the exit button
      */
-    private void setFooterBar() {
+    public void setFooterBar() {
         if(footerContainer == null){
             footerContainer = new HBox();
             footerContainer.getStyleClass().add("horizontal-group");
@@ -169,8 +170,6 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * @param gPane
      */
     public void updateBoard(GridPane gPane){
-        setFooterBar();
-
         board = gPane;
         board.setMinSize(400, 400);
         board.setMaxSize(400, 400);
