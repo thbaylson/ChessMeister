@@ -100,7 +100,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     }//End setPlayerOnePane
 
     /**
-     * The board on which players will play on. This may need to be its own class
+     * setBoard- The board on which players will play on
      */
     private void setBoard() {
       builder.buildBoard();
@@ -144,6 +144,11 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         setBottom(footerContainer);
     }//End SetFooterBar
 
+    /**
+     * handle- Handles a series of button presses. Handles exit, load, save,
+     * undo, redo, and settings. The functionality of these buttons may vary
+     * @param event The ActionEvent to be handled
+     */
     @Override
     public void handle(ActionEvent event) {
         if(event.getSource() == exitButton) {
@@ -179,10 +184,18 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         setCenter(board);
     }
 
+    /**
+     * register- Registers the Gui screen change handler as an observer
+     * @param gui An observer
+     */
     void register(ScreenChangeHandler gui){
         this.GUI = gui;
     }//End register()
 
+    /**
+     * getInstance- Gets a singleton instance of this class
+     * @return a singleton instance of this class
+     */
     static GameScreen getInstance(){
         if(instance != null){
             return instance;

@@ -6,17 +6,23 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 /**
- * Author: Tyler Baylson
+ * Author: Tyler Baylson 100%
  */
 public class PlayerNameEntry extends VBox {
 
+    /** The name of the player**/
     private Label title;
 
+    /** The input text field where players will enter their names**/
     private TextField name;
 
+    /**
+     * The PlayerNameEntry object seen in PlayerNameScreen. This holds the
+     * information of the players' names
+     * @param playerName
+     */
     PlayerNameEntry(String playerName){
         getStyleClass().add("vertical-group");
-        //setAlignment(Pos.CENTER);
 
         title = new Label(playerName);
         title.getStyleClass().add("header");

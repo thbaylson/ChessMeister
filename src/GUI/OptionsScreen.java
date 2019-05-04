@@ -2,14 +2,11 @@ package GUI;
 
 import Interfaces.ScreenChangeHandler;
 import Interfaces.SquareColorHandler;
-import Model.Square;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -18,15 +15,17 @@ import javafx.scene.layout.VBox;
 
 public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler {
 
+    /** The singleton instance of this class**/
     private static OptionsScreen instance;
+
+    /** An observer to listen to screen change requests**/
     private ScreenChangeHandler GUI;
 
+    /** Labels for title, colors, and undo**/
     private Label title;
     private Label colors;
     private Label undo;
 
-    private HBox maxUndoNum;
-    private HBox squareColorField;
     private HBox center;
     private VBox leftSide;
     private VBox rightSide;
@@ -39,13 +38,15 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
     int currentButton;
 
-
     private CheckBox showMoves;
     private CheckBox enabled;
     private CheckBox unlimitedUndo;
     private HBox maxUndo;
 
-
+    /**
+     * Creates an OptionsScreen object. Here lives all the settings
+     * for the application
+     */
     private OptionsScreen(){
         getStyleClass().add("menu");
 
@@ -69,7 +70,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 //    }
 
     /**
-     *
+     * setCenterSection- A helper method to set the center of the border pane
      */
     private void setCenterSection(VBox leftSide, VBox rightSide) {
         center = new HBox(350);
@@ -81,7 +82,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
 
     /**
-     *
+     * setRightSide- A helper method to set the right side of the border pane
      */
     private VBox setRightSide() {
         rightSide = new VBox();
@@ -102,9 +103,8 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         return rightSide;
     }
 
-
     /**
-     *
+     * setLeftSide- A helper method to set the left side of the border pane
      */
     private VBox setLeftSide() {
         leftSide = new VBox();
@@ -136,12 +136,10 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         leftSide.setSpacing(20);
 
         return leftSide;
-
-
     }
 
     /**
-     *
+     * setTitle- A helper method to set the top of the border pane
      */
     private void setTitle(){
         title = new Label("Settings");
@@ -152,10 +150,10 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     }
 
     /**
-     *
-     * @param pane
-     * @param text
-     * @return
+     * Allows for rapid creation of similar buttons
+     * @param pane the current pane
+     * @param text the text to be assigned to the button
+     * @return returns a button
      */
     private Button addButton(Pane pane, String text){
         Button btn = new Button(text);
@@ -167,6 +165,11 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     }
 
 
+    /**
+     * handle- Handles a series of button presses. Handles back, save,
+     * whiteSquareField, and blackSquareField
+     * @param event The ActionEvent to be handled
+     */
     @Override
     public void handle(ActionEvent event) {
         if(event.getSource() == backButton)
@@ -186,7 +189,10 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
     }
 
-    /**Get a singleton instance of this class**/
+    /**
+     * getInstance- Gets a singleton instance of this class
+     * @return a singleton instance of this class
+     */
     static OptionsScreen getInstance(){
         if(instance == null)
             instance = new OptionsScreen();
@@ -194,11 +200,18 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         return instance;
     }
 
+    /**
+     * register- Registers the Gui screen change handler as an observer
+     * @param screen An observer
+     */
     void register(ScreenChangeHandler screen){
         GUI = screen;
     }
 
-
+    /**
+     * changeColor- Changes the colors of the white or black SquareFields
+     * @param color The color to change to
+     */
     @Override
     public void changeColor(String color) {
         if (currentButton == 0)

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 /**
  * Objects representing each players captured pieces
  *
- * @author Zach 60% PlayerPane
- * @author Dillon 40% addChildren getPlayer
+ * @author Tyler 60% PlayerPane
+ * @author Dillon 40% addChilden getPlayer
  */
 public class PlayerPane extends VBox {
 
