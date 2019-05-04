@@ -9,7 +9,8 @@ import javafx.scene.image.Image;
 /**
  * Constructs a gridPane representing the chess board
  *
- * @author Dillon Ramsey 100%
+ * @author Dillon Ramsey 95% everything else
+ * @author Caleb Tupone 5% setting color of squares during setup
  */
 public class Board_GUI implements BoardStrategy{
 

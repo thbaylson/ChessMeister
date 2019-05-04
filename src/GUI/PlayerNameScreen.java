@@ -13,7 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
- * Author: Tyler Baylson
+ * This class is the screen that is used to choose the player names
+ * @author: Tyler Baylson 85%
+ * @author: Caleb Tupone 15% getting names from fields, and checking length
  */
 public class PlayerNameScreen extends BorderPane implements EventHandler<ActionEvent> {
 

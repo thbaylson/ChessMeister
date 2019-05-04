@@ -6,7 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 /**
- * Author: Tyler Baylson 100%
+ * This class is used to accept the players names
+ * @author: Tyler Baylson 95%
+ * @author: Caleb Tupone 5% getPlayerName
  */
 public class PlayerNameEntry extends VBox {
 
@@ -27,7 +29,6 @@ public class PlayerNameEntry extends VBox {
         title.getStyleClass().add("header");
 
         name = new TextField("NoName");
-        //name.setText();
         name.setAlignment(Pos.CENTER);
         name.setMaxSize(200.0, 10.0);
 
@@ -38,7 +39,4 @@ public class PlayerNameEntry extends VBox {
         return name.getText();
     }
 
-    void setPlayerName(String text){
-        name.setText(text);
-    }
 }

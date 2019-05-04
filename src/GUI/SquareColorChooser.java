@@ -10,29 +10,26 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
-/**A simple color chooser using three SliderPanes**/
-public class SquareColorChooser extends GridPane implements EventHandler<ActionEvent> /*Any more needed??*/ {
 
-    /**
-     * The selected color as a hex value (RGB)
-     **/
+/**
+ * This screen is used to select a color
+ * @author Caleb Tupone 100% (with help from the homework)
+ */
+public class SquareColorChooser extends GridPane implements EventHandler<ActionEvent>{
+
+    /**The selected color as a hex value (RGB)**/
     private String selectedColor;
 
-    /**
-     * Red color slider panel
-     **/
+    /**Red color slider panel**/
     private SliderPanel red;
 
-    /**
-     * Green color slider panel
-     **/
+    /**Green color slider panel**/
     private SliderPanel green;
 
-    /**
-     * Blue color slider panel
-     **/
+    /**Blue color slider panel**/
     private SliderPanel blue;
 
+    /**the select button**/
     private Button select;
 
     private Button exit;
@@ -40,37 +37,31 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
     private StackPane color;
 
 
-    /**
-     * Maximum color intensity
-     **/
+    /**Maximum color intensity**/
     private final int MAX_INTEN = 255;
 
-    /**
-     * Minimum color intensity
-     **/
+    /**Minimum color intensity**/
     private final int MIN_INTEN = 0;
-
+    /** reference to Gui so it can be registered**/
     ScreenChangeHandler sch;
-
+    /** reference to OptionsScreen so it can change the colors**/
     SquareColorHandler squareColor;
 
-
-    /**
-     * The singleton instance of this class
-     **/
+    /**Singleton instance of class**/
     private static SquareColorChooser instance;
 
 
     /**
-     * Create a singleton instance of a ColorChooser
-     **/
+     * Creates a singleton instances of the class
+     * @return singleton instance of the class
+     */
     public static SquareColorChooser getInstance() {
         if (instance == null) instance = new SquareColorChooser();
         return instance;
-    }//end getInstance
+    }
 
     /**
-     * Construct a color chooser.
+     * Creates a screen that allows the user to change the color
      */
     private SquareColorChooser() {
 
@@ -124,7 +115,6 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
         sliders.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         color.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
-        //col, row, colspan, rowspan
         this.add(color, 0, 0, 2, 1);
         this.add(sliders, 0, 1, 2, 1);
         this.add(exit, 0, 2, 1, 1);
@@ -139,7 +129,7 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
         blue.getSliderNumber().addListener(sliderListener);
 
 
-    }//end constructor
+    }
 
     /**
      * Set the background color of the  chooser
@@ -172,8 +162,9 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
     }
 
     /**
-     * The method of the button EventHandler insterface implementation that this class has
-     **/
+     * This method handles the button input of the screen
+     * @param event input
+     */
     @Override
     public void handle(ActionEvent event) {
 
@@ -184,7 +175,7 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
         } else if (event.getSource() == exit) {
             sch.switchScreen(ScreenChangeHandler.Screens.OPTIONS);
         }
-    }//end handle
+    }
 
 
     ChangeListener<Number> sliderListener = new ChangeListener<Number>() {
@@ -196,10 +187,18 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
         }
     };
 
+    /**
+     * this is used to register the SquareColorChooser to the Gui
+     * @param screen the screen to register to
+     */
     void register(ScreenChangeHandler screen) {
         sch = screen;
     }
 
+    /**
+     * this is used to register the SquareColorChooser to the OptionsScreen
+     * @param handler the handler to register to
+     */
     void colorRegister(SquareColorHandler handler){
         squareColor = handler;
     }

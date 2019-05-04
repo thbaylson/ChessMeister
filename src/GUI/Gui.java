@@ -8,7 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
- * @author Caleb Tupone
+ * @author Caleb Tupone 85%
+ * @author Tyler Baylson 15% CSS
  */
 public class Gui extends Application implements ScreenChangeHandler {
 
@@ -28,7 +29,7 @@ public class Gui extends Application implements ScreenChangeHandler {
     @Override
     public void start(Stage primaryStage) {
         try{
-            //primaryStage.setFullScreen(true);
+
             primaryStage.setResizable(false);
             switchScreen(Screens.MAINMENU);
 

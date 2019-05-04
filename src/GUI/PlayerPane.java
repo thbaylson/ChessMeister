@@ -15,8 +15,9 @@ import java.util.ArrayList;
 /**
  * Objects representing each players captured pieces
  *
- * @author Tyler 60% PlayerPane
+ * @author Tyler 55% PlayerPane
  * @author Dillon 40% addChilden getPlayer
+ * @author Caleb Tupone 5% the if statement in the constructor
  */
 public class PlayerPane extends VBox {
 

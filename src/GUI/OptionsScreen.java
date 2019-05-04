@@ -5,6 +5,7 @@ import Interfaces.ScreenChangeHandler;
 import Interfaces.SquareColorHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,7 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
- * @author Caleb Tupone
+ * This class is the options screen of the application
+ * @author Caleb Tupone 90%
+ * @author Tyler Baylson 10% CSS
  */
 public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler {
 
@@ -50,20 +53,6 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         setCenterSection(setLeftSide(), setRightSide());
         SquareColorChooser.getInstance().colorRegister(this);
     }
-
-//    /**
-//     *
-//     * @param labelText
-//     * @return
-//     */
-//    private HBox maxUndoNumCreator(String labelText){
-//        maxUndoNum = new HBox(25);
-//        Label desc = new Label(labelText);
-//        maxUndoNum.getChildren().addAll(desc);
-//
-//
-//        return maxUndoNum;
-//    }
 
     /**
      * setCenterSection- A helper method to set the center of the border pane

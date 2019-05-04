@@ -11,18 +11,23 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+/**
+ * This class is used to create a panel with a slider, textfield, and label
+ * @author Caleb Tupone 100% (with help from the homework)
+ */
 public class SliderPanel extends VBox {
 
+    /** the title of the slider**/
     private Label title;
-
+    /** the valueTitle of the slider**/
     private Label valueTitle;
-
+    /** the value in the box above the slider**/
     private TextField value;
-
+    /** the slider functionality**/
     private Slider slider;
-
+    /** the minimum value allowed**/
     private int min;
-
+    /** the maximum value allowed**/
     private int max;
 
 
@@ -73,8 +78,8 @@ public class SliderPanel extends VBox {
 
 
     /**
-     *
-     * @param newValue
+     * This sets the new value
+     * @param newValue the new value read from the slider
      */
     public void set(int newValue){
         value.setText(newValue+"");
@@ -84,9 +89,14 @@ public class SliderPanel extends VBox {
 
     }
 
+    /**
+     * This method returns the value of the slider in the form of an int
+     * @return
+     */
     public int getValue(){
         return (int) slider.getValue();
     }//end getValue
+
 
     ChangeListener<Number> valueChangeListener = new ChangeListener<Number>(){
 
