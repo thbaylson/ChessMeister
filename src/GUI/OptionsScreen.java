@@ -43,7 +43,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     private CheckBox showMoves;
     private CheckBox enabled;
     private CheckBox unlimitedUndo;
-    private TextField maxUndo;
+    private HBox maxUndo;
 
 
     private OptionsScreen(){
@@ -132,7 +132,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         unlimitedUndo.getStyleClass().add("my-label");
 
 
-        maxUndo = new TextField();
+        maxUndo = new MaxNumOfUndoPanel("Max num of undos");
 
         leftSide.getChildren().addAll(colors, blackSquareField,
                 whiteSquareField, undo, enabled, unlimitedUndo, maxUndo);

@@ -25,6 +25,8 @@ public class Board implements BoardIF{
 	
 	private ArrayList<PieceIF> playerOnePieces;
 	private ArrayList<PieceIF> playerTwoPieces;
+	private ArrayList<PieceIF> pOneCapPieces;
+	private ArrayList<PieceIF> pTwoCapPieces;
 	
 	/** The method in which everything will be displayed to the user**/
 	private BoardStrategy strat;
@@ -43,6 +45,8 @@ public class Board implements BoardIF{
 		turn = false;
 		this.playerOnePieces = new ArrayList<PieceIF>();
 		this.playerTwoPieces = new ArrayList<PieceIF>();
+		this.pOneCapPieces = new ArrayList<>();
+		this.pTwoCapPieces = new ArrayList<>();
 	}
 
 	 /**
@@ -118,8 +122,10 @@ public class Board implements BoardIF{
 	public void move(Position from, Position to) {
 		if(to.getSquare().getPiece() != null){
 			if (to.getSquare().getPiece().getColor().getColor() == 'w'){
+				pTwoCapPieces.add(to.getSquare().getPiece());
 				playerOnePieces.remove(to.getSquare().getPiece());
 			}else{
+				pOneCapPieces.add((to.getSquare().getPiece()));
 				playerTwoPieces.remove(to.getSquare().getPiece());
 			}
 		}
@@ -333,6 +339,8 @@ public class Board implements BoardIF{
 	public BoardIF clone(){
 		BoardIF newBoard = new Board();
 		SquareIF[][] newSQ = newBoard.getSquares();
+		ArrayList<PieceIF> pOneTaken = newBoard.getPlayerPieces(2);
+		ArrayList<PieceIF> pTwoTaken = newBoard.getPlayerPieces(1);
 		newBoard.setDrawStrategy(this.strat);
 		newBoard.setTurn(this.turn);
 		ArrayList<PieceIF> P1 = new ArrayList<>();
@@ -350,8 +358,12 @@ public class Board implements BoardIF{
 				}
 			}
 		}
+		pOneTaken.removeAll(P2);
+		pTwoTaken.removeAll(P1);
 		newBoard.setPOne(P1);
 		newBoard.setPTwo(P2);
+		newBoard.setPOneTaken(pOneTaken);
+		newBoard.setPTwoTaken(pTwoTaken);
 		return newBoard;
 	}
 
@@ -451,6 +463,38 @@ public class Board implements BoardIF{
 	 */
 	public void setPTwo(ArrayList<PieceIF> P2){
 		playerTwoPieces = P2;
+	}
+
+	/**
+	 * Sets the pieces of player 1
+	 * @param P1 - A list of player 1's pieces
+	 */
+	public void setPOneTaken(ArrayList<PieceIF> P1){
+		pOneCapPieces = P1;
+	}
+
+	/**
+	 * Sets the pieces of player 2
+	 * @param P2 - A list of player 2's pieces
+	 */
+	public void setPTwoTaken(ArrayList<PieceIF> P2){
+		pTwoCapPieces = P2;
+	}
+
+	/**
+	 * Gets a list of Player 1 captured pieces
+	 * @return The list of captured pieces
+	 */
+	public ArrayList<PieceIF> getpOneCapPieces(){
+		return pOneCapPieces;
+	}
+
+	/**
+	 * Gets a list of Player 1 captured pieces
+	 * @return The list of captured pieces
+	 */
+	public ArrayList<PieceIF> getpTwoCapPieces(){
+		return pTwoCapPieces;
 	}
 
 	/**

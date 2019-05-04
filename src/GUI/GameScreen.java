@@ -87,7 +87,9 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      */
     private void setPlayerPane(int player) {
         VBox container = new VBox();
-        container.getChildren().add(new PlayerPane(player));
+        PlayerPane pPane = new PlayerPane(player);
+        builder.setPlayerPane(pPane, player);
+        container.getChildren().add(pPane);
         if(player == 1){
             //container.getChildren().add(showButton);
             setLeft(container);
