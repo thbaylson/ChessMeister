@@ -1,49 +1,41 @@
 package GUI;
 
+import Interfaces.BoardManagerInterface;
 import Interfaces.ScreenChangeHandler;
 import Interfaces.SquareColorHandler;
-import Model.Square;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+/**
+ * @author Caleb Tupone
+ */
 public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler {
 
     private static OptionsScreen instance;
     private ScreenChangeHandler GUI;
 
-    private Label title;
-    private Label colors;
-    private Label undo;
-
-    private HBox maxUndoNum;
-    private HBox squareColorField;
-    private HBox center;
-    private VBox leftSide;
-    private VBox rightSide;
-
     private Button saveButton;
     private Button exitButton;
 
-    SquareColorPanel blackSquareField;
-    SquareColorPanel whiteSquareField;
+    private SquareColorPanel blackSquareField;
+    private SquareColorPanel whiteSquareField;
 
-    int currentButton;
+    private String whiteSquareColor = "785000";
+    private String blackSquareColor = "b49646";
 
+    private int currentButton;
 
-    private CheckBox showMoves;
-    private CheckBox enabled;
-    private CheckBox unlimitedUndo;
-    private TextField maxUndo;
+    private BoardManagerInterface bmi;
+
 
 
     private OptionsScreen(){
@@ -72,7 +64,8 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      *
      */
     private void setCenterSection(VBox leftSide, VBox rightSide) {
-        center = new HBox(350);
+
+        HBox center = new HBox(350);
         center.getChildren().addAll(leftSide, rightSide);
         center.setAlignment(Pos.CENTER);
 
@@ -84,9 +77,9 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      *
      */
     private VBox setRightSide() {
-        rightSide = new VBox();
+        VBox rightSide = new VBox();
 
-        showMoves = new CheckBox("Show Moves");
+        CheckBox showMoves = new CheckBox("Show Moves");
         showMoves.getStyleClass().add("my-label");
 
         rightSide.getChildren().add(showMoves);
@@ -107,9 +100,9 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      *
      */
     private VBox setLeftSide() {
-        leftSide = new VBox();
+        VBox leftSide = new VBox();
 
-        colors = new Label("Colors:");
+        Label colors = new Label("Colors:");
         colors.getStyleClass().add("my-label");
 
         blackSquareField = new SquareColorPanel("Black Squares: ");
@@ -121,18 +114,18 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         blackSquareField.getColoredButton().setOnAction(this);
         whiteSquareField.getColoredButton().setOnAction(this);
 
-        undo = new Label("Undo");
+        Label undo = new Label("Undo");
         undo.getStyleClass().add("my-label");
 
         leftSide.setAlignment(Pos.CENTER_LEFT);
-        enabled = new CheckBox("Enabled");
+        CheckBox enabled = new CheckBox("Enabled");
         enabled.getStyleClass().add("my-label");
 
-        unlimitedUndo = new CheckBox("Unlimited Undo");
+        CheckBox unlimitedUndo = new CheckBox("Unlimited Undo");
         unlimitedUndo.getStyleClass().add("my-label");
 
 
-        maxUndo = new TextField();
+        MaxNumOfUndoPanel maxUndo = new MaxNumOfUndoPanel("Max num of undos");
 
         leftSide.getChildren().addAll(colors, blackSquareField,
                 whiteSquareField, undo, enabled, unlimitedUndo, maxUndo);
@@ -147,7 +140,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      *
      */
     private void setTitle(){
-        title = new Label("Settings");
+        Label title = new Label("Settings");
         setTop(title);
         title.setScaleX(6);
         title.setScaleY(6);
@@ -205,10 +198,28 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
     @Override
     public void changeColor(String color) {
-        if (currentButton == 0)
+        if (currentButton == 0) {
             whiteSquareField.setColorOfButton(color);
+            whiteSquareColor = color;
+            bmi.reDraw();
+        }
         else{
             blackSquareField.setColorOfButton(color);
+            blackSquareColor = color;
+            bmi.reDraw();
         }
+    }
+
+
+    public String getWhiteSquareColor() {
+        return whiteSquareColor;
+    }
+
+    public String getBlackSquareColor() {
+        return blackSquareColor;
+    }
+
+    public void setManager(BoardManager manager){
+        this.bmi = manager;
     }
 }

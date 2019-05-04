@@ -8,6 +8,8 @@ import javafx.scene.layout.VBox;
 
 public class PlayerPane extends VBox {
 
+    private Label playerName;
+
     public PlayerPane(int playerNumber){
         setPrefSize(200, 400);
         setSpacing(40);
@@ -17,7 +19,13 @@ public class PlayerPane extends VBox {
         title.setScaleX(1.5);
         title.setScaleY(1.5);
 
-        Label playerName = new Label("P" + playerNumber);
+        if (playerNumber == 1){
+            playerName = new Label(PlayerNameScreen.getInstance().getPlayerOneField());
+        }
+        else {
+            playerName = new Label(PlayerNameScreen.getInstance().getPlayerTwoField());
+        }
+
         playerName.getStyleClass().add("my-label");
         playerName.setPadding(new Insets(0,0,40,0));
         playerName.setAlignment(Pos.CENTER_RIGHT);

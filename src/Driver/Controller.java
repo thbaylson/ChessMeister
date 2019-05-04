@@ -51,10 +51,30 @@ class Controller {
             String uInput = mainMenu.askInput();
 
             if (uInput.equals("Y") || uInput.equals("YES")) {
-                //launchGUI();
-                BoardStrategy strategy = chooseBoardType();
-                game.setDrawStrategy(strategy);
-                runGame();
+
+
+                while(true) {
+                    System.out.println("Choose one of the below options: \n" +
+                            "-----------------------------------------------\n" +
+                            "0: Play a game in the command line\n1: Play a "+
+                            "game with a GUI \nEXIT: Exit the program\n");
+                    uInput = mainMenu.askInput();
+                    switch (uInput) {
+                        case "0":
+                            BoardStrategy strategy = chooseBoardType();
+                            game.setDrawStrategy(strategy);
+                            runGame();
+                            break;
+                        case "1":
+                            String[] stuff = {"Start"};
+                            Gui.main(stuff);
+                            break;
+                        case "EXIT":
+                            System.exit(0);
+                        default:
+                            System.out.println("Please select a valid command");
+                    }
+                }
 
             } else if (uInput.equals("N") || uInput.equals("NO")) {
                 gameIsRunning = false;
@@ -396,13 +416,5 @@ class Controller {
             currentPlayer = 1;
         }
     }
-
-    private void launchGUI(){
-        Gui gui = new Gui();
-        String[] stuff = {"A"};
-        gui.main(stuff);
-    }
-
-
 
 }

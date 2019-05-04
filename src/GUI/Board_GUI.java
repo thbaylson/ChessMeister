@@ -6,12 +6,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 
+
 public class Board_GUI implements BoardStrategy{
 
     /**The grid pane representing the board*/
     private GridPane gPane;
 
     private BoardManagerInterface builder;
+
+    private String whiteSquareColor = "b49646";
+
+    private String blackSquareColor = "785000";
 
     /**
      * Method draws the chess board and pieces in the CLI in color
@@ -88,9 +93,11 @@ public class Board_GUI implements BoardStrategy{
             background = "-fx-background-color: #50148c";
             butt.setHighlighted(true);
         }else if (sColor == 'w'){
-            background = "-fx-background-color: #b49646";
+            whiteSquareColor = OptionsScreen.getInstance().getWhiteSquareColor();
+            background = "-fx-background-color: #" + whiteSquareColor;
         }else {
-            background = "-fx-background-color: #785000";
+            blackSquareColor = OptionsScreen.getInstance().getBlackSquareColor();
+            background = "-fx-background-color: #" + blackSquareColor;
         }
         if (piece != null) {
             switch (piece.getChessPieceType()){
@@ -148,6 +155,8 @@ public class Board_GUI implements BoardStrategy{
 
     public void setBuilder(BoardManager builder){
         this.builder = builder;
+        OptionsScreen.getInstance().setManager(builder);
     }
+
 }
 

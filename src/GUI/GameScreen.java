@@ -85,7 +85,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * @param player The number representation of the player, ie: 1 for player
      *               one and 2 for player two.
      */
-    private void setPlayerPane(int player) {
+    void setPlayerPane(int player) {
         VBox container = new VBox();
         container.getChildren().add(new PlayerPane(player));
         if(player == 1){
@@ -143,7 +143,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
             //GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         }else if(event.getSource() == settingsButton) {
             System.out.println("GameScreen: Settings");
-            //GUI.switchScreen(ScreenChangeHandler.Screens.SETTINGS);
+            GUI.switchScreen(ScreenChangeHandler.Screens.OPTIONS);
         }//End if/else
     }//End handle()
 

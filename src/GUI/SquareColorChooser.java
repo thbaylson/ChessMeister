@@ -16,7 +16,7 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
     /**
      * The selected color as a hex value (RGB)
      **/
-    String selectedColor;
+    private String selectedColor;
 
     /**
      * Red color slider panel
@@ -37,7 +37,7 @@ public class SquareColorChooser extends GridPane implements EventHandler<ActionE
 
     private Button exit;
 
-    StackPane color;
+    private StackPane color;
 
 
     /**

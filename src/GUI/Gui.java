@@ -24,6 +24,7 @@ public class Gui extends Application implements ScreenChangeHandler {
     @Override
     public void start(Stage primaryStage) {
         try{
+            //primaryStage.setFullScreen(true);
             primaryStage.setResizable(false);
             switchScreen(Screens.MAINMENU);
 
