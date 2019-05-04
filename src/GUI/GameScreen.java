@@ -12,7 +12,7 @@ import javafx.scene.layout.*;
 
 
 /**
- * Author: Tyler Baylson
+ * Author: Tyler Baylson and Dillon Ramsey
  */
 public class GameScreen extends BorderPane implements EventHandler<ActionEvent> {
 
@@ -50,7 +50,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     }//End GameScreen Constructor
 
     /**
-     * The header bar that contains various buttons for different actions.
+     * setHeaderBar- The header bar that contains various buttons for different actions.
      * Actions include: load game, save game, undo move,
      * redo move, and open settings window.
      */
@@ -82,7 +82,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     }//End setHeaderBar
 
     /**
-     * Sets the left and right player panes for players one and two
+     * setPlayerPane- Sets the left and right player panes for players one and two
      * @param player The number representation of the player, ie: 1 for player
      *               one and 2 for player two.
      */
@@ -110,7 +110,8 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     }//End setBoard
 
     /**
-     * The bottom of the screen that will display info about the game
+     * setFooterBar- The bottom of the screen that will display info about the game
+     * as well as hold the exit button
      */
     private void setFooterBar() {
         if(footerContainer == null){
@@ -161,6 +162,10 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         }//End if/else
     }//End handle()
 
+    /**
+     * updateBoard-
+     * @param gPane
+     */
     public void updateBoard(GridPane gPane){
         setFooterBar();
 

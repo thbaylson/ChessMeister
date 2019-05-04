@@ -53,14 +53,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
         setAlignment(title, Pos.CENTER);
 
         //Add buttons to the root.
-        twoPlayerButton = addButton(centerButtonList, "Player vs Player");
-        cpuPlayerButton = addButton(centerButtonList, "Player vs CPU");
-        onlinePlayButton = addButton(centerButtonList, "Online Play");
-        rulesButton = addButton(centerButtonList, "Rules of chess");
-        tutorialButton = addButton(centerButtonList, "Tutorial");
-
-        settingsButton = addButton(settingsAndExit, "Settings");
-        exitButton = addButton(settingsAndExit, "Exit");
+        createButtons();
 
         setTop(title);
         setLeft(getImage("king"));
@@ -70,7 +63,7 @@ public class MainMenuScreen extends BorderPane implements EventHandler<ActionEve
     }
 
     /**
-     *
+     * createButtons- A helper method to organize the creation of buttons in the scene
      */
     private void createButtons(){
         //Add a button to the root.
