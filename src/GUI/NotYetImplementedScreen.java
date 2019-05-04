@@ -21,20 +21,18 @@ public class NotYetImplementedScreen extends VBox implements EventHandler<Action
 
     /** Private constructor, adheres to singleton pattern**/
     private NotYetImplementedScreen(){
-        getStyleClass().add("not-a-feature");
+        getStyleClass().add("menu");
 
         setAlignment(Pos.CENTER);
         setSpacing(50);
 
         // Label informing the user that this feature in not yet implemented
         Label label = new Label("Feature Not Yet Implemented");
-        label.getStyleClass().add("label");
-        label.setScaleX(4);
-        label.setScaleY(4);
+        label.getStyleClass().add("my-label");
 
         // The back button. Sends the user to the main menu
         Button btn = new Button("Back");// To make button text bigger, use CSS
-        btn.setPrefSize(100, 50);
+        btn.getStyleClass().add("my-button");
         btn.setOnAction(this);
 
         getChildren().addAll(label, btn);

@@ -12,7 +12,7 @@ import javafx.scene.layout.*;
 
 
 /**
- * Author: Tyler Baylson
+ * Author: Tyler Baylson and Dillon Ramsey
  */
 public class GameScreen extends BorderPane implements EventHandler<ActionEvent> {
 
@@ -25,6 +25,10 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     private Button undoButton;
     private Button redoButton;
     private Button settingsButton;
+
+    private HBox footerContainer;
+    private Label info;
+
     private GridPane board;
     private BoardManagerInterface builder;
 
@@ -33,10 +37,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
 
         setPrefSize(800, 800);
         setPadding(new Insets(20,20,20,20));
-        //This needs to be created here before setPlayerPane call
-        exitButton = new Button("Exit");
-        exitButton.getStyleClass().add("my-tab-button");
-        exitButton.setOnAction(this);
+
         board = new GridPane();
         builder = BoardManager.getInstance(board, this);
 
@@ -45,11 +46,11 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
         setPlayerPane(2);
 
         setBoard();
-        SetFooterBar();
+        setFooterBar();
     }//End GameScreen Constructor
 
     /**
-     * The header bar that contains various buttons for different actions.
+     * setHeaderBar- The header bar that contains various buttons for different actions.
      * Actions include: load game, save game, undo move,
      * redo move, and open settings window.
      */
@@ -81,7 +82,7 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     }//End setHeaderBar
 
     /**
-     * Sets the left and right player panes for players one and two
+     * setPlayerPane- Sets the left and right player panes for players one and two
      * @param player The number representation of the player, ie: 1 for player
      *               one and 2 for player two.
      */
@@ -94,7 +95,6 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
             //container.getChildren().add(showButton);
             setLeft(container);
         }else{
-            container.getChildren().add(exitButton);
             setRight(container);
         }
     }//End setPlayerOnePane
@@ -112,18 +112,33 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
     }//End setBoard
 
     /**
-     * The bottom of the screen that will display info about the game
+     * setFooterBar- The bottom of the screen that will display info about the game
+     * as well as hold the exit button
      */
-    private void SetFooterBar() {
-        HBox container = new HBox();
-        container.setAlignment(Pos.TOP_CENTER);
-        Label info = new Label("GameStart");
-        info.getStyleClass().add("my-label");
-        info.setScaleX(1.5);
-        info.setScaleY(1.5);
+    private void setFooterBar() {
+        if(footerContainer == null){
+            footerContainer = new HBox();
+            footerContainer.getStyleClass().add("horizontal-group");
+            footerContainer.setAlignment(Pos.TOP_CENTER);
 
-        container.getChildren().add(info);
-        setBottom(container);
+            exitButton = new Button("Exit");
+            exitButton.getStyleClass().add("my-button");
+            exitButton.setOnAction(this);
+            footerContainer.getChildren().add(exitButton);
+        }
+
+        if(info == null){
+            info = new Label("GameStart");
+            info.getStyleClass().add("my-label");
+            info.setScaleX(1.5);
+            info.setScaleY(1.5);
+        }else{
+            info.setText(!(builder.getTurn()) ? "P1's Turn" : "P2's Turn");
+        }
+
+        footerContainer.getChildren().remove(info);
+        footerContainer.getChildren().add(info);
+        setBottom(footerContainer);
     }//End SetFooterBar
 
     @Override
@@ -145,11 +160,17 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
             //GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         }else if(event.getSource() == settingsButton) {
             System.out.println("GameScreen: Settings");
-            //GUI.switchScreen(ScreenChangeHandler.Screens.SETTINGS);
+            GUI.switchScreen(ScreenChangeHandler.Screens.OPTIONS);
         }//End if/else
     }//End handle()
 
+    /**
+     * updateBoard-
+     * @param gPane
+     */
     public void updateBoard(GridPane gPane){
+        setFooterBar();
+
         board = gPane;
         board.setMinSize(400, 400);
         board.setMaxSize(400, 400);

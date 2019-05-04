@@ -39,20 +39,20 @@ public class PlayerPane extends VBox {
         Label title = new Label("Player " + playerNumber);
         title.getStyleClass().add("my-label");
         title.setPadding(new Insets(20,0,0,0));
-        title.setScaleX(1.5);
-        title.setScaleY(1.5);
+        title.setScaleX(1.2);
+        title.setScaleY(1.2);
 
         Label playerName = new Label("P" + playerNumber);
         playerName.getStyleClass().add("my-label");
         playerName.setPadding(new Insets(0,0,40,0));
         playerName.setAlignment(Pos.CENTER_RIGHT);
-        playerName.setScaleX(1.5);
-        playerName.setScaleY(1.5);
+        playerName.setScaleX(1.2);
+        playerName.setScaleY(1.2);
 
         Label capturedLabel = new Label("Captured:");
         capturedLabel.getStyleClass().add("my-label");
-        capturedLabel.setScaleX(1.5);
-        capturedLabel.setScaleY(1.5);
+        capturedLabel.setScaleX(1.2);
+        capturedLabel.setScaleY(1.2);
 
         capturedPieces = new TilePane();
         capturedPieces.setPrefColumns(2);

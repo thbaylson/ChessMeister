@@ -32,7 +32,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     private VBox rightSide;
 
     private Button saveButton;
-    private Button exitButton;
+    private Button backButton;
 
     SquareColorPanel blackSquareField;
     SquareColorPanel whiteSquareField;
@@ -92,9 +92,9 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         rightSide.getChildren().add(showMoves);
 
         saveButton = addButton(rightSide, "Save");
-        exitButton = addButton(rightSide, "Exit");
+        backButton = addButton(rightSide, "Back");
         saveButton.getStyleClass().add("my-button");
-        exitButton.getStyleClass().add("my-button");
+        backButton.getStyleClass().add("my-button");
 
         rightSide.setAlignment(Pos.CENTER);
         rightSide.setSpacing(20);
@@ -113,10 +113,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         colors.getStyleClass().add("my-label");
 
         blackSquareField = new SquareColorPanel("Black Squares: ");
-        blackSquareField.getStyleClass().add("my-label");
-
         whiteSquareField = new SquareColorPanel("White Squares: ");
-        whiteSquareField.getStyleClass().add("my-label");
 
         blackSquareField.getColoredButton().setOnAction(this);
         whiteSquareField.getColoredButton().setOnAction(this);
@@ -148,11 +145,10 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      */
     private void setTitle(){
         title = new Label("Settings");
-        setTop(title);
-        title.setScaleX(6);
-        title.setScaleY(6);
-        title.setPadding(new Insets(15,0,0,0));
+        title.getStyleClass().add("title");
         setAlignment(title, Pos.CENTER);
+
+        setTop(title);
     }
 
     /**
@@ -173,7 +169,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
 
     @Override
     public void handle(ActionEvent event) {
-        if(event.getSource() == exitButton)
+        if(event.getSource() == backButton)
             GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         else if(event.getSource() == saveButton)
             System.out.println("Saving Options (Not Really)");
