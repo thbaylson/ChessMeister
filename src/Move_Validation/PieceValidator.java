@@ -113,7 +113,9 @@ public abstract class PieceValidator extends Piece{
             Position newpPos = newB.getPosition(rank, file);
             Position endPos = newB.getPosition(pPos.getRank().getRank(), pPos.getFile().getFile());
             ArrayList<PieceIF> pieces = newB.getPlayerPieces(turn);
-            newB.move(newpPos, endPos);
+            if (endPos != newB.getCurKing().getPosition()) {
+                newB.move(newpPos, endPos);
+            }
             for (PieceIF ePieces : pieces){
                 for (Position ePos : ePieces.checkMoves()){
                     int r1 = ePos.getRank().getRank();

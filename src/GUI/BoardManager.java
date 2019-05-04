@@ -5,7 +5,12 @@ import Interfaces.BoardIF;
 import Interfaces.PieceIF;
 import Model.Board;
 import Model.Position;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -130,6 +135,28 @@ public class BoardManager implements BoardManagerInterface {
      */
     public void switchTurn(){
         gameBoard.switchTurn();
+        int pt = 1;
+        if (gameBoard.getTurn()){
+            pt = 2;
+        }
+        System.out.println(gameBoard.check());
+        if (gameBoard.check()){
+            if (gameBoard.checkmate()){
+                Pane game = new HBox();
+                game.getChildren().add(new Label("You lose Player " + pt));
+                Scene over = new Scene(game, 200, 50);
+                Stage meh = new Stage();
+                meh.setScene(over);
+                meh.show();
+            }else{
+                Pane game = new HBox();
+                game.getChildren().add(new Label("Player " + pt + " you are in check"));
+                Scene over = new Scene(game, 200, 50);
+                Stage meh = new Stage();
+                meh.setScene(over);
+                meh.show();
+            }
+        }
         screen.setFooterBar();
     }
 

@@ -439,7 +439,6 @@ public class Board implements BoardIF{
 			for (PieceIF piece : playerOnePieces){
 				for (Position pos : piece.showMoves()){
 					Moves.add(pos);
-					System.out.println(pos.toString());
 				}
 			}
 		}
