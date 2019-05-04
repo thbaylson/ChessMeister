@@ -117,24 +117,26 @@ public class GameScreen extends BorderPane implements EventHandler<ActionEvent> 
      * as well as hold the exit button
      */
     public void setFooterBar() {
-        if(footerContainer == null){
+        if(footerContainer == null) {
             footerContainer = new HBox();
             footerContainer.getStyleClass().add("horizontal-group");
             footerContainer.setAlignment(Pos.TOP_CENTER);
-
-            exitButton = new Button("Exit");
-            exitButton.getStyleClass().add("my-button");
-            exitButton.setOnAction(this);
-            footerContainer.getChildren().add(exitButton);
         }
-
         if(info == null){
             info = new Label("GameStart");
             info.getStyleClass().add("my-label");
             info.setScaleX(1.5);
             info.setScaleY(1.5);
+            footerContainer.getChildren().add(info);
+
         }else{
             info.setText(!(builder.getTurn()) ? "P1's Turn" : "P2's Turn");
+        }
+        if(exitButton == null){
+            exitButton = new Button("Exit");
+            exitButton.getStyleClass().add("my-button");
+            exitButton.setOnAction(this);
+            footerContainer.getChildren().add(exitButton);
         }
 
         footerContainer.getChildren().remove(info);
