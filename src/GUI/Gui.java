@@ -20,14 +20,16 @@ public class Gui extends Application implements ScreenChangeHandler {
 
     private Scene scene;
 
-
+    /**
+     * start- Sets the primary stage and registers screens to observe
+     * @param primaryStage The stage that will represent the application's
+     *                     primary window
+     */
     @Override
     public void start(Stage primaryStage) {
         try{
             primaryStage.setResizable(false);
             switchScreen(Screens.MAINMENU);
-
-
 
             MainMenuScreen.getInstance().register(this);
             NotYetImplementedScreen.getInstance().register(this);
@@ -49,17 +51,18 @@ public class Gui extends Application implements ScreenChangeHandler {
             instance = this;
     }
 
-
+    /**
+     * Calls launch
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
        launch(args);
     }
 
-
-
-    public void startGui(String[] args){
-        main(args);
-    }
-
+    /**
+     * When called by a screen, this will change the root to a new screen
+     * @param screen The screen to show
+     */
     @Override
     public void switchScreen(Screens screen) {
 

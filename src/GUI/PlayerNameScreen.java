@@ -24,6 +24,10 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
     private Button playButton;
     private Button exitButton;
 
+    /**
+     * Creates a PlayerNameScreen object. This is the screen where player's
+     * choose their names
+     */
     private PlayerNameScreen(){
         getStyleClass().add("menu");
 
@@ -62,13 +66,10 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
         setBottom(bottomView);
     }
 
-    ChangeListener<String> ch = new ChangeListener<String>() {
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
-        }
-    };
-
+    /**
+     * handle- Handles a series of button presses. Handles exit and play
+     * @param event The ActionEvent to be handled
+     */
     public void handle(ActionEvent event){
         if(event.getSource() == exitButton){
             System.out.println("PlayerNameScreen: Back");
@@ -79,6 +80,10 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
         }
     }
 
+    /**
+     * getInstance- Gets a singleton instance of this class
+     * @return a singleton instance of this class
+     */
     static PlayerNameScreen getInstance(){
         if(instance != null){
             return instance;
@@ -88,6 +93,10 @@ public class PlayerNameScreen extends BorderPane implements EventHandler<ActionE
         }
     }
 
+    /**
+     * register- Registers the Gui screen change handler as an observer
+     * @param gui An observer
+     */
     void register(ScreenChangeHandler gui){
         this.GUI = gui;
     }
