@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 /**
- * @author Tyler Baylson
+ * @author Tyler Baylson 100%
  */
 public class NotYetImplementedScreen extends VBox implements EventHandler<ActionEvent>{
 

@@ -15,7 +15,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
- * @author Caleb Tupone and Tyler Baylson
+ * @author Caleb Tupone 85%
+ * @author Tyler Baylson 15% CSS
  */
 public class MainMenuScreen extends BorderPane implements EventHandler<ActionEvent>{
 

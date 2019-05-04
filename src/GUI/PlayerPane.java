@@ -15,10 +15,13 @@ import java.util.ArrayList;
 /**
  * Objects representing each players captured pieces
  *
- * @author Tyler 60% PlayerPane
+ * @author Tyler 55% PlayerPane
  * @author Dillon 40% addChilden getPlayer
+ * @author Caleb Tupone 5% the if statement in the constructor
  */
 public class PlayerPane extends VBox {
+
+    private Label playerName;
 
     /**The player*/
     private int player;
@@ -32,18 +35,23 @@ public class PlayerPane extends VBox {
      * @param playerNumber - The player number
      */
     public PlayerPane(int playerNumber){
-        getStyleClass().add("player-pane");
-
         this.player = playerNumber;
         iArray = new ArrayList<>();
-
+        setPrefSize(200, 400);
+        setSpacing(40);
         Label title = new Label("Player " + playerNumber);
         title.getStyleClass().add("my-label");
         title.setPadding(new Insets(20,0,0,0));
         title.setScaleX(1.2);
         title.setScaleY(1.2);
 
-        Label playerName = new Label("P" + playerNumber);
+        if (playerNumber == 1){
+            playerName = new Label(PlayerNameScreen.getInstance().getPlayerOneField());
+        }
+        else {
+            playerName = new Label(PlayerNameScreen.getInstance().getPlayerTwoField());
+        }
+
         playerName.getStyleClass().add("my-label");
         playerName.setPadding(new Insets(0,0,40,0));
         playerName.setAlignment(Pos.CENTER_RIGHT);
@@ -56,12 +64,9 @@ public class PlayerPane extends VBox {
         capturedLabel.setScaleY(1.2);
 
         capturedPieces = new TilePane();
-        //capturedPieces.setPrefColumns(3);
-        //capturedPieces.setAlignment(Pos.TOP_LEFT);
-
-        //capturedPieces.setMaxHeight(30);
-        //capturedPieces.setMinWidth(10);
-        //capturedPieces.getStyleClass().add("capped-pieces");
+        capturedPieces.setPrefColumns(2);
+        capturedPieces.setMaxHeight(30);
+        capturedPieces.setMinWidth(10);
 
         getChildren().addAll(
                 title,
@@ -75,7 +80,7 @@ public class PlayerPane extends VBox {
      * @param pieces - The pieces to add
      */
     public void addChilden(ArrayList<PieceIF> pieces){
-        capturedPieces.getChildren().clear();
+        capturedPieces.getChildren().removeAll(iArray);
         iArray = new ArrayList<>();
         for (PieceIF piece : pieces){
             ImageView image = null;
@@ -126,13 +131,12 @@ public class PlayerPane extends VBox {
                 }
             }
             if (image != null) {
-                //image.setFitHeight(capturedPieces.getMaxHeight());
-                //image.setFitWidth(capturedPieces.getMaxWidth());
-                image.getStyleClass().add("capped-pieces");
+                image.setFitHeight(capturedPieces.getMaxHeight());
+                image.setFitWidth(capturedPieces.getMaxWidth());
                 iArray.add(image);
             }
         }
-        //capturedPieces.getChildren().addAll(iArray);
+        capturedPieces.getChildren().addAll(iArray);
     }
 
     /**

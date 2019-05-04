@@ -16,7 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
- * @author Caleb Tupone
+ * This class is the options screen of the application
+ * @author Caleb Tupone 90%
+ * @author Tyler Baylson 10% CSS
  */
 public class OptionsScreen extends BorderPane implements EventHandler<ActionEvent>, SquareColorHandler {
 
@@ -27,7 +29,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
     private ScreenChangeHandler GUI;
 
     private Button saveButton;
-    private Button backButton;
+    private Button exitButton;
 
     private SquareColorPanel blackSquareField;
     private SquareColorPanel whiteSquareField;
@@ -52,20 +54,6 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         setCenterSection(setLeftSide(), setRightSide());
         SquareColorChooser.getInstance().colorRegister(this);
     }
-
-//    /**
-//     *
-//     * @param labelText
-//     * @return
-//     */
-//    private HBox maxUndoNumCreator(String labelText){
-//        maxUndoNum = new HBox(25);
-//        Label desc = new Label(labelText);
-//        maxUndoNum.getChildren().addAll(desc);
-//
-//
-//        return maxUndoNum;
-//    }
 
     /**
      * setCenterSection- A helper method to set the center of the border pane
@@ -92,15 +80,16 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         rightSide.getChildren().add(showMoves);
 
         saveButton = addButton(rightSide, "Save");
-        backButton = addButton(rightSide, "Back");
+        exitButton = addButton(rightSide, "Exit");
         saveButton.getStyleClass().add("my-button");
-        backButton.getStyleClass().add("my-button");
+        exitButton.getStyleClass().add("my-button");
 
         rightSide.setAlignment(Pos.CENTER);
         rightSide.setSpacing(20);
 
         return rightSide;
     }
+
 
     /**
      * setLeftSide- A helper method to set the left side of the border pane
@@ -135,6 +124,8 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
         leftSide.setSpacing(20);
 
         return leftSide;
+
+
     }
 
     /**
@@ -174,7 +165,7 @@ public class OptionsScreen extends BorderPane implements EventHandler<ActionEven
      */
     @Override
     public void handle(ActionEvent event) {
-        if(event.getSource() == backButton)
+        if(event.getSource() == exitButton)
             GUI.switchScreen(ScreenChangeHandler.Screens.MAINMENU);
         else if(event.getSource() == saveButton)
             System.out.println("Saving Options (Not Really)");
