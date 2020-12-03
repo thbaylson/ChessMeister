@@ -10,3 +10,6 @@ A working chess software. Supports CLI as well as GUI implementations. Design fe
 
 # Usage
 ## CLI
+java src.Driver
+
+## GUI
