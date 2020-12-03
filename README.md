@@ -10,4 +10,5 @@ A working chess software. Supports CLI as well as GUI implementations. Design fe
 
 # Usage
 java src.Driver
+
 Program will prompt at start if you wish to continue in command line or switch to GUI
