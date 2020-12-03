@@ -1,3 +1,12 @@
 # Chess-Meister
+Author: Tyler Baylson
 
-This is the project for which your team should work on the Chess Meister implementation.
+Author: Caleb Tupone
+
+Author: Dillon Ramsey
+
+# Description
+A working chess software. Supports CLI as well as GUI implementations. Design features include abstraction with interfaces, observer design pattern, and momento design pattern.
+
+# Usage
+## CLI
